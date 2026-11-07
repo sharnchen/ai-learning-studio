@@ -1,0 +1,7584 @@
+{
+  "updated": "2026-11-08",
+  "templates": 106,
+  "cases": 576,
+  "types": {
+    "數值計算": 46,
+    "流程模擬": 10,
+    "實際演算法": 50
+  },
+  "mapping": [
+    {
+      "id": "d0t0",
+      "zh": "人工智慧",
+      "en": "Artificial Intelligence, AI",
+      "engineId": "learning-plan"
+    },
+    {
+      "id": "d0t1",
+      "zh": "通用人工智慧",
+      "en": "Artificial General Intelligence, AGI",
+      "engineId": "capability"
+    },
+    {
+      "id": "d0t2",
+      "zh": "機器學習",
+      "en": "Machine Learning, ML",
+      "engineId": "learning-plan"
+    },
+    {
+      "id": "d0t3",
+      "zh": "深度學習",
+      "en": "Deep Learning, DL",
+      "engineId": "learning-plan"
+    },
+    {
+      "id": "d0t4",
+      "zh": "生成式人工智慧",
+      "en": "Generative Artificial Intelligence, Generative AI",
+      "engineId": "learning-plan"
+    },
+    {
+      "id": "d0t5",
+      "zh": "判別式模型",
+      "en": "Discriminative Model",
+      "engineId": "learning-plan"
+    },
+    {
+      "id": "d0t6",
+      "zh": "生成式模型",
+      "en": "Generative Model",
+      "engineId": "learning-plan"
+    },
+    {
+      "id": "d0t7",
+      "zh": "監督學習",
+      "en": "Supervised Learning",
+      "engineId": "learning-plan"
+    },
+    {
+      "id": "d0t8",
+      "zh": "非監督學習",
+      "en": "Unsupervised Learning",
+      "engineId": "learning-plan"
+    },
+    {
+      "id": "d0t9",
+      "zh": "半監督學習",
+      "en": "Semi-Supervised Learning",
+      "engineId": "learning-plan"
+    },
+    {
+      "id": "d0t10",
+      "zh": "自監督學習",
+      "en": "Self-Supervised Learning",
+      "engineId": "learning-plan"
+    },
+    {
+      "id": "d0t11",
+      "zh": "強化學習",
+      "en": "Reinforcement Learning, RL",
+      "engineId": "qlearning"
+    },
+    {
+      "id": "d0t12",
+      "zh": "遷移學習",
+      "en": "Transfer Learning",
+      "engineId": "adaptation"
+    },
+    {
+      "id": "d0t13",
+      "zh": "多任務學習",
+      "en": "Multi-Task Learning",
+      "engineId": "adaptation"
+    },
+    {
+      "id": "d0t14",
+      "zh": "聯邦學習",
+      "en": "Federated Learning",
+      "engineId": "merge-forget"
+    },
+    {
+      "id": "d0t15",
+      "zh": "持續學習",
+      "en": "Continual Learning",
+      "engineId": "merge-forget"
+    },
+    {
+      "id": "d0t16",
+      "zh": "主動學習",
+      "en": "Active Learning",
+      "engineId": "adaptation"
+    },
+    {
+      "id": "d0t17",
+      "zh": "線上學習",
+      "en": "Online Learning",
+      "engineId": "merge-forget"
+    },
+    {
+      "id": "d0t18",
+      "zh": "離線學習",
+      "en": "Offline Learning",
+      "engineId": "merge-forget"
+    },
+    {
+      "id": "d0t19",
+      "zh": "少樣本學習",
+      "en": "Few-Shot Learning",
+      "engineId": "adaptation"
+    },
+    {
+      "id": "d0t20",
+      "zh": "零樣本學習",
+      "en": "Zero-Shot Learning",
+      "engineId": "adaptation"
+    },
+    {
+      "id": "d0t21",
+      "zh": "後設學習",
+      "en": "Meta-Learning",
+      "engineId": "adaptation"
+    },
+    {
+      "id": "d0t22",
+      "zh": "課程學習",
+      "en": "Curriculum Learning",
+      "engineId": "adaptation"
+    },
+    {
+      "id": "d0t23",
+      "zh": "模仿學習",
+      "en": "Imitation Learning",
+      "engineId": "adaptation"
+    },
+    {
+      "id": "d1t0",
+      "zh": "資料集",
+      "en": "Dataset",
+      "engineId": "data-clean"
+    },
+    {
+      "id": "d1t1",
+      "zh": "樣本",
+      "en": "Sample / Instance",
+      "engineId": "data-clean"
+    },
+    {
+      "id": "d1t2",
+      "zh": "特徵",
+      "en": "Feature",
+      "engineId": "data-clean"
+    },
+    {
+      "id": "d1t3",
+      "zh": "標籤",
+      "en": "Label",
+      "engineId": "data-clean"
+    },
+    {
+      "id": "d1t4",
+      "zh": "目標變數",
+      "en": "Target Variable",
+      "engineId": "data-clean"
+    },
+    {
+      "id": "d1t5",
+      "zh": "真實標準答案",
+      "en": "Ground Truth",
+      "engineId": "data-clean"
+    },
+    {
+      "id": "d1t6",
+      "zh": "訓練集",
+      "en": "Training Set",
+      "engineId": "split"
+    },
+    {
+      "id": "d1t7",
+      "zh": "驗證集",
+      "en": "Validation Set",
+      "engineId": "split"
+    },
+    {
+      "id": "d1t8",
+      "zh": "測試集",
+      "en": "Test Set",
+      "engineId": "split"
+    },
+    {
+      "id": "d1t9",
+      "zh": "資料切分",
+      "en": "Data Splitting",
+      "engineId": "split"
+    },
+    {
+      "id": "d1t10",
+      "zh": "資料標註",
+      "en": "Data Annotation / Labeling",
+      "engineId": "data-clean"
+    },
+    {
+      "id": "d1t11",
+      "zh": "資料清理",
+      "en": "Data Cleaning",
+      "engineId": "data-clean"
+    },
+    {
+      "id": "d1t12",
+      "zh": "資料前處理",
+      "en": "Data Preprocessing",
+      "engineId": "data-clean"
+    },
+    {
+      "id": "d1t13",
+      "zh": "缺失值",
+      "en": "Missing Value",
+      "engineId": "data-clean"
+    },
+    {
+      "id": "d1t14",
+      "zh": "缺失值填補",
+      "en": "Missing Value Imputation",
+      "engineId": "data-clean"
+    },
+    {
+      "id": "d1t15",
+      "zh": "離群值",
+      "en": "Outlier",
+      "engineId": "data-clean"
+    },
+    {
+      "id": "d1t16",
+      "zh": "雜訊",
+      "en": "Noise",
+      "engineId": "data-clean"
+    },
+    {
+      "id": "d1t17",
+      "zh": "資料增強",
+      "en": "Data Augmentation",
+      "engineId": "augment"
+    },
+    {
+      "id": "d1t18",
+      "zh": "合成資料",
+      "en": "Synthetic Data",
+      "engineId": "augment"
+    },
+    {
+      "id": "d1t19",
+      "zh": "特徵工程",
+      "en": "Feature Engineering",
+      "engineId": "data-clean"
+    },
+    {
+      "id": "d1t20",
+      "zh": "特徵選擇",
+      "en": "Feature Selection",
+      "engineId": "data-clean"
+    },
+    {
+      "id": "d1t21",
+      "zh": "特徵擷取",
+      "en": "Feature Extraction",
+      "engineId": "data-clean"
+    },
+    {
+      "id": "d1t22",
+      "zh": "正規化",
+      "en": "Normalization",
+      "engineId": "calc-vector"
+    },
+    {
+      "id": "d1t23",
+      "zh": "標準化",
+      "en": "Standardization",
+      "engineId": "calc-standard"
+    },
+    {
+      "id": "d1t24",
+      "zh": "獨熱編碼",
+      "en": "One-Hot Encoding",
+      "engineId": "onehot"
+    },
+    {
+      "id": "d1t25",
+      "zh": "類別不平衡",
+      "en": "Class Imbalance",
+      "engineId": "calc-metrics"
+    },
+    {
+      "id": "d1t26",
+      "zh": "過採樣",
+      "en": "Oversampling",
+      "engineId": "balance"
+    },
+    {
+      "id": "d1t27",
+      "zh": "欠採樣",
+      "en": "Undersampling",
+      "engineId": "balance"
+    },
+    {
+      "id": "d1t28",
+      "zh": "資料洩漏",
+      "en": "Data Leakage",
+      "engineId": "split"
+    },
+    {
+      "id": "d1t29",
+      "zh": "資料偏差",
+      "en": "Data Bias",
+      "engineId": "drift"
+    },
+    {
+      "id": "d1t30",
+      "zh": "資料分布",
+      "en": "Data Distribution",
+      "engineId": "drift"
+    },
+    {
+      "id": "d1t31",
+      "zh": "分布偏移",
+      "en": "Distribution Shift",
+      "engineId": "drift"
+    },
+    {
+      "id": "d1t32",
+      "zh": "資料漂移",
+      "en": "Data Drift",
+      "engineId": "drift"
+    },
+    {
+      "id": "d1t33",
+      "zh": "概念漂移",
+      "en": "Concept Drift",
+      "engineId": "drift"
+    },
+    {
+      "id": "d1t34",
+      "zh": "資料溯源",
+      "en": "Data Provenance",
+      "engineId": "provenance"
+    },
+    {
+      "id": "d2t0",
+      "zh": "純量",
+      "en": "Scalar",
+      "engineId": "matrix"
+    },
+    {
+      "id": "d2t1",
+      "zh": "向量",
+      "en": "Vector",
+      "engineId": "calc-vector"
+    },
+    {
+      "id": "d2t2",
+      "zh": "矩陣",
+      "en": "Matrix",
+      "engineId": "matrix"
+    },
+    {
+      "id": "d2t3",
+      "zh": "張量",
+      "en": "Tensor",
+      "engineId": "matrix"
+    },
+    {
+      "id": "d2t4",
+      "zh": "維度",
+      "en": "Dimension",
+      "engineId": "matrix"
+    },
+    {
+      "id": "d2t5",
+      "zh": "張量形狀",
+      "en": "Tensor Shape",
+      "engineId": "matrix"
+    },
+    {
+      "id": "d2t6",
+      "zh": "點積",
+      "en": "Dot Product",
+      "engineId": "calc-vector"
+    },
+    {
+      "id": "d2t7",
+      "zh": "矩陣乘法",
+      "en": "Matrix Multiplication",
+      "engineId": "matrix"
+    },
+    {
+      "id": "d2t8",
+      "zh": "轉置",
+      "en": "Transpose",
+      "engineId": "matrix"
+    },
+    {
+      "id": "d2t9",
+      "zh": "範數",
+      "en": "Norm",
+      "engineId": "calc-vector"
+    },
+    {
+      "id": "d2t10",
+      "zh": "特徵值",
+      "en": "Eigenvalue",
+      "engineId": "pca"
+    },
+    {
+      "id": "d2t11",
+      "zh": "特徵向量",
+      "en": "Eigenvector",
+      "engineId": "pca"
+    },
+    {
+      "id": "d2t12",
+      "zh": "奇異值分解",
+      "en": "Singular Value Decomposition, SVD",
+      "engineId": "pca"
+    },
+    {
+      "id": "d2t13",
+      "zh": "機率分布",
+      "en": "Probability Distribution",
+      "engineId": "bayes"
+    },
+    {
+      "id": "d2t14",
+      "zh": "條件機率",
+      "en": "Conditional Probability",
+      "engineId": "bayes"
+    },
+    {
+      "id": "d2t15",
+      "zh": "貝氏定理",
+      "en": "Bayes’ Theorem",
+      "engineId": "bayes"
+    },
+    {
+      "id": "d2t16",
+      "zh": "最大概似估計",
+      "en": "Maximum Likelihood Estimation, MLE",
+      "engineId": "bayes"
+    },
+    {
+      "id": "d2t17",
+      "zh": "最大後驗估計",
+      "en": "Maximum A Posteriori Estimation, MAP",
+      "engineId": "bayes"
+    },
+    {
+      "id": "d2t18",
+      "zh": "期望值",
+      "en": "Expected Value / Expectation",
+      "engineId": "statistics"
+    },
+    {
+      "id": "d2t19",
+      "zh": "變異數",
+      "en": "Variance",
+      "engineId": "statistics"
+    },
+    {
+      "id": "d2t20",
+      "zh": "標準差",
+      "en": "Standard Deviation",
+      "engineId": "calc-standard"
+    },
+    {
+      "id": "d2t21",
+      "zh": "共變異數",
+      "en": "Covariance",
+      "engineId": "statistics"
+    },
+    {
+      "id": "d2t22",
+      "zh": "相關性",
+      "en": "Correlation",
+      "engineId": "statistics"
+    },
+    {
+      "id": "d2t23",
+      "zh": "熵",
+      "en": "Entropy",
+      "engineId": "calc-sampling"
+    },
+    {
+      "id": "d2t24",
+      "zh": "交叉熵",
+      "en": "Cross-Entropy",
+      "engineId": "calc-error"
+    },
+    {
+      "id": "d2t25",
+      "zh": "KL 散度",
+      "en": "Kullback–Leibler Divergence, KL Divergence",
+      "engineId": "distribution"
+    },
+    {
+      "id": "d2t26",
+      "zh": "導數",
+      "en": "Derivative",
+      "engineId": "calc-gradient"
+    },
+    {
+      "id": "d2t27",
+      "zh": "偏導數",
+      "en": "Partial Derivative",
+      "engineId": "calc-gradient"
+    },
+    {
+      "id": "d2t28",
+      "zh": "梯度",
+      "en": "Gradient",
+      "engineId": "calc-gradient"
+    },
+    {
+      "id": "d2t29",
+      "zh": "鏈式法則",
+      "en": "Chain Rule",
+      "engineId": "calculus"
+    },
+    {
+      "id": "d2t30",
+      "zh": "雅可比矩陣",
+      "en": "Jacobian Matrix",
+      "engineId": "calculus"
+    },
+    {
+      "id": "d2t31",
+      "zh": "海森矩陣",
+      "en": "Hessian Matrix",
+      "engineId": "calculus"
+    },
+    {
+      "id": "d2t32",
+      "zh": "凸最佳化",
+      "en": "Convex Optimization",
+      "engineId": "calc-gradient"
+    },
+    {
+      "id": "d3t0",
+      "zh": "分類",
+      "en": "Classification",
+      "engineId": "learning-plan"
+    },
+    {
+      "id": "d3t1",
+      "zh": "二元分類",
+      "en": "Binary Classification",
+      "engineId": "learning-plan"
+    },
+    {
+      "id": "d3t2",
+      "zh": "多類別分類",
+      "en": "Multiclass Classification",
+      "engineId": "learning-plan"
+    },
+    {
+      "id": "d3t3",
+      "zh": "多標籤分類",
+      "en": "Multilabel Classification",
+      "engineId": "learning-plan"
+    },
+    {
+      "id": "d3t4",
+      "zh": "回歸",
+      "en": "Regression",
+      "engineId": "learning-plan"
+    },
+    {
+      "id": "d3t5",
+      "zh": "線性回歸",
+      "en": "Linear Regression",
+      "engineId": "regression"
+    },
+    {
+      "id": "d3t6",
+      "zh": "邏輯斯回歸",
+      "en": "Logistic Regression",
+      "engineId": "logistic-contrast"
+    },
+    {
+      "id": "d3t7",
+      "zh": "多項式回歸",
+      "en": "Polynomial Regression",
+      "engineId": "regression"
+    },
+    {
+      "id": "d3t8",
+      "zh": "決策樹",
+      "en": "Decision Tree",
+      "engineId": "tree"
+    },
+    {
+      "id": "d3t9",
+      "zh": "隨機森林",
+      "en": "Random Forest",
+      "engineId": "ensemble"
+    },
+    {
+      "id": "d3t10",
+      "zh": "支援向量機",
+      "en": "Support Vector Machine, SVM",
+      "engineId": "svm"
+    },
+    {
+      "id": "d3t11",
+      "zh": "最近鄰演算法",
+      "en": "k-Nearest Neighbors, k-NN",
+      "engineId": "knn"
+    },
+    {
+      "id": "d3t12",
+      "zh": "樸素貝氏分類器",
+      "en": "Naive Bayes Classifier",
+      "engineId": "naivebayes"
+    },
+    {
+      "id": "d3t13",
+      "zh": "集成學習",
+      "en": "Ensemble Learning",
+      "engineId": "ensemble"
+    },
+    {
+      "id": "d3t14",
+      "zh": "自助聚合",
+      "en": "Bootstrap Aggregating, Bagging",
+      "engineId": "ensemble"
+    },
+    {
+      "id": "d3t15",
+      "zh": "提升法",
+      "en": "Boosting",
+      "engineId": "boost"
+    },
+    {
+      "id": "d3t16",
+      "zh": "梯度提升",
+      "en": "Gradient Boosting",
+      "engineId": "boost"
+    },
+    {
+      "id": "d3t17",
+      "zh": "分群",
+      "en": "Clustering",
+      "engineId": "kmeans"
+    },
+    {
+      "id": "d3t18",
+      "zh": "K 平均分群",
+      "en": "K-Means Clustering",
+      "engineId": "kmeans"
+    },
+    {
+      "id": "d3t19",
+      "zh": "階層式分群",
+      "en": "Hierarchical Clustering",
+      "engineId": "hierarchy"
+    },
+    {
+      "id": "d3t20",
+      "zh": "密度式分群",
+      "en": "Density-Based Clustering",
+      "engineId": "hierarchy"
+    },
+    {
+      "id": "d3t21",
+      "zh": "高斯混合模型",
+      "en": "Gaussian Mixture Model, GMM",
+      "engineId": "gmm"
+    },
+    {
+      "id": "d3t22",
+      "zh": "降維",
+      "en": "Dimensionality Reduction",
+      "engineId": "pca"
+    },
+    {
+      "id": "d3t23",
+      "zh": "主成分分析",
+      "en": "Principal Component Analysis, PCA",
+      "engineId": "pca"
+    },
+    {
+      "id": "d3t24",
+      "zh": "異常偵測",
+      "en": "Anomaly Detection",
+      "engineId": "timeseries"
+    },
+    {
+      "id": "d3t25",
+      "zh": "推薦系統",
+      "en": "Recommender System",
+      "engineId": "recommend"
+    },
+    {
+      "id": "d3t26",
+      "zh": "協同過濾",
+      "en": "Collaborative Filtering",
+      "engineId": "recommend"
+    },
+    {
+      "id": "d3t27",
+      "zh": "矩陣分解",
+      "en": "Matrix Factorization",
+      "engineId": "calc-lora"
+    },
+    {
+      "id": "d3t28",
+      "zh": "時間序列預測",
+      "en": "Time Series Forecasting",
+      "engineId": "timeseries"
+    },
+    {
+      "id": "d4t0",
+      "zh": "人工神經網路",
+      "en": "Artificial Neural Network, ANN",
+      "engineId": "mlp"
+    },
+    {
+      "id": "d4t1",
+      "zh": "神經元",
+      "en": "Neuron",
+      "engineId": "calc-activation"
+    },
+    {
+      "id": "d4t2",
+      "zh": "感知器",
+      "en": "Perceptron",
+      "engineId": "calc-activation"
+    },
+    {
+      "id": "d4t3",
+      "zh": "多層感知器",
+      "en": "Multilayer Perceptron, MLP",
+      "engineId": "mlp"
+    },
+    {
+      "id": "d4t4",
+      "zh": "輸入層",
+      "en": "Input Layer",
+      "engineId": "mlp"
+    },
+    {
+      "id": "d4t5",
+      "zh": "隱藏層",
+      "en": "Hidden Layer",
+      "engineId": "mlp"
+    },
+    {
+      "id": "d4t6",
+      "zh": "輸出層",
+      "en": "Output Layer",
+      "engineId": "mlp"
+    },
+    {
+      "id": "d4t7",
+      "zh": "全連接層",
+      "en": "Fully Connected Layer / Dense Layer",
+      "engineId": "mlp"
+    },
+    {
+      "id": "d4t8",
+      "zh": "權重",
+      "en": "Weight",
+      "engineId": "calc-activation"
+    },
+    {
+      "id": "d4t9",
+      "zh": "偏置",
+      "en": "Bias",
+      "engineId": "calc-activation"
+    },
+    {
+      "id": "d4t10",
+      "zh": "參數",
+      "en": "Parameter",
+      "engineId": "mlp"
+    },
+    {
+      "id": "d4t11",
+      "zh": "超參數",
+      "en": "Hyperparameter",
+      "engineId": "learning-curve"
+    },
+    {
+      "id": "d4t12",
+      "zh": "激活函數",
+      "en": "Activation Function",
+      "engineId": "calc-activation"
+    },
+    {
+      "id": "d4t13",
+      "zh": "修正線性單元",
+      "en": "Rectified Linear Unit, ReLU",
+      "engineId": "calc-activation"
+    },
+    {
+      "id": "d4t14",
+      "zh": "帶洩漏修正線性單元",
+      "en": "Leaky ReLU",
+      "engineId": "calc-activation"
+    },
+    {
+      "id": "d4t15",
+      "zh": "高斯誤差線性單元",
+      "en": "Gaussian Error Linear Unit, GELU",
+      "engineId": "calc-activation"
+    },
+    {
+      "id": "d4t16",
+      "zh": "Sigmoid 函數",
+      "en": "Sigmoid Function",
+      "engineId": "calc-activation"
+    },
+    {
+      "id": "d4t17",
+      "zh": "雙曲正切函數",
+      "en": "Hyperbolic Tangent, Tanh",
+      "engineId": "calc-activation"
+    },
+    {
+      "id": "d4t18",
+      "zh": "Softmax 函數",
+      "en": "Softmax Function",
+      "engineId": "calc-sampling"
+    },
+    {
+      "id": "d4t19",
+      "zh": "前向傳播",
+      "en": "Forward Propagation",
+      "engineId": "mlp"
+    },
+    {
+      "id": "d4t20",
+      "zh": "反向傳播",
+      "en": "Backpropagation",
+      "engineId": "autodiff"
+    },
+    {
+      "id": "d4t21",
+      "zh": "計算圖",
+      "en": "Computational Graph",
+      "engineId": "autodiff"
+    },
+    {
+      "id": "d4t22",
+      "zh": "自動微分",
+      "en": "Automatic Differentiation",
+      "engineId": "autodiff"
+    },
+    {
+      "id": "d4t23",
+      "zh": "權重初始化",
+      "en": "Weight Initialization",
+      "engineId": "residual"
+    },
+    {
+      "id": "d4t24",
+      "zh": "批次正規化",
+      "en": "Batch Normalization",
+      "engineId": "normalization"
+    },
+    {
+      "id": "d4t25",
+      "zh": "層正規化",
+      "en": "Layer Normalization",
+      "engineId": "normalization"
+    },
+    {
+      "id": "d4t26",
+      "zh": "均方根正規化",
+      "en": "Root Mean Square Normalization, RMSNorm",
+      "engineId": "normalization"
+    },
+    {
+      "id": "d4t27",
+      "zh": "隨機失活",
+      "en": "Dropout",
+      "engineId": "dropout"
+    },
+    {
+      "id": "d4t28",
+      "zh": "殘差連接",
+      "en": "Residual Connection",
+      "engineId": "residual"
+    },
+    {
+      "id": "d4t29",
+      "zh": "跳接",
+      "en": "Skip Connection",
+      "engineId": "residual"
+    },
+    {
+      "id": "d4t30",
+      "zh": "梯度消失",
+      "en": "Vanishing Gradient",
+      "engineId": "calc-clip"
+    },
+    {
+      "id": "d4t31",
+      "zh": "梯度爆炸",
+      "en": "Exploding Gradient",
+      "engineId": "calc-clip"
+    },
+    {
+      "id": "d5t0",
+      "zh": "模型訓練",
+      "en": "Model Training",
+      "engineId": "optimizer"
+    },
+    {
+      "id": "d5t1",
+      "zh": "訓練輪次",
+      "en": "Epoch",
+      "engineId": "calc-batch"
+    },
+    {
+      "id": "d5t2",
+      "zh": "批次",
+      "en": "Batch",
+      "engineId": "calc-batch"
+    },
+    {
+      "id": "d5t3",
+      "zh": "批次大小",
+      "en": "Batch Size",
+      "engineId": "calc-batch"
+    },
+    {
+      "id": "d5t4",
+      "zh": "小批次",
+      "en": "Mini-Batch",
+      "engineId": "calc-batch"
+    },
+    {
+      "id": "d5t5",
+      "zh": "更新步數",
+      "en": "Training Step",
+      "engineId": "calc-batch"
+    },
+    {
+      "id": "d5t6",
+      "zh": "迭代",
+      "en": "Iteration",
+      "engineId": "calc-batch"
+    },
+    {
+      "id": "d5t7",
+      "zh": "學習率",
+      "en": "Learning Rate",
+      "engineId": "calc-gradient"
+    },
+    {
+      "id": "d5t8",
+      "zh": "學習率排程",
+      "en": "Learning Rate Schedule",
+      "engineId": "learning-curve"
+    },
+    {
+      "id": "d5t9",
+      "zh": "學習率暖身",
+      "en": "Learning Rate Warmup",
+      "engineId": "learning-curve"
+    },
+    {
+      "id": "d5t10",
+      "zh": "梯度下降",
+      "en": "Gradient Descent",
+      "engineId": "calc-gradient"
+    },
+    {
+      "id": "d5t11",
+      "zh": "隨機梯度下降",
+      "en": "Stochastic Gradient Descent, SGD",
+      "engineId": "optimizer"
+    },
+    {
+      "id": "d5t12",
+      "zh": "動量",
+      "en": "Momentum",
+      "engineId": "optimizer"
+    },
+    {
+      "id": "d5t13",
+      "zh": "自適應矩估計",
+      "en": "Adaptive Moment Estimation, Adam",
+      "engineId": "optimizer"
+    },
+    {
+      "id": "d5t14",
+      "zh": "AdamW 最佳化器",
+      "en": "AdamW Optimizer",
+      "engineId": "optimizer"
+    },
+    {
+      "id": "d5t15",
+      "zh": "最佳化器",
+      "en": "Optimizer",
+      "engineId": "optimizer"
+    },
+    {
+      "id": "d5t16",
+      "zh": "損失函數",
+      "en": "Loss Function",
+      "engineId": "calc-gradient"
+    },
+    {
+      "id": "d5t17",
+      "zh": "目標函數",
+      "en": "Objective Function",
+      "engineId": "regularization"
+    },
+    {
+      "id": "d5t18",
+      "zh": "均方誤差",
+      "en": "Mean Squared Error, MSE",
+      "engineId": "calc-error"
+    },
+    {
+      "id": "d5t19",
+      "zh": "平均絕對誤差",
+      "en": "Mean Absolute Error, MAE",
+      "engineId": "calc-error"
+    },
+    {
+      "id": "d5t20",
+      "zh": "二元交叉熵",
+      "en": "Binary Cross-Entropy, BCE",
+      "engineId": "calc-error"
+    },
+    {
+      "id": "d5t21",
+      "zh": "類別交叉熵",
+      "en": "Categorical Cross-Entropy",
+      "engineId": "calc-error"
+    },
+    {
+      "id": "d5t22",
+      "zh": "負對數概似",
+      "en": "Negative Log-Likelihood, NLL",
+      "engineId": "calc-error"
+    },
+    {
+      "id": "d5t23",
+      "zh": "對比損失",
+      "en": "Contrastive Loss",
+      "engineId": "logistic-contrast"
+    },
+    {
+      "id": "d5t24",
+      "zh": "正則化",
+      "en": "Regularization",
+      "engineId": "regularization"
+    },
+    {
+      "id": "d5t25",
+      "zh": "L1 正則化",
+      "en": "L1 Regularization",
+      "engineId": "regularization"
+    },
+    {
+      "id": "d5t26",
+      "zh": "L2 正則化",
+      "en": "L2 Regularization",
+      "engineId": "regularization"
+    },
+    {
+      "id": "d5t27",
+      "zh": "權重衰減",
+      "en": "Weight Decay",
+      "engineId": "regularization"
+    },
+    {
+      "id": "d5t28",
+      "zh": "提早停止",
+      "en": "Early Stopping",
+      "engineId": "learning-curve"
+    },
+    {
+      "id": "d5t29",
+      "zh": "梯度裁剪",
+      "en": "Gradient Clipping",
+      "engineId": "calc-clip"
+    },
+    {
+      "id": "d5t30",
+      "zh": "梯度累積",
+      "en": "Gradient Accumulation",
+      "engineId": "calc-batch"
+    },
+    {
+      "id": "d5t31",
+      "zh": "檢查點",
+      "en": "Checkpoint",
+      "engineId": "learning-curve"
+    },
+    {
+      "id": "d5t32",
+      "zh": "過擬合",
+      "en": "Overfitting",
+      "engineId": "learning-curve"
+    },
+    {
+      "id": "d5t33",
+      "zh": "欠擬合",
+      "en": "Underfitting",
+      "engineId": "learning-curve"
+    },
+    {
+      "id": "d5t34",
+      "zh": "泛化能力",
+      "en": "Generalization",
+      "engineId": "learning-curve"
+    },
+    {
+      "id": "d5t35",
+      "zh": "偏差與變異權衡",
+      "en": "Bias–Variance Tradeoff",
+      "engineId": "learning-curve"
+    },
+    {
+      "id": "d5t36",
+      "zh": "超參數搜尋",
+      "en": "Hyperparameter Search",
+      "engineId": "learning-curve"
+    },
+    {
+      "id": "d5t37",
+      "zh": "網格搜尋",
+      "en": "Grid Search",
+      "engineId": "learning-curve"
+    },
+    {
+      "id": "d5t38",
+      "zh": "隨機搜尋",
+      "en": "Random Search",
+      "engineId": "learning-curve"
+    },
+    {
+      "id": "d5t39",
+      "zh": "貝氏最佳化",
+      "en": "Bayesian Optimization",
+      "engineId": "learning-curve"
+    },
+    {
+      "id": "d6t0",
+      "zh": "混淆矩陣",
+      "en": "Confusion Matrix",
+      "engineId": "calc-metrics"
+    },
+    {
+      "id": "d6t1",
+      "zh": "真陽性",
+      "en": "True Positive, TP",
+      "engineId": "calc-metrics"
+    },
+    {
+      "id": "d6t2",
+      "zh": "真陰性",
+      "en": "True Negative, TN",
+      "engineId": "calc-metrics"
+    },
+    {
+      "id": "d6t3",
+      "zh": "假陽性",
+      "en": "False Positive, FP",
+      "engineId": "calc-metrics"
+    },
+    {
+      "id": "d6t4",
+      "zh": "假陰性",
+      "en": "False Negative, FN",
+      "engineId": "calc-metrics"
+    },
+    {
+      "id": "d6t5",
+      "zh": "準確率",
+      "en": "Accuracy",
+      "engineId": "calc-metrics"
+    },
+    {
+      "id": "d6t6",
+      "zh": "精確率",
+      "en": "Precision",
+      "engineId": "calc-metrics"
+    },
+    {
+      "id": "d6t7",
+      "zh": "召回率／敏感度",
+      "en": "Recall / Sensitivity",
+      "engineId": "calc-metrics"
+    },
+    {
+      "id": "d6t8",
+      "zh": "特異度",
+      "en": "Specificity",
+      "engineId": "calc-metrics"
+    },
+    {
+      "id": "d6t9",
+      "zh": "F1 分數",
+      "en": "F1 Score",
+      "engineId": "calc-metrics"
+    },
+    {
+      "id": "d6t10",
+      "zh": "ROC 曲線",
+      "en": "Receiver Operating Characteristic Curve",
+      "engineId": "threshold"
+    },
+    {
+      "id": "d6t11",
+      "zh": "ROC 曲線下面積",
+      "en": "Area Under the ROC Curve, ROC-AUC",
+      "engineId": "threshold"
+    },
+    {
+      "id": "d6t12",
+      "zh": "精確率－召回率曲線",
+      "en": "Precision–Recall Curve, PR Curve",
+      "engineId": "threshold"
+    },
+    {
+      "id": "d6t13",
+      "zh": "均方根誤差",
+      "en": "Root Mean Squared Error, RMSE",
+      "engineId": "calc-error"
+    },
+    {
+      "id": "d6t14",
+      "zh": "決定係數",
+      "en": "Coefficient of Determination, R²",
+      "engineId": "regression-metrics"
+    },
+    {
+      "id": "d6t15",
+      "zh": "交叉驗證",
+      "en": "Cross-Validation",
+      "engineId": "cv"
+    },
+    {
+      "id": "d6t16",
+      "zh": "K 折交叉驗證",
+      "en": "K-Fold Cross-Validation",
+      "engineId": "cv"
+    },
+    {
+      "id": "d6t17",
+      "zh": "基準模型",
+      "en": "Baseline Model",
+      "engineId": "regression"
+    },
+    {
+      "id": "d6t18",
+      "zh": "基準測試",
+      "en": "Benchmark",
+      "engineId": "cv"
+    },
+    {
+      "id": "d6t19",
+      "zh": "消融實驗",
+      "en": "Ablation Study",
+      "engineId": "ablation"
+    },
+    {
+      "id": "d6t20",
+      "zh": "錯誤分析",
+      "en": "Error Analysis",
+      "engineId": "ablation"
+    },
+    {
+      "id": "d6t21",
+      "zh": "機率校準",
+      "en": "Probability Calibration",
+      "engineId": "calibration"
+    },
+    {
+      "id": "d6t22",
+      "zh": "困惑度",
+      "en": "Perplexity",
+      "engineId": "calc-error"
+    },
+    {
+      "id": "d6t23",
+      "zh": "人工評估",
+      "en": "Human Evaluation",
+      "engineId": "ablation"
+    },
+    {
+      "id": "d6t24",
+      "zh": "評估資料污染",
+      "en": "Evaluation Data Contamination",
+      "engineId": "cv"
+    },
+    {
+      "id": "d7t0",
+      "zh": "電腦視覺",
+      "en": "Computer Vision, CV",
+      "engineId": "segmentation"
+    },
+    {
+      "id": "d7t1",
+      "zh": "影像分類",
+      "en": "Image Classification",
+      "engineId": "segmentation"
+    },
+    {
+      "id": "d7t2",
+      "zh": "物件偵測",
+      "en": "Object Detection",
+      "engineId": "boxes"
+    },
+    {
+      "id": "d7t3",
+      "zh": "語意分割",
+      "en": "Semantic Segmentation",
+      "engineId": "segmentation"
+    },
+    {
+      "id": "d7t4",
+      "zh": "實例分割",
+      "en": "Instance Segmentation",
+      "engineId": "segmentation"
+    },
+    {
+      "id": "d7t5",
+      "zh": "全景分割",
+      "en": "Panoptic Segmentation",
+      "engineId": "segmentation"
+    },
+    {
+      "id": "d7t6",
+      "zh": "姿態估計",
+      "en": "Pose Estimation",
+      "engineId": "boxes"
+    },
+    {
+      "id": "d7t7",
+      "zh": "光學字元辨識",
+      "en": "Optical Character Recognition, OCR",
+      "engineId": "text-tasks"
+    },
+    {
+      "id": "d7t8",
+      "zh": "人臉辨識",
+      "en": "Face Recognition",
+      "engineId": "segmentation"
+    },
+    {
+      "id": "d7t9",
+      "zh": "物件追蹤",
+      "en": "Object Tracking",
+      "engineId": "boxes"
+    },
+    {
+      "id": "d7t10",
+      "zh": "卷積神經網路",
+      "en": "Convolutional Neural Network, CNN",
+      "engineId": "patches"
+    },
+    {
+      "id": "d7t11",
+      "zh": "卷積",
+      "en": "Convolution",
+      "engineId": "calc-conv"
+    },
+    {
+      "id": "d7t12",
+      "zh": "卷積核",
+      "en": "Kernel",
+      "engineId": "calc-conv"
+    },
+    {
+      "id": "d7t13",
+      "zh": "濾波器",
+      "en": "Filter",
+      "engineId": "calc-conv"
+    },
+    {
+      "id": "d7t14",
+      "zh": "特徵圖",
+      "en": "Feature Map",
+      "engineId": "calc-conv"
+    },
+    {
+      "id": "d7t15",
+      "zh": "通道",
+      "en": "Channel",
+      "engineId": "calc-conv"
+    },
+    {
+      "id": "d7t16",
+      "zh": "步幅",
+      "en": "Stride",
+      "engineId": "calc-conv"
+    },
+    {
+      "id": "d7t17",
+      "zh": "填補",
+      "en": "Padding",
+      "engineId": "calc-conv"
+    },
+    {
+      "id": "d7t18",
+      "zh": "感受野",
+      "en": "Receptive Field",
+      "engineId": "patches"
+    },
+    {
+      "id": "d7t19",
+      "zh": "池化",
+      "en": "Pooling",
+      "engineId": "convolution-grid"
+    },
+    {
+      "id": "d7t20",
+      "zh": "最大池化",
+      "en": "Max Pooling",
+      "engineId": "convolution-grid"
+    },
+    {
+      "id": "d7t21",
+      "zh": "平均池化",
+      "en": "Average Pooling",
+      "engineId": "convolution-grid"
+    },
+    {
+      "id": "d7t22",
+      "zh": "全域平均池化",
+      "en": "Global Average Pooling",
+      "engineId": "convolution-grid"
+    },
+    {
+      "id": "d7t23",
+      "zh": "展平",
+      "en": "Flatten",
+      "engineId": "calc-conv"
+    },
+    {
+      "id": "d7t24",
+      "zh": "上採樣",
+      "en": "Upsampling",
+      "engineId": "convolution-grid"
+    },
+    {
+      "id": "d7t25",
+      "zh": "下採樣",
+      "en": "Downsampling",
+      "engineId": "convolution-grid"
+    },
+    {
+      "id": "d7t26",
+      "zh": "轉置卷積",
+      "en": "Transposed Convolution",
+      "engineId": "convolution-grid"
+    },
+    {
+      "id": "d7t27",
+      "zh": "視覺 Transformer",
+      "en": "Vision Transformer, ViT",
+      "engineId": "patches"
+    },
+    {
+      "id": "d7t28",
+      "zh": "交並比",
+      "en": "Intersection over Union, IoU",
+      "engineId": "boxes"
+    },
+    {
+      "id": "d7t29",
+      "zh": "非極大值抑制",
+      "en": "Non-Maximum Suppression, NMS",
+      "engineId": "boxes"
+    },
+    {
+      "id": "d7t30",
+      "zh": "超解析度",
+      "en": "Super-Resolution",
+      "engineId": "convolution-grid"
+    },
+    {
+      "id": "d7t31",
+      "zh": "深度估計",
+      "en": "Depth Estimation",
+      "engineId": "boxes"
+    },
+    {
+      "id": "d7t32",
+      "zh": "光流",
+      "en": "Optical Flow",
+      "engineId": "boxes"
+    },
+    {
+      "id": "d8t0",
+      "zh": "自然語言處理",
+      "en": "Natural Language Processing, NLP",
+      "engineId": "text-tasks"
+    },
+    {
+      "id": "d8t1",
+      "zh": "自然語言理解",
+      "en": "Natural Language Understanding, NLU",
+      "engineId": "text-tasks"
+    },
+    {
+      "id": "d8t2",
+      "zh": "自然語言生成",
+      "en": "Natural Language Generation, NLG",
+      "engineId": "text-tasks"
+    },
+    {
+      "id": "d8t3",
+      "zh": "詞元",
+      "en": "Token",
+      "engineId": "tokenizer"
+    },
+    {
+      "id": "d8t4",
+      "zh": "分詞",
+      "en": "Tokenization",
+      "engineId": "tokenizer"
+    },
+    {
+      "id": "d8t5",
+      "zh": "分詞器",
+      "en": "Tokenizer",
+      "engineId": "tokenizer"
+    },
+    {
+      "id": "d8t6",
+      "zh": "子詞",
+      "en": "Subword",
+      "engineId": "tokenizer"
+    },
+    {
+      "id": "d8t7",
+      "zh": "位元組對編碼",
+      "en": "Byte Pair Encoding, BPE",
+      "engineId": "tokenizer"
+    },
+    {
+      "id": "d8t8",
+      "zh": "詞彙表",
+      "en": "Vocabulary",
+      "engineId": "tokenizer"
+    },
+    {
+      "id": "d8t9",
+      "zh": "詞嵌入",
+      "en": "Word Embedding",
+      "engineId": "embedding"
+    },
+    {
+      "id": "d8t10",
+      "zh": "句子嵌入",
+      "en": "Sentence Embedding",
+      "engineId": "embedding"
+    },
+    {
+      "id": "d8t11",
+      "zh": "上下文嵌入",
+      "en": "Contextual Embedding",
+      "engineId": "embedding"
+    },
+    {
+      "id": "d8t12",
+      "zh": "語言模型",
+      "en": "Language Model",
+      "engineId": "decoding"
+    },
+    {
+      "id": "d8t13",
+      "zh": "循環神經網路",
+      "en": "Recurrent Neural Network, RNN",
+      "engineId": "rnn"
+    },
+    {
+      "id": "d8t14",
+      "zh": "長短期記憶網路",
+      "en": "Long Short-Term Memory, LSTM",
+      "engineId": "rnn"
+    },
+    {
+      "id": "d8t15",
+      "zh": "閘控循環單元",
+      "en": "Gated Recurrent Unit, GRU",
+      "engineId": "rnn"
+    },
+    {
+      "id": "d8t16",
+      "zh": "序列到序列模型",
+      "en": "Sequence-to-Sequence Model, Seq2Seq",
+      "engineId": "rnn"
+    },
+    {
+      "id": "d8t17",
+      "zh": "編碼器",
+      "en": "Encoder",
+      "engineId": "rnn"
+    },
+    {
+      "id": "d8t18",
+      "zh": "解碼器",
+      "en": "Decoder",
+      "engineId": "rnn"
+    },
+    {
+      "id": "d8t19",
+      "zh": "機器翻譯",
+      "en": "Machine Translation",
+      "engineId": "text-tasks"
+    },
+    {
+      "id": "d8t20",
+      "zh": "情感分析",
+      "en": "Sentiment Analysis",
+      "engineId": "text-tasks"
+    },
+    {
+      "id": "d8t21",
+      "zh": "命名實體辨識",
+      "en": "Named Entity Recognition, NER",
+      "engineId": "text-tasks"
+    },
+    {
+      "id": "d8t22",
+      "zh": "問答系統",
+      "en": "Question Answering, QA",
+      "engineId": "text-tasks"
+    },
+    {
+      "id": "d8t23",
+      "zh": "文本摘要",
+      "en": "Text Summarization",
+      "engineId": "text-tasks"
+    },
+    {
+      "id": "d8t24",
+      "zh": "語音辨識",
+      "en": "Automatic Speech Recognition, ASR",
+      "engineId": "transcript"
+    },
+    {
+      "id": "d8t25",
+      "zh": "文字轉語音",
+      "en": "Text-to-Speech, TTS",
+      "engineId": "signal"
+    },
+    {
+      "id": "d8t26",
+      "zh": "語音轉文字",
+      "en": "Speech-to-Text, STT",
+      "engineId": "transcript"
+    },
+    {
+      "id": "d9t0",
+      "zh": "Transformer 架構",
+      "en": "Transformer",
+      "engineId": "attention"
+    },
+    {
+      "id": "d9t1",
+      "zh": "注意力機制",
+      "en": "Attention Mechanism",
+      "engineId": "attention"
+    },
+    {
+      "id": "d9t2",
+      "zh": "自注意力",
+      "en": "Self-Attention",
+      "engineId": "attention"
+    },
+    {
+      "id": "d9t3",
+      "zh": "交叉注意力",
+      "en": "Cross-Attention",
+      "engineId": "attention"
+    },
+    {
+      "id": "d9t4",
+      "zh": "多頭注意力",
+      "en": "Multi-Head Attention, MHA",
+      "engineId": "attention"
+    },
+    {
+      "id": "d9t5",
+      "zh": "注意力頭",
+      "en": "Attention Head",
+      "engineId": "attention"
+    },
+    {
+      "id": "d9t6",
+      "zh": "查詢向量",
+      "en": "Query, Q",
+      "engineId": "attention"
+    },
+    {
+      "id": "d9t7",
+      "zh": "鍵向量",
+      "en": "Key, K",
+      "engineId": "attention"
+    },
+    {
+      "id": "d9t8",
+      "zh": "值向量",
+      "en": "Value, V",
+      "engineId": "attention"
+    },
+    {
+      "id": "d9t9",
+      "zh": "縮放點積注意力",
+      "en": "Scaled Dot-Product Attention",
+      "engineId": "attention"
+    },
+    {
+      "id": "d9t10",
+      "zh": "注意力矩陣",
+      "en": "Attention Matrix",
+      "engineId": "calc-memory"
+    },
+    {
+      "id": "d9t11",
+      "zh": "注意力遮罩",
+      "en": "Attention Mask",
+      "engineId": "attention"
+    },
+    {
+      "id": "d9t12",
+      "zh": "因果遮罩",
+      "en": "Causal Mask",
+      "engineId": "attention"
+    },
+    {
+      "id": "d9t13",
+      "zh": "位置編碼",
+      "en": "Positional Encoding",
+      "engineId": "attention-cost"
+    },
+    {
+      "id": "d9t14",
+      "zh": "位置嵌入",
+      "en": "Positional Embedding",
+      "engineId": "attention-cost"
+    },
+    {
+      "id": "d9t15",
+      "zh": "旋轉位置嵌入",
+      "en": "Rotary Position Embedding, RoPE",
+      "engineId": "attention-cost"
+    },
+    {
+      "id": "d9t16",
+      "zh": "前饋網路",
+      "en": "Feed-Forward Network, FFN",
+      "engineId": "attention"
+    },
+    {
+      "id": "d9t17",
+      "zh": "上下文",
+      "en": "Context",
+      "engineId": "repetition"
+    },
+    {
+      "id": "d9t18",
+      "zh": "上下文視窗",
+      "en": "Context Window",
+      "engineId": "calc-memory"
+    },
+    {
+      "id": "d9t19",
+      "zh": "序列長度",
+      "en": "Sequence Length",
+      "engineId": "calc-memory"
+    },
+    {
+      "id": "d9t20",
+      "zh": "鍵值快取",
+      "en": "Key-Value Cache, KV Cache",
+      "engineId": "attention-cost"
+    },
+    {
+      "id": "d9t21",
+      "zh": "分組查詢注意力",
+      "en": "Grouped-Query Attention, GQA",
+      "engineId": "attention-cost"
+    },
+    {
+      "id": "d9t22",
+      "zh": "多查詢注意力",
+      "en": "Multi-Query Attention, MQA",
+      "engineId": "attention-cost"
+    },
+    {
+      "id": "d9t23",
+      "zh": "稀疏注意力",
+      "en": "Sparse Attention",
+      "engineId": "attention-cost"
+    },
+    {
+      "id": "d9t24",
+      "zh": "滑動視窗注意力",
+      "en": "Sliding-Window Attention",
+      "engineId": "attention-cost"
+    },
+    {
+      "id": "d9t25",
+      "zh": "混合專家模型",
+      "en": "Mixture of Experts, MoE",
+      "engineId": "moe"
+    },
+    {
+      "id": "d9t26",
+      "zh": "路由器",
+      "en": "Router",
+      "engineId": "moe"
+    },
+    {
+      "id": "d10t0",
+      "zh": "大型語言模型",
+      "en": "Large Language Model, LLM",
+      "engineId": "capability"
+    },
+    {
+      "id": "d10t1",
+      "zh": "小型語言模型",
+      "en": "Small Language Model, SLM",
+      "engineId": "capability"
+    },
+    {
+      "id": "d10t2",
+      "zh": "基礎模型",
+      "en": "Foundation Model",
+      "engineId": "capability"
+    },
+    {
+      "id": "d10t3",
+      "zh": "預訓練",
+      "en": "Pretraining",
+      "engineId": "prompt"
+    },
+    {
+      "id": "d10t4",
+      "zh": "持續預訓練",
+      "en": "Continued Pretraining",
+      "engineId": "prompt"
+    },
+    {
+      "id": "d10t5",
+      "zh": "後訓練",
+      "en": "Post-Training",
+      "engineId": "prompt"
+    },
+    {
+      "id": "d10t6",
+      "zh": "指令微調",
+      "en": "Instruction Tuning",
+      "engineId": "prompt"
+    },
+    {
+      "id": "d10t7",
+      "zh": "監督式微調",
+      "en": "Supervised Fine-Tuning, SFT",
+      "engineId": "prompt"
+    },
+    {
+      "id": "d10t8",
+      "zh": "偏好對齊",
+      "en": "Preference Alignment",
+      "engineId": "policy-preference"
+    },
+    {
+      "id": "d10t9",
+      "zh": "自回歸生成",
+      "en": "Autoregressive Generation",
+      "engineId": "decoding"
+    },
+    {
+      "id": "d10t10",
+      "zh": "下一詞元預測",
+      "en": "Next-Token Prediction",
+      "engineId": "decoding"
+    },
+    {
+      "id": "d10t11",
+      "zh": "遮罩語言建模",
+      "en": "Masked Language Modeling, MLM",
+      "engineId": "masking"
+    },
+    {
+      "id": "d10t12",
+      "zh": "提示詞",
+      "en": "Prompt",
+      "engineId": "prompt"
+    },
+    {
+      "id": "d10t13",
+      "zh": "提示工程",
+      "en": "Prompt Engineering",
+      "engineId": "prompt"
+    },
+    {
+      "id": "d10t14",
+      "zh": "系統提示詞",
+      "en": "System Prompt",
+      "engineId": "prompt"
+    },
+    {
+      "id": "d10t15",
+      "zh": "少樣本提示",
+      "en": "Few-Shot Prompting",
+      "engineId": "adaptation"
+    },
+    {
+      "id": "d10t16",
+      "zh": "上下文學習",
+      "en": "In-Context Learning, ICL",
+      "engineId": "adaptation"
+    },
+    {
+      "id": "d10t17",
+      "zh": "思維鏈",
+      "en": "Chain of Thought, CoT",
+      "engineId": "prompt"
+    },
+    {
+      "id": "d10t18",
+      "zh": "檢索式提示",
+      "en": "Retrieval-Based Prompting",
+      "engineId": "prompt"
+    },
+    {
+      "id": "d10t19",
+      "zh": "結構化輸出",
+      "en": "Structured Output",
+      "engineId": "json"
+    },
+    {
+      "id": "d10t20",
+      "zh": "受限解碼",
+      "en": "Constrained Decoding",
+      "engineId": "json"
+    },
+    {
+      "id": "d10t21",
+      "zh": "貪婪解碼",
+      "en": "Greedy Decoding",
+      "engineId": "calc-sampling"
+    },
+    {
+      "id": "d10t22",
+      "zh": "束搜尋",
+      "en": "Beam Search",
+      "engineId": "decoding"
+    },
+    {
+      "id": "d10t23",
+      "zh": "取樣",
+      "en": "Sampling",
+      "engineId": "calc-sampling"
+    },
+    {
+      "id": "d10t24",
+      "zh": "溫度",
+      "en": "Temperature",
+      "engineId": "calc-sampling"
+    },
+    {
+      "id": "d10t25",
+      "zh": "Top-k 取樣",
+      "en": "Top-k Sampling",
+      "engineId": "calc-sampling"
+    },
+    {
+      "id": "d10t26",
+      "zh": "核取樣",
+      "en": "Nucleus Sampling / Top-p Sampling",
+      "engineId": "calc-sampling"
+    },
+    {
+      "id": "d10t27",
+      "zh": "重複懲罰",
+      "en": "Repetition Penalty",
+      "engineId": "repetition"
+    },
+    {
+      "id": "d10t28",
+      "zh": "停止序列",
+      "en": "Stop Sequence",
+      "engineId": "masking"
+    },
+    {
+      "id": "d10t29",
+      "zh": "串流輸出",
+      "en": "Streaming Output",
+      "engineId": "masking"
+    },
+    {
+      "id": "d10t30",
+      "zh": "幻覺",
+      "en": "Hallucination",
+      "engineId": "query-evidence"
+    },
+    {
+      "id": "d10t31",
+      "zh": "知識截止時間",
+      "en": "Knowledge Cutoff",
+      "engineId": "prompt"
+    },
+    {
+      "id": "d10t32",
+      "zh": "推論時計算",
+      "en": "Test-Time Compute / Inference-Time Compute",
+      "engineId": "decoding"
+    },
+    {
+      "id": "d11t0",
+      "zh": "檢索增強生成",
+      "en": "Retrieval-Augmented Generation, RAG",
+      "engineId": "retrieval"
+    },
+    {
+      "id": "d11t1",
+      "zh": "資訊檢索",
+      "en": "Information Retrieval, IR",
+      "engineId": "retrieval"
+    },
+    {
+      "id": "d11t2",
+      "zh": "文件解析",
+      "en": "Document Parsing",
+      "engineId": "chunking"
+    },
+    {
+      "id": "d11t3",
+      "zh": "文件切塊",
+      "en": "Document Chunking",
+      "engineId": "chunking"
+    },
+    {
+      "id": "d11t4",
+      "zh": "區塊大小",
+      "en": "Chunk Size",
+      "engineId": "chunking"
+    },
+    {
+      "id": "d11t5",
+      "zh": "區塊重疊",
+      "en": "Chunk Overlap",
+      "engineId": "chunking"
+    },
+    {
+      "id": "d11t6",
+      "zh": "嵌入模型",
+      "en": "Embedding Model",
+      "engineId": "embedding"
+    },
+    {
+      "id": "d11t7",
+      "zh": "向量資料庫",
+      "en": "Vector Database",
+      "engineId": "retrieval"
+    },
+    {
+      "id": "d11t8",
+      "zh": "向量索引",
+      "en": "Vector Index",
+      "engineId": "retrieval"
+    },
+    {
+      "id": "d11t9",
+      "zh": "向量搜尋",
+      "en": "Vector Search",
+      "engineId": "embedding"
+    },
+    {
+      "id": "d11t10",
+      "zh": "語意搜尋",
+      "en": "Semantic Search",
+      "engineId": "embedding"
+    },
+    {
+      "id": "d11t11",
+      "zh": "關鍵字搜尋",
+      "en": "Keyword Search",
+      "engineId": "retrieval"
+    },
+    {
+      "id": "d11t12",
+      "zh": "混合搜尋",
+      "en": "Hybrid Search",
+      "engineId": "retrieval"
+    },
+    {
+      "id": "d11t13",
+      "zh": "稠密檢索",
+      "en": "Dense Retrieval",
+      "engineId": "embedding"
+    },
+    {
+      "id": "d11t14",
+      "zh": "稀疏檢索",
+      "en": "Sparse Retrieval",
+      "engineId": "embedding"
+    },
+    {
+      "id": "d11t15",
+      "zh": "近似最近鄰搜尋",
+      "en": "Approximate Nearest Neighbor Search, ANN Search",
+      "engineId": "retrieval"
+    },
+    {
+      "id": "d11t16",
+      "zh": "餘弦相似度",
+      "en": "Cosine Similarity",
+      "engineId": "calc-vector"
+    },
+    {
+      "id": "d11t17",
+      "zh": "歐幾里得距離",
+      "en": "Euclidean Distance",
+      "engineId": "calc-vector"
+    },
+    {
+      "id": "d11t18",
+      "zh": "重新排序",
+      "en": "Reranking",
+      "engineId": "retrieval"
+    },
+    {
+      "id": "d11t19",
+      "zh": "重新排序模型",
+      "en": "Reranker",
+      "engineId": "retrieval"
+    },
+    {
+      "id": "d11t20",
+      "zh": "查詢改寫",
+      "en": "Query Rewriting",
+      "engineId": "query-evidence"
+    },
+    {
+      "id": "d11t21",
+      "zh": "查詢擴展",
+      "en": "Query Expansion",
+      "engineId": "query-evidence"
+    },
+    {
+      "id": "d11t22",
+      "zh": "中繼資料篩選",
+      "en": "Metadata Filtering",
+      "engineId": "retrieval"
+    },
+    {
+      "id": "d11t23",
+      "zh": "上下文壓縮",
+      "en": "Context Compression",
+      "engineId": "chunking"
+    },
+    {
+      "id": "d11t24",
+      "zh": "來源引用",
+      "en": "Source Citation",
+      "engineId": "query-evidence"
+    },
+    {
+      "id": "d11t25",
+      "zh": "依據來源生成",
+      "en": "Grounded Generation",
+      "engineId": "query-evidence"
+    },
+    {
+      "id": "d11t26",
+      "zh": "答案忠實度",
+      "en": "Answer Faithfulness",
+      "engineId": "query-evidence"
+    },
+    {
+      "id": "d11t27",
+      "zh": "知識圖譜",
+      "en": "Knowledge Graph",
+      "engineId": "graph"
+    },
+    {
+      "id": "d11t28",
+      "zh": "圖譜式 RAG",
+      "en": "Graph-Based RAG",
+      "engineId": "graph"
+    },
+    {
+      "id": "d12t0",
+      "zh": "微調",
+      "en": "Fine-Tuning",
+      "engineId": "adapt-budget"
+    },
+    {
+      "id": "d12t1",
+      "zh": "全參數微調",
+      "en": "Full Fine-Tuning",
+      "engineId": "adapt-budget"
+    },
+    {
+      "id": "d12t2",
+      "zh": "參數高效微調",
+      "en": "Parameter-Efficient Fine-Tuning, PEFT",
+      "engineId": "calc-lora"
+    },
+    {
+      "id": "d12t3",
+      "zh": "低秩適應",
+      "en": "Low-Rank Adaptation, LoRA",
+      "engineId": "calc-lora"
+    },
+    {
+      "id": "d12t4",
+      "zh": "量化低秩適應",
+      "en": "Quantized Low-Rank Adaptation, QLoRA",
+      "engineId": "adapt-budget"
+    },
+    {
+      "id": "d12t5",
+      "zh": "適配器",
+      "en": "Adapter",
+      "engineId": "adapt-budget"
+    },
+    {
+      "id": "d12t6",
+      "zh": "前綴微調",
+      "en": "Prefix Tuning",
+      "engineId": "adapt-budget"
+    },
+    {
+      "id": "d12t7",
+      "zh": "軟提示微調",
+      "en": "Prompt Tuning",
+      "engineId": "adapt-budget"
+    },
+    {
+      "id": "d12t8",
+      "zh": "凍結參數",
+      "en": "Parameter Freezing",
+      "engineId": "adapt-budget"
+    },
+    {
+      "id": "d12t9",
+      "zh": "模型合併",
+      "en": "Model Merging",
+      "engineId": "merge-forget"
+    },
+    {
+      "id": "d12t10",
+      "zh": "災難性遺忘",
+      "en": "Catastrophic Forgetting",
+      "engineId": "merge-forget"
+    },
+    {
+      "id": "d12t11",
+      "zh": "知識蒸餾",
+      "en": "Knowledge Distillation",
+      "engineId": "distill"
+    },
+    {
+      "id": "d12t12",
+      "zh": "教師模型",
+      "en": "Teacher Model",
+      "engineId": "distill"
+    },
+    {
+      "id": "d12t13",
+      "zh": "學生模型",
+      "en": "Student Model",
+      "engineId": "distill"
+    },
+    {
+      "id": "d12t14",
+      "zh": "量化",
+      "en": "Quantization",
+      "engineId": "calc-memory"
+    },
+    {
+      "id": "d12t15",
+      "zh": "訓練後量化",
+      "en": "Post-Training Quantization, PTQ",
+      "engineId": "quantize"
+    },
+    {
+      "id": "d12t16",
+      "zh": "量化感知訓練",
+      "en": "Quantization-Aware Training, QAT",
+      "engineId": "quantize"
+    },
+    {
+      "id": "d12t17",
+      "zh": "剪枝",
+      "en": "Pruning",
+      "engineId": "quantize"
+    },
+    {
+      "id": "d12t18",
+      "zh": "結構化剪枝",
+      "en": "Structured Pruning",
+      "engineId": "quantize"
+    },
+    {
+      "id": "d12t19",
+      "zh": "非結構化剪枝",
+      "en": "Unstructured Pruning",
+      "engineId": "quantize"
+    },
+    {
+      "id": "d12t20",
+      "zh": "稀疏性",
+      "en": "Sparsity",
+      "engineId": "quantize"
+    },
+    {
+      "id": "d12t21",
+      "zh": "混合精度",
+      "en": "Mixed Precision",
+      "engineId": "float-format"
+    },
+    {
+      "id": "d12t22",
+      "zh": "半精度浮點數",
+      "en": "FP16",
+      "engineId": "float-format"
+    },
+    {
+      "id": "d12t23",
+      "zh": "腦浮點數格式",
+      "en": "Brain Floating Point, BF16",
+      "engineId": "float-format"
+    },
+    {
+      "id": "d12t24",
+      "zh": "八位元浮點數",
+      "en": "FP8",
+      "engineId": "float-format"
+    },
+    {
+      "id": "d12t25",
+      "zh": "八位元整數",
+      "en": "INT8",
+      "engineId": "calc-memory"
+    },
+    {
+      "id": "d12t26",
+      "zh": "四位元整數",
+      "en": "INT4",
+      "engineId": "calc-memory"
+    },
+    {
+      "id": "d13t0",
+      "zh": "多模態",
+      "en": "Multimodality",
+      "engineId": "conditioning"
+    },
+    {
+      "id": "d13t1",
+      "zh": "多模態模型",
+      "en": "Multimodal Model",
+      "engineId": "conditioning"
+    },
+    {
+      "id": "d13t2",
+      "zh": "視覺語言模型",
+      "en": "Vision-Language Model, VLM",
+      "engineId": "conditioning"
+    },
+    {
+      "id": "d13t3",
+      "zh": "視覺語言動作模型",
+      "en": "Vision-Language-Action Model, VLA",
+      "engineId": "conditioning"
+    },
+    {
+      "id": "d13t4",
+      "zh": "文字生成影像",
+      "en": "Text-to-Image, T2I",
+      "engineId": "conditioning"
+    },
+    {
+      "id": "d13t5",
+      "zh": "影像生成影像",
+      "en": "Image-to-Image, I2I",
+      "engineId": "conditioning"
+    },
+    {
+      "id": "d13t6",
+      "zh": "文字生成影片",
+      "en": "Text-to-Video, T2V",
+      "engineId": "conditioning"
+    },
+    {
+      "id": "d13t7",
+      "zh": "影像生成影片",
+      "en": "Image-to-Video, I2V",
+      "engineId": "conditioning"
+    },
+    {
+      "id": "d13t8",
+      "zh": "文字生成音訊",
+      "en": "Text-to-Audio",
+      "engineId": "signal"
+    },
+    {
+      "id": "d13t9",
+      "zh": "文字生成音樂",
+      "en": "Text-to-Music",
+      "engineId": "signal"
+    },
+    {
+      "id": "d13t10",
+      "zh": "生成對抗網路",
+      "en": "Generative Adversarial Network, GAN",
+      "engineId": "gan"
+    },
+    {
+      "id": "d13t11",
+      "zh": "自動編碼器",
+      "en": "Autoencoder, AE",
+      "engineId": "latent"
+    },
+    {
+      "id": "d13t12",
+      "zh": "變分自動編碼器",
+      "en": "Variational Autoencoder, VAE",
+      "engineId": "latent"
+    },
+    {
+      "id": "d13t13",
+      "zh": "擴散模型",
+      "en": "Diffusion Model",
+      "engineId": "generation-ode"
+    },
+    {
+      "id": "d13t14",
+      "zh": "潛在擴散模型",
+      "en": "Latent Diffusion Model, LDM",
+      "engineId": "latent"
+    },
+    {
+      "id": "d13t15",
+      "zh": "擴散 Transformer",
+      "en": "Diffusion Transformer, DiT",
+      "engineId": "generation-ode"
+    },
+    {
+      "id": "d13t16",
+      "zh": "流匹配",
+      "en": "Flow Matching",
+      "engineId": "generation-ode"
+    },
+    {
+      "id": "d13t17",
+      "zh": "潛在空間",
+      "en": "Latent Space",
+      "engineId": "latent"
+    },
+    {
+      "id": "d13t18",
+      "zh": "潛在表示",
+      "en": "Latent Representation",
+      "engineId": "latent"
+    },
+    {
+      "id": "d13t19",
+      "zh": "加噪",
+      "en": "Noise Addition",
+      "engineId": "signal"
+    },
+    {
+      "id": "d13t20",
+      "zh": "去噪",
+      "en": "Denoising",
+      "engineId": "signal"
+    },
+    {
+      "id": "d13t21",
+      "zh": "排程器",
+      "en": "Scheduler",
+      "engineId": "generation-ode"
+    },
+    {
+      "id": "d13t22",
+      "zh": "取樣器",
+      "en": "Sampler",
+      "engineId": "generation-ode"
+    },
+    {
+      "id": "d13t23",
+      "zh": "無分類器引導",
+      "en": "Classifier-Free Guidance, CFG",
+      "engineId": "generation-ode"
+    },
+    {
+      "id": "d13t24",
+      "zh": "隨機種子",
+      "en": "Random Seed",
+      "engineId": "generation-ode"
+    },
+    {
+      "id": "d13t25",
+      "zh": "負面提示詞",
+      "en": "Negative Prompt",
+      "engineId": "conditioning"
+    },
+    {
+      "id": "d13t26",
+      "zh": "影像修補",
+      "en": "Inpainting",
+      "engineId": "conditioning"
+    },
+    {
+      "id": "d13t27",
+      "zh": "影像外擴",
+      "en": "Outpainting",
+      "engineId": "conditioning"
+    },
+    {
+      "id": "d13t28",
+      "zh": "控制條件",
+      "en": "Conditioning",
+      "engineId": "conditioning"
+    },
+    {
+      "id": "d13t29",
+      "zh": "時間一致性",
+      "en": "Temporal Consistency",
+      "engineId": "temporal-world"
+    },
+    {
+      "id": "d13t30",
+      "zh": "語音複製",
+      "en": "Voice Cloning",
+      "engineId": "signal"
+    },
+    {
+      "id": "d13t31",
+      "zh": "語音轉換",
+      "en": "Voice Conversion",
+      "engineId": "signal"
+    },
+    {
+      "id": "d13t32",
+      "zh": "音源分離",
+      "en": "Source Separation",
+      "engineId": "source-separation"
+    },
+    {
+      "id": "d13t33",
+      "zh": "人聲分離",
+      "en": "Vocal Separation",
+      "engineId": "source-separation"
+    },
+    {
+      "id": "d13t34",
+      "zh": "聲碼器",
+      "en": "Vocoder",
+      "engineId": "signal"
+    },
+    {
+      "id": "d13t35",
+      "zh": "世界模型",
+      "en": "World Model",
+      "engineId": "temporal-world"
+    },
+    {
+      "id": "d14t0",
+      "zh": "智能體／代理",
+      "en": "Agent",
+      "engineId": "qlearning"
+    },
+    {
+      "id": "d14t1",
+      "zh": "環境",
+      "en": "Environment",
+      "engineId": "qlearning"
+    },
+    {
+      "id": "d14t2",
+      "zh": "狀態",
+      "en": "State",
+      "engineId": "qlearning"
+    },
+    {
+      "id": "d14t3",
+      "zh": "觀察",
+      "en": "Observation",
+      "engineId": "qlearning"
+    },
+    {
+      "id": "d14t4",
+      "zh": "動作",
+      "en": "Action",
+      "engineId": "qlearning"
+    },
+    {
+      "id": "d14t5",
+      "zh": "獎勵",
+      "en": "Reward",
+      "engineId": "calc-discount"
+    },
+    {
+      "id": "d14t6",
+      "zh": "策略",
+      "en": "Policy",
+      "engineId": "qlearning"
+    },
+    {
+      "id": "d14t7",
+      "zh": "回報",
+      "en": "Return",
+      "engineId": "calc-discount"
+    },
+    {
+      "id": "d14t8",
+      "zh": "價值函數",
+      "en": "Value Function",
+      "engineId": "qlearning"
+    },
+    {
+      "id": "d14t9",
+      "zh": "動作價值函數",
+      "en": "Action-Value Function / Q-Function",
+      "engineId": "qlearning"
+    },
+    {
+      "id": "d14t10",
+      "zh": "折扣因子",
+      "en": "Discount Factor",
+      "engineId": "calc-discount"
+    },
+    {
+      "id": "d14t11",
+      "zh": "探索與利用",
+      "en": "Exploration and Exploitation",
+      "engineId": "qlearning"
+    },
+    {
+      "id": "d14t12",
+      "zh": "馬可夫決策過程",
+      "en": "Markov Decision Process, MDP",
+      "engineId": "qlearning"
+    },
+    {
+      "id": "d14t13",
+      "zh": "策略梯度",
+      "en": "Policy Gradient",
+      "engineId": "policy-preference"
+    },
+    {
+      "id": "d14t14",
+      "zh": "行動者－評論者",
+      "en": "Actor–Critic",
+      "engineId": "policy-preference"
+    },
+    {
+      "id": "d14t15",
+      "zh": "近端策略最佳化",
+      "en": "Proximal Policy Optimization, PPO",
+      "engineId": "policy-preference"
+    },
+    {
+      "id": "d14t16",
+      "zh": "經驗回放",
+      "en": "Experience Replay",
+      "engineId": "qlearning"
+    },
+    {
+      "id": "d14t17",
+      "zh": "獎勵模型",
+      "en": "Reward Model",
+      "engineId": "policy-preference"
+    },
+    {
+      "id": "d14t18",
+      "zh": "人類回饋強化學習",
+      "en": "Reinforcement Learning from Human Feedback, RLHF",
+      "engineId": "policy-preference"
+    },
+    {
+      "id": "d14t19",
+      "zh": "AI 回饋強化學習",
+      "en": "Reinforcement Learning from AI Feedback, RLAIF",
+      "engineId": "policy-preference"
+    },
+    {
+      "id": "d14t20",
+      "zh": "直接偏好最佳化",
+      "en": "Direct Preference Optimization, DPO",
+      "engineId": "policy-preference"
+    },
+    {
+      "id": "d14t21",
+      "zh": "可驗證獎勵強化學習",
+      "en": "Reinforcement Learning with Verifiable Rewards, RLVR",
+      "engineId": "policy-preference"
+    },
+    {
+      "id": "d14t22",
+      "zh": "獎勵駭取",
+      "en": "Reward Hacking",
+      "engineId": "policy-preference"
+    },
+    {
+      "id": "d15t0",
+      "zh": "AI 智能代理",
+      "en": "AI Agent",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d15t1",
+      "zh": "代理式 AI",
+      "en": "Agentic AI",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d15t2",
+      "zh": "自主代理",
+      "en": "Autonomous Agent",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d15t3",
+      "zh": "多代理系統",
+      "en": "Multi-Agent System, MAS",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d15t4",
+      "zh": "工具",
+      "en": "Tool",
+      "engineId": "mcp-tools"
+    },
+    {
+      "id": "d15t5",
+      "zh": "工具呼叫",
+      "en": "Tool Calling",
+      "engineId": "mcp-tools"
+    },
+    {
+      "id": "d15t6",
+      "zh": "函數呼叫",
+      "en": "Function Calling",
+      "engineId": "mcp-tools"
+    },
+    {
+      "id": "d15t7",
+      "zh": "工具結構描述",
+      "en": "Tool Schema",
+      "engineId": "json"
+    },
+    {
+      "id": "d15t8",
+      "zh": "規劃",
+      "en": "Planning",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d15t9",
+      "zh": "任務分解",
+      "en": "Task Decomposition",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d15t10",
+      "zh": "推理與行動",
+      "en": "Reasoning and Acting, ReAct",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d15t11",
+      "zh": "記憶",
+      "en": "Memory",
+      "engineId": "memory-retrieval"
+    },
+    {
+      "id": "d15t12",
+      "zh": "短期記憶",
+      "en": "Short-Term Memory",
+      "engineId": "memory-retrieval"
+    },
+    {
+      "id": "d15t13",
+      "zh": "長期記憶",
+      "en": "Long-Term Memory",
+      "engineId": "memory-retrieval"
+    },
+    {
+      "id": "d15t14",
+      "zh": "情節記憶",
+      "en": "Episodic Memory",
+      "engineId": "memory-retrieval"
+    },
+    {
+      "id": "d15t15",
+      "zh": "語意記憶",
+      "en": "Semantic Memory",
+      "engineId": "memory-retrieval"
+    },
+    {
+      "id": "d15t16",
+      "zh": "工作流程",
+      "en": "Workflow",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d15t17",
+      "zh": "流程編排",
+      "en": "Orchestration",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d15t18",
+      "zh": "人工介入",
+      "en": "Human-in-the-Loop, HITL",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d15t19",
+      "zh": "人工審核",
+      "en": "Human Review",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d15t20",
+      "zh": "狀態機",
+      "en": "State Machine",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d15t21",
+      "zh": "交接",
+      "en": "Handoff",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d15t22",
+      "zh": "重試",
+      "en": "Retry",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d15t23",
+      "zh": "冪等性",
+      "en": "Idempotency",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d15t24",
+      "zh": "沙箱",
+      "en": "Sandbox",
+      "engineId": "guardrails"
+    },
+    {
+      "id": "d15t25",
+      "zh": "瀏覽器自動化",
+      "en": "Browser Automation",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d15t26",
+      "zh": "電腦操作",
+      "en": "Computer Use",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d15t27",
+      "zh": "模型上下文協定",
+      "en": "Model Context Protocol, MCP",
+      "engineId": "mcp-tools"
+    },
+    {
+      "id": "d15t28",
+      "zh": "MCP 主機",
+      "en": "MCP Host",
+      "engineId": "mcp-tools"
+    },
+    {
+      "id": "d15t29",
+      "zh": "MCP 用戶端",
+      "en": "MCP Client",
+      "engineId": "mcp-tools"
+    },
+    {
+      "id": "d15t30",
+      "zh": "MCP 伺服器",
+      "en": "MCP Server",
+      "engineId": "mcp-tools"
+    },
+    {
+      "id": "d15t31",
+      "zh": "資源",
+      "en": "Resource",
+      "engineId": "mcp-tools"
+    },
+    {
+      "id": "d15t32",
+      "zh": "連接器",
+      "en": "Connector",
+      "engineId": "mcp-tools"
+    },
+    {
+      "id": "d15t33",
+      "zh": "應用程式介面",
+      "en": "Application Programming Interface, API",
+      "engineId": "mcp-tools"
+    },
+    {
+      "id": "d15t34",
+      "zh": "應用程式開發套件",
+      "en": "Software Development Kit, SDK",
+      "engineId": "mcp-tools"
+    },
+    {
+      "id": "d15t35",
+      "zh": "技能",
+      "en": "Skill",
+      "engineId": "agent-workflow"
+    },
+    {
+      "id": "d16t0",
+      "zh": "推論",
+      "en": "Inference",
+      "engineId": "serving"
+    },
+    {
+      "id": "d16t1",
+      "zh": "推論引擎",
+      "en": "Inference Engine",
+      "engineId": "serving"
+    },
+    {
+      "id": "d16t2",
+      "zh": "模型服務",
+      "en": "Model Serving",
+      "engineId": "serving"
+    },
+    {
+      "id": "d16t3",
+      "zh": "延遲",
+      "en": "Latency",
+      "engineId": "serving"
+    },
+    {
+      "id": "d16t4",
+      "zh": "吞吐量",
+      "en": "Throughput",
+      "engineId": "serving"
+    },
+    {
+      "id": "d16t5",
+      "zh": "首詞元時間",
+      "en": "Time to First Token, TTFT",
+      "engineId": "serving"
+    },
+    {
+      "id": "d16t6",
+      "zh": "詞元間延遲",
+      "en": "Inter-Token Latency, ITL",
+      "engineId": "serving"
+    },
+    {
+      "id": "d16t7",
+      "zh": "每秒詞元數",
+      "en": "Tokens per Second, TPS",
+      "engineId": "serving"
+    },
+    {
+      "id": "d16t8",
+      "zh": "批次推論",
+      "en": "Batch Inference",
+      "engineId": "serving"
+    },
+    {
+      "id": "d16t9",
+      "zh": "動態批次",
+      "en": "Dynamic Batching",
+      "engineId": "serving"
+    },
+    {
+      "id": "d16t10",
+      "zh": "連續批次",
+      "en": "Continuous Batching",
+      "engineId": "serving"
+    },
+    {
+      "id": "d16t11",
+      "zh": "前綴快取",
+      "en": "Prefix Caching",
+      "engineId": "cache-speculate"
+    },
+    {
+      "id": "d16t12",
+      "zh": "推測解碼",
+      "en": "Speculative Decoding",
+      "engineId": "cache-speculate"
+    },
+    {
+      "id": "d16t13",
+      "zh": "邊緣 AI",
+      "en": "Edge AI",
+      "engineId": "roofline"
+    },
+    {
+      "id": "d16t14",
+      "zh": "裝置端 AI",
+      "en": "On-Device AI",
+      "engineId": "roofline"
+    },
+    {
+      "id": "d16t15",
+      "zh": "中央處理器",
+      "en": "Central Processing Unit, CPU",
+      "engineId": "roofline"
+    },
+    {
+      "id": "d16t16",
+      "zh": "圖形處理器",
+      "en": "Graphics Processing Unit, GPU",
+      "engineId": "roofline"
+    },
+    {
+      "id": "d16t17",
+      "zh": "神經處理單元",
+      "en": "Neural Processing Unit, NPU",
+      "engineId": "roofline"
+    },
+    {
+      "id": "d16t18",
+      "zh": "張量處理器",
+      "en": "Tensor Processing Unit, TPU",
+      "engineId": "roofline"
+    },
+    {
+      "id": "d16t19",
+      "zh": "顯示記憶體",
+      "en": "Video Random Access Memory, VRAM",
+      "engineId": "calc-memory"
+    },
+    {
+      "id": "d16t20",
+      "zh": "記憶體頻寬",
+      "en": "Memory Bandwidth",
+      "engineId": "roofline"
+    },
+    {
+      "id": "d16t21",
+      "zh": "浮點運算量",
+      "en": "Floating-Point Operations, FLOPs",
+      "engineId": "roofline"
+    },
+    {
+      "id": "d16t22",
+      "zh": "資料平行",
+      "en": "Data Parallelism",
+      "engineId": "parallel-checkpoint"
+    },
+    {
+      "id": "d16t23",
+      "zh": "模型平行",
+      "en": "Model Parallelism",
+      "engineId": "parallel-checkpoint"
+    },
+    {
+      "id": "d16t24",
+      "zh": "張量平行",
+      "en": "Tensor Parallelism",
+      "engineId": "parallel-checkpoint"
+    },
+    {
+      "id": "d16t25",
+      "zh": "管線平行",
+      "en": "Pipeline Parallelism",
+      "engineId": "parallel-checkpoint"
+    },
+    {
+      "id": "d16t26",
+      "zh": "分散式訓練",
+      "en": "Distributed Training",
+      "engineId": "parallel-checkpoint"
+    },
+    {
+      "id": "d16t27",
+      "zh": "梯度檢查點",
+      "en": "Gradient Checkpointing",
+      "engineId": "parallel-checkpoint"
+    },
+    {
+      "id": "d16t28",
+      "zh": "激活值重計算",
+      "en": "Activation Recomputation",
+      "engineId": "parallel-checkpoint"
+    },
+    {
+      "id": "d16t29",
+      "zh": "記憶體卸載",
+      "en": "Memory Offloading",
+      "engineId": "parallel-checkpoint"
+    },
+    {
+      "id": "d16t30",
+      "zh": "記憶體不足",
+      "en": "Out of Memory, OOM",
+      "engineId": "calc-memory"
+    },
+    {
+      "id": "d17t0",
+      "zh": "負責任 AI",
+      "en": "Responsible AI",
+      "engineId": "governance"
+    },
+    {
+      "id": "d17t1",
+      "zh": "AI 安全",
+      "en": "AI Safety",
+      "engineId": "guardrails"
+    },
+    {
+      "id": "d17t2",
+      "zh": "AI 資安",
+      "en": "AI Security",
+      "engineId": "guardrails"
+    },
+    {
+      "id": "d17t3",
+      "zh": "AI 倫理",
+      "en": "AI Ethics",
+      "engineId": "governance"
+    },
+    {
+      "id": "d17t4",
+      "zh": "公平性",
+      "en": "Fairness",
+      "engineId": "fairness"
+    },
+    {
+      "id": "d17t5",
+      "zh": "可解釋性",
+      "en": "Explainability",
+      "engineId": "governance"
+    },
+    {
+      "id": "d17t6",
+      "zh": "可詮釋性",
+      "en": "Interpretability",
+      "engineId": "governance"
+    },
+    {
+      "id": "d17t7",
+      "zh": "透明度",
+      "en": "Transparency",
+      "engineId": "governance"
+    },
+    {
+      "id": "d17t8",
+      "zh": "穩健性",
+      "en": "Robustness",
+      "engineId": "adversarial"
+    },
+    {
+      "id": "d17t9",
+      "zh": "不確定性估計",
+      "en": "Uncertainty Estimation",
+      "engineId": "calibration"
+    },
+    {
+      "id": "d17t10",
+      "zh": "對抗樣本",
+      "en": "Adversarial Example",
+      "engineId": "adversarial"
+    },
+    {
+      "id": "d17t11",
+      "zh": "對抗攻擊",
+      "en": "Adversarial Attack",
+      "engineId": "adversarial"
+    },
+    {
+      "id": "d17t12",
+      "zh": "提示注入",
+      "en": "Prompt Injection",
+      "engineId": "guardrails"
+    },
+    {
+      "id": "d17t13",
+      "zh": "間接提示注入",
+      "en": "Indirect Prompt Injection",
+      "engineId": "guardrails"
+    },
+    {
+      "id": "d17t14",
+      "zh": "越獄",
+      "en": "Jailbreak",
+      "engineId": "guardrails"
+    },
+    {
+      "id": "d17t15",
+      "zh": "資料投毒",
+      "en": "Data Poisoning",
+      "engineId": "adversarial"
+    },
+    {
+      "id": "d17t16",
+      "zh": "模型投毒",
+      "en": "Model Poisoning",
+      "engineId": "adversarial"
+    },
+    {
+      "id": "d17t17",
+      "zh": "後門攻擊",
+      "en": "Backdoor Attack",
+      "engineId": "adversarial"
+    },
+    {
+      "id": "d17t18",
+      "zh": "模型竊取",
+      "en": "Model Extraction",
+      "engineId": "adversarial"
+    },
+    {
+      "id": "d17t19",
+      "zh": "成員推斷攻擊",
+      "en": "Membership Inference Attack",
+      "engineId": "privacy"
+    },
+    {
+      "id": "d17t20",
+      "zh": "模型反演",
+      "en": "Model Inversion",
+      "engineId": "privacy"
+    },
+    {
+      "id": "d17t21",
+      "zh": "個人可識別資訊",
+      "en": "Personally Identifiable Information, PII",
+      "engineId": "privacy"
+    },
+    {
+      "id": "d17t22",
+      "zh": "差分隱私",
+      "en": "Differential Privacy",
+      "engineId": "privacy"
+    },
+    {
+      "id": "d17t23",
+      "zh": "最小權限原則",
+      "en": "Principle of Least Privilege",
+      "engineId": "guardrails"
+    },
+    {
+      "id": "d17t24",
+      "zh": "內容審核",
+      "en": "Content Moderation",
+      "engineId": "guardrails"
+    },
+    {
+      "id": "d17t25",
+      "zh": "安全防護機制",
+      "en": "Guardrails",
+      "engineId": "guardrails"
+    },
+    {
+      "id": "d17t26",
+      "zh": "紅隊測試",
+      "en": "Red Teaming",
+      "engineId": "adversarial"
+    },
+    {
+      "id": "d17t27",
+      "zh": "深度偽造",
+      "en": "Deepfake",
+      "engineId": "watermark"
+    },
+    {
+      "id": "d17t28",
+      "zh": "內容溯源",
+      "en": "Content Provenance",
+      "engineId": "provenance"
+    },
+    {
+      "id": "d17t29",
+      "zh": "浮水印",
+      "en": "Watermarking",
+      "engineId": "watermark"
+    },
+    {
+      "id": "d17t30",
+      "zh": "模型卡",
+      "en": "Model Card",
+      "engineId": "governance"
+    },
+    {
+      "id": "d17t31",
+      "zh": "資料集說明文件",
+      "en": "Dataset Datasheet",
+      "engineId": "governance"
+    },
+    {
+      "id": "d17t32",
+      "zh": "人工監督",
+      "en": "Human Oversight",
+      "engineId": "guardrails"
+    },
+    {
+      "id": "d18t0",
+      "zh": "機器學習維運",
+      "en": "Machine Learning Operations, MLOps",
+      "engineId": "pipeline"
+    },
+    {
+      "id": "d18t1",
+      "zh": "大型語言模型維運",
+      "en": "Large Language Model Operations, LLMOps",
+      "engineId": "pipeline"
+    },
+    {
+      "id": "d18t2",
+      "zh": "資料管線",
+      "en": "Data Pipeline",
+      "engineId": "pipeline"
+    },
+    {
+      "id": "d18t3",
+      "zh": "訓練管線",
+      "en": "Training Pipeline",
+      "engineId": "pipeline"
+    },
+    {
+      "id": "d18t4",
+      "zh": "推論管線",
+      "en": "Inference Pipeline",
+      "engineId": "pipeline"
+    },
+    {
+      "id": "d18t5",
+      "zh": "實驗追蹤",
+      "en": "Experiment Tracking",
+      "engineId": "pipeline"
+    },
+    {
+      "id": "d18t6",
+      "zh": "模型登錄庫",
+      "en": "Model Registry",
+      "engineId": "pipeline"
+    },
+    {
+      "id": "d18t7",
+      "zh": "模型版本管理",
+      "en": "Model Versioning",
+      "engineId": "provenance"
+    },
+    {
+      "id": "d18t8",
+      "zh": "資料版本管理",
+      "en": "Data Versioning",
+      "engineId": "provenance"
+    },
+    {
+      "id": "d18t9",
+      "zh": "可重現性",
+      "en": "Reproducibility",
+      "engineId": "pipeline"
+    },
+    {
+      "id": "d18t10",
+      "zh": "容器化",
+      "en": "Containerization",
+      "engineId": "pipeline"
+    },
+    {
+      "id": "d18t11",
+      "zh": "持續整合",
+      "en": "Continuous Integration, CI",
+      "engineId": "pipeline"
+    },
+    {
+      "id": "d18t12",
+      "zh": "持續交付",
+      "en": "Continuous Delivery, CD",
+      "engineId": "pipeline"
+    },
+    {
+      "id": "d18t13",
+      "zh": "持續部署",
+      "en": "Continuous Deployment",
+      "engineId": "pipeline"
+    },
+    {
+      "id": "d18t14",
+      "zh": "模型監測",
+      "en": "Model Monitoring",
+      "engineId": "monitor"
+    },
+    {
+      "id": "d18t15",
+      "zh": "可觀測性",
+      "en": "Observability",
+      "engineId": "monitor"
+    },
+    {
+      "id": "d18t16",
+      "zh": "追蹤紀錄",
+      "en": "Trace",
+      "engineId": "monitor"
+    },
+    {
+      "id": "d18t17",
+      "zh": "A/B 測試",
+      "en": "A/B Testing",
+      "engineId": "release"
+    },
+    {
+      "id": "d18t18",
+      "zh": "金絲雀部署",
+      "en": "Canary Deployment",
+      "engineId": "release"
+    },
+    {
+      "id": "d18t19",
+      "zh": "影子部署",
+      "en": "Shadow Deployment",
+      "engineId": "release"
+    },
+    {
+      "id": "d18t20",
+      "zh": "回滾",
+      "en": "Rollback",
+      "engineId": "release"
+    },
+    {
+      "id": "d18t21",
+      "zh": "速率限制",
+      "en": "Rate Limiting",
+      "engineId": "monitor"
+    },
+    {
+      "id": "d18t22",
+      "zh": "成本最佳化",
+      "en": "Cost Optimization",
+      "engineId": "monitor"
+    }
+  ],
+  "engines": [
+    {
+      "id": "calc-activation",
+      "title": "神經元與激活函數",
+      "type": "數值計算",
+      "description": "小型數值示範。採用面板所列假設；記憶體、批次等結果是理論估算，非實際硬體測速。",
+      "controls": [
+        {
+          "id": "x",
+          "label": "輸入 x",
+          "type": "number",
+          "value": 1,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "w",
+          "label": "權重 w",
+          "type": "number",
+          "value": 1,
+          "min": -3,
+          "max": 3,
+          "step": 0.1
+        },
+        {
+          "id": "b",
+          "label": "偏置 b",
+          "type": "number",
+          "value": 0,
+          "min": -3,
+          "max": 3,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "calc-gradient",
+      "title": "梯度下降單步",
+      "type": "數值計算",
+      "description": "小型數值示範。採用面板所列假設；記憶體、批次等結果是理論估算，非實際硬體測速。",
+      "controls": [
+        {
+          "id": "w",
+          "label": "目前 w",
+          "type": "number",
+          "value": 0,
+          "min": -10,
+          "max": 10,
+          "step": 0.1
+        },
+        {
+          "id": "lr",
+          "label": "學習率 η",
+          "type": "number",
+          "value": 0.1,
+          "min": 0.001,
+          "max": 1.5,
+          "step": 0.01
+        }
+      ]
+    },
+    {
+      "id": "calc-metrics",
+      "title": "混淆矩陣與分類指標",
+      "type": "數值計算",
+      "description": "小型數值示範。採用面板所列假設；記憶體、批次等結果是理論估算，非實際硬體測速。",
+      "controls": [
+        {
+          "id": "tp",
+          "label": "TP 真陽性",
+          "type": "number",
+          "value": 8,
+          "min": 0,
+          "max": 1000,
+          "step": 1
+        },
+        {
+          "id": "fp",
+          "label": "FP 假陽性",
+          "type": "number",
+          "value": 2,
+          "min": 0,
+          "max": 1000,
+          "step": 1
+        },
+        {
+          "id": "fn",
+          "label": "FN 假陰性",
+          "type": "number",
+          "value": 12,
+          "min": 0,
+          "max": 1000,
+          "step": 1
+        },
+        {
+          "id": "tn",
+          "label": "TN 真陰性",
+          "type": "number",
+          "value": 78,
+          "min": 0,
+          "max": 1000,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "calc-sampling",
+      "title": "Softmax 與取樣分布",
+      "type": "數值計算",
+      "description": "小型數值示範。採用面板所列假設；記憶體、批次等結果是理論估算，非實際硬體測速。",
+      "controls": [
+        {
+          "id": "temp",
+          "label": "Temperature",
+          "type": "number",
+          "value": 1,
+          "min": 0.1,
+          "max": 3,
+          "step": 0.1
+        },
+        {
+          "id": "k",
+          "label": "Top-k",
+          "type": "number",
+          "value": 3,
+          "min": 1,
+          "max": 3,
+          "step": 1
+        },
+        {
+          "id": "p",
+          "label": "Top-p",
+          "type": "number",
+          "value": 1,
+          "min": 0.05,
+          "max": 1,
+          "step": 0.05
+        }
+      ]
+    },
+    {
+      "id": "calc-conv",
+      "title": "卷積尺寸與展平",
+      "type": "數值計算",
+      "description": "小型數值示範。採用面板所列假設；記憶體、批次等結果是理論估算，非實際硬體測速。",
+      "controls": [
+        {
+          "id": "size",
+          "label": "輸入邊長",
+          "type": "number",
+          "value": 28,
+          "min": 4,
+          "max": 128,
+          "step": 1
+        },
+        {
+          "id": "kernel",
+          "label": "核邊長",
+          "type": "number",
+          "value": 3,
+          "min": 1,
+          "max": 7,
+          "step": 1
+        },
+        {
+          "id": "stride",
+          "label": "步幅",
+          "type": "number",
+          "value": 1,
+          "min": 1,
+          "max": 4,
+          "step": 1
+        },
+        {
+          "id": "padding",
+          "label": "填補",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 4,
+          "step": 1
+        },
+        {
+          "id": "filters",
+          "label": "輸出通道",
+          "type": "number",
+          "value": 16,
+          "min": 1,
+          "max": 64,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "calc-batch",
+      "title": "批次與更新次數",
+      "type": "數值計算",
+      "description": "小型數值示範。採用面板所列假設；記憶體、批次等結果是理論估算，非實際硬體測速。",
+      "controls": [
+        {
+          "id": "samples",
+          "label": "樣本數",
+          "type": "number",
+          "value": 1000,
+          "min": 1,
+          "max": 100000,
+          "step": 1
+        },
+        {
+          "id": "batch",
+          "label": "微批次",
+          "type": "number",
+          "value": 10,
+          "min": 1,
+          "max": 1024,
+          "step": 1
+        },
+        {
+          "id": "accum",
+          "label": "累積次數",
+          "type": "number",
+          "value": 4,
+          "min": 1,
+          "max": 128,
+          "step": 1
+        },
+        {
+          "id": "epochs",
+          "label": "輪次",
+          "type": "number",
+          "value": 1,
+          "min": 1,
+          "max": 100,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "calc-vector",
+      "title": "向量、範數與相似度",
+      "type": "數值計算",
+      "description": "小型數值示範。採用面板所列假設；記憶體、批次等結果是理論估算，非實際硬體測速。",
+      "controls": [
+        {
+          "id": "a1",
+          "label": "A₁",
+          "type": "number",
+          "value": 1,
+          "min": -10,
+          "max": 10,
+          "step": 0.1
+        },
+        {
+          "id": "a2",
+          "label": "A₂",
+          "type": "number",
+          "value": 0,
+          "min": -10,
+          "max": 10,
+          "step": 0.1
+        },
+        {
+          "id": "b1",
+          "label": "B₁",
+          "type": "number",
+          "value": 2,
+          "min": -10,
+          "max": 10,
+          "step": 0.1
+        },
+        {
+          "id": "b2",
+          "label": "B₂",
+          "type": "number",
+          "value": 0,
+          "min": -10,
+          "max": 10,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "calc-memory",
+      "title": "量化與記憶體規模",
+      "type": "數值計算",
+      "description": "小型數值示範。採用面板所列假設；記憶體、批次等結果是理論估算，非實際硬體測速。",
+      "controls": [
+        {
+          "id": "params",
+          "label": "參數量（百萬）",
+          "type": "number",
+          "value": 1000,
+          "min": 1,
+          "max": 100000,
+          "step": 1
+        },
+        {
+          "id": "bits",
+          "label": "每權重位元",
+          "type": "number",
+          "value": 16,
+          "min": 2,
+          "max": 32,
+          "step": 1
+        },
+        {
+          "id": "seq",
+          "label": "序列長度",
+          "type": "number",
+          "value": 1024,
+          "min": 1,
+          "max": 65536,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "calc-lora",
+      "title": "LoRA 參數預算",
+      "type": "數值計算",
+      "description": "小型數值示範。採用面板所列假設；記憶體、批次等結果是理論估算，非實際硬體測速。",
+      "controls": [
+        {
+          "id": "m",
+          "label": "輸出 m",
+          "type": "number",
+          "value": 100,
+          "min": 1,
+          "max": 10000,
+          "step": 1
+        },
+        {
+          "id": "n",
+          "label": "輸入 n",
+          "type": "number",
+          "value": 100,
+          "min": 1,
+          "max": 10000,
+          "step": 1
+        },
+        {
+          "id": "rank",
+          "label": "rank",
+          "type": "number",
+          "value": 4,
+          "min": 1,
+          "max": 100,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "calc-discount",
+      "title": "折扣回報",
+      "type": "數值計算",
+      "description": "小型數值示範。採用面板所列假設；記憶體、批次等結果是理論估算，非實際硬體測速。",
+      "controls": [
+        {
+          "id": "gamma",
+          "label": "折扣 γ",
+          "type": "number",
+          "value": 0.5,
+          "min": 0,
+          "max": 1,
+          "step": 0.05
+        }
+      ]
+    },
+    {
+      "id": "calc-clip",
+      "title": "梯度裁剪與連乘",
+      "type": "數值計算",
+      "description": "小型數值示範。採用面板所列假設；記憶體、批次等結果是理論估算，非實際硬體測速。",
+      "controls": [
+        {
+          "id": "maxnorm",
+          "label": "最大梯度範數",
+          "type": "number",
+          "value": 1,
+          "min": 0.1,
+          "max": 10,
+          "step": 0.1
+        },
+        {
+          "id": "factor",
+          "label": "每層導數",
+          "type": "number",
+          "value": 0.1,
+          "min": 0.1,
+          "max": 2,
+          "step": 0.1
+        },
+        {
+          "id": "layers",
+          "label": "相乘層數",
+          "type": "number",
+          "value": 10,
+          "min": 1,
+          "max": 20,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "calc-standard",
+      "title": "標準化",
+      "type": "數值計算",
+      "description": "小型數值示範。採用面板所列假設；記憶體、批次等結果是理論估算，非實際硬體測速。",
+      "controls": [
+        {
+          "id": "x",
+          "label": "數值",
+          "type": "number",
+          "value": 30,
+          "min": -100,
+          "max": 100,
+          "step": 0.1
+        },
+        {
+          "id": "mean",
+          "label": "平均",
+          "type": "number",
+          "value": 20,
+          "min": -100,
+          "max": 100,
+          "step": 0.1
+        },
+        {
+          "id": "std",
+          "label": "標準差",
+          "type": "number",
+          "value": 5,
+          "min": 0,
+          "max": 100,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "calc-error",
+      "title": "誤差、交叉熵與困惑度",
+      "type": "數值計算",
+      "description": "小型數值示範。採用面板所列假設；記憶體、批次等結果是理論估算，非實際硬體測速。",
+      "controls": [
+        {
+          "id": "e1",
+          "label": "誤差1",
+          "type": "number",
+          "value": 1,
+          "min": -20,
+          "max": 20,
+          "step": 0.1
+        },
+        {
+          "id": "e2",
+          "label": "誤差2",
+          "type": "number",
+          "value": 3,
+          "min": -20,
+          "max": 20,
+          "step": 0.1
+        },
+        {
+          "id": "prob",
+          "label": "真類別機率",
+          "type": "number",
+          "value": 0.8,
+          "min": 0.001,
+          "max": 1,
+          "step": 0.01
+        }
+      ]
+    },
+    {
+      "id": "learning-plan",
+      "title": "任務與學習訊號規劃",
+      "type": "流程模擬",
+      "description": "依任務、標籤與回饋建立學習方案；這是規劃工具，並未訓練模型。",
+      "controls": [
+        {
+          "id": "goal",
+          "label": "任務",
+          "type": "select",
+          "value": "classify",
+          "options": [
+            "classify:預測類別",
+            "number:預測數值",
+            "generate:生成內容",
+            "act:序列決策"
+          ]
+        },
+        {
+          "id": "labels",
+          "label": "有標籤樣本",
+          "type": "number",
+          "value": 100,
+          "min": 0,
+          "max": 10000,
+          "step": 1
+        },
+        {
+          "id": "raw",
+          "label": "無標籤樣本",
+          "type": "number",
+          "value": 1000,
+          "min": 0,
+          "max": 10000,
+          "step": 1
+        },
+        {
+          "id": "reward",
+          "label": "可取得行動獎勵",
+          "type": "checkbox",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "adaptation",
+      "title": "少樣本、遷移與標註預算",
+      "type": "流程模擬",
+      "description": "比較資料與更新範圍；分數是標註及參數預算，不是預測實際準確率。",
+      "controls": [
+        {
+          "id": "examples",
+          "label": "新任務樣本數",
+          "type": "number",
+          "value": 5,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "id": "tasks",
+          "label": "曾見任務數",
+          "type": "number",
+          "value": 20,
+          "min": 1,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "id": "update",
+          "label": "更新方式",
+          "type": "select",
+          "value": "head",
+          "options": [
+            "none:不更新權重",
+            "head:只更新任務頭",
+            "all:更新全模型"
+          ]
+        },
+        {
+          "id": "budget",
+          "label": "每筆標註成本",
+          "type": "number",
+          "value": 2,
+          "min": 0,
+          "max": 100,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "capability",
+      "title": "跨任務能力與治理檢查",
+      "type": "流程模擬",
+      "description": "四項由學習者給定的測試分數只用於比較涵蓋與最弱項，不能據此判定AGI或倫理合規。",
+      "controls": [
+        {
+          "id": "language",
+          "label": "語言任務",
+          "type": "number",
+          "value": 80,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "id": "vision",
+          "label": "視覺任務",
+          "type": "number",
+          "value": 60,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "id": "reason",
+          "label": "推理任務",
+          "type": "number",
+          "value": 50,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "id": "newtask",
+          "label": "陌生任務",
+          "type": "number",
+          "value": 30,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "data-clean",
+      "title": "缺值、離群與資料轉換",
+      "type": "實際演算法",
+      "description": "輸入數列可含空欄；填補、離群截斷與縮放確實在本頁計算。",
+      "controls": [
+        {
+          "id": "data",
+          "label": "資料（空欄為缺值）",
+          "type": "textarea",
+          "value": "10,20,,30,40,1000"
+        },
+        {
+          "id": "fill",
+          "label": "缺值處理",
+          "type": "select",
+          "value": "median",
+          "options": [
+            "mean:平均填補",
+            "median:中位數填補",
+            "drop:移除缺值"
+          ]
+        },
+        {
+          "id": "scale",
+          "label": "縮放",
+          "type": "select",
+          "value": "none",
+          "options": [
+            "none:不縮放",
+            "z:z-score",
+            "minmax:min-max"
+          ]
+        },
+        {
+          "id": "clip",
+          "label": "以Q1−1.5IQR至Q3+1.5IQR截斷",
+          "type": "checkbox",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "split",
+      "title": "資料切分與洩漏",
+      "type": "實際演算法",
+      "description": "12筆固定資料屬於4個個體。比較逐筆交錯與依個體切分。",
+      "controls": [
+        {
+          "id": "mode",
+          "label": "切分方式",
+          "type": "select",
+          "value": "row",
+          "options": [
+            "row:逐筆交錯",
+            "group:依個體",
+            "time:依時間"
+          ]
+        },
+        {
+          "id": "train",
+          "label": "訓練比例",
+          "type": "number",
+          "value": 0.67,
+          "min": 0.25,
+          "max": 0.8,
+          "step": 0.01
+        },
+        {
+          "id": "future",
+          "label": "使用事後資訊欄位",
+          "type": "checkbox",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "balance",
+      "title": "類別重抽樣與代價",
+      "type": "數值計算",
+      "description": "計算抽樣後類別數，並顯示全部猜多數類的基準。",
+      "controls": [
+        {
+          "id": "negative",
+          "label": "正常樣本",
+          "type": "number",
+          "value": 990,
+          "min": 1,
+          "max": 10000,
+          "step": 1
+        },
+        {
+          "id": "positive",
+          "label": "陽性樣本",
+          "type": "number",
+          "value": 10,
+          "min": 1,
+          "max": 10000,
+          "step": 1
+        },
+        {
+          "id": "mode",
+          "label": "訓練抽樣",
+          "type": "select",
+          "value": "none",
+          "options": [
+            "none:原始比例",
+            "over:少數過採樣至相同",
+            "under:多數欠採樣至相同"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drift",
+      "title": "分布與概念漂移",
+      "type": "數值計算",
+      "description": "以兩組數列比較平均與標準差；另檢查同一輸入的目標關係是否改變。",
+      "controls": [
+        {
+          "id": "old",
+          "label": "舊資料",
+          "type": "textarea",
+          "value": "1,2,3,4,5"
+        },
+        {
+          "id": "fresh",
+          "label": "新資料",
+          "type": "textarea",
+          "value": "4,5,6,7,8"
+        },
+        {
+          "id": "oldRate",
+          "label": "舊相同特徵群陽性率",
+          "type": "number",
+          "value": 0.2,
+          "min": 0,
+          "max": 1,
+          "step": 0.05
+        },
+        {
+          "id": "newRate",
+          "label": "新相同特徵群陽性率",
+          "type": "number",
+          "value": 0.7,
+          "min": 0,
+          "max": 1,
+          "step": 0.05
+        }
+      ]
+    },
+    {
+      "id": "provenance",
+      "title": "來源與版本追溯",
+      "type": "流程模擬",
+      "description": "調整來源、授權與版本記錄，觀察哪個環節無法追溯。",
+      "controls": [
+        {
+          "id": "source",
+          "label": "已記來源",
+          "type": "checkbox",
+          "value": true
+        },
+        {
+          "id": "license",
+          "label": "已確認使用條件",
+          "type": "checkbox",
+          "value": true
+        },
+        {
+          "id": "version",
+          "label": "已固定資料與腳本版本",
+          "type": "checkbox",
+          "value": false
+        },
+        {
+          "id": "hash",
+          "label": "已記產物雜湊",
+          "type": "checkbox",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "augment",
+      "title": "影像增強與合成雜訊",
+      "type": "實際演算法",
+      "description": "對固定5×5合成十字圖做翻轉、旋轉與亮度變換；不代表真實資料標籤一定保留。",
+      "controls": [
+        {
+          "id": "op",
+          "label": "轉換",
+          "type": "select",
+          "value": "flip",
+          "options": [
+            "flip:水平翻轉",
+            "rotate:旋轉90度",
+            "bright:亮度調整"
+          ]
+        },
+        {
+          "id": "gain",
+          "label": "亮度倍率",
+          "type": "number",
+          "value": 1.5,
+          "min": 0.1,
+          "max": 2,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "matrix",
+      "title": "矩陣、張量與形狀",
+      "type": "實際演算法",
+      "description": "計算固定2×2矩陣乘法與轉置，同時檢查可調張量形狀。",
+      "controls": [
+        {
+          "id": "a",
+          "label": "A₁₁",
+          "type": "number",
+          "value": 1,
+          "min": -10,
+          "max": 10,
+          "step": 1
+        },
+        {
+          "id": "b",
+          "label": "A₁₂",
+          "type": "number",
+          "value": 2,
+          "min": -10,
+          "max": 10,
+          "step": 1
+        },
+        {
+          "id": "c",
+          "label": "A₂₁",
+          "type": "number",
+          "value": 3,
+          "min": -10,
+          "max": 10,
+          "step": 1
+        },
+        {
+          "id": "d",
+          "label": "A₂₂",
+          "type": "number",
+          "value": 4,
+          "min": -10,
+          "max": 10,
+          "step": 1
+        },
+        {
+          "id": "batch",
+          "label": "批次",
+          "type": "number",
+          "value": 2,
+          "min": 1,
+          "max": 32,
+          "step": 1
+        },
+        {
+          "id": "channels",
+          "label": "通道",
+          "type": "number",
+          "value": 3,
+          "min": 1,
+          "max": 64,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "statistics",
+      "title": "統計與相關",
+      "type": "實際演算法",
+      "description": "用同長度X、Y計算母體統計。相關係數不代表因果。",
+      "controls": [
+        {
+          "id": "x",
+          "label": "X",
+          "type": "textarea",
+          "value": "1,2,3,4"
+        },
+        {
+          "id": "y",
+          "label": "Y",
+          "type": "textarea",
+          "value": "2,4,6,8"
+        }
+      ]
+    },
+    {
+      "id": "bayes",
+      "title": "貝氏更新與MLE／MAP",
+      "type": "數值計算",
+      "description": "疾病陽性後驗與硬幣Beta先驗使用兩個獨立的小型案例。",
+      "controls": [
+        {
+          "id": "prior",
+          "label": "疾病先驗",
+          "type": "number",
+          "value": 0.01,
+          "min": 0.001,
+          "max": 0.99,
+          "step": 0.001
+        },
+        {
+          "id": "sensitivity",
+          "label": "靈敏度",
+          "type": "number",
+          "value": 0.9,
+          "min": 0.01,
+          "max": 1,
+          "step": 0.01
+        },
+        {
+          "id": "fpr",
+          "label": "偽陽性率",
+          "type": "number",
+          "value": 0.05,
+          "min": 0.001,
+          "max": 1,
+          "step": 0.001
+        },
+        {
+          "id": "heads",
+          "label": "正面次數",
+          "type": "number",
+          "value": 7,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "id": "tails",
+          "label": "反面次數",
+          "type": "number",
+          "value": 3,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "id": "alpha",
+          "label": "Beta先驗 α",
+          "type": "number",
+          "value": 2,
+          "min": 1.01,
+          "max": 10,
+          "step": 0.1
+        },
+        {
+          "id": "beta",
+          "label": "Beta先驗 β",
+          "type": "number",
+          "value": 2,
+          "min": 1.01,
+          "max": 10,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "distribution",
+      "title": "熵、交叉熵與KL",
+      "type": "實際演算法",
+      "description": "輸入兩個正權重向量，先各自正規化成機率分布，以自然對數計算。",
+      "controls": [
+        {
+          "id": "p",
+          "label": "P權重",
+          "type": "textarea",
+          "value": "8,2"
+        },
+        {
+          "id": "q",
+          "label": "Q權重",
+          "type": "textarea",
+          "value": "5,5"
+        }
+      ]
+    },
+    {
+      "id": "calculus",
+      "title": "導數、鏈式與曲率",
+      "type": "數值計算",
+      "description": "對f(x,y)=x²+3y²及g(x)=(2x+1)²計算解析導數，非數值微分近似。",
+      "controls": [
+        {
+          "id": "x",
+          "label": "x",
+          "type": "number",
+          "value": 1,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "y",
+          "label": "y",
+          "type": "number",
+          "value": 2,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "pca",
+      "title": "二維PCA與低秩重建",
+      "type": "實際演算法",
+      "description": "對同長X、Y中心化，解析求2×2協方差的特徵值；依第一主成分投影及重建。",
+      "controls": [
+        {
+          "id": "x",
+          "label": "X",
+          "type": "textarea",
+          "value": "1,2,3,4"
+        },
+        {
+          "id": "y",
+          "label": "Y",
+          "type": "textarea",
+          "value": "2,4,5,8"
+        }
+      ]
+    },
+    {
+      "id": "regression",
+      "title": "回歸與多項式擬合",
+      "type": "實際演算法",
+      "description": "固定六點資料，調整係數觀察預測、殘差與MSE。",
+      "controls": [
+        {
+          "id": "w",
+          "label": "一次係數",
+          "type": "number",
+          "value": 2,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "b",
+          "label": "截距",
+          "type": "number",
+          "value": 1,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "quad",
+          "label": "二次係數",
+          "type": "number",
+          "value": 0,
+          "min": -2,
+          "max": 2,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "knn",
+      "title": "k-NN與距離排序",
+      "type": "實際演算法",
+      "description": "固定六個二維樣本，計算歐幾里得距離並由最近k個投票。",
+      "controls": [
+        {
+          "id": "x",
+          "label": "查詢X",
+          "type": "number",
+          "value": 2,
+          "min": -2,
+          "max": 8,
+          "step": 0.1
+        },
+        {
+          "id": "y",
+          "label": "查詢Y",
+          "type": "number",
+          "value": 2,
+          "min": -2,
+          "max": 8,
+          "step": 0.1
+        },
+        {
+          "id": "k",
+          "label": "近鄰k",
+          "type": "number",
+          "value": 3,
+          "min": 1,
+          "max": 6,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "kmeans",
+      "title": "K-Means迭代",
+      "type": "實際演算法",
+      "description": "對一維樣本反覆分派最近中心、重算平均；空群保留原中心。",
+      "controls": [
+        {
+          "id": "data",
+          "label": "樣本",
+          "type": "textarea",
+          "value": "0,1,2,8,9,10"
+        },
+        {
+          "id": "c1",
+          "label": "初始中心1",
+          "type": "number",
+          "value": 0,
+          "min": -20,
+          "max": 20,
+          "step": 0.1
+        },
+        {
+          "id": "c2",
+          "label": "初始中心2",
+          "type": "number",
+          "value": 10,
+          "min": -20,
+          "max": 20,
+          "step": 0.1
+        },
+        {
+          "id": "steps",
+          "label": "迭代次數",
+          "type": "number",
+          "value": 1,
+          "min": 1,
+          "max": 20,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "hierarchy",
+      "title": "階層與密度分群",
+      "type": "實際演算法",
+      "description": "一維資料以單連結距離合併；密度模式採eps與minPts連通擴展（含自身）。",
+      "controls": [
+        {
+          "id": "data",
+          "label": "樣本",
+          "type": "textarea",
+          "value": "0,0.2,1,5,5.1,10"
+        },
+        {
+          "id": "mode",
+          "label": "方法",
+          "type": "select",
+          "value": "hierarchy",
+          "options": [
+            "hierarchy:單連結階層",
+            "density:一維DBSCAN"
+          ]
+        },
+        {
+          "id": "distance",
+          "label": "合併距離／eps",
+          "type": "number",
+          "value": 0.5,
+          "min": 0.01,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "minpts",
+          "label": "minPts",
+          "type": "number",
+          "value": 2,
+          "min": 1,
+          "max": 10,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "gmm",
+      "title": "高斯混合與軟歸屬",
+      "type": "數值計算",
+      "description": "計算兩個一維高斯成分的加權密度及後驗責任值；未執行EM訓練。",
+      "controls": [
+        {
+          "id": "x",
+          "label": "樣本x",
+          "type": "number",
+          "value": 2,
+          "min": -10,
+          "max": 10,
+          "step": 0.1
+        },
+        {
+          "id": "m1",
+          "label": "平均1",
+          "type": "number",
+          "value": 0,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "m2",
+          "label": "平均2",
+          "type": "number",
+          "value": 4,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "sd",
+          "label": "共用標準差",
+          "type": "number",
+          "value": 1,
+          "min": 0.1,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "weight",
+          "label": "成分1權重",
+          "type": "number",
+          "value": 0.5,
+          "min": 0.01,
+          "max": 0.99,
+          "step": 0.01
+        }
+      ]
+    },
+    {
+      "id": "tree",
+      "title": "決策樹與分類邊界",
+      "type": "實際演算法",
+      "description": "固定小資料，依溫度及電流兩個可調閾值執行深度2規則樹。",
+      "controls": [
+        {
+          "id": "temp",
+          "label": "溫度閾值",
+          "type": "number",
+          "value": 60,
+          "min": 20,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "id": "current",
+          "label": "電流閾值",
+          "type": "number",
+          "value": 8,
+          "min": 1,
+          "max": 15,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "ensemble",
+      "title": "Bagging與集成投票",
+      "type": "實際演算法",
+      "description": "對固定五筆訓練資料進行可重現有放回抽樣，聚合三個模型預測。",
+      "controls": [
+        {
+          "id": "seed",
+          "label": "種子",
+          "type": "number",
+          "value": 42,
+          "min": 1,
+          "max": 10000,
+          "step": 1
+        },
+        {
+          "id": "p1",
+          "label": "模型1預測",
+          "type": "number",
+          "value": 100,
+          "min": 0,
+          "max": 200,
+          "step": 1
+        },
+        {
+          "id": "p2",
+          "label": "模型2預測",
+          "type": "number",
+          "value": 110,
+          "min": 0,
+          "max": 200,
+          "step": 1
+        },
+        {
+          "id": "p3",
+          "label": "模型3預測",
+          "type": "number",
+          "value": 120,
+          "min": 0,
+          "max": 200,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "boost",
+      "title": "提升法與殘差擬合",
+      "type": "數值計算",
+      "description": "以縮減比例更新固定目標的殘差；這裡以理想殘差學習器演示，不訓練真實樹。",
+      "controls": [
+        {
+          "id": "initial",
+          "label": "初始預測",
+          "type": "number",
+          "value": 2,
+          "min": -10,
+          "max": 10,
+          "step": 0.1
+        },
+        {
+          "id": "lr",
+          "label": "縮減率",
+          "type": "number",
+          "value": 0.3,
+          "min": 0.01,
+          "max": 1,
+          "step": 0.01
+        },
+        {
+          "id": "rounds",
+          "label": "輪數",
+          "type": "number",
+          "value": 4,
+          "min": 1,
+          "max": 20,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "svm",
+      "title": "線性邊界與Hinge Loss",
+      "type": "數值計算",
+      "description": "在固定二維帶標籤點上計算signed margin與hinge loss，並非完整SVM求解器。",
+      "controls": [
+        {
+          "id": "w1",
+          "label": "w₁",
+          "type": "number",
+          "value": 1,
+          "min": -3,
+          "max": 3,
+          "step": 0.1
+        },
+        {
+          "id": "w2",
+          "label": "w₂",
+          "type": "number",
+          "value": 1,
+          "min": -3,
+          "max": 3,
+          "step": 0.1
+        },
+        {
+          "id": "b",
+          "label": "偏置",
+          "type": "number",
+          "value": -3,
+          "min": -10,
+          "max": 10,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "naivebayes",
+      "title": "樸素貝氏後驗",
+      "type": "數值計算",
+      "description": "假設兩個詞在類別給定下條件獨立，以兩詞同時出現計算垃圾信後驗。",
+      "controls": [
+        {
+          "id": "prior",
+          "label": "垃圾信先驗",
+          "type": "number",
+          "value": 0.3,
+          "min": 0.01,
+          "max": 0.99,
+          "step": 0.01
+        },
+        {
+          "id": "a",
+          "label": "垃圾信P(免費)",
+          "type": "number",
+          "value": 0.8,
+          "min": 0.01,
+          "max": 0.99,
+          "step": 0.01
+        },
+        {
+          "id": "b",
+          "label": "垃圾信P(特價)",
+          "type": "number",
+          "value": 0.7,
+          "min": 0.01,
+          "max": 0.99,
+          "step": 0.01
+        },
+        {
+          "id": "c",
+          "label": "正常信P(免費)",
+          "type": "number",
+          "value": 0.1,
+          "min": 0.01,
+          "max": 0.99,
+          "step": 0.01
+        },
+        {
+          "id": "d",
+          "label": "正常信P(特價)",
+          "type": "number",
+          "value": 0.2,
+          "min": 0.01,
+          "max": 0.99,
+          "step": 0.01
+        }
+      ]
+    },
+    {
+      "id": "recommend",
+      "title": "推薦與低秩評分",
+      "type": "實際演算法",
+      "description": "用二維使用者與項目向量作點積排序；已看項目可從候選排除。",
+      "controls": [
+        {
+          "id": "u1",
+          "label": "使用者維度1",
+          "type": "number",
+          "value": 1,
+          "min": -2,
+          "max": 2,
+          "step": 0.1
+        },
+        {
+          "id": "u2",
+          "label": "使用者維度2",
+          "type": "number",
+          "value": 0.5,
+          "min": -2,
+          "max": 2,
+          "step": 0.1
+        },
+        {
+          "id": "exclude",
+          "label": "排除已看項目A",
+          "type": "checkbox",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "timeseries",
+      "title": "移動平均與異常分數",
+      "type": "實際演算法",
+      "description": "以過去視窗平均預測當前值，禁止使用當前及未來資料；以訓練區間估計z分數。",
+      "controls": [
+        {
+          "id": "data",
+          "label": "時間序列",
+          "type": "textarea",
+          "value": "10,11,10,12,11,30,12,13"
+        },
+        {
+          "id": "window",
+          "label": "歷史視窗",
+          "type": "number",
+          "value": 3,
+          "min": 1,
+          "max": 10,
+          "step": 1
+        },
+        {
+          "id": "train",
+          "label": "統計訓練點數",
+          "type": "number",
+          "value": 4,
+          "min": 2,
+          "max": 10,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "mlp",
+      "title": "XOR與隱藏層",
+      "type": "實際演算法",
+      "description": "固定兩個ReLU隱藏神經元 h₁=ReLU(x₁+x₂)、h₂=ReLU(x₁+x₂−1)，輸出h₁−2h₂。",
+      "controls": [
+        {
+          "id": "x1",
+          "label": "二元輸入1",
+          "type": "number",
+          "value": 1,
+          "min": 0,
+          "max": 1,
+          "step": 1
+        },
+        {
+          "id": "x2",
+          "label": "二元輸入2",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 1,
+          "step": 1
+        },
+        {
+          "id": "nonlinear",
+          "label": "啟用ReLU",
+          "type": "checkbox",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "normalization",
+      "title": "BatchNorm、LayerNorm與RMSNorm",
+      "type": "實際演算法",
+      "description": "對固定兩樣本三特徵計算正規化，不含可學γ、β；BatchNorm以本批統計演示訓練模式。",
+      "controls": [
+        {
+          "id": "shift",
+          "label": "第二樣本偏移",
+          "type": "number",
+          "value": 10,
+          "min": -20,
+          "max": 20,
+          "step": 1
+        },
+        {
+          "id": "mode",
+          "label": "模式",
+          "type": "select",
+          "value": "layer",
+          "options": [
+            "batch:按批次各特徵",
+            "layer:按樣本各特徵",
+            "rms:RMSNorm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dropout",
+      "title": "Dropout與推論模式",
+      "type": "實際演算法",
+      "description": "對固定八個激活執行inverted dropout，固定種子可重做遮罩。",
+      "controls": [
+        {
+          "id": "rate",
+          "label": "失活率",
+          "type": "number",
+          "value": 0.5,
+          "min": 0,
+          "max": 0.9,
+          "step": 0.05
+        },
+        {
+          "id": "seed",
+          "label": "種子",
+          "type": "number",
+          "value": 42,
+          "min": 1,
+          "max": 10000,
+          "step": 1
+        },
+        {
+          "id": "train",
+          "label": "訓練模式",
+          "type": "checkbox",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "residual",
+      "title": "殘差、跳接與初始化尺度",
+      "type": "數值計算",
+      "description": "比較相加／串接的形狀，以及fan-in對初始化標準差的影響。",
+      "controls": [
+        {
+          "id": "x1",
+          "label": "x₁",
+          "type": "number",
+          "value": 1,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "x2",
+          "label": "x₂",
+          "type": "number",
+          "value": 2,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "gain",
+          "label": "F(x)倍率",
+          "type": "number",
+          "value": 0.1,
+          "min": -2,
+          "max": 2,
+          "step": 0.1
+        },
+        {
+          "id": "fanin",
+          "label": "fan-in",
+          "type": "number",
+          "value": 64,
+          "min": 1,
+          "max": 4096,
+          "step": 1
+        },
+        {
+          "id": "mode",
+          "label": "連接",
+          "type": "select",
+          "value": "add",
+          "options": [
+            "add:殘差相加",
+            "concat:通道串接"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "autodiff",
+      "title": "計算圖與解析反傳",
+      "type": "數值計算",
+      "description": "固定圖z=wx+b，L=(z−y)²；以鏈式法則逐節點計算梯度。",
+      "controls": [
+        {
+          "id": "x",
+          "label": "x",
+          "type": "number",
+          "value": 2,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "w",
+          "label": "w",
+          "type": "number",
+          "value": 1,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "type": "number",
+          "value": 0,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "y",
+          "label": "目標y",
+          "type": "number",
+          "value": 3,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "optimizer",
+      "title": "SGD、Momentum與Adam",
+      "type": "實際演算法",
+      "description": "在L=(w−3)²上執行小型最佳化器，Adam使用偏差修正；AdamW另加解耦衰減。",
+      "controls": [
+        {
+          "id": "mode",
+          "label": "最佳化器",
+          "type": "select",
+          "value": "sgd",
+          "options": [
+            "sgd:SGD",
+            "momentum:Momentum",
+            "adam:Adam",
+            "adamw:AdamW"
+          ]
+        },
+        {
+          "id": "lr",
+          "label": "學習率",
+          "type": "number",
+          "value": 0.1,
+          "min": 0.001,
+          "max": 1,
+          "step": 0.01
+        },
+        {
+          "id": "steps",
+          "label": "步數",
+          "type": "number",
+          "value": 20,
+          "min": 1,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "id": "decay",
+          "label": "權重衰減λ",
+          "type": "number",
+          "value": 0.01,
+          "min": 0,
+          "max": 1,
+          "step": 0.01
+        }
+      ]
+    },
+    {
+      "id": "regularization",
+      "title": "正則化與權重衰減",
+      "type": "數值計算",
+      "description": "以w=[−2,3]比較L1、L2正則項及一個近端L1／解耦衰減步驟。",
+      "controls": [
+        {
+          "id": "lambda",
+          "label": "λ",
+          "type": "number",
+          "value": 0.1,
+          "min": 0,
+          "max": 2,
+          "step": 0.05
+        },
+        {
+          "id": "lr",
+          "label": "學習率",
+          "type": "number",
+          "value": 0.1,
+          "min": 0.01,
+          "max": 1,
+          "step": 0.01
+        },
+        {
+          "id": "data",
+          "label": "資料損失",
+          "type": "number",
+          "value": 2,
+          "min": 0,
+          "max": 20,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "learning-curve",
+      "title": "泛化、早停與搜尋",
+      "type": "數值計算",
+      "description": "以預先定義的教學曲線比較複雜度、驗證損失與耐心值；曲線不代表真實資料集保證。",
+      "controls": [
+        {
+          "id": "complexity",
+          "label": "模型複雜度",
+          "type": "number",
+          "value": 5,
+          "min": 1,
+          "max": 10,
+          "step": 1
+        },
+        {
+          "id": "patience",
+          "label": "早停耐心值",
+          "type": "number",
+          "value": 3,
+          "min": 1,
+          "max": 10,
+          "step": 1
+        },
+        {
+          "id": "grid",
+          "label": "學習率候選數",
+          "type": "number",
+          "value": 3,
+          "min": 1,
+          "max": 10,
+          "step": 1
+        },
+        {
+          "id": "layers",
+          "label": "層數候選數",
+          "type": "number",
+          "value": 4,
+          "min": 1,
+          "max": 10,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "threshold",
+      "title": "閾值、ROC與PR",
+      "type": "實際演算法",
+      "description": "固定八個帶分數的二元案例，掃描閾值並以梯形法計算ROC-AUC。",
+      "controls": [
+        {
+          "id": "threshold",
+          "label": "陽性閾值",
+          "type": "number",
+          "value": 0.5,
+          "min": 0,
+          "max": 1,
+          "step": 0.05
+        }
+      ]
+    },
+    {
+      "id": "regression-metrics",
+      "title": "回歸誤差與R²",
+      "type": "實際演算法",
+      "description": "對兩個同長數列計算MSE、MAE、RMSE與R²；目標為常數時不報一般R²。",
+      "controls": [
+        {
+          "id": "truth",
+          "label": "真值",
+          "type": "textarea",
+          "value": "1,2,3,4"
+        },
+        {
+          "id": "pred",
+          "label": "預測",
+          "type": "textarea",
+          "value": "1,2,2,5"
+        }
+      ]
+    },
+    {
+      "id": "calibration",
+      "title": "機率校準與Brier分數",
+      "type": "實際演算法",
+      "description": "對固定十筆二元案例調整logit溫度，分桶比較信心與實際比例。",
+      "controls": [
+        {
+          "id": "temperature",
+          "label": "校準溫度",
+          "type": "number",
+          "value": 1,
+          "min": 0.2,
+          "max": 4,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "cv",
+      "title": "交叉驗證與評估污染",
+      "type": "實際演算法",
+      "description": "12筆資料分K折，展示每折的訓練／驗證索引；污染比例只表示已知重疊，不推估分數。",
+      "controls": [
+        {
+          "id": "folds",
+          "label": "K折",
+          "type": "number",
+          "value": 3,
+          "min": 2,
+          "max": 6,
+          "step": 1
+        },
+        {
+          "id": "group",
+          "label": "依個體分折",
+          "type": "checkbox",
+          "value": false
+        },
+        {
+          "id": "contamination",
+          "label": "已知測試重疊筆數",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 12,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "ablation",
+      "title": "消融與人工評分表",
+      "type": "數值計算",
+      "description": "輸入同一測試集的基準及消融分數，列出差異；人評以明確三項準則計平均。",
+      "controls": [
+        {
+          "id": "full",
+          "label": "完整系統分數",
+          "type": "number",
+          "value": 85,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "id": "removed",
+          "label": "移除元件分數",
+          "type": "number",
+          "value": 72,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "id": "correct",
+          "label": "正確性",
+          "type": "number",
+          "value": 4,
+          "min": 1,
+          "max": 5,
+          "step": 1
+        },
+        {
+          "id": "complete",
+          "label": "完整性",
+          "type": "number",
+          "value": 3,
+          "min": 1,
+          "max": 5,
+          "step": 1
+        },
+        {
+          "id": "readable",
+          "label": "可讀性",
+          "type": "number",
+          "value": 5,
+          "min": 1,
+          "max": 5,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "convolution-grid",
+      "title": "卷積、池化與影像重採樣",
+      "type": "實際演算法",
+      "description": "固定5×5非對稱合成影像，實際執行互相關、2×2池化或最近鄰放大。",
+      "controls": [
+        {
+          "id": "mode",
+          "label": "操作",
+          "type": "select",
+          "value": "conv",
+          "options": [
+            "conv:3×3卷積",
+            "max:2×2最大池化",
+            "average:2×2平均池化",
+            "global:全域平均",
+            "resize:最近鄰2倍"
+          ]
+        },
+        {
+          "id": "kernel",
+          "label": "卷積核",
+          "type": "select",
+          "value": "edge",
+          "options": [
+            "edge:邊緣",
+            "blur:平均",
+            "identity:中心取樣"
+          ]
+        },
+        {
+          "id": "stride",
+          "label": "卷積步幅",
+          "type": "number",
+          "value": 1,
+          "min": 1,
+          "max": 2,
+          "step": 1
+        },
+        {
+          "id": "padding",
+          "label": "卷積每側填補",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 1,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "boxes",
+      "title": "IoU、NMS與物件位移",
+      "type": "實際演算法",
+      "description": "固定框A與可移動框B，算交並比並依分數做兩框NMS；位移也可視作追蹤／光流簡化模型。",
+      "controls": [
+        {
+          "id": "x",
+          "label": "框B的X",
+          "type": "number",
+          "value": 1,
+          "min": 0,
+          "max": 6,
+          "step": 0.1
+        },
+        {
+          "id": "y",
+          "label": "框B的Y",
+          "type": "number",
+          "value": 1,
+          "min": 0,
+          "max": 6,
+          "step": 0.1
+        },
+        {
+          "id": "threshold",
+          "label": "NMS閾值",
+          "type": "number",
+          "value": 0.5,
+          "min": 0,
+          "max": 1,
+          "step": 0.05
+        },
+        {
+          "id": "score",
+          "label": "框B分數",
+          "type": "number",
+          "value": 0.8,
+          "min": 0,
+          "max": 1,
+          "step": 0.05
+        }
+      ]
+    },
+    {
+      "id": "segmentation",
+      "title": "語意、實例與全景標註",
+      "type": "實際演算法",
+      "description": "合成格圖內有兩個同類物件。切換標註方式，觀察類別與實例ID是否保留。",
+      "controls": [
+        {
+          "id": "mode",
+          "label": "標註方式",
+          "type": "select",
+          "value": "semantic",
+          "options": [
+            "semantic:語意分割",
+            "instance:實例分割",
+            "panoptic:全景分割"
+          ]
+        },
+        {
+          "id": "occlusion",
+          "label": "加入一格遮擋",
+          "type": "checkbox",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "patches",
+      "title": "ViT區塊與感受野",
+      "type": "數值計算",
+      "description": "計算完整非重疊patch數與向量長度；不整除時明確顯示剩餘邊界。",
+      "controls": [
+        {
+          "id": "size",
+          "label": "影像邊長",
+          "type": "number",
+          "value": 224,
+          "min": 8,
+          "max": 1024,
+          "step": 1
+        },
+        {
+          "id": "patch",
+          "label": "Patch邊長",
+          "type": "number",
+          "value": 16,
+          "min": 1,
+          "max": 64,
+          "step": 1
+        },
+        {
+          "id": "channels",
+          "label": "通道數",
+          "type": "number",
+          "value": 3,
+          "min": 1,
+          "max": 4,
+          "step": 1
+        },
+        {
+          "id": "layers",
+          "label": "3×3 stride1卷積層數",
+          "type": "number",
+          "value": 2,
+          "min": 1,
+          "max": 20,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "tokenizer",
+      "title": "字元、詞項與BPE",
+      "type": "實際演算法",
+      "description": "小型語料的字元配對合併演示，不是特定模型的正式Tokenizer。",
+      "controls": [
+        {
+          "id": "text",
+          "label": "空白分詞的語料",
+          "type": "textarea",
+          "value": "low lower lowest low"
+        },
+        {
+          "id": "merges",
+          "label": "BPE合併步數",
+          "type": "number",
+          "value": 3,
+          "min": 0,
+          "max": 12,
+          "step": 1
+        },
+        {
+          "id": "mode",
+          "label": "檢視",
+          "type": "select",
+          "value": "bpe",
+          "options": [
+            "bpe:BPE配對合併",
+            "words:空白分詞",
+            "chars:逐字元"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedding",
+      "title": "文字向量與相似排序",
+      "type": "實際演算法",
+      "description": "用可見四詞詞彙表建立詞頻向量，非神經語意Embedding。可觀察同義詞未匹配的限制。",
+      "controls": [
+        {
+          "id": "text",
+          "label": "查詢",
+          "type": "textarea",
+          "value": "保固 期限"
+        },
+        {
+          "id": "docs",
+          "label": "每行一份文件",
+          "type": "textarea",
+          "value": "保固 期限 一年\n退款 期限 七天\n維修 費用 三百"
+        }
+      ]
+    },
+    {
+      "id": "rnn",
+      "title": "RNN、GRU與LSTM狀態",
+      "type": "數值計算",
+      "description": "指定小型權重與閘門，執行一維序列遞推；非完整訓練或商用語音模型。",
+      "controls": [
+        {
+          "id": "sequence",
+          "label": "輸入序列",
+          "type": "textarea",
+          "value": "1,0,0,0"
+        },
+        {
+          "id": "mode",
+          "label": "單元",
+          "type": "select",
+          "value": "rnn",
+          "options": [
+            "rnn:tanh RNN",
+            "gru:指定更新閘的GRU簡式",
+            "lstm:指定閘門的LSTM簡式"
+          ]
+        },
+        {
+          "id": "gate",
+          "label": "保留／遺忘比例",
+          "type": "number",
+          "value": 0.8,
+          "min": 0,
+          "max": 1,
+          "step": 0.05
+        }
+      ]
+    },
+    {
+      "id": "text-tasks",
+      "title": "語言任務與規則基準",
+      "type": "實際演算法",
+      "description": "小型規則引擎只做詞表情感、模式擷取與句子擷取摘要，不是真實LLM或翻譯／OCR。",
+      "controls": [
+        {
+          "id": "text",
+          "label": "文字",
+          "type": "textarea",
+          "value": "台北的天氣很好。訂單 ABC123 需要退款。服務很差。"
+        },
+        {
+          "id": "mode",
+          "label": "任務",
+          "type": "select",
+          "value": "ner",
+          "options": [
+            "ner:規則擷取代碼與地點",
+            "sentiment:簡單詞表情感",
+            "summary:取第一句摘要",
+            "translate:有限字典替換"
+          ]
+        },
+        {
+          "id": "useSource",
+          "label": "回答僅使用提供來源",
+          "type": "checkbox",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "transcript",
+      "title": "轉錄錯誤與編輯距離",
+      "type": "實際演算法",
+      "description": "以空白分詞的參考稿與辨識稿計算Levenshtein距離及WER；中文請手動以空白分詞。",
+      "controls": [
+        {
+          "id": "reference",
+          "label": "參考稿",
+          "type": "textarea",
+          "value": "今天 天氣 很 好"
+        },
+        {
+          "id": "hypothesis",
+          "label": "辨識稿",
+          "type": "textarea",
+          "value": "今天 天氣 好"
+        }
+      ]
+    },
+    {
+      "id": "attention",
+      "title": "QKV注意力與遮罩",
+      "type": "實際演算法",
+      "description": "固定3×2的Q、K、V，計算縮放點積及softmax，套用因果／PAD遮罩。",
+      "controls": [
+        {
+          "id": "scale",
+          "label": "Q分數倍率",
+          "type": "number",
+          "value": 1,
+          "min": 0.1,
+          "max": 3,
+          "step": 0.1
+        },
+        {
+          "id": "causal",
+          "label": "因果遮罩",
+          "type": "checkbox",
+          "value": true
+        },
+        {
+          "id": "pad",
+          "label": "最後位置為PAD",
+          "type": "checkbox",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "attention-cost",
+      "title": "注意力位置、稀疏與KV快取",
+      "type": "數值計算",
+      "description": "計算配對數、簡化RoPE旋轉與KV快取理論位元組；不代表引擎實測。",
+      "controls": [
+        {
+          "id": "seq",
+          "label": "長度N",
+          "type": "number",
+          "value": 1024,
+          "min": 1,
+          "max": 65536,
+          "step": 1
+        },
+        {
+          "id": "window",
+          "label": "視窗大小",
+          "type": "number",
+          "value": 128,
+          "min": 1,
+          "max": 4096,
+          "step": 1
+        },
+        {
+          "id": "qheads",
+          "label": "Q頭數",
+          "type": "number",
+          "value": 8,
+          "min": 1,
+          "max": 64,
+          "step": 1
+        },
+        {
+          "id": "kvheads",
+          "label": "KV頭數",
+          "type": "number",
+          "value": 2,
+          "min": 1,
+          "max": 64,
+          "step": 1
+        },
+        {
+          "id": "layers",
+          "label": "層數",
+          "type": "number",
+          "value": 24,
+          "min": 1,
+          "max": 128,
+          "step": 1
+        },
+        {
+          "id": "angle",
+          "label": "位置旋轉角",
+          "type": "number",
+          "value": 1,
+          "min": 0,
+          "max": 6.28,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "moe",
+      "title": "MoE路由與負載",
+      "type": "實際演算法",
+      "description": "四個專家分數取Top-k，顯示被選的激活預算；分數由學習者指定，未訓練路由器。",
+      "controls": [
+        {
+          "id": "scores",
+          "label": "四專家分數",
+          "type": "textarea",
+          "value": "2,1,0,-1"
+        },
+        {
+          "id": "k",
+          "label": "選用專家數",
+          "type": "number",
+          "value": 2,
+          "min": 1,
+          "max": 4,
+          "step": 1
+        },
+        {
+          "id": "size",
+          "label": "每專家參數（百萬）",
+          "type": "number",
+          "value": 100,
+          "min": 1,
+          "max": 1000,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "prompt",
+      "title": "提示設計與訓練目標",
+      "type": "流程模擬",
+      "description": "組合任務、來源、限制與格式；可切換預訓練／SFT的資料結構，未呼叫LLM。",
+      "controls": [
+        {
+          "id": "task",
+          "label": "任務",
+          "type": "textarea",
+          "value": "依手冊回答保固期限"
+        },
+        {
+          "id": "source",
+          "label": "來源",
+          "type": "textarea",
+          "value": "產品A保固一年。"
+        },
+        {
+          "id": "citation",
+          "label": "要求引用",
+          "type": "checkbox",
+          "value": true
+        },
+        {
+          "id": "json",
+          "label": "要求JSON",
+          "type": "checkbox",
+          "value": false
+        },
+        {
+          "id": "mode",
+          "label": "資料目標",
+          "type": "select",
+          "value": "prompt",
+          "options": [
+            "prompt:推論提示",
+            "pretrain:下一詞元資料",
+            "sft:指令輸出配對"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decoding",
+      "title": "貪婪與Beam搜尋",
+      "type": "實際演算法",
+      "description": "固定兩步機率樹：A起步0.6但後續最佳0.4；B起步0.4但後續最佳0.9。",
+      "controls": [
+        {
+          "id": "beam",
+          "label": "保留候選數",
+          "type": "number",
+          "value": 1,
+          "min": 1,
+          "max": 2,
+          "step": 1
+        },
+        {
+          "id": "budget",
+          "label": "獨立候選檢查成本",
+          "type": "number",
+          "value": 2,
+          "min": 1,
+          "max": 10,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "json",
+      "title": "JSON結構、Schema與停止規則",
+      "type": "實際演算法",
+      "description": "實際解析JSON並檢查name字串及非負price；另以指定停止序列截斷輸入文字。",
+      "controls": [
+        {
+          "id": "json",
+          "label": "待驗證JSON",
+          "type": "textarea",
+          "value": "{\"name\":\"產品A\",\"price\":100}"
+        },
+        {
+          "id": "text",
+          "label": "示範輸出字串",
+          "type": "textarea",
+          "value": "第一段。<END>不應顯示的後段"
+        },
+        {
+          "id": "stop",
+          "label": "停止序列",
+          "type": "textarea",
+          "value": "<END>"
+        }
+      ]
+    },
+    {
+      "id": "masking",
+      "title": "遮罩目標與串流切片",
+      "type": "實際演算法",
+      "description": "手動切分詞項，顯示MLM遮罩或因果前綴；串流模式逐步顯示固定文字，不呼叫模型。",
+      "controls": [
+        {
+          "id": "text",
+          "label": "以空白分詞",
+          "type": "textarea",
+          "value": "我 喜歡 在 下午 喝 茶"
+        },
+        {
+          "id": "position",
+          "label": "遮罩／顯示到位置",
+          "type": "number",
+          "value": 3,
+          "min": 1,
+          "max": 20,
+          "step": 1
+        },
+        {
+          "id": "mode",
+          "label": "模式",
+          "type": "select",
+          "value": "mask",
+          "options": [
+            "mask:MLM遮罩",
+            "causal:下一詞元前綴",
+            "stream:固定文字串流切片"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chunking",
+      "title": "文件切塊、重疊與壓縮",
+      "type": "實際演算法",
+      "description": "使用字元長度與句子擷取示範，非模型詞元計數。空格、標點都計入字元。",
+      "controls": [
+        {
+          "id": "text",
+          "label": "文件",
+          "type": "textarea",
+          "value": "產品A保固一年。申請維修須提供發票。耗材不在保固範圍。退貨需在七天內提出。"
+        },
+        {
+          "id": "size",
+          "label": "區塊字元數",
+          "type": "number",
+          "value": 20,
+          "min": 5,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "id": "overlap",
+          "label": "重疊字元數",
+          "type": "number",
+          "value": 5,
+          "min": 0,
+          "max": 30,
+          "step": 1
+        },
+        {
+          "id": "query",
+          "label": "查詢詞",
+          "type": "textarea",
+          "value": "保固"
+        }
+      ]
+    },
+    {
+      "id": "retrieval",
+      "title": "關鍵字、混合排序與權限",
+      "type": "實際演算法",
+      "description": "對逐行文件計算詞項命中與詞頻餘弦，再用RRF混合。這是可見詞頻基準，非神經語意檢索。",
+      "controls": [
+        {
+          "id": "query",
+          "label": "查詢",
+          "type": "textarea",
+          "value": "產品 保固"
+        },
+        {
+          "id": "docs",
+          "label": "每行格式：部門|內容",
+          "type": "textarea",
+          "value": "public|產品A保固一年\ninternal|產品B保固兩年\npublic|退貨期限七天"
+        },
+        {
+          "id": "access",
+          "label": "存取範圍",
+          "type": "select",
+          "value": "public",
+          "options": [
+            "public:只讀公開",
+            "internal:可讀全部"
+          ]
+        },
+        {
+          "id": "alpha",
+          "label": "餘弦排名權重",
+          "type": "number",
+          "value": 0.5,
+          "min": 0,
+          "max": 1,
+          "step": 0.1
+        },
+        {
+          "id": "top",
+          "label": "取回數",
+          "type": "number",
+          "value": 2,
+          "min": 1,
+          "max": 10,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "query-evidence",
+      "title": "查詢改寫、引用與忠實度",
+      "type": "實際演算法",
+      "description": "以可見文字規則替換代名詞、擴展同義詞並比對引用片段；不自動判斷完整語意事實。",
+      "controls": [
+        {
+          "id": "question",
+          "label": "問題",
+          "type": "textarea",
+          "value": "它的保固呢"
+        },
+        {
+          "id": "entity",
+          "label": "前文實體",
+          "type": "textarea",
+          "value": "產品A"
+        },
+        {
+          "id": "source",
+          "label": "來源",
+          "type": "textarea",
+          "value": "產品A保固一年。耗材除外。"
+        },
+        {
+          "id": "answer",
+          "label": "回答",
+          "type": "textarea",
+          "value": "產品A保固一年。"
+        },
+        {
+          "id": "expand",
+          "label": "加入保固同義詞",
+          "type": "checkbox",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "graph",
+      "title": "知識圖譜與多跳路徑",
+      "type": "實際演算法",
+      "description": "以每行主體|關係|客體建立有向圖，使用BFS找最短可達路徑。",
+      "controls": [
+        {
+          "id": "edges",
+          "label": "關係資料",
+          "type": "textarea",
+          "value": "產品A|使用|零件B\n零件B|由其製造|供應商C\n產品A|販售於|門市D"
+        },
+        {
+          "id": "start",
+          "label": "起點",
+          "type": "textarea",
+          "value": "產品A"
+        },
+        {
+          "id": "target",
+          "label": "終點",
+          "type": "textarea",
+          "value": "供應商C"
+        }
+      ]
+    },
+    {
+      "id": "quantize",
+      "title": "量化、反量化與剪枝",
+      "type": "實際演算法",
+      "description": "對小數列做對稱有號整數量化與絕對值閾值剪枝；不代表特定FP8/BF16位元編碼。",
+      "controls": [
+        {
+          "id": "data",
+          "label": "權重",
+          "type": "textarea",
+          "value": "-2,-0.1,0.05,0.7,1.8"
+        },
+        {
+          "id": "bits",
+          "label": "整數位元數",
+          "type": "number",
+          "value": 8,
+          "min": 2,
+          "max": 16,
+          "step": 1
+        },
+        {
+          "id": "prune",
+          "label": "剪枝絕對閾值",
+          "type": "number",
+          "value": 0.1,
+          "min": 0,
+          "max": 2,
+          "step": 0.05
+        }
+      ]
+    },
+    {
+      "id": "distill",
+      "title": "教師、學生與蒸餾",
+      "type": "數值計算",
+      "description": "比較教師與學生logits在溫度下的機率及交叉熵；未更新真實模型。",
+      "controls": [
+        {
+          "id": "teacher",
+          "label": "教師logits",
+          "type": "textarea",
+          "value": "3,1,0"
+        },
+        {
+          "id": "student",
+          "label": "學生logits",
+          "type": "textarea",
+          "value": "1,1,0"
+        },
+        {
+          "id": "temperature",
+          "label": "蒸餾溫度",
+          "type": "number",
+          "value": 2,
+          "min": 0.1,
+          "max": 5,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "adapt-budget",
+      "title": "凍結、適配器與前綴預算",
+      "type": "數值計算",
+      "description": "比較理論可訓練參數規模，不做實際微調。簡化假設明列於結果。",
+      "controls": [
+        {
+          "id": "d",
+          "label": "隱藏維度d",
+          "type": "number",
+          "value": 256,
+          "min": 8,
+          "max": 4096,
+          "step": 1
+        },
+        {
+          "id": "r",
+          "label": "瓶頸維度r",
+          "type": "number",
+          "value": 16,
+          "min": 1,
+          "max": 256,
+          "step": 1
+        },
+        {
+          "id": "prefix",
+          "label": "虛擬詞元數",
+          "type": "number",
+          "value": 10,
+          "min": 1,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "id": "layers",
+          "label": "層數",
+          "type": "number",
+          "value": 12,
+          "min": 1,
+          "max": 80,
+          "step": 1
+        },
+        {
+          "id": "frozen",
+          "label": "凍結骨幹",
+          "type": "checkbox",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "merge-forget",
+      "title": "模型合併、持續與聯邦更新",
+      "type": "數值計算",
+      "description": "合併兩個小權重向量並在固定兩任務線性目標上回測；聯邦模式按樣本量加權。",
+      "controls": [
+        {
+          "id": "a",
+          "label": "模型A權重",
+          "type": "textarea",
+          "value": "1,0"
+        },
+        {
+          "id": "b",
+          "label": "模型B權重",
+          "type": "textarea",
+          "value": "0,1"
+        },
+        {
+          "id": "alpha",
+          "label": "A的權重比例",
+          "type": "number",
+          "value": 0.5,
+          "min": 0,
+          "max": 1,
+          "step": 0.05
+        },
+        {
+          "id": "samplesA",
+          "label": "端A樣本數",
+          "type": "number",
+          "value": 100,
+          "min": 1,
+          "max": 1000,
+          "step": 1
+        },
+        {
+          "id": "samplesB",
+          "label": "端B樣本數",
+          "type": "number",
+          "value": 300,
+          "min": 1,
+          "max": 1000,
+          "step": 1
+        },
+        {
+          "id": "federated",
+          "label": "用樣本數比例聚合",
+          "type": "checkbox",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "signal",
+      "title": "波形、噪聲與去噪",
+      "type": "實際演算法",
+      "description": "生成64點合成波形、固定種子噪聲，執行三點移動平均及簡單DFT；未合成真實語音。",
+      "controls": [
+        {
+          "id": "frequency",
+          "label": "基頻（每64點週期數）",
+          "type": "number",
+          "value": 3,
+          "min": 1,
+          "max": 12,
+          "step": 1
+        },
+        {
+          "id": "noise",
+          "label": "噪聲幅度",
+          "type": "number",
+          "value": 0.3,
+          "min": 0,
+          "max": 1,
+          "step": 0.05
+        },
+        {
+          "id": "seed",
+          "label": "隨機種子",
+          "type": "number",
+          "value": 42,
+          "min": 1,
+          "max": 10000,
+          "step": 1
+        },
+        {
+          "id": "pitch",
+          "label": "聲線示意：諧波倍率",
+          "type": "number",
+          "value": 0.3,
+          "min": 0,
+          "max": 1,
+          "step": 0.05
+        }
+      ]
+    },
+    {
+      "id": "source-separation",
+      "title": "雙通道線性音源分離",
+      "type": "實際演算法",
+      "description": "兩個合成正弦源經已知2×2混音矩陣，使用逆矩陣重建；不是RoFormer或盲源分離模型。",
+      "controls": [
+        {
+          "id": "mix",
+          "label": "第二通道混音係數",
+          "type": "number",
+          "value": 0.2,
+          "min": -1,
+          "max": 1,
+          "step": 0.05
+        },
+        {
+          "id": "noise",
+          "label": "觀測噪聲",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 0.5,
+          "step": 0.05
+        }
+      ]
+    },
+    {
+      "id": "latent",
+      "title": "編碼、潛在取樣與重建",
+      "type": "數值計算",
+      "description": "把四個值以兩組平均編碼，再重複解碼；VAE模式另以給定均值／尺度與固定種子取樣。",
+      "controls": [
+        {
+          "id": "data",
+          "label": "四個輸入",
+          "type": "textarea",
+          "value": "1,2,3,4"
+        },
+        {
+          "id": "sigma",
+          "label": "潛在標準差",
+          "type": "number",
+          "value": 0.5,
+          "min": 0.01,
+          "max": 2,
+          "step": 0.05
+        },
+        {
+          "id": "seed",
+          "label": "種子",
+          "type": "number",
+          "value": 42,
+          "min": 1,
+          "max": 10000,
+          "step": 1
+        },
+        {
+          "id": "sample",
+          "label": "在潛在空間取樣",
+          "type": "checkbox",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "generation-ode",
+      "title": "擴散、流場與數值取樣",
+      "type": "數值計算",
+      "description": "解一維教學ODE dx/dt=目標−x，比較Euler與Heun；曲線只示範速度場與求解，不是訓練好的擴散或DiT模型。",
+      "controls": [
+        {
+          "id": "start",
+          "label": "初始噪聲位置",
+          "type": "number",
+          "value": -2,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "target",
+          "label": "目標位置",
+          "type": "number",
+          "value": 2,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "steps",
+          "label": "時間步數",
+          "type": "number",
+          "value": 10,
+          "min": 1,
+          "max": 80,
+          "step": 1
+        },
+        {
+          "id": "method",
+          "label": "求解器",
+          "type": "select",
+          "value": "euler",
+          "options": [
+            "euler:Euler",
+            "heun:Heun"
+          ]
+        },
+        {
+          "id": "cfg",
+          "label": "條件引導倍率",
+          "type": "number",
+          "value": 1,
+          "min": 0,
+          "max": 3,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "conditioning",
+      "title": "條件圖、遮罩與生成流程",
+      "type": "實際演算法",
+      "description": "以5×5合成圖演示遮罩、條件約束與填補。空缺以鄰近平均填補，不執行AI影像／影片生成。",
+      "controls": [
+        {
+          "id": "mode",
+          "label": "操作",
+          "type": "select",
+          "value": "inpaint",
+          "options": [
+            "inpaint:修補中心區域",
+            "outpaint:外擴一圈",
+            "control:條件位置控制"
+          ]
+        },
+        {
+          "id": "position",
+          "label": "條件位置",
+          "type": "number",
+          "value": 2,
+          "min": 0,
+          "max": 4,
+          "step": 1
+        },
+        {
+          "id": "strength",
+          "label": "條件強度",
+          "type": "number",
+          "value": 0.8,
+          "min": 0,
+          "max": 1,
+          "step": 0.1
+        },
+        {
+          "id": "negative",
+          "label": "排除右側區域",
+          "type": "checkbox",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "temporal-world",
+      "title": "時間一致性與世界動態",
+      "type": "數值計算",
+      "description": "一維物體以固定速度演化，加入可調模型速度誤差；比較真實規則與預測的長期累積誤差。",
+      "controls": [
+        {
+          "id": "speed",
+          "label": "真實速度",
+          "type": "number",
+          "value": 1,
+          "min": -3,
+          "max": 3,
+          "step": 0.1
+        },
+        {
+          "id": "bias",
+          "label": "預測速度偏差",
+          "type": "number",
+          "value": 0.1,
+          "min": -1,
+          "max": 1,
+          "step": 0.05
+        },
+        {
+          "id": "frames",
+          "label": "影格數",
+          "type": "number",
+          "value": 20,
+          "min": 2,
+          "max": 80,
+          "step": 1
+        },
+        {
+          "id": "flicker",
+          "label": "外觀閃爍幅度",
+          "type": "number",
+          "value": 0.2,
+          "min": 0,
+          "max": 1,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "gan",
+      "title": "GAN判別與生成目標",
+      "type": "數值計算",
+      "description": "給定判別器對真樣本及生成樣本的分數，計算標準判別損失與非飽和生成損失。",
+      "controls": [
+        {
+          "id": "real",
+          "label": "D(真樣本)",
+          "type": "number",
+          "value": 0.9,
+          "min": 0.001,
+          "max": 0.999,
+          "step": 0.01
+        },
+        {
+          "id": "fake",
+          "label": "D(生成樣本)",
+          "type": "number",
+          "value": 0.2,
+          "min": 0.001,
+          "max": 0.999,
+          "step": 0.01
+        }
+      ]
+    },
+    {
+      "id": "qlearning",
+      "title": "Q-Learning與探索",
+      "type": "實際演算法",
+      "description": "四格一維環境：起點0、終點3，每步−0.1、到終點+1。使用固定種子ε-greedy與Q更新。",
+      "controls": [
+        {
+          "id": "alpha",
+          "label": "學習率α",
+          "type": "number",
+          "value": 0.3,
+          "min": 0.01,
+          "max": 1,
+          "step": 0.05
+        },
+        {
+          "id": "gamma",
+          "label": "折扣γ",
+          "type": "number",
+          "value": 0.9,
+          "min": 0,
+          "max": 1,
+          "step": 0.05
+        },
+        {
+          "id": "epsilon",
+          "label": "探索ε",
+          "type": "number",
+          "value": 0.2,
+          "min": 0,
+          "max": 1,
+          "step": 0.05
+        },
+        {
+          "id": "episodes",
+          "label": "回合數",
+          "type": "number",
+          "value": 30,
+          "min": 1,
+          "max": 200,
+          "step": 1
+        },
+        {
+          "id": "seed",
+          "label": "種子",
+          "type": "number",
+          "value": 42,
+          "min": 1,
+          "max": 10000,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "policy-preference",
+      "title": "策略、偏好與獎勵駭取",
+      "type": "數值計算",
+      "description": "兩個動作的策略logits、參考策略與偏好配對計算DPO式logistic損失；另示範代理獎勵偏離真任務。",
+      "controls": [
+        {
+          "id": "chosen",
+          "label": "較佳回答logit",
+          "type": "number",
+          "value": 1,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "rejected",
+          "label": "較差回答logit",
+          "type": "number",
+          "value": 0,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "beta",
+          "label": "偏好β",
+          "type": "number",
+          "value": 0.1,
+          "min": 0.01,
+          "max": 2,
+          "step": 0.05
+        },
+        {
+          "id": "proxy",
+          "label": "拖延行為代理獎勵",
+          "type": "number",
+          "value": 2,
+          "min": -2,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "feedback",
+          "label": "回饋來源",
+          "type": "select",
+          "value": "human",
+          "options": [
+            "human:人類偏好",
+            "ai:AI評分",
+            "test:程式測試"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "agent-workflow",
+      "title": "代理工具、重試與冪等",
+      "type": "流程模擬",
+      "description": "在本地模擬任務狀態轉移與假訂單寫入，完全不呼叫外部服務。",
+      "controls": [
+        {
+          "id": "failures",
+          "label": "成功前暫時失敗次數",
+          "type": "number",
+          "value": 1,
+          "min": 0,
+          "max": 5,
+          "step": 1
+        },
+        {
+          "id": "retries",
+          "label": "允許重試次數",
+          "type": "number",
+          "value": 2,
+          "min": 0,
+          "max": 5,
+          "step": 1
+        },
+        {
+          "id": "idempotent",
+          "label": "同請求使用冪等鍵",
+          "type": "checkbox",
+          "value": true
+        },
+        {
+          "id": "approval",
+          "label": "已具備假寫入授權",
+          "type": "checkbox",
+          "value": false
+        },
+        {
+          "id": "duplicates",
+          "label": "相同請求送達次數",
+          "type": "number",
+          "value": 2,
+          "min": 1,
+          "max": 5,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "mcp-tools",
+      "title": "Host–Client–Server與工具驗證",
+      "type": "流程模擬",
+      "description": "本地假工具接受JSON參數，驗證型別、權限並計算加總；未連接真實MCP或API。",
+      "controls": [
+        {
+          "id": "args",
+          "label": "工具參數JSON",
+          "type": "textarea",
+          "value": "{\"a\":2,\"b\":3}"
+        },
+        {
+          "id": "tool",
+          "label": "假工具",
+          "type": "select",
+          "value": "sum",
+          "options": [
+            "sum:計算工具",
+            "resource:讀取示範資源"
+          ]
+        },
+        {
+          "id": "permission",
+          "label": "允許使用該能力",
+          "type": "checkbox",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "memory-retrieval",
+      "title": "記憶保存、檢索與失效",
+      "type": "實際演算法",
+      "description": "按型別與查詢字元過濾本地假記憶，示範來源、時效及最少保留；非永久雲端記憶服務。",
+      "controls": [
+        {
+          "id": "query",
+          "label": "查詢",
+          "type": "textarea",
+          "value": "格式"
+        },
+        {
+          "id": "type",
+          "label": "記憶型別",
+          "type": "select",
+          "value": "all",
+          "options": [
+            "all:全部",
+            "short:短期",
+            "long:長期",
+            "episodic:情節",
+            "semantic:語意"
+          ]
+        },
+        {
+          "id": "expire",
+          "label": "排除過期紀錄",
+          "type": "checkbox",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "onehot",
+      "title": "獨熱編碼與未知類別",
+      "type": "實際演算法",
+      "description": "由指定類別表建立0/1向量；未知類別依規則全零或明確拒絕。",
+      "controls": [
+        {
+          "id": "vocab",
+          "label": "類別表",
+          "type": "textarea",
+          "value": "紅,綠,藍"
+        },
+        {
+          "id": "value",
+          "label": "輸入類別",
+          "type": "textarea",
+          "value": "綠"
+        },
+        {
+          "id": "unknown",
+          "label": "未知類別容許全零",
+          "type": "checkbox",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "logistic-contrast",
+      "title": "Logistic與對比表示",
+      "type": "數值計算",
+      "description": "二元logistic機率及指定正負向量的margin式對比損失各自計算。",
+      "controls": [
+        {
+          "id": "x",
+          "label": "x",
+          "type": "number",
+          "value": 2,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "w",
+          "label": "w",
+          "type": "number",
+          "value": 1,
+          "min": -3,
+          "max": 3,
+          "step": 0.1
+        },
+        {
+          "id": "b",
+          "label": "b",
+          "type": "number",
+          "value": 0,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "id": "positive",
+          "label": "正樣本距離",
+          "type": "number",
+          "value": 0.2,
+          "min": 0,
+          "max": 3,
+          "step": 0.1
+        },
+        {
+          "id": "negative",
+          "label": "負樣本距離",
+          "type": "number",
+          "value": 0.8,
+          "min": 0,
+          "max": 3,
+          "step": 0.1
+        },
+        {
+          "id": "margin",
+          "label": "距離margin",
+          "type": "number",
+          "value": 1,
+          "min": 0.1,
+          "max": 3,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "repetition",
+      "title": "重複懲罰與來源上下文",
+      "type": "實際演算法",
+      "description": "對固定候選logits，已出現且正分數的詞除以懲罰係數，負分數乘係數，再計softmax。",
+      "controls": [
+        {
+          "id": "penalty",
+          "label": "重複懲罰",
+          "type": "number",
+          "value": 1.2,
+          "min": 1,
+          "max": 3,
+          "step": 0.1
+        },
+        {
+          "id": "seen",
+          "label": "已出現候選",
+          "type": "select",
+          "value": "A",
+          "options": [
+            "A:候選A",
+            "B:候選B",
+            "none:無"
+          ]
+        },
+        {
+          "id": "source",
+          "label": "本次上下文",
+          "type": "textarea",
+          "value": "手冊：保固一年。"
+        }
+      ]
+    },
+    {
+      "id": "serving",
+      "title": "請求排程與延遲／吞吐",
+      "type": "實際演算法",
+      "description": "固定6個同時到達的請求，以同步批次或簡化連續批次排程。每詞元步長固定，無真實硬體。",
+      "controls": [
+        {
+          "id": "mode",
+          "label": "排程",
+          "type": "select",
+          "value": "batch",
+          "options": [
+            "batch:整批等最長完成",
+            "continuous:槽位完成即補新請求"
+          ]
+        },
+        {
+          "id": "slots",
+          "label": "同時槽位",
+          "type": "number",
+          "value": 2,
+          "min": 1,
+          "max": 6,
+          "step": 1
+        },
+        {
+          "id": "prefill",
+          "label": "每請求prefill毫秒",
+          "type": "number",
+          "value": 20,
+          "min": 0,
+          "max": 200,
+          "step": 1
+        },
+        {
+          "id": "token",
+          "label": "每詞元毫秒",
+          "type": "number",
+          "value": 10,
+          "min": 1,
+          "max": 100,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "cache-speculate",
+      "title": "前綴快取與推測成本",
+      "type": "數值計算",
+      "description": "輸入假設成本與命中／接受率比較理論成本；非真實生成時間。",
+      "controls": [
+        {
+          "id": "prefix",
+          "label": "重複前綴詞元",
+          "type": "number",
+          "value": 1000,
+          "min": 0,
+          "max": 10000,
+          "step": 1
+        },
+        {
+          "id": "requests",
+          "label": "請求數",
+          "type": "number",
+          "value": 10,
+          "min": 1,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "id": "hit",
+          "label": "快取命中率",
+          "type": "number",
+          "value": 0.8,
+          "min": 0,
+          "max": 1,
+          "step": 0.05
+        },
+        {
+          "id": "draft",
+          "label": "草稿候選數",
+          "type": "number",
+          "value": 4,
+          "min": 1,
+          "max": 10,
+          "step": 1
+        },
+        {
+          "id": "accept",
+          "label": "草稿接受率",
+          "type": "number",
+          "value": 0.7,
+          "min": 0,
+          "max": 1,
+          "step": 0.05
+        },
+        {
+          "id": "draftcost",
+          "label": "每候選草稿成本",
+          "type": "number",
+          "value": 0.1,
+          "min": 0.01,
+          "max": 1,
+          "step": 0.01
+        }
+      ]
+    },
+    {
+      "id": "roofline",
+      "title": "硬體與記憶體瓶頸",
+      "type": "數值計算",
+      "description": "用運算量／峰值及搬移量／頻寬算理想下限，取較大者；這不是CPU/GPU/NPU實測。",
+      "controls": [
+        {
+          "id": "flops",
+          "label": "工作量（十億FLOPs）",
+          "type": "number",
+          "value": 100,
+          "min": 1,
+          "max": 10000,
+          "step": 1
+        },
+        {
+          "id": "compute",
+          "label": "硬體算力（TFLOP/s）",
+          "type": "number",
+          "value": 10,
+          "min": 0.1,
+          "max": 1000,
+          "step": 0.1
+        },
+        {
+          "id": "data",
+          "label": "需搬移資料（GB）",
+          "type": "number",
+          "value": 8,
+          "min": 0.1,
+          "max": 1000,
+          "step": 0.1
+        },
+        {
+          "id": "bandwidth",
+          "label": "頻寬（GB/s）",
+          "type": "number",
+          "value": 100,
+          "min": 1,
+          "max": 3000,
+          "step": 1
+        },
+        {
+          "id": "overhead",
+          "label": "固定開銷ms",
+          "type": "number",
+          "value": 1,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "parallel-checkpoint",
+      "title": "平行、重計算與卸載",
+      "type": "數值計算",
+      "description": "以指定總記憶體與階段數估算單卡分攤／管線利用；純比較模型，忽略大部分通訊細節。",
+      "controls": [
+        {
+          "id": "model",
+          "label": "模型相關記憶體GiB",
+          "type": "number",
+          "value": 16,
+          "min": 1,
+          "max": 200,
+          "step": 1
+        },
+        {
+          "id": "activation",
+          "label": "激活GiB",
+          "type": "number",
+          "value": 8,
+          "min": 1,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "id": "devices",
+          "label": "裝置數",
+          "type": "number",
+          "value": 4,
+          "min": 1,
+          "max": 16,
+          "step": 1
+        },
+        {
+          "id": "micro",
+          "label": "微批次數",
+          "type": "number",
+          "value": 8,
+          "min": 1,
+          "max": 64,
+          "step": 1
+        },
+        {
+          "id": "mode",
+          "label": "分配",
+          "type": "select",
+          "value": "data",
+          "options": [
+            "data:資料平行（完整權重）",
+            "tensor:張量平行（理想均分）",
+            "pipeline:管線平行（理想均分）"
+          ]
+        },
+        {
+          "id": "checkpoint",
+          "label": "重計算：激活減半",
+          "type": "checkbox",
+          "value": false
+        },
+        {
+          "id": "offload",
+          "label": "卸載：模型相關狀態減半",
+          "type": "checkbox",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "fairness",
+      "title": "群體公平與混淆矩陣",
+      "type": "數值計算",
+      "description": "比較兩群相同陽性總數的Recall及假陽性率；不能單靠兩項指標認定全面公平。",
+      "controls": [
+        {
+          "id": "tpA",
+          "label": "A群TP",
+          "type": "number",
+          "value": 8,
+          "min": 0,
+          "max": 10,
+          "step": 1
+        },
+        {
+          "id": "fpA",
+          "label": "A群FP",
+          "type": "number",
+          "value": 2,
+          "min": 0,
+          "max": 90,
+          "step": 1
+        },
+        {
+          "id": "tpB",
+          "label": "B群TP",
+          "type": "number",
+          "value": 5,
+          "min": 0,
+          "max": 10,
+          "step": 1
+        },
+        {
+          "id": "fpB",
+          "label": "B群FP",
+          "type": "number",
+          "value": 5,
+          "min": 0,
+          "max": 90,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": "差分隱私噪聲與個資遮罩",
+      "type": "實際演算法",
+      "description": "以敏感度1的計數加Laplace噪聲；此例單次查詢，未實作完整隱私預算管理。",
+      "controls": [
+        {
+          "id": "count",
+          "label": "原始計數",
+          "type": "number",
+          "value": 100,
+          "min": 0,
+          "max": 1000,
+          "step": 1
+        },
+        {
+          "id": "epsilon",
+          "label": "ε",
+          "type": "number",
+          "value": 1,
+          "min": 0.1,
+          "max": 10,
+          "step": 0.1
+        },
+        {
+          "id": "seed",
+          "label": "噪聲種子（僅演示）",
+          "type": "number",
+          "value": 42,
+          "min": 1,
+          "max": 10000,
+          "step": 1
+        },
+        {
+          "id": "text",
+          "label": "虛構文字",
+          "type": "textarea",
+          "value": "測試信箱 demo@example.com，電話 0912-345-678。"
+        }
+      ]
+    },
+    {
+      "id": "guardrails",
+      "title": "提示注入與最小權限",
+      "type": "流程模擬",
+      "description": "在本地假任務中，選擇外部內容是否被當成指令，以及寫入／連外權限；不執行真實攻擊。",
+      "controls": [
+        {
+          "id": "untrusted",
+          "label": "外部文件含惡意指令",
+          "type": "checkbox",
+          "value": true
+        },
+        {
+          "id": "isolate",
+          "label": "把文件隔離為不可信資料",
+          "type": "checkbox",
+          "value": true
+        },
+        {
+          "id": "network",
+          "label": "允許外傳資料",
+          "type": "checkbox",
+          "value": false
+        },
+        {
+          "id": "write",
+          "label": "允許寫入",
+          "type": "checkbox",
+          "value": false
+        },
+        {
+          "id": "review",
+          "label": "敏感操作要求人工確認",
+          "type": "checkbox",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "adversarial",
+      "title": "線性模型擾動與投毒",
+      "type": "數值計算",
+      "description": "固定線性分類器z=x₁+x₂−1，檢查指定擾動是否跨界；另對訓練標籤做可見翻轉，未攻擊外部模型。",
+      "controls": [
+        {
+          "id": "x",
+          "label": "x₁",
+          "type": "number",
+          "value": 0.6,
+          "min": -2,
+          "max": 2,
+          "step": 0.05
+        },
+        {
+          "id": "y",
+          "label": "x₂",
+          "type": "number",
+          "value": 0.6,
+          "min": -2,
+          "max": 2,
+          "step": 0.05
+        },
+        {
+          "id": "delta",
+          "label": "兩軸共同擾動",
+          "type": "number",
+          "value": -0.15,
+          "min": -1,
+          "max": 1,
+          "step": 0.05
+        },
+        {
+          "id": "poison",
+          "label": "假資料標籤翻轉筆數",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 10,
+          "step": 1
+        },
+        {
+          "id": "trigger",
+          "label": "加入後門觸發條件",
+          "type": "checkbox",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "governance",
+      "title": "模型卡、資料說明與風險檢查",
+      "type": "流程模擬",
+      "description": "填寫用途與勾選證據，組合可複製的說明草稿；完整度不是法律或倫理合規認證。",
+      "controls": [
+        {
+          "id": "purpose",
+          "label": "用途",
+          "type": "textarea",
+          "value": "以虛構資料教學分類"
+        },
+        {
+          "id": "limits",
+          "label": "限制",
+          "type": "textarea",
+          "value": "不適用真實高影響決策"
+        },
+        {
+          "id": "data",
+          "label": "有資料來源及授權說明",
+          "type": "checkbox",
+          "value": true
+        },
+        {
+          "id": "eval",
+          "label": "有分群評估",
+          "type": "checkbox",
+          "value": false
+        },
+        {
+          "id": "appeal",
+          "label": "有人工更正與申訴路徑",
+          "type": "checkbox",
+          "value": false
+        },
+        {
+          "id": "explain",
+          "label": "有可核對的規則或解釋",
+          "type": "checkbox",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "watermark",
+      "title": "訊號浮水印與內容真偽",
+      "type": "實際演算法",
+      "description": "合成訊號加入固定種子±1標記，再以相關性檢測；不等於真實影音來源認證。",
+      "controls": [
+        {
+          "id": "strength",
+          "label": "標記強度",
+          "type": "number",
+          "value": 0.2,
+          "min": 0,
+          "max": 1,
+          "step": 0.05
+        },
+        {
+          "id": "noise",
+          "label": "後處理噪聲",
+          "type": "number",
+          "value": 0.2,
+          "min": 0,
+          "max": 1,
+          "step": 0.05
+        },
+        {
+          "id": "keep",
+          "label": "保留取樣數",
+          "type": "number",
+          "value": 32,
+          "min": 4,
+          "max": 64,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "pipeline",
+      "title": "CI、訓練與推論管線",
+      "type": "流程模擬",
+      "description": "本地狀態機依檢查結果停止或前進；版本字串只作示意，不部署外部服務。",
+      "controls": [
+        {
+          "id": "kind",
+          "label": "流程",
+          "type": "select",
+          "value": "inference",
+          "options": [
+            "data:資料管線",
+            "train:訓練管線",
+            "inference:推論管線",
+            "ci:CI與交付"
+          ]
+        },
+        {
+          "id": "schema",
+          "label": "資料／介面格式通過",
+          "type": "checkbox",
+          "value": true
+        },
+        {
+          "id": "tests",
+          "label": "必要測試通過",
+          "type": "checkbox",
+          "value": true
+        },
+        {
+          "id": "quality",
+          "label": "品質評估通過",
+          "type": "checkbox",
+          "value": false
+        },
+        {
+          "id": "approved",
+          "label": "正式發布決定",
+          "type": "checkbox",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "release",
+      "title": "金絲雀、影子與回滾",
+      "type": "數值計算",
+      "description": "依指定流量比例及錯誤率估計錯誤請求量，模擬部署與回滾決定；不更動真實服務。",
+      "controls": [
+        {
+          "id": "requests",
+          "label": "流量",
+          "type": "number",
+          "value": 1000,
+          "min": 1,
+          "max": 100000,
+          "step": 1
+        },
+        {
+          "id": "share",
+          "label": "新版流量比例",
+          "type": "number",
+          "value": 0.05,
+          "min": 0,
+          "max": 1,
+          "step": 0.05
+        },
+        {
+          "id": "old",
+          "label": "舊版錯誤率",
+          "type": "number",
+          "value": 0.01,
+          "min": 0,
+          "max": 0.5,
+          "step": 0.01
+        },
+        {
+          "id": "fresh",
+          "label": "新版錯誤率",
+          "type": "number",
+          "value": 0.1,
+          "min": 0,
+          "max": 0.5,
+          "step": 0.01
+        },
+        {
+          "id": "mode",
+          "label": "模式",
+          "type": "select",
+          "value": "canary",
+          "options": [
+            "canary:金絲雀",
+            "shadow:影子",
+            "rollback:回滾"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monitor",
+      "title": "追蹤、成本與速率限制",
+      "type": "數值計算",
+      "description": "由固定步驟耗時算總延遲與理論成本；以分鐘請求數判斷限流。",
+      "controls": [
+        {
+          "id": "retrieval",
+          "label": "檢索ms",
+          "type": "number",
+          "value": 40,
+          "min": 0,
+          "max": 1000,
+          "step": 1
+        },
+        {
+          "id": "model",
+          "label": "模型ms",
+          "type": "number",
+          "value": 500,
+          "min": 1,
+          "max": 5000,
+          "step": 1
+        },
+        {
+          "id": "verify",
+          "label": "驗證ms",
+          "type": "number",
+          "value": 20,
+          "min": 0,
+          "max": 1000,
+          "step": 1
+        },
+        {
+          "id": "calls",
+          "label": "每分鐘請求",
+          "type": "number",
+          "value": 120,
+          "min": 0,
+          "max": 1000,
+          "step": 1
+        },
+        {
+          "id": "limit",
+          "label": "每分鐘上限",
+          "type": "number",
+          "value": 100,
+          "min": 1,
+          "max": 1000,
+          "step": 1
+        },
+        {
+          "id": "cost",
+          "label": "每請求成本",
+          "type": "number",
+          "value": 0.01,
+          "min": 0,
+          "max": 10,
+          "step": 0.01
+        }
+      ]
+    },
+    {
+      "id": "float-format",
+      "title": "FP16、BF16與FP8精度",
+      "type": "數值計算",
+      "description": "以指定指數／尾數位數做二進位就近偶數捨入，含次正規數；E4M3FN使用最大448。溢位可選飽和，此處未模擬硬體運算累積。",
+      "controls": [
+        {
+          "id": "value",
+          "label": "輸入數值",
+          "type": "number",
+          "value": 1.2345,
+          "min": -100000,
+          "max": 100000,
+          "step": 0.0001
+        },
+        {
+          "id": "format",
+          "label": "格式",
+          "type": "select",
+          "value": "fp16",
+          "options": [
+            "fp16:FP16 E5M10",
+            "bf16:BF16 E8M7",
+            "fp8e5:FP8 E5M2",
+            "fp8e4:FP8 E4M3FN"
+          ]
+        },
+        {
+          "id": "saturate",
+          "label": "超出有限範圍時飽和",
+          "type": "checkbox",
+          "value": true
+        }
+      ]
+    }
+  ]
+}
