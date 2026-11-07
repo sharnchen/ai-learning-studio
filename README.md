@@ -60,3 +60,8 @@
 - 所有運算在瀏覽器以固定小資料或使用者輸入執行；大模型、真實硬體、語音、影像生成等案例明確標為機制示意，未宣稱已執行相應大型模型或系統。
 
 完整腳本順序：lessons.js → scope.js → practice-data.js → practice-ui.js → lab-engines.js → lab-ui.js → app.js。
+
+### 計算過程（Calculation Steps）
+所有106個模板及13類詞條內數值示範均記錄實際執行的算術、Math函數、變數更新、計數與比較。結果下方顯示輸入符號、公式、數值代入與逐步結果；每頁60步，全部步驟可下載JSON，單次實驗匯出也包含 `result.calculation`。瀏覽器顯示完整浮點中間值，主結果可能另行四捨五入。流程型實驗亦顯示其實際條件判斷，沒有運算時明示。
+
+計算原始碼位於 `src/practice-ui.js` 與 `src/lab-engines.js`。修改後執行 `npm install`、`npm run build:traces`，產生根目錄同名瀏覽器檔；不要手改產生檔。建置使用Acorn語法樹插入追蹤，保留操作數求值次數與順序；瀏覽器無額外依賴、不使用eval。執行 `node tests/calculation-trace.cjs` 驗證576個案例與未插入追蹤版本結果相同、公式代入、分頁、跳脫與例外清理。
