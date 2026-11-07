@@ -1,0 +1,595 @@
+# AI 基礎與學習方式|AI Foundations & Learning Paradigms
+人工智慧|Artificial Intelligence, AI|讓機器執行感知、推理、決策或生成等任務的研究與工程領域。
+通用人工智慧|Artificial General Intelligence, AGI|通常指能跨廣泛任務遷移能力的人工智慧概念，目前沒有一致的操作性判定標準。
+機器學習|Machine Learning, ML|從資料學習模式，以改善預測或決策，而非逐條手寫所有規則。
+深度學習|Deep Learning, DL|以多層神經網路學習階層式資料表示的機器學習方法。
+生成式人工智慧|Generative Artificial Intelligence, Generative AI|學習資料結構或分布以產生文字、影像、音訊等新內容。
+判別式模型|Discriminative Model|直接學習分類邊界或輸入條件下的目標分布，例如邏輯斯回歸。
+生成式模型|Generative Model|學習資料的生成結構或分布，可用於取樣新資料。
+監督學習|Supervised Learning|使用帶目標答案的樣本學習輸入到輸出的對應。
+非監督學習|Unsupervised Learning|在沒有目標標籤的資料中尋找群組、結構或表示。
+半監督學習|Semi-Supervised Learning|結合少量有標籤與大量無標籤資料訓練模型。
+自監督學習|Self-Supervised Learning|從資料本身建立學習目標，例如遮住文字後預測缺漏內容。
+強化學習|Reinforcement Learning, RL|透過與環境互動的獎勵回饋學習長期決策策略。
+遷移學習|Transfer Learning|把來源任務學到的表示或參數用於另一個任務。
+多任務學習|Multi-Task Learning|聯合學習多個相關任務，利用共享表示改善資料效率。
+聯邦學習|Federated Learning|資料留在各端，協調多端本地訓練並聚合更新；本身不保證隱私。
+持續學習|Continual Learning|隨時間學習新任務，同時盡量保留舊能力。
+主動學習|Active Learning|由學習系統挑選最值得人工標註的樣本。
+線上學習|Online Learning|資料陸續到來時逐步更新模型，不等於單純把模型放上網路。
+離線學習|Offline Learning|在事先收集的固定資料上學習；強化學習中則指使用既有互動紀錄。
+少樣本學習|Few-Shot Learning|利用很少的目標任務樣本學習或適應任務。
+零樣本學習|Zero-Shot Learning|在沒有該目標任務訓練樣本的條件下，透過既有知識或語意描述處理任務。
+後設學習|Meta-Learning|跨任務學習如何快速適應新任務，也稱學習如何學習。
+課程學習|Curriculum Learning|安排由易到難或其他有助學習的資料與任務順序。
+模仿學習|Imitation Learning|利用專家示範學習行動策略，例如從駕駛示範學習轉向。
+# 資料與前處理|Data & Preprocessing
+資料集|Dataset|用於分析、訓練或評估的一組有組織資料。
+樣本|Sample / Instance|資料集中一個可供處理的實例，例如一張圖片或一筆交易。
+特徵|Feature|供模型使用的輸入屬性或學得的表示。
+標籤|Label|監督學習中與樣本對應的目標答案。
+目標變數|Target Variable|模型要預測的變數，例如價格或故障類別。
+真實標準答案|Ground Truth|評估時採用的參考答案；仍可能含標註誤差。
+訓練集|Training Set|用來估計模型參數的資料子集。
+驗證集|Validation Set|用來選模型、調整超參數及決定停止時機的資料子集。
+測試集|Test Set|保留供最後評估的資料，不能反覆用來調參。
+資料切分|Data Splitting|依時間、個體或群組等條件將資料分成不同用途的子集。
+資料標註|Data Annotation / Labeling|替資料加上類別、框線、文字轉錄等參考資訊。
+資料清理|Data Cleaning|處理錯值、重複紀錄與不一致格式等資料品質問題。
+資料前處理|Data Preprocessing|將原始資料轉成模型可使用的形式。
+缺失值|Missing Value|原應存在但未觀測或未記錄的資料值。
+缺失值填補|Missing Value Imputation|以統計值或模型估計替代缺失值，估計規則應只從訓練集學得。
+離群值|Outlier|相對多數資料顯著不同的觀測，不一定是錯誤。
+雜訊|Noise|與目標訊號無關或干擾觀測的變動。
+資料增強|Data Augmentation|以保留任務語意的轉換增加訓練變化，例如翻轉圖片。
+合成資料|Synthetic Data|以程式、模擬器或模型產生的資料，仍需評估代表性與品質。
+特徵工程|Feature Engineering|依領域知識建立或轉換模型輸入特徵。
+特徵選擇|Feature Selection|從候選特徵中選出較有用的子集。
+特徵擷取|Feature Extraction|從原始資料計算較有用的表示，例如影像邊緣或嵌入向量。
+正規化|Normalization|依特定規則調整數值尺度或向量長度，具體公式依情境而定。
+標準化|Standardization|常見為減平均值再除標準差，使特徵具有可比較尺度。
+獨熱編碼|One-Hot Encoding|以一個位置為 1、其他位置為 0 的向量表示類別。
+類別不平衡|Class Imbalance|不同類別的樣本量差異很大，可能使模型偏向多數類別。
+過採樣|Oversampling|增加少數類別的抽樣或合成樣本以調整訓練分布。
+欠採樣|Undersampling|減少多數類別樣本以調整訓練分布，可能損失資訊。
+資料洩漏|Data Leakage|訓練或選模時用了實際預測時不應可見的資訊。
+資料偏差|Data Bias|蒐集或標註方式造成資料不能充分代表目標情境。
+資料分布|Data Distribution|描述資料取值及其機率的規律。
+分布偏移|Distribution Shift|部署資料與訓練資料的統計分布不同。
+資料漂移|Data Drift|輸入資料的特性隨時間改變。
+概念漂移|Concept Drift|輸入與目標之間的關係隨時間改變。
+資料溯源|Data Provenance|記錄資料來源、處理過程、版本與使用條件。
+# 數學與統計|Mathematics & Statistics
+純量|Scalar|單一數值，例如一筆樣本的損失。
+向量|Vector|有順序的一組數值，例如三個特徵組成的表示。
+矩陣|Matrix|二維數值陣列，常用來表示線性轉換。
+張量|Tensor|多維陣列；模型中的批次影像可表示成四維張量。
+維度|Dimension|可指軸數或向量分量數，使用時需說明語境。
+張量形狀|Tensor Shape|各軸長度的序列，例如批次、通道、高度、寬度。
+點積|Dot Product|對應分量相乘再相加，用於投影與相似度計算。
+矩陣乘法|Matrix Multiplication|以列與行的點積組合矩陣，內側維度必須相同。
+轉置|Transpose|交換矩陣的列與行，例如 2×3 矩陣轉置後成為 3×2。
+範數|Norm|衡量向量或矩陣大小的函數，例如 L2 範數。
+特徵值|Eigenvalue|線性轉換在特定方向上的縮放係數。
+特徵向量|Eigenvector|經線性轉換後方向不變的非零向量。
+奇異值分解|Singular Value Decomposition, SVD|將矩陣分解為正交方向與縮放，可用於低秩近似。
+機率分布|Probability Distribution|為可能結果指定機率或機率密度。
+條件機率|Conditional Probability|已知某事件發生時另一事件的機率。
+貝氏定理|Bayes’ Theorem|用先驗與似然更新後驗：P(A|B)=P(B|A)P(A)/P(B)。
+最大概似估計|Maximum Likelihood Estimation, MLE|選擇讓觀測資料最可能出現的參數。
+最大後驗估計|Maximum A Posteriori Estimation, MAP|結合先驗與資料，選擇後驗機率最大的參數。
+期望值|Expected Value / Expectation|隨機變數依機率加權的平均。
+變異數|Variance|衡量隨機變數相對期望值的平方偏離。
+標準差|Standard Deviation|變異數的平方根，單位與原資料相同。
+共變異數|Covariance|衡量兩個變數共同變動的方向與大小。
+相關性|Correlation|衡量變數關聯的程度；相關不代表因果。
+熵|Entropy|衡量機率分布的不確定性，離散情況為負的 p log p 總和。
+交叉熵|Cross-Entropy|以預測分布編碼真實分布的平均成本，常用於分類損失。
+KL 散度|Kullback–Leibler Divergence, KL Divergence|衡量分布差異的非對稱量，不是一般距離。
+導數|Derivative|函數對單一自變數的局部變化率。
+偏導數|Partial Derivative|固定其他自變數時，函數對某一變數的變化率。
+梯度|Gradient|由各偏導數組成的向量，指向函數局部增加最快的方向。
+鏈式法則|Chain Rule|計算複合函數導數的規則，是反向傳播的基礎。
+雅可比矩陣|Jacobian Matrix|向量值函數各輸出對各輸入的一階偏導數矩陣。
+海森矩陣|Hessian Matrix|純量函數的二階偏導數矩陣，用於描述局部曲率。
+凸最佳化|Convex Optimization|在凸可行域上最小化凸函數；局部最小值也是全域最小值。
+# 傳統機器學習|Classical Machine Learning
+分類|Classification|預測離散類別，例如正常或故障。
+二元分類|Binary Classification|目標有兩個互斥類別的分類任務。
+多類別分類|Multiclass Classification|從三個以上互斥類別中選出一類。
+多標籤分類|Multilabel Classification|一個樣本可同時具有多個標籤。
+回歸|Regression|預測連續數值，例如溫度或價格。
+線性回歸|Linear Regression|以輸入特徵的線性組合預測連續目標。
+邏輯斯回歸|Logistic Regression|以線性分數經 sigmoid 或 softmax 建立分類機率模型。
+多項式回歸|Polynomial Regression|用輸入的多項式特徵表達非線性關係。
+決策樹|Decision Tree|以一連串特徵條件分割資料並作預測。
+隨機森林|Random Forest|結合多棵帶抽樣與特徵隨機性的決策樹。
+支援向量機|Support Vector Machine, SVM|以最大間隔建立決策邊界，可透過核函數表達非線性。
+最近鄰演算法|k-Nearest Neighbors, k-NN|根據特徵空間中最近的 k 個樣本投票或平均作預測。
+樸素貝氏分類器|Naive Bayes Classifier|在類別給定時假設特徵條件獨立的機率分類器。
+集成學習|Ensemble Learning|組合多個模型的預測以改善效能或穩健性。
+自助聚合|Bootstrap Aggregating, Bagging|在重抽樣資料上訓練多個模型，再聚合預測。
+提升法|Boosting|依序加入模型以改善既有模型未處理好的部分。
+梯度提升|Gradient Boosting|逐步擬合損失的負梯度方向，建立加法模型。
+分群|Clustering|依相似性把資料分組，不需要預先給定每筆標籤。
+K 平均分群|K-Means Clustering|交替分派最近中心與更新中心，以降低群內平方距離。
+階層式分群|Hierarchical Clustering|透過逐步合併或分裂建立群組樹狀結構。
+密度式分群|Density-Based Clustering|依資料密度尋找群組，可識別部分雜訊點。
+高斯混合模型|Gaussian Mixture Model, GMM|以多個高斯分布的加權和表示資料分布。
+降維|Dimensionality Reduction|以較少維度保留資料中重要資訊。
+主成分分析|Principal Component Analysis, PCA|尋找資料變異最大的正交方向進行線性降維。
+異常偵測|Anomaly Detection|找出相對正常模式明顯不同的樣本。
+推薦系統|Recommender System|預測使用者可能感興趣的項目。
+協同過濾|Collaborative Filtering|利用使用者與項目的互動模式推薦內容。
+矩陣分解|Matrix Factorization|把大型互動矩陣分解成較低維的使用者與項目表示。
+時間序列預測|Time Series Forecasting|利用按時間排列的歷史資訊預測未來數值。
+# 神經網路與網路層|Neural Networks & Layers
+人工神經網路|Artificial Neural Network, ANN|由可學習的連接與非線性運算單元組成的模型。
+神經元|Neuron|通常先計算加權和與偏置，再套用激活函數的單元。
+感知器|Perceptron|以線性分數及閾值作判斷的早期神經模型。
+多層感知器|Multilayer Perceptron, MLP|由多個全連接層及非線性激活構成的前饋網路。
+輸入層|Input Layer|接收資料並定義輸入表示的網路入口。
+隱藏層|Hidden Layer|位於輸入與輸出之間，用來轉換表示的層。
+輸出層|Output Layer|將內部表示轉成任務所需預測的層。
+全連接層|Fully Connected Layer / Dense Layer|每個輸出與全部輸入相連，通常計算 Wx+b。
+權重|Weight|控制輸入或連接影響程度的可學習係數。
+偏置|Bias|加在線性轉換後的可學習偏移量。
+參數|Parameter|由訓練估計的模型數值，例如權重與偏置。
+超參數|Hyperparameter|在訓練外設定的配置，例如學習率、深度與批次大小。
+激活函數|Activation Function|引入非線性或限制輸出範圍的函數。
+修正線性單元|Rectified Linear Unit, ReLU|f(x)=max(0,x)，負區間的導數為零。
+帶洩漏修正線性單元|Leaky ReLU|負區間保留小斜率的 ReLU 變體。
+高斯誤差線性單元|Gaussian Error Linear Unit, GELU|以高斯累積分布平滑調整輸入，常見於 Transformer。
+Sigmoid 函數|Sigmoid Function|1/(1+exp(-x))，將實數映射到 0 與 1 之間。
+雙曲正切函數|Hyperbolic Tangent, Tanh|將實數映射到 -1 與 1 之間的平滑激活函數。
+Softmax 函數|Softmax Function|將一組分數轉成總和為 1 的非負權重。
+前向傳播|Forward Propagation|依網路結構從輸入逐層計算輸出與損失。
+反向傳播|Backpropagation|沿計算圖以鏈式法則計算損失對參數的梯度。
+計算圖|Computational Graph|以節點與邊記錄運算及其資料相依關係。
+自動微分|Automatic Differentiation|依程式的基本運算及鏈式法則自動計算導數，不是有限差分。
+權重初始化|Weight Initialization|訓練前設定參數初值，影響訊號與梯度尺度。
+批次正規化|Batch Normalization|通常以批次統計量正規化激活；訓練與推論的統計處理不同。
+層正規化|Layer Normalization|在每個樣本指定的特徵維度內正規化，通常不依賴批次統計。
+均方根正規化|Root Mean Square Normalization, RMSNorm|依均方根縮放特徵，不包含一般 LayerNorm 的減平均值步驟。
+隨機失活|Dropout|訓練時隨機屏蔽部分激活以減少共適應，推論時通常關閉。
+殘差連接|Residual Connection|把輸入加到轉換輸出上，例如 y=x+F(x)。
+跳接|Skip Connection|跨過中間層傳送資訊的連接，可採相加或串接等方式。
+梯度消失|Vanishing Gradient|傳回較早層的梯度過小，造成學習緩慢。
+梯度爆炸|Exploding Gradient|梯度數值過大，使更新不穩定或溢位。
+# 訓練、最佳化與損失函數|Training, Optimization & Losses
+模型訓練|Model Training|以資料與學習目標調整模型參數的過程。
+訓練輪次|Epoch|訓練資料完整被使用一次；串流取樣流程可能另作定義。
+批次|Batch|一次運算中一起處理的一組樣本。
+批次大小|Batch Size|每批樣本數，影響記憶體、梯度估計與吞吐量。
+小批次|Mini-Batch|比完整資料集小的一批樣本，常用來估計梯度。
+更新步數|Training Step|通常指一次最佳化器參數更新，需與梯度累積的微步區分。
+迭代|Iteration|演算法循環的一次執行，具體單位依實作而定。
+學習率|Learning Rate|控制梯度更新幅度的係數。
+學習率排程|Learning Rate Schedule|隨訓練步數調整學習率的規則。
+學習率暖身|Learning Rate Warmup|訓練初期逐步提高學習率以改善穩定性。
+梯度下降|Gradient Descent|沿損失梯度的反方向更新參數。
+隨機梯度下降|Stochastic Gradient Descent, SGD|以隨機樣本或小批次估計梯度並更新參數。
+動量|Momentum|累積歷史更新方向以平滑震盪、加快一致方向的移動。
+自適應矩估計|Adaptive Moment Estimation, Adam|使用梯度一階與二階矩估計，自適應調整更新。
+AdamW 最佳化器|AdamW Optimizer|將權重衰減與 Adam 的梯度更新解耦。
+最佳化器|Optimizer|根據梯度與內部狀態決定參數如何更新的演算法。
+損失函數|Loss Function|量化單筆或一批預測與目標差異的函數。
+目標函數|Objective Function|整體要最佳化的量，可包含資料損失與正則化項。
+均方誤差|Mean Squared Error, MSE|預測與真值差值平方的平均，對大誤差較敏感。
+平均絕對誤差|Mean Absolute Error, MAE|預測與真值絕對差值的平均。
+二元交叉熵|Binary Cross-Entropy, BCE|用於二元或多標籤目標的交叉熵損失。
+類別交叉熵|Categorical Cross-Entropy|對互斥類別分布計算的交叉熵損失。
+負對數概似|Negative Log-Likelihood, NLL|對觀測答案機率取負對數；最小化它等價於最大化概似。
+對比損失|Contrastive Loss|讓相似資料的表示更接近、不同資料的表示更可區分。
+正則化|Regularization|加入限制或訓練策略，以抑制過擬合並改善泛化。
+L1 正則化|L1 Regularization|對參數絕對值總和加懲罰，常促進稀疏解。
+L2 正則化|L2 Regularization|對參數平方和加懲罰，抑制過大權重。
+權重衰減|Weight Decay|更新時使權重向零縮小；在自適應最佳化器中不等同一般 L2 懲罰。
+提早停止|Early Stopping|依驗證表現停止訓練，通常還原較佳檢查點。
+梯度裁剪|Gradient Clipping|限制梯度值或範數以改善更新穩定性。
+梯度累積|Gradient Accumulation|累積多個微批次梯度後才更新參數，模擬較大有效批次。
+檢查點|Checkpoint|保存模型、最佳化器及必要訓練狀態以便還原或續訓。
+過擬合|Overfitting|模型過度適應訓練資料，對新資料泛化不佳。
+欠擬合|Underfitting|模型或訓練不足以捕捉資料的重要規律。
+泛化能力|Generalization|模型在未見過且相關的資料上維持表現的能力。
+偏差與變異權衡|Bias–Variance Tradeoff|模型過於簡單與過度敏感於訓練樣本之間的取捨。
+超參數搜尋|Hyperparameter Search|用驗證程序比較不同訓練配置。
+網格搜尋|Grid Search|列舉預先指定的超參數組合。
+隨機搜尋|Random Search|從配置空間隨機抽樣超參數組合。
+貝氏最佳化|Bayesian Optimization|用代理模型與採集策略選擇下一個值得評估的配置。
+# 評估指標|Evaluation Metrics
+混淆矩陣|Confusion Matrix|以真實類別與預測類別交叉計數，觀察錯誤型態。
+真陽性|True Positive, TP|實際為陽性且預測為陽性的案例數。
+真陰性|True Negative, TN|實際為陰性且預測為陰性的案例數。
+假陽性|False Positive, FP|實際為陰性卻預測為陽性的案例數。
+假陰性|False Negative, FN|實際為陽性卻預測為陰性的案例數。
+準確率|Accuracy|所有案例中正確預測的比例，即 (TP+TN)/總數。
+精確率|Precision|預測陽性中實際陽性的比例，即 TP/(TP+FP)。
+召回率／敏感度|Recall / Sensitivity|實際陽性中被找到的比例，即 TP/(TP+FN)。
+特異度|Specificity|實際陰性中正確排除的比例，即 TN/(TN+FP)。
+F1 分數|F1 Score|精確率與召回率的調和平均：2PR/(P+R)。
+ROC 曲線|Receiver Operating Characteristic Curve|改變判定閾值時，真陽性率對假陽性率的曲線。
+ROC 曲線下面積|Area Under the ROC Curve, ROC-AUC|量化跨閾值的排序能力；不直接反映指定閾值的錯誤成本。
+精確率－召回率曲線|Precision–Recall Curve, PR Curve|顯示不同閾值下精確率與召回率的取捨，對罕見陽性常很有用。
+均方根誤差|Root Mean Squared Error, RMSE|MSE 的平方根，單位與目標相同。
+決定係數|Coefficient of Determination, R²|相對於預測平均值基準的平方誤差改善程度，可能為負值。
+交叉驗證|Cross-Validation|多次切分訓練與驗證資料以估計模型表現。
+K 折交叉驗證|K-Fold Cross-Validation|將資料分為 K 份，輪流用一份驗證、其餘訓練。
+基準模型|Baseline Model|用來比較的簡單或既有模型，判斷新方法是否值得。
+基準測試|Benchmark|使用固定任務、資料與規則比較模型或系統。
+消融實驗|Ablation Study|移除或替換系統元件，觀察它對結果的影響。
+錯誤分析|Error Analysis|依類別、來源與情境檢查失敗案例，找出改善方向。
+機率校準|Probability Calibration|檢查預測機率是否與實際發生比例相符。
+困惑度|Perplexity|常定義為平均負對數概似的指數，跨不同分詞器比較需謹慎。
+人工評估|Human Evaluation|由人依明確準則判斷正確性、實用性或偏好。
+評估資料污染|Evaluation Data Contamination|訓練資料包含評估題目或其近似內容，使評估偏樂觀。
+# 電腦視覺|Computer Vision
+電腦視覺|Computer Vision, CV|讓系統理解影像與影片內容的研究領域。
+影像分類|Image Classification|為整張影像預測一個或多個類別。
+物件偵測|Object Detection|找出物件位置並判定其類別，常輸出邊界框。
+語意分割|Semantic Segmentation|為每個像素指定語意類別，不區分同類別的不同個體。
+實例分割|Instance Segmentation|為各物件實例分別產生像素遮罩。
+全景分割|Panoptic Segmentation|結合可數物件的實例分割與背景類別的語意分割。
+姿態估計|Pose Estimation|預測人體或物體的關鍵點及姿態。
+光學字元辨識|Optical Character Recognition, OCR|從影像中辨識並轉錄文字。
+人臉辨識|Face Recognition|用人臉特徵驗證或辨別身分，涉及生物辨識資料。
+物件追蹤|Object Tracking|在影片不同影格之間維持物件身分與位置對應。
+卷積神經網路|Convolutional Neural Network, CNN|利用局部連接與共享卷積核學習空間模式的網路。
+卷積|Convolution|以卷積核掃過輸入計算局部加權和；深度學習實作常採互相關形式。
+卷積核|Kernel|卷積運算中使用的一組局部權重。
+濾波器|Filter|影像網路中用於產生某個輸出通道的可學習運算核。
+特徵圖|Feature Map|網路某層的空間激活表示。
+通道|Channel|表示影像色彩或中間特徵種類的軸。
+步幅|Stride|卷積或池化視窗每次移動的距離。
+填補|Padding|在輸入邊界補值，以控制輸出大小或邊界處理。
+感受野|Receptive Field|某個輸出位置所能受影響的原始輸入範圍。
+池化|Pooling|在局部區域聚合數值，常降低空間尺寸。
+最大池化|Max Pooling|以視窗內最大值作為聚合結果。
+平均池化|Average Pooling|以視窗內平均值作為聚合結果。
+全域平均池化|Global Average Pooling|對每個通道的全部空間位置取平均。
+展平|Flatten|重新排列張量形狀，把多個軸合併，不會自行學習參數。
+上採樣|Upsampling|提高空間或時間取樣密度，不保證增加真實細節。
+下採樣|Downsampling|降低空間或時間取樣密度。
+轉置卷積|Transposed Convolution|與卷積線性算子的轉置相對應，常用於可學習的上採樣，並非卷積的真正反運算。
+視覺 Transformer|Vision Transformer, ViT|將影像區塊表示成序列，以 Transformer 處理影像。
+交並比|Intersection over Union, IoU|兩個區域交集面積除以聯集面積。
+非極大值抑制|Non-Maximum Suppression, NMS|依分數與重疊程度移除重複偵測框。
+超解析度|Super-Resolution|由低解析度資料估計較高解析度結果，生成細節未必是真實細節。
+深度估計|Depth Estimation|預測場景各位置到相機的距離或相對深度。
+光流|Optical Flow|估計連續影格之間像素的表觀位移。
+# 自然語言處理與序列模型|NLP & Sequence Models
+自然語言處理|Natural Language Processing, NLP|以計算方法處理與分析人類語言。
+自然語言理解|Natural Language Understanding, NLU|理解文字的意圖、語意或結構。
+自然語言生成|Natural Language Generation, NLG|把資料或內部表示轉成自然語言。
+詞元|Token|分詞器輸出的基本處理單位，不一定等於一個單字。
+分詞|Tokenization|將文字轉為詞元序列的過程。
+分詞器|Tokenizer|定義文字與詞元編號轉換規則的元件。
+子詞|Subword|介於字元與完整單字之間的文字片段。
+位元組對編碼|Byte Pair Encoding, BPE|反覆合併常見相鄰單位以建立子詞詞彙表的方法。
+詞彙表|Vocabulary|分詞器可表示的詞元及其編號集合。
+詞嵌入|Word Embedding|以向量表示詞語，傳統靜態詞嵌入通常每詞一個向量。
+句子嵌入|Sentence Embedding|將整句或片段映射到向量，用於相似度與檢索。
+上下文嵌入|Contextual Embedding|同一詞語的表示依周圍內容改變。
+語言模型|Language Model|估計文字序列或下一詞元的機率模型。
+循環神經網路|Recurrent Neural Network, RNN|透過循環狀態依序處理輸入的神經網路。
+長短期記憶網路|Long Short-Term Memory, LSTM|以記憶狀態及閘門改善長距離序列學習的 RNN 變體。
+閘控循環單元|Gated Recurrent Unit, GRU|以更新與重設閘門控制狀態的循環單元。
+序列到序列模型|Sequence-to-Sequence Model, Seq2Seq|將一個序列轉成另一個序列，例如翻譯。
+編碼器|Encoder|把輸入轉成可供後續處理的表示。
+解碼器|Decoder|依條件表示產生或重建輸出。
+機器翻譯|Machine Translation|自動將文字從一種語言轉成另一種語言。
+情感分析|Sentiment Analysis|判定文字中的情感傾向，例如正面或負面。
+命名實體辨識|Named Entity Recognition, NER|辨識人名、地名、組織等實體片段。
+問答系統|Question Answering, QA|依問題與可用資訊產生或擷取答案。
+文本摘要|Text Summarization|保留主要資訊並縮短文本，可採擷取式或生成式方法。
+語音辨識|Automatic Speech Recognition, ASR|將語音訊號辨識為文字序列。
+文字轉語音|Text-to-Speech, TTS|依文字生成語音，可用於文章朗讀、導航或對話回覆。
+語音轉文字|Speech-to-Text, STT|將語音轉錄成文字，與 ASR 的應用範圍高度重疊。
+# Transformer 與注意力機制|Transformer & Attention
+Transformer 架構|Transformer|以注意力及前饋網路等元件處理序列的模型架構。
+注意力機制|Attention Mechanism|依相關程度加權聚合資訊的機制。
+自注意力|Self-Attention|查詢、鍵和值來自同一序列的注意力運算。
+交叉注意力|Cross-Attention|查詢來自一組表示，鍵和值來自另一組表示。
+多頭注意力|Multi-Head Attention, MHA|以多組投影並行學習不同的注意力關係。
+注意力頭|Attention Head|多頭注意力中一組查詢、鍵、值投影與聚合單元。
+查詢向量|Query, Q|表示某個位置正在尋找什麼資訊的投影向量。
+鍵向量|Key, K|供查詢計算匹配程度的投影向量。
+值向量|Value, V|依注意力權重被聚合的資訊向量。
+縮放點積注意力|Scaled Dot-Product Attention|常用公式為 softmax(QKᵀ/√dₖ)V，可搭配遮罩。
+注意力矩陣|Attention Matrix|表示各查詢位置對鍵位置權重的矩陣。
+注意力遮罩|Attention Mask|限制某些位置參與注意力計算，例如忽略填補詞元。
+因果遮罩|Causal Mask|禁止當前位置看到未來位置，用於自回歸生成。
+位置編碼|Positional Encoding|將序列順序資訊加入表示的方式。
+位置嵌入|Positional Embedding|以向量表示位置資訊，常指可學習的位置向量。
+旋轉位置嵌入|Rotary Position Embedding, RoPE|依位置旋轉查詢與鍵的分量，以編入相對位置關係。
+前饋網路|Feed-Forward Network, FFN|對各位置的表示進行非線性轉換的子網路。
+上下文|Context|模型在當次任務可使用的文字、資料及互動資訊。
+上下文視窗|Context Window|模型單次可處理的序列範圍，不代表長期記憶。
+序列長度|Sequence Length|序列所含詞元或時間步的數量。
+鍵值快取|Key-Value Cache, KV Cache|保存已計算的鍵與值，減少自回歸生成的重複運算。
+分組查詢注意力|Grouped-Query Attention, GQA|多個查詢頭共享一組鍵和值頭，降低快取成本。
+多查詢注意力|Multi-Query Attention, MQA|所有查詢頭共享一組鍵和值頭的注意力方式。
+稀疏注意力|Sparse Attention|只讓部分位置配對參與注意力，以降低運算或記憶體需求。
+滑動視窗注意力|Sliding-Window Attention|各位置主要參考鄰近固定視窗內的位置。
+混合專家模型|Mixture of Experts, MoE|以路由器選擇部分專家子網路處理輸入，總參數不等於每次激活參數。
+路由器|Router|決定輸入交給哪些專家或處理路徑的元件。
+# 大型語言模型與文字生成|LLMs & Text Generation
+大型語言模型|Large Language Model, LLM|在大量語言資料上訓練、具有大量參數的語言模型，沒有唯一規模門檻。
+小型語言模型|Small Language Model, SLM|相對較小、通常較適合受限資源的語言模型。
+基礎模型|Foundation Model|以廣泛資料訓練並可適應多種下游任務的模型。
+預訓練|Pretraining|先以通用目標學習廣泛表示與規律的訓練階段。
+持續預訓練|Continued Pretraining|在既有模型上繼續預訓練，例如加入領域資料。
+後訓練|Post-Training|預訓練後改善指令遵循、偏好或任務能力的訓練程序。
+指令微調|Instruction Tuning|使用指令與回覆樣本學習遵循任務要求。
+監督式微調|Supervised Fine-Tuning, SFT|以帶有目標輸出的資料微調模型參數。
+偏好對齊|Preference Alignment|利用偏好訊號調整模型的輸出行為。
+自回歸生成|Autoregressive Generation|依已有輸出逐步預測下一單位的生成方式。
+下一詞元預測|Next-Token Prediction|依前文預測下一個詞元，是許多語言模型的訓練目標。
+遮罩語言建模|Masked Language Modeling, MLM|遮住部分文字並要求模型預測被遮住的內容。
+提示詞|Prompt|提供給模型的任務指令、背景與輸入內容。
+提示工程|Prompt Engineering|設計、測試與改進提示內容與格式的過程。
+系統提示詞|System Prompt|應用提供的高層行為指引，具體優先級取決於系統設計。
+少樣本提示|Few-Shot Prompting|在提示中提供少數範例，不必更新模型權重。
+上下文學習|In-Context Learning, ICL|模型依當次上下文中的示例或資訊調整輸出，不等於參數訓練。
+思維鏈|Chain of Thought, CoT|以中間推理步驟幫助處理複雜任務的方法；生成步驟不保證忠實或正確。
+檢索式提示|Retrieval-Based Prompting|把檢索到的相關資訊加入提示中。
+結構化輸出|Structured Output|依指定結構產生結果，例如符合欄位要求的 JSON。
+受限解碼|Constrained Decoding|在解碼時限制允許的詞元或語法，以符合格式或規則。
+貪婪解碼|Greedy Decoding|每一步選取機率最大的詞元，不保證整體序列最優。
+束搜尋|Beam Search|保留多條高分候選序列並逐步擴展。
+取樣|Sampling|依機率分布隨機抽取輸出詞元或樣本。
+溫度|Temperature|調整 logits 尺度以改變分布集中程度，不是正確性保證。
+Top-k 取樣|Top-k Sampling|只在機率最高的 k 個詞元中重新正規化並取樣。
+核取樣|Nucleus Sampling / Top-p Sampling|在累積機率達到 p 的候選集合內取樣。
+重複懲罰|Repetition Penalty|調整已出現詞元的分數以控制重複，具體公式依引擎而異。
+停止序列|Stop Sequence|生成遇到指定序列時終止輸出。
+串流輸出|Streaming Output|在完整結果完成前逐段傳回輸出。
+幻覺|Hallucination|生成看似合理但與事實或指定來源不符的內容。
+知識截止時間|Knowledge Cutoff|模型訓練所涵蓋資料時期的概略界線，不保證此前所有事實都知道。
+推論時計算|Test-Time Compute / Inference-Time Compute|在推論階段投入額外搜尋、檢查或推理運算以改善結果。
+# RAG 與知識檢索|RAG & Retrieval
+檢索增強生成|Retrieval-Augmented Generation, RAG|先檢索相關資料，再提供給生成模型作為回答依據。
+資訊檢索|Information Retrieval, IR|從集合中找出與查詢相關的文件或片段。
+文件解析|Document Parsing|把 PDF、網頁等文件轉成文字、結構與中繼資料。
+文件切塊|Document Chunking|把長文件分成適合索引與檢索的片段。
+區塊大小|Chunk Size|每個片段的長度，常以詞元數或字元數計算。
+區塊重疊|Chunk Overlap|相鄰片段共享的內容量，用於保留邊界語境。
+嵌入模型|Embedding Model|把文字或其他資料映射到可比較的向量空間。
+向量資料庫|Vector Database|儲存向量、中繼資料並提供相似度查詢的系統。
+向量索引|Vector Index|加速向量搜尋的資料結構。
+向量搜尋|Vector Search|依向量距離或相似度尋找候選資料。
+語意搜尋|Semantic Search|以意義相近程度檢索內容，不限於字面相同。
+關鍵字搜尋|Keyword Search|依文字詞項、匹配與統計權重檢索內容。
+混合搜尋|Hybrid Search|結合關鍵字與向量等不同檢索訊號。
+稠密檢索|Dense Retrieval|使用多數分量非零的向量表示進行檢索。
+稀疏檢索|Sparse Retrieval|使用大量零分量的詞項或學習表示檢索，例如 BM25 類方法。
+近似最近鄰搜尋|Approximate Nearest Neighbor Search, ANN Search|用可接受的召回損失換取更快的最近鄰查詢；ANN 此處不是神經網路。
+餘弦相似度|Cosine Similarity|點積除以兩向量範數乘積，衡量方向相近程度。
+歐幾里得距離|Euclidean Distance|兩點差向量的 L2 長度。
+重新排序|Reranking|以較精細的模型對第一階段檢索候選再評分。
+重新排序模型|Reranker|同時考慮查詢與候選內容，估計相關程度的模型。
+查詢改寫|Query Rewriting|把原始問題改成更適合檢索的表達。
+查詢擴展|Query Expansion|增加同義詞或相關條件以改善檢索涵蓋。
+中繼資料篩選|Metadata Filtering|依日期、來源、使用者權限等條件限制候選集合。
+上下文壓縮|Context Compression|保留與問題相關的資訊以減少送入模型的內容量。
+來源引用|Source Citation|把回答中的說法對應到可查證的原始資料位置。
+依據來源生成|Grounded Generation|要求輸出以所提供的來源證據為依據。
+答案忠實度|Answer Faithfulness|回答是否受提供的上下文支持，不等同外部世界的全面正確性。
+知識圖譜|Knowledge Graph|以實體與關係組成圖狀結構表示知識。
+圖譜式 RAG|Graph-Based RAG|利用圖關係進行檢索、聚合或輔助生成的 RAG 方法。
+# 微調與模型壓縮|Fine-Tuning & Compression
+微調|Fine-Tuning|在預訓練模型上，用新資料繼續更新部分或全部參數。
+全參數微調|Full Fine-Tuning|對模型所有可訓練參數進行更新。
+參數高效微調|Parameter-Efficient Fine-Tuning, PEFT|只訓練少量額外或選定參數，以降低訓練與儲存成本。
+低秩適應|Low-Rank Adaptation, LoRA|以低秩矩陣乘積表示權重更新，通常凍結原模型權重。
+量化低秩適應|Quantized Low-Rank Adaptation, QLoRA|在量化的凍結基礎模型上訓練 LoRA 等適配參數。
+適配器|Adapter|插入或附加到既有模型、供任務適應的小型可訓練模組。
+前綴微調|Prefix Tuning|學習加入注意力相關表示的連續前綴參數。
+軟提示微調|Prompt Tuning|學習輸入端的連續提示向量，而非手寫離散文字。
+凍結參數|Parameter Freezing|訓練時保持指定參數不更新。
+模型合併|Model Merging|以某種規則組合模型或權重更新，不保證所有能力都能保留。
+災難性遺忘|Catastrophic Forgetting|學習新任務後，原有任務能力大幅下降。
+知識蒸餾|Knowledge Distillation|利用教師模型的輸出或中間表示訓練學生模型。
+教師模型|Teacher Model|在蒸餾中提供學習訊號的模型。
+學生模型|Student Model|在蒸餾中學習教師行為的模型，常較小但不必然。
+量化|Quantization|以較低精度或較少可表示數值儲存或計算模型數值。
+訓練後量化|Post-Training Quantization, PTQ|訓練完成後量化模型，可能需要代表性資料校準。
+量化感知訓練|Quantization-Aware Training, QAT|訓練時模擬量化效果，使模型適應低精度誤差。
+剪枝|Pruning|移除或屏蔽部分參數、通道或其他結構。
+結構化剪枝|Structured Pruning|移除完整通道、頭或網路層，較容易配合一般硬體加速。
+非結構化剪枝|Unstructured Pruning|移除個別權重，實際加速常需要稀疏運算支援。
+稀疏性|Sparsity|表示大量數值為零或大量路徑未被使用的特性。
+混合精度|Mixed Precision|在不同運算使用不同精度，以平衡速度、記憶體與穩定性。
+半精度浮點數|FP16|16 位元浮點格式，動態範圍與有效精度有限。
+腦浮點數格式|Brain Floating Point, BF16|16 位元格式，指數範圍較接近 FP32，但尾數精度較低。
+八位元浮點數|FP8|一類 8 位元浮點格式，具體範圍與精度依格式而異。
+八位元整數|INT8|8 位元整數表示，量化時通常搭配比例與零點等資訊。
+四位元整數|INT4|4 位元整數表示，可大幅壓縮權重，但需要相容的量化運算。
+# 影像、影片與音訊生成|Image, Video & Audio Generation
+多模態|Multimodality|同時涉及文字、影像、音訊或動作等不同資料形式。
+多模態模型|Multimodal Model|能處理或生成多種模態資料的模型。
+視覺語言模型|Vision-Language Model, VLM|結合影像與語言能力，例如看圖問答。
+視覺語言動作模型|Vision-Language-Action Model, VLA|結合視覺、語言與動作輸出，常用於機器人控制。
+文字生成影像|Text-to-Image, T2I|依文字描述生成影像，例如把人物與場景描述轉成插畫。
+影像生成影像|Image-to-Image, I2I|以原始影像為條件生成新的影像。
+文字生成影片|Text-to-Video, T2V|依文字描述生成時間序列影像。
+影像生成影片|Image-to-Video, I2V|以單張或多張影像作條件生成影片。
+文字生成音訊|Text-to-Audio|依描述生成聲音內容，例如環境音。
+文字生成音樂|Text-to-Music|依風格、節奏或內容描述生成音樂。
+生成對抗網路|Generative Adversarial Network, GAN|以生成器與判別器的對抗學習產生資料。
+自動編碼器|Autoencoder, AE|先編碼再解碼，學習重建輸入的模型。
+變分自動編碼器|Variational Autoencoder, VAE|以變分推斷學習潛在變數分布的生成模型。
+擴散模型|Diffusion Model|學習逆轉逐步加噪過程或相關去噪動態以生成資料。
+潛在擴散模型|Latent Diffusion Model, LDM|在壓縮的潛在表示而非原始像素中執行擴散生成。
+擴散 Transformer|Diffusion Transformer, DiT|使用 Transformer 作為擴散模型主要去噪骨幹。
+流匹配|Flow Matching|學習把簡單分布運送到資料分布的速度場。
+潛在空間|Latent Space|模型內部較抽象或壓縮的表示空間。
+潛在表示|Latent Representation|資料在潛在空間中的編碼。
+加噪|Noise Addition|依指定規則向資料或潛在表示加入雜訊。
+去噪|Denoising|估計並移除雜訊，或預測與去噪相關的量。
+排程器|Scheduler|生成情境中定義時間步、噪聲尺度及更新規則的元件。
+取樣器|Sampler|依模型與數值更新方法產生樣本的程序。
+無分類器引導|Classifier-Free Guidance, CFG|結合有條件與無條件預測調整條件遵循程度，過強可能降低品質。
+隨機種子|Random Seed|控制偽隨機序列的起點；跨硬體與版本仍未必完全重現。
+負面提示詞|Negative Prompt|用來指定不希望出現的內容，實際支援與效果依模型而定。
+影像修補|Inpainting|在指定遮罩區域重建或生成影像內容。
+影像外擴|Outpainting|生成原影像邊界之外的內容。
+控制條件|Conditioning|用文字、深度、姿態或其他訊號引導生成。
+時間一致性|Temporal Consistency|連續影格在身分、外觀與運動上的連貫程度。
+語音複製|Voice Cloning|根據聲音樣本生成具有相似說話者特徵的語音。
+語音轉換|Voice Conversion|保留語言內容並改變聲音特徵的技術。
+音源分離|Source Separation|從混合音訊估計不同來源訊號。
+人聲分離|Vocal Separation|從混音中估計人聲與伴奏等聲部。
+聲碼器|Vocoder|在語音生成中常指把聲學特徵轉成波形的模型。
+世界模型|World Model|學習環境狀態或動態，以預測行動後果、模擬或輔助規劃。
+# 強化學習與偏好對齊|Reinforcement Learning & Alignment
+智能體／代理|Agent|在強化學習中依觀察或狀態選擇動作的決策者。
+環境|Environment|接受動作並回傳觀察、狀態或獎勵的外部系統。
+狀態|State|用來描述環境決策情境的資訊，完整狀態可能無法直接觀測。
+觀察|Observation|代理能實際取得的環境訊號，可能只是部分狀態。
+動作|Action|代理在環境中可選擇執行的決策。
+獎勵|Reward|對某次轉移或行為給予的即時數值回饋。
+策略|Policy|由狀態或歷史資訊決定動作或動作分布的規則。
+回報|Return|一段未來獎勵的累積，常使用折扣加權。
+價值函數|Value Function|估計從某狀態開始、依策略行動的期望回報。
+動作價值函數|Action-Value Function / Q-Function|估計在某狀態採特定動作後的期望回報。
+折扣因子|Discount Factor|調整遠期獎勵權重的係數，常記為 γ。
+探索與利用|Exploration and Exploitation|嘗試未知選項與使用已知高價值選項之間的取捨。
+馬可夫決策過程|Markov Decision Process, MDP|以狀態、動作、轉移與獎勵等描述序列決策的數學框架。
+策略梯度|Policy Gradient|直接依期望回報對策略參數的梯度改善策略。
+行動者－評論者|Actor–Critic|結合選動作的策略模型與評估價值的模型。
+近端策略最佳化|Proximal Policy Optimization, PPO|限制策略更新幅度的一類策略梯度方法，常見採裁剪目標。
+經驗回放|Experience Replay|保存過去互動資料並重抽樣訓練，以提高資料利用率。
+獎勵模型|Reward Model|預測輸出或行為偏好分數的模型，不等於客觀真理。
+人類回饋強化學習|Reinforcement Learning from Human Feedback, RLHF|利用人類偏好等訊號建立獎勵並改善模型策略。
+AI 回饋強化學習|Reinforcement Learning from AI Feedback, RLAIF|以 AI 評估提供部分或主要回饋訊號的對齊方法。
+直接偏好最佳化|Direct Preference Optimization, DPO|直接用偏好配對目標調整策略，不需另跑傳統線上 RL 迴圈。
+可驗證獎勵強化學習|Reinforcement Learning with Verifiable Rewards, RLVR|以可計算驗證的結果作獎勵，例如程式測試是否通過。
+獎勵駭取|Reward Hacking|模型找到提高獎勵卻違背真正任務意圖的行為。
+# AI Agent、工具與 MCP|Agents, Tools & MCP
+AI 智能代理|AI Agent|結合模型、工具、狀態與控制流程來完成目標的系統。
+代理式 AI|Agentic AI|能規劃、選工具或多步行動的 AI 系統設計取向。
+自主代理|Autonomous Agent|在指定授權範圍內可自行選擇部分行動步驟的代理。
+多代理系統|Multi-Agent System, MAS|多個代理協作、分工或互動的系統。
+工具|Tool|代理可呼叫的具體操作，例如計算、檢索或寫入資料。
+工具呼叫|Tool Calling|模型提出工具名稱與參數，由程式驗證並執行的流程。
+函數呼叫|Function Calling|將模型需求轉成具結構的函數與參數呼叫。
+工具結構描述|Tool Schema|描述工具名稱、用途、輸入型別與必要欄位的規格。
+規劃|Planning|選擇達成目標的步驟、依賴與資源配置。
+任務分解|Task Decomposition|把複雜目標拆成可管理的子任務。
+推理與行動|Reasoning and Acting, ReAct|交替進行任務推理與工具或環境行動的代理模式。
+記憶|Memory|在任務內或跨任務保存並取回相關資訊的機制。
+短期記憶|Short-Term Memory|當次任務近期狀態或上下文資訊。
+長期記憶|Long-Term Memory|可跨任務保留並再次檢索的資訊儲存。
+情節記憶|Episodic Memory|以事件與經驗形式保存的紀錄。
+語意記憶|Semantic Memory|以概念、事實與關係形式保存的知識。
+工作流程|Workflow|定義步驟、條件與資料流的執行程序。
+流程編排|Orchestration|協調模型、工具、代理與服務的執行與狀態。
+人工介入|Human-in-the-Loop, HITL|在流程中加入人工決策、標註、確認或審核。
+人工審核|Human Review|由人檢查結果或高影響操作是否可接受。
+狀態機|State Machine|以有限狀態與轉移規則描述系統行為。
+交接|Handoff|把任務與必要上下文轉給另一代理或人工處理。
+重試|Retry|失敗後再次執行操作，需考量上限與重複副作用。
+冪等性|Idempotency|相同操作重複執行對目標狀態的效果與一次相同。
+沙箱|Sandbox|限制程式可存取的資源與權限的隔離環境。
+瀏覽器自動化|Browser Automation|透過程式操作網頁的表單、導覽與互動。
+電腦操作|Computer Use|以軟體控制使用者介面執行電腦任務。
+模型上下文協定|Model Context Protocol, MCP|標準化應用與外部工具、資料等能力連接的協定，不是模型本身。
+MCP 主機|MCP Host|管理用戶端連線與整合能力的 AI 應用。
+MCP 用戶端|MCP Client|主機內與特定 MCP 伺服器維持協定連線的元件。
+MCP 伺服器|MCP Server|向用戶端提供工具、資源或提示等能力的服務。
+資源|Resource|MCP 中可供讀取並作為上下文的資料內容。
+連接器|Connector|把應用與外部服務或資料來源接起來的整合元件。
+應用程式介面|Application Programming Interface, API|軟體之間交換請求與結果的規格。
+應用程式開發套件|Software Development Kit, SDK|協助使用某平台或 API 的程式庫與工具集合。
+技能|Skill|在代理產品中通常指可重用的任務指引、資源或工具組合，具體格式依平台而異。
+# 推論、硬體與效能|Inference, Hardware & Performance
+推論|Inference|使用已訓練模型計算輸出，不必更新模型參數。
+推論引擎|Inference Engine|載入模型並安排推論運算的執行軟體。
+模型服務|Model Serving|以介面提供模型推論，包含排程、擴縮與錯誤處理。
+延遲|Latency|請求開始到指定完成點所需時間。
+吞吐量|Throughput|單位時間可處理的請求、樣本或詞元數。
+首詞元時間|Time to First Token, TTFT|從送出請求到收到第一個生成詞元的時間。
+詞元間延遲|Inter-Token Latency, ITL|相鄰生成詞元之間的時間間隔。
+每秒詞元數|Tokens per Second, TPS|生成或處理詞元的速率，需註明單請求或整體服務。
+批次推論|Batch Inference|將多個輸入一起處理以提高資源利用率。
+動態批次|Dynamic Batching|在服務時短暫聚合到達的請求組成批次。
+連續批次|Continuous Batching|在生成過程中持續移除已完成請求並加入新請求。
+前綴快取|Prefix Caching|重用相同提示前綴的計算結果以降低重複成本。
+推測解碼|Speculative Decoding|用較便宜的草稿模型提議詞元，再由目標模型驗證以加速生成。
+邊緣 AI|Edge AI|在接近資料來源的邊緣設備上執行 AI。
+裝置端 AI|On-Device AI|在使用者或終端裝置本身執行模型。
+中央處理器|Central Processing Unit, CPU|擅長通用控制與多種工作負載的處理器。
+圖形處理器|Graphics Processing Unit, GPU|支援大量平行運算，常用於矩陣與張量工作負載。
+神經處理單元|Neural Processing Unit, NPU|針對神經網路運算最佳化的硬體單元。
+張量處理器|Tensor Processing Unit, TPU|針對機器學習張量運算設計的加速器名稱。
+顯示記憶體|Video Random Access Memory, VRAM|GPU 可使用的記憶體，用於權重、激活與快取等。
+記憶體頻寬|Memory Bandwidth|單位時間能傳送的記憶體資料量。
+浮點運算量|Floating-Point Operations, FLOPs|完成計算所需的浮點運算數；FLOP/s 才是速率。
+資料平行|Data Parallelism|各裝置保有模型副本並處理不同資料，再聚合梯度。
+模型平行|Model Parallelism|把模型的不同部分分散到不同裝置。
+張量平行|Tensor Parallelism|把單一層或張量運算切分到多個裝置。
+管線平行|Pipeline Parallelism|把不同網路階段放到不同裝置，以微批次形成管線。
+分散式訓練|Distributed Training|利用多個裝置或節點共同訓練模型。
+梯度檢查點|Gradient Checkpointing|僅保存部分激活，在反向傳播重算其他激活以節省記憶體，不是保存模型檔案。
+激活值重計算|Activation Recomputation|在需要時重新計算中間激活，以額外運算換取較低記憶體需求。
+記憶體卸載|Memory Offloading|把部分權重、激活或最佳化器狀態移到 CPU 或其他儲存。
+記憶體不足|Out of Memory, OOM|運算要求的記憶體超過可用容量而失敗。
+# 安全、隱私與負責任 AI|Safety, Security & Responsible AI
+負責任 AI|Responsible AI|在設計、部署與治理中考慮公平、隱私、安全、透明與責任。
+AI 安全|AI Safety|降低 AI 系統造成意外或不當傷害的風險。
+AI 資安|AI Security|保護 AI 系統、資料與供應鏈免受惡意攻擊。
+AI 倫理|AI Ethics|討論 AI 使用涉及的價值、權利與社會影響。
+公平性|Fairness|評估不同個體或群體是否受到不合理差別影響，指標需配合情境。
+可解釋性|Explainability|提供人可理解的理由或說明來解釋模型輸出。
+可詮釋性|Interpretability|模型內部機制或表示可被人理解的程度；與可解釋性的用法常有重疊。
+透明度|Transparency|清楚揭露系統用途、資料、限制與決策過程的程度。
+穩健性|Robustness|在擾動、噪聲或條件變化下維持合理表現的能力。
+不確定性估計|Uncertainty Estimation|估計預測不確定程度，而非只輸出單一答案。
+對抗樣本|Adversarial Example|經特定擾動以誘使模型產生錯誤的輸入。
+對抗攻擊|Adversarial Attack|利用模型或系統弱點操縱結果的攻擊方式。
+提示注入|Prompt Injection|把惡意指令混入輸入，試圖改變系統原有任務或規則。
+間接提示注入|Indirect Prompt Injection|將惡意指令藏在網頁、文件或工具結果等外部資料中。
+越獄|Jailbreak|試圖使模型繞過原有安全或行為限制。
+資料投毒|Data Poisoning|惡意修改訓練或其他學習資料以影響模型行為。
+模型投毒|Model Poisoning|惡意操縱模型權重或更新，使系統產生攻擊者想要的行為。
+後門攻擊|Backdoor Attack|讓模型遇到特定觸發條件時執行隱藏的惡意行為。
+模型竊取|Model Extraction|透過查詢等方式複製模型能力或近似其行為。
+成員推斷攻擊|Membership Inference Attack|推斷某筆資料是否曾用於訓練特定模型。
+模型反演|Model Inversion|從模型資訊推估輸入資料或其敏感特徵。
+個人可識別資訊|Personally Identifiable Information, PII|可直接或間接識別個人的資訊。
+差分隱私|Differential Privacy|對單筆資料是否存在所造成的輸出分布差異給予數學限制。
+最小權限原則|Principle of Least Privilege|只授予完成任務所必需的最小存取能力。
+內容審核|Content Moderation|依政策辨識、標記或限制不適當內容。
+安全防護機制|Guardrails|以驗證、過濾、權限與流程約束系統行為，不能只靠提示詞。
+紅隊測試|Red Teaming|主動尋找系統失敗模式與可利用弱點的測試。
+深度偽造|Deepfake|利用生成技術製作或操縱容易被誤認為真實的影音內容。
+內容溯源|Content Provenance|記錄內容來源、修改歷史與產生方式。
+浮水印|Watermarking|在內容中加入可檢測訊號，效果與抗移除能力依方法而異。
+模型卡|Model Card|說明模型用途、訓練背景、評估與限制的文件。
+資料集說明文件|Dataset Datasheet|記錄資料蒐集、組成、處理、授權及限制的文件。
+人工監督|Human Oversight|由人監察、介入或負責系統運作與影響的安排。
+# 工程、部署與維運|Engineering, Deployment & Operations
+機器學習維運|Machine Learning Operations, MLOps|管理資料、實驗、模型交付與監測的工程實務。
+大型語言模型維運|Large Language Model Operations, LLMOps|將語言模型、提示、檢索、評估與服務納入版本化維運。
+資料管線|Data Pipeline|自動執行蒐集、轉換、檢查與傳送資料的一系列步驟。
+訓練管線|Training Pipeline|串接資料準備、訓練、驗證與模型產物管理的流程。
+推論管線|Inference Pipeline|串接輸入處理、模型運算、後處理與輸出驗證的流程。
+實驗追蹤|Experiment Tracking|記錄配置、程式版本、資料版本、指標與產物。
+模型登錄庫|Model Registry|集中管理模型版本、狀態與部署相關中繼資料。
+模型版本管理|Model Versioning|為權重、配置與相依資訊建立可追溯版本。
+資料版本管理|Data Versioning|保存資料與其處理規則的版本關係。
+可重現性|Reproducibility|在記錄條件下能重做實驗並得到可比較結果的能力。
+容器化|Containerization|封裝應用與相依環境以提高部署一致性。
+持續整合|Continuous Integration, CI|頻繁整合程式變更並自動執行檢查。
+持續交付|Continuous Delivery, CD|讓通過檢查的版本隨時可發布，正式發布可有人工決定。
+持續部署|Continuous Deployment|通過既定檢查後自動發布到正式環境。
+模型監測|Model Monitoring|追蹤效能、資料變化、失敗與成本等部署後指標。
+可觀測性|Observability|透過紀錄、指標與追蹤理解系統內部狀況的能力。
+追蹤紀錄|Trace|記錄單一請求跨元件與工具步驟的執行路徑。
+A/B 測試|A/B Testing|把流量分派到不同版本，比較預先定義的結果。
+金絲雀部署|Canary Deployment|先向小部分流量發布新版本，觀察後逐步擴大。
+影子部署|Shadow Deployment|把真實請求副本送到新系統評估，但不讓新結果影響正式回覆。
+回滾|Rollback|把服務恢復到已知可用的先前版本。
+速率限制|Rate Limiting|限制某時間範圍的請求或資源消耗。
+成本最佳化|Cost Optimization|在品質、延遲與資源限制下調整系統以降低總成本。
