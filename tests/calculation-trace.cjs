@@ -1,6 +1,6 @@
 const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict'),path=require('path');
 const root=path.resolve(__dirname,'..');
-function context(traced){const c={document:{addEventListener(){}},console};vm.createContext(c);for(const file of ['lessons.js','scope.js','practice-data.js','calculation-trace.js','practice-ui.js','lab-engines.js'])vm.runInContext(fs.readFileSync(path.join(root,!traced&&['practice-ui.js','lab-engines.js'].includes(file)?'src/'+file:file),'utf8'),c);return c}
+function context(traced){const c={document:{addEventListener(){}},console};vm.createContext(c);for(const file of ['lessons.js','scope.js','practice-data.js','math-notation.js','math-formulas.js','calculation-trace.js','practice-ui.js','lab-engines.js'])vm.runInContext(fs.readFileSync(path.join(root,!traced&&['practice-ui.js','lab-engines.js'].includes(file)?'src/'+file:file),'utf8'),c);return c}
 const a=context(true),b=context(false),evaluate=(c,s)=>vm.runInContext(s,c),json=x=>JSON.parse(JSON.stringify(x));
 const cases=evaluate(a,'labCases.map(t=>({id:t.id,zh:t.zh,engineId:t.engineId}))');
 let max=0,total=0;

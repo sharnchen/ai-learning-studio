@@ -1,1 +1,1 @@
-{"private":true,"scripts":{"build:traces":"node scripts/build-traces.cjs"},"devDependencies":{"acorn":"8.15.0"}}
+{"private": true, "scripts": {"build:traces": "node scripts/build-traces.cjs && node scripts/build-math.cjs"}, "devDependencies": {"acorn": "8.15.0"}}
