@@ -20,3 +20,9 @@
 - 本機 Qwen：https://ollama.com/library/qwen3 （本機運算免雲端 Token 費，但需自備硬體；本 Worker 未直接連接個人電腦的 localhost。）
 
 後端測試採 mock provider 驗證路由、CORS、存取碼、請求限制與供應商呼叫格式；未使用真實 API 金鑰驗證模型回覆。
+
+## 已配置的正式服務
+Worker：`ai-learning-studio-api`。網址：`https://ai-learning-studio-api.liesharn.workers.dev/tutor`。
+網站已預填該網址；仍先使用教材模式，填入獨立存取碼並套用後才啟用 AI。新增「檢查後端狀態」會讀取 `/health`，只回報缺少的設定名稱，不公開秘密值。
+正式配置為 `AI_PROVIDER=gemini`、`AI_MODEL=gemini-3.8-flash`、`ALLOWED_ORIGIN=https://sharnchen.github.io`。獨立存取碼已配置為 Secret，不存入原始碼。**目前尚缺使用者的 `AI_API_KEY`；未驗證真實模型推論。**
+已設6次／60秒的每IP限流（依Cloudflare節點計數，並非全域嚴格配額）、固定雜湊長度的常數時間存取碼比較、請求串流大小限制、Worker Logs及抽樣Traces。服務不記錄問題、答案或金鑰到應用程式日誌。

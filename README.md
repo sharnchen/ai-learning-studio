@@ -100,3 +100,5 @@
 ### 雙向學習問答（Learning Dialogue）
 新增 `#tutor`：學生提問與助教反問。預設為577詞條教材檢索及隨機選項的分支題目；錯誤先提示，正確再延伸提問，不能自動批改自由文字。課程／實驗附情境入口，AI 模式可附上實驗輸入與已計算結果。對話僅保留本分頁。
 生成式 AI 需在後端配置 Gemini 或 Groq 金鑰並連線；不在 GitHub Pages 放模型金鑰。部署方式見 [backend/README.md](backend/README.md)。目前未部署後端、未以真實金鑰呼叫模型；免費模型資源與限制於設定中提供官方連結。
+
+Cloudflare正式問答服務已配置於 `ai-learning-studio-api.liesharn.workers.dev`，網站預填端點並提供後端狀態檢查；目前仍需在Worker Secrets填入 `AI_API_KEY` 才能完成真實AI推論驗證。

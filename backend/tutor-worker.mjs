@@ -1,18 +1,23 @@
 // Cloudflare Worker adapter. Provider keys and access tokens belong in Worker secrets.
 const endpoints={gemini:'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions',groq:'https://api.groq.com/openai/v1/chat/completions'};
+async function verifyToken(provided,expected){const enc=new TextEncoder();const [a,b]=await Promise.all([crypto.subtle.digest('SHA-256',enc.encode(provided)),crypto.subtle.digest('SHA-256',enc.encode(expected))]);return crypto.subtle.timingSafeEqual(a,b)}
+async function readBounded(request,maxBytes){const reader=request.body?.getReader();if(!reader)return '';const chunks=[];let size=0;while(true){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>maxBytes){await reader.cancel();throw Error('too-large')}chunks.push(value)}const all=new Uint8Array(size);let offset=0;for(const chunk of chunks){all.set(chunk,offset);offset+=chunk.byteLength}return new TextDecoder().decode(all)}
 export default {async fetch(request,env){
  const origin=request.headers.get('Origin'),allowed=String(env.ALLOWED_ORIGIN||'https://sharnchen.github.io');
  const headers={'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','Vary':'Origin',...(origin===allowed?{'Access-Control-Allow-Origin':allowed,'Access-Control-Allow-Headers':'Content-Type, Authorization','Access-Control-Allow-Methods':'POST, OPTIONS'}:{})};
  const reply=(data,status=200)=>new Response(JSON.stringify(data),{status,headers});
+ const pathname=new URL(request.url).pathname;
+ if(request.method==='GET'&&pathname==='/health'&&(!origin||origin===allowed)){const missing=['AI_API_KEY','TUTOR_ACCESS_TOKEN','AI_MODEL','AI_PROVIDER'].filter(k=>!env[k]);return reply({service:'ai-learning-studio-api',configured:!missing.length,missing})}
  if(origin!==allowed)return reply({error:'Origin denied'},403);
  if(request.method==='OPTIONS')return new Response(null,{status:204,headers});
  if(new URL(request.url).pathname!=='/tutor')return reply({error:'Not found'},404);
  if(request.method!=='POST')return reply({error:'POST required'},405);
- if(!env.AI_API_KEY||!env.TUTOR_ACCESS_TOKEN||!env.AI_MODEL||!endpoints[env.AI_PROVIDER])return reply({error:'Backend not configured'},503);
- if(request.headers.get('Authorization')!=='Bearer '+env.TUTOR_ACCESS_TOKEN)return reply({error:'Unauthorized'},401);
+ if(!env.TUTOR_ACCESS_TOKEN)return reply({error:'Backend not configured'},503);
+ if(!await verifyToken(request.headers.get('Authorization')||'','Bearer '+env.TUTOR_ACCESS_TOKEN))return reply({error:'Unauthorized'},401);
+ if(!env.AI_API_KEY||!env.AI_MODEL||!endpoints[env.AI_PROVIDER])return reply({error:'Backend not configured',code:'MISSING_AI_CONFIG'},503);
  if(!request.headers.get('Content-Type')?.includes('application/json'))return reply({error:'JSON required'},415);
  if(Number(request.headers.get('Content-Length'))>40000)return reply({error:'Payload too large'},413);
- let body;try{const text=await request.text();if(text.length>35000)return reply({error:'Payload too large'},413);body=JSON.parse(text)}catch{return reply({error:'Invalid JSON'},400)}
+ let body;try{const text=await readBounded(request,40000);body=JSON.parse(text)}catch(error){return reply({error:error.message==='too-large'?'Payload too large':'Invalid JSON'},error.message==='too-large'?413:400)}
  if(!body||!Array.isArray(body.messages)||!body.messages.length||body.messages.length>10||typeof body.context!=='string'||body.context.length>12000)return reply({error:'Invalid context/messages'},400);
  if(body.messages.some(m=>!m||!['user','assistant'].includes(m.role)||typeof m.content!=='string'||m.content.length>16000))return reply({error:'Invalid message'},400);
  // Optional platform rate-limiter binding; provider quotas still apply without it.
