@@ -1,0 +1,22 @@
+# 啟用 AI 自由問答與動態反問
+
+目前 GitHub Pages 的預設模式是本地教材檢索／預設分支反問，**尚未連接生成式模型**。本資料夾提供可獨立部署的 Cloudflare Worker；此後端不會因推送 GitHub Pages 而自動執行。
+
+1. 在 Cloudflare Workers 建立 JavaScript Worker，將 `tutor-worker.mjs` 內容貼入並部署。
+2. 設定一般環境變數：`AI_PROVIDER` 為 `gemini` 或 `groq`；`AI_MODEL` 填該帳號實際可用且有免費額度的文字模型 ID；`ALLOWED_ORIGIN` 為 `https://sharnchen.github.io`（Origin 不含路徑）。不要假設所有模型都免費。
+3. 在 Worker 的 Secrets 設定 `AI_API_KEY`（模型服務金鑰）及 `TUTOR_ACCESS_TOKEN`（自行產生的獨立存取碼）。不要提交到 GitHub。可配置 `TUTOR_RATE_LIMITER` 平台限流 binding；若未配置，仍受模型服務限額控制。
+4. 在學習網站「雙向學習問答 → AI 連線設定」輸入 `https://實際Worker網址/tutor` 與後端存取碼。**存取碼不是模型 API Key**。設定僅存在本分頁記憶體，重整後重填。
+5. 送出問題或點選「請反問我一題」。畫面顯示「AI 生成」才是模型回應；錯誤／429 額度耗盡會明確回報，不會用本地教材冒充。
+
+只有你設定的後端會收到提問、最近最多10則對話、目前教材與相關實驗輸入／結果。自由文字仍需人工核對。免費額度、適用地區、資料使用政策依供應商與帳號而定；請勿輸入學生個資。
+
+存取碼適合個人或小組試用；全校公開服務應改成個別帳號驗證及集中式配額。Origin 檢查不是使用者身分驗證。Worker secrets 保留在伺服器，前端設定不包含供應商金鑰。
+
+官方資料：
+- Gemini 定價：https://ai.google.dev/gemini-api/docs/pricing
+- Gemini OpenAI 相容 API：https://ai.google.dev/gemini-api/docs/openai
+- Groq 速率限制：https://console.groq.com/docs/rate-limits
+- Groq API：https://console.groq.com/docs/api-reference
+- 本機 Qwen：https://ollama.com/library/qwen3 （本機運算免雲端 Token 費，但需自備硬體；本 Worker 未直接連接個人電腦的 localhost。）
+
+後端測試採 mock provider 驗證路由、CORS、存取碼、請求限制與供應商呼叫格式；未使用真實 API 金鑰驗證模型回覆。
