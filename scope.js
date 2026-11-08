@@ -5,5 +5,6 @@ lessons.push(...scopeLessons);
 learningSources.push({title:'MIT 6.790：Policy Gradient',url:'https://gradml.mit.edu/reinforcement/policy_gradient/'});
 curriculum[5].sourceIds.push(learningSources.length-1);
 curriculum[5].terms.push({id:'d5t-ascent',zh:'梯度上升',en:'Gradient Ascent',definition:'沿目標梯度方向更新參數以最大化目標；等價於對其負值做梯度下降，步長過大仍可能失敗。',lessonId:81});
+curriculum[5].lessonIds.push(81);
 lessons.push({"id": 81, "domainId": 5, "group": "訓練、最佳化與損失函數", "title": "梯度上升（Gradient Ascent）：最大化目標與下降法的關係", "sub": "從爬山、最大概似到策略梯度", "body": "梯度上升（Gradient Ascent）以 θₜ₊₁=θₜ+η∇J(θₜ) 最大化可微分目標 J；梯度下降（Gradient Descent）以減號最小化損失 L。令 L=−J，則下降 L 與上升 J 的參數更新相同。梯度是局部最陡上升方向，但有限步長不保證每步提高目標；非凹目標也不保證找到全域最大值。", "example": "J(w)=9−(w−3)²，w=0、η=0.1：g=−2(0−3)=6；Δw=0.1×6=0.6；w新=0+0.6=0.6；J舊=9−9=0；J新=9−(−2.4)²=9−5.76=3.24。相同起點下降 L=−J，也得到 w新=0.6。", "exercise": "在梯度上升實驗室比較 η=0.1、0.5、1、1.1；再切換最大對數概似及雙臂策略回報。列出每一步梯度、更新量、參數與目標，解釋震盪、發散及飽和。", "pitfall": "上升是提高目標函數值，不代表參數數值一定變大；w>3 時本例梯度為負，參數反而減小。只有此二次凹函數的 0<η<1 保證收斂。最大對數概似（Maximum Log-Likelihood）可改寫為最小負對數概似（Negative Log-Likelihood）；策略梯度（Policy Gradient）最大化預期回報，本實驗採可精確計算的雙臂例子，沒有實際採樣訓練。", "q": "最大化 J 時，梯度上升與梯度下降有何等價關係？", "answers": ["上升 J 等價於下降 −J", "上升 J 等價於下降 J", "上升必定讓每個參數變大"], "correct": 0, "minutes": 25, "termIds": ["d5t-ascent"]});
 const keywordCatalog=curriculum.flatMap(d=>d.terms.map(t=>({...t,domainId:d.id,domain:d.title})));
