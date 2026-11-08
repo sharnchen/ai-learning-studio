@@ -1,0 +1,12 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict'),path=require('path');
+const root=path.resolve(__dirname,'..'),nodes=new Map();function el(s){if(!nodes.has(s))nodes.set(s,{innerHTML:'',outerHTML:'',value:'',open:false,style:{},classList:{toggle(){}},showModal(){this.open=true},close(){this.open=false},addEventListener(){}});return nodes.get(s)}
+const c={document:{addEventListener(){},querySelector:el,querySelectorAll:()=>[]},localStorage:{getItem:()=>null,setItem(){}},location:{hash:'#home'},window:{addEventListener(){}},setTimeout:()=>0,console};vm.createContext(c);for(const f of ['lessons.js','scope.js','practice-data.js','calculation-trace.js','visual-guide.js','practice-ui.js','lab-engines.js','lab-ui.js','app.js'])vm.runInContext(fs.readFileSync(path.join(root,f),'utf8'),c,{filename:f});const run=s=>vm.runInContext(s,c);
+assert.equal(run('Object.keys(visualRecipes).length'),106);assert(run('labEngines.every(e=>visualRecipes[e.id]?.length===4)'));
+let count=0;for(const id of run('labCases.map(t=>t.id)')){const html=run(`(()=>{const t=labCases.find(t=>t.id===${JSON.stringify(id)}),e=labEngineFor(t),v=labCaseDefaults(t,e),r=e.compute(v);return renderVisualGuide(e,v,r)})()`);assert(html.includes('圖解學習'));assert(html.includes('Live Result Diagram'));assert.equal((html.match(/data-visual-step=/g)||[]).length,4);assert(!/NaN|undefined|Infinity/.test(html),id);count++}
+assert.equal(run('lessons.filter(l=>lessonVisualLinks(l)).length'),81);
+const before=run("(()=>{const e=labEngines.find(e=>e.id==='calc-gradient'),v=labDefaults(e);return renderVisualGuide(e,v,e.compute(v))})()");const after=run("(()=>{const e=labEngines.find(e=>e.id==='calc-gradient'),v={w:4,lr:.4};return renderVisualGuide(e,v,e.compute(v))})()");assert.notEqual(before,after);
+run("updateVisualStep('lab',3)");assert.equal(run("visualSteps.get('lab')"),3);assert(nodes.get('#visual-guide-lab').outerHTML.includes('第 4 步'));
+assert(run("visualGraph({}, {table:{rows:[['<img src=x>','連結','B']]},steps:['<img src=x>','B']})").includes('&lt;img'));
+assert(!run("visualGraph({}, {table:{rows:[['<img src=x>','連結','B']]},steps:[]})").includes('<img'));
+assert(run("visualMetricGrid({tp:0,tn:0,fp:0,fn:0})").includes('TP = 0'));
+console.log(`PASS: ${count} keyword diagrams; all106 four-stage recipes, all81 course entries; reactive values, stage navigation, escaped labels, zero counts.`);
