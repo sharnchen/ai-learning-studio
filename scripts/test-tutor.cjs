@@ -4,3 +4,4 @@ assert.equal(vm.runInContext("tutorMatch('Gradient Ascent是什麼')[0].zh",ctx)
 assert(vm.runInContext("tutorLocal('xyz-unknown').answer.includes('未辨識')",ctx));assert(vm.runInContext("tutorLocal('梯度上升').answer.includes('3.24')",ctx));
 for(const id of vm.runInContext('keywordCatalog.map(t=>t.id)',ctx)){assert(vm.runInContext(`assessmentBank.some(q=>q.termId===${JSON.stringify(id)})`,ctx))}
 console.log('Tutor bilingual retrieval, unknown-query fallback and 577-topic challenge coverage passed');
+vm.runInContext("tutorMessages=Array.from({length:8},(_,i)=>({role:i%2?'assistant':'user',text:'字'.repeat(2000)}));",ctx);const packed=vm.runInContext('tutorRequestMessages()',ctx);assert.equal(packed.length,4);assert.equal(packed[0].content.length,600);assert.equal(packed[3].content.length,2000);assert(vm.runInContext('tutorContext().length<=1000',ctx));console.log('Compact context and history bounds passed');
