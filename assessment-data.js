@@ -38,6 +38,10 @@ const multipleItems=[
 [16,'理論記憶體估算（Memory Estimate）需注意哪些事項？',['權重位元數會影響純權重容量','快取與激活可能增加需求','只算權重就保證不會記憶體不足','量化中繼資料與框架也可能有開銷'],[0,1,3],'總記憶體不只權重，還受快取、激活、狀態及框架影響。']
 ];
 multipleItems.forEach((x,i)=>addAssessmentQuestion('multi-'+i,x[0],'進階','multiple',x[1],x[2],x[3],x[4],{source:'綜合判讀'}));
+addAssessmentQuestion('ascent-sign',5,'基礎','single','梯度上升（Gradient Ascent）中，目標梯度為負時，正學習率的更新通常如何移動參數？',['參數減小','參數必定增大','參數必定不變'],[0],'θ新=θ舊+ηg；η>0、g<0 時更新量為負。上升指提高目標，不是提高參數。',{source:'綜合判讀',termId:'d5t-ascent',lessonId:81});
+addAssessmentQuestion('ascent-limits',5,'進階','multiple','關於梯度上升（Gradient Ascent），哪些敘述正確？',['可用來最大化對數概似（Log-Likelihood）','步長過大可能降低目標值','一般非凹目標必定找到全域最大值','最大化 J 等價於最小化 −J'],[0,1,3],'梯度為局部方向，有限步長與非凹性都限制保證；改變目標正負號可對應下降法。',{source:'綜合判讀',termId:'d5t-ascent',lessonId:81});
+numericalQuestion('ascent-step',5,'梯度上升：J(w)=9−(w−3)²，w=0、η=0.1，一步後 w 為何？',[0.6,-0.6,6,3],0.6,'g=−2×(0−3)=6；ηg=0.1×6=0.6；w新=0+0.6=0.6；J新=9−(0.6−3)²=3.24。',[worked('*',-2,-3,6,'g'),worked('*',.1,6,.6,'ηg'),worked('+',0,.6,.6,'w新')],'梯度上升');
+Object.assign(assessmentBank.find(q=>q.id==='calc-ascent-step'),{termId:'d5t-ascent',lessonId:81});
 const assessmentQuestionMap=new Map(assessmentBank.map(q=>[q.id,q]));
 function assessmentRng(seed){let t=seed>>>0;return ()=>{t+=0x6D2B79F5;let a=Math.imul(t^(t>>>15),1|t);a^=a+Math.imul(a^(a>>>7),61|a);return ((a^(a>>>14))>>>0)/4294967296}}
 function assessmentShuffle(a,rng){const out=[...a];for(let i=out.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[out[i],out[j]]=[out[j],out[i]]}return out}
