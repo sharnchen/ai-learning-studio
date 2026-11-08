@@ -26,3 +26,7 @@ Worker：`ai-learning-studio-api`。網址：`https://ai-learning-studio-api.lie
 網站已預填該網址；仍先使用教材模式，填入獨立存取碼並套用後才啟用 AI。新增「檢查後端狀態」會讀取 `/health`，只回報缺少的設定名稱，不公開秘密值。
 正式配置為 `AI_PROVIDER=gemini`、`AI_MODEL=gemini-3.8-flash`、`ALLOWED_ORIGIN=https://sharnchen.github.io`。獨立存取碼已配置為 Secret，不存入原始碼。**目前尚缺使用者的 `AI_API_KEY`；未驗證真實模型推論。**
 已設6次／60秒的每IP限流（依Cloudflare節點計數，並非全域嚴格配額）、固定雜湊長度的常數時間存取碼比較、請求串流大小限制、Worker Logs及抽樣Traces。服務不記錄問題、答案或金鑰到應用程式日誌。
+
+## 已完成真實推論驗證
+已改用 Gemini 原生 `generateContent` API；目前正式模型為 `gemini-3.1-flash-lite`，thinking level 為 low、輸出上限4096。`AI_API_KEY` 已轉為 Secret，保留既有存取碼。真實網站測試已取得繁體中文梯度上升解釋及延伸反問。先前「尚缺金鑰／未驗證」記錄為舊狀態，以本節為準。
+「驗證模型設定」會透過後端、以目前金鑰查詢模型清單，供帳號權限排查；列出模型不保證該帳號有推論配額。模型API錯誤分別顯示無此模型、金鑰權限、額度、暫時不可用或空回答，不再全部誤報為網址／存取碼問題。Gemini 可見答案只取非 thought 的文字，不傳回思考內容。

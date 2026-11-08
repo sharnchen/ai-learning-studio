@@ -14,3 +14,8 @@ console.log('Worker CORS, auth, validation, mock provider request, rate binding 
 
 const health=await worker.fetch(new Request('https://worker.example/health'),{...env,AI_API_KEY:''});assert.equal(health.status,200);assert.deepEqual((await health.json()).missing,['AI_API_KEY']);
 assert.equal((await worker.fetch(req(body,{Authorization:'Bearer invalid'}),{...env,AI_API_KEY:''})).status,401);
+
+const geminiEnv={...env,AI_PROVIDER:'gemini',AI_MODEL:'gemini-3.1-flash-lite'};
+globalThis.fetch=async(url,opts)=>{assert.equal(url,'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent');assert.equal(opts.headers['x-goog-api-key'],'fake-provider-key');const b=JSON.parse(opts.body);assert.equal(b.contents[0].role,'user');assert.equal(b.generationConfig.thinkingConfig.thinkingLevel,'low');assert(b.systemInstruction.parts[0].text);return Response.json({candidates:[{content:{parts:[{thought:true,text:'private reasoning'},{text:'Native Gemini answer'}]}}]})};
+assert.equal((await (await worker.fetch(req(body),geminiEnv)).json()).answer,'Native Gemini answer');
+console.log('Gemini native request and visible-text-only response parsing passed');
