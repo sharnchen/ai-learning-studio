@@ -1,0 +1,2392 @@
+{
+  "counts": {
+    "domains": 19,
+    "lessons": 82,
+    "terms": 577,
+    "engines": 107,
+    "questions": 1322
+  },
+  "errors": [],
+  "warnings": [],
+  "lessonChecks": [
+    {
+      "id": 0,
+      "title": "AI、機器學習（Machine Learning, ML）與深度學習（Deep Learning, DL）",
+      "guideDomain": 0,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d0t0",
+        "d0t2",
+        "d0t3"
+      ]
+    },
+    {
+      "id": 1,
+      "title": "資料、特徵（Feature）與標籤（Label）",
+      "guideDomain": 1,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d1t0",
+        "d1t1",
+        "d1t2"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "監督學習（Supervised Learning）、非監督學習（Unsupervised Learning）與強化學習（Reinforcement Learning）",
+      "guideDomain": 0,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d0t0",
+        "d0t2",
+        "d0t3"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "訓練、驗證與測試",
+      "guideDomain": 1,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d1t6",
+        "d1t7",
+        "d1t8"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "線性回歸（Linear Regression）與誤差",
+      "guideDomain": 3,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d3t5",
+        "d3t7",
+        "d6t17"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "分類（Classification）與交叉熵（Cross-Entropy）",
+      "guideDomain": 3,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d2t24",
+        "d5t18",
+        "d5t19"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "梯度下降（Gradient Descent）與學習率（Learning Rate）",
+      "guideDomain": 5,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d2t26",
+        "d2t27",
+        "d2t28"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "過擬合（Overfitting）與正則化（Regularization）",
+      "guideDomain": 5,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d5t17",
+        "d5t24",
+        "d5t25"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "神經元（Neuron）與激活函數（Activation Function）",
+      "guideDomain": 4,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d4t1",
+        "d4t2",
+        "d4t8"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "反向傳播（Backpropagation）與梯度消失（Vanishing Gradient）",
+      "guideDomain": 4,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d4t20",
+        "d4t21",
+        "d4t22"
+      ]
+    },
+    {
+      "id": 10,
+      "title": "卷積神經網路（Convolutional Neural Network, CNN）：卷積（Convolution）與池化（Pooling）",
+      "guideDomain": 7,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d7t19",
+        "d7t20",
+        "d7t21"
+      ]
+    },
+    {
+      "id": 11,
+      "title": "評估指標（Evaluation Metrics）與混淆矩陣（Confusion Matrix）",
+      "guideDomain": 6,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d1t25",
+        "d6t0",
+        "d6t1"
+      ]
+    },
+    {
+      "id": 12,
+      "title": "詞元（Token）與嵌入向量（Embedding）",
+      "guideDomain": 8,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d8t3",
+        "d8t4",
+        "d8t5"
+      ]
+    },
+    {
+      "id": 13,
+      "title": "注意力（Attention）與 Transformer 架構",
+      "guideDomain": 9,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d9t0",
+        "d9t1",
+        "d9t2"
+      ]
+    },
+    {
+      "id": 14,
+      "title": "大型語言模型（Large Language Model, LLM）的訓練與推論（Inference）",
+      "guideDomain": 10,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d10t11",
+        "d10t28",
+        "d10t29"
+      ]
+    },
+    {
+      "id": 15,
+      "title": "提示詞（Prompt）設計與驗證",
+      "guideDomain": 10,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d10t3",
+        "d10t4",
+        "d10t5"
+      ]
+    },
+    {
+      "id": 16,
+      "title": "RAG：檢索增強生成（Retrieval-Augmented Generation, RAG）",
+      "guideDomain": 11,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d11t0",
+        "d11t1",
+        "d11t7"
+      ]
+    },
+    {
+      "id": 17,
+      "title": "微調（Fine-Tuning）、LoRA 與量化（Quantization）",
+      "guideDomain": 12,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d3t27",
+        "d12t2",
+        "d12t3"
+      ]
+    },
+    {
+      "id": 18,
+      "title": "智能代理（Agent）、工具（Tool）與模型上下文協定（Model Context Protocol, MCP）",
+      "guideDomain": 15,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d15t0",
+        "d15t1",
+        "d15t2"
+      ]
+    },
+    {
+      "id": 19,
+      "title": "工作流程（Workflow）與人工審核（Human Review）",
+      "guideDomain": 15,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d18t0",
+        "d18t1",
+        "d18t2"
+      ]
+    },
+    {
+      "id": 20,
+      "title": "專題：文件問答系統",
+      "guideDomain": 11,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d10t30",
+        "d11t20",
+        "d11t21"
+      ]
+    },
+    {
+      "id": 21,
+      "title": "專題：影像分類（Image Classification）與部署（Deployment）",
+      "guideDomain": 7,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d7t2",
+        "d7t6",
+        "d7t9"
+      ]
+    },
+    {
+      "id": 22,
+      "title": "安全、隱私與提示注入（Prompt Injection）",
+      "guideDomain": 17,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d15t24",
+        "d17t1",
+        "d17t2"
+      ]
+    },
+    {
+      "id": 23,
+      "title": "學習路線與成果評估",
+      "guideDomain": 0,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d17t0",
+        "d17t3",
+        "d17t5"
+      ]
+    },
+    {
+      "id": 24,
+      "title": "AI 基礎與學習方式 · 概念與辨識",
+      "guideDomain": 0,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d0t0",
+        "d0t1",
+        "d0t2"
+      ]
+    },
+    {
+      "id": 25,
+      "title": "AI 基礎與學習方式 · 方法與連結",
+      "guideDomain": 0,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d0t8",
+        "d0t9",
+        "d0t10"
+      ]
+    },
+    {
+      "id": 26,
+      "title": "AI 基礎與學習方式 · 應用與取捨",
+      "guideDomain": 0,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d0t16",
+        "d0t17",
+        "d0t18"
+      ]
+    },
+    {
+      "id": 27,
+      "title": "資料與前處理 · 概念與辨識",
+      "guideDomain": 1,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d1t0",
+        "d1t1",
+        "d1t2"
+      ]
+    },
+    {
+      "id": 28,
+      "title": "資料與前處理 · 方法與連結",
+      "guideDomain": 1,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d1t12",
+        "d1t13",
+        "d1t14"
+      ]
+    },
+    {
+      "id": 29,
+      "title": "資料與前處理 · 應用與取捨",
+      "guideDomain": 1,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d1t24",
+        "d1t25",
+        "d1t26"
+      ]
+    },
+    {
+      "id": 30,
+      "title": "數學與統計 · 概念與辨識",
+      "guideDomain": 2,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d2t0",
+        "d2t1",
+        "d2t2"
+      ]
+    },
+    {
+      "id": 31,
+      "title": "數學與統計 · 方法與連結",
+      "guideDomain": 2,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d2t11",
+        "d2t12",
+        "d2t13"
+      ]
+    },
+    {
+      "id": 32,
+      "title": "數學與統計 · 應用與取捨",
+      "guideDomain": 2,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d2t22",
+        "d2t23",
+        "d2t24"
+      ]
+    },
+    {
+      "id": 33,
+      "title": "傳統機器學習 · 概念與辨識",
+      "guideDomain": 3,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d3t0",
+        "d3t1",
+        "d3t2"
+      ]
+    },
+    {
+      "id": 34,
+      "title": "傳統機器學習 · 方法與連結",
+      "guideDomain": 3,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d3t10",
+        "d3t11",
+        "d3t12"
+      ]
+    },
+    {
+      "id": 35,
+      "title": "傳統機器學習 · 應用與取捨",
+      "guideDomain": 3,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d3t20",
+        "d3t21",
+        "d3t22"
+      ]
+    },
+    {
+      "id": 36,
+      "title": "神經網路與網路層 · 概念與辨識",
+      "guideDomain": 4,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d4t0",
+        "d4t1",
+        "d4t2"
+      ]
+    },
+    {
+      "id": 37,
+      "title": "神經網路與網路層 · 方法與連結",
+      "guideDomain": 4,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d4t11",
+        "d4t12",
+        "d4t13"
+      ]
+    },
+    {
+      "id": 38,
+      "title": "神經網路與網路層 · 應用與取捨",
+      "guideDomain": 4,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d4t22",
+        "d4t23",
+        "d4t24"
+      ]
+    },
+    {
+      "id": 39,
+      "title": "訓練、最佳化與損失函數 · 概念與辨識",
+      "guideDomain": 5,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d5t0",
+        "d5t1",
+        "d5t2"
+      ]
+    },
+    {
+      "id": 40,
+      "title": "訓練、最佳化與損失函數 · 方法與連結",
+      "guideDomain": 5,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d5t14",
+        "d5t15",
+        "d5t16"
+      ]
+    },
+    {
+      "id": 41,
+      "title": "訓練、最佳化與損失函數 · 應用與取捨",
+      "guideDomain": 5,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d5t28",
+        "d5t29",
+        "d5t30"
+      ]
+    },
+    {
+      "id": 42,
+      "title": "評估指標 · 概念與辨識",
+      "guideDomain": 6,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d6t0",
+        "d6t1",
+        "d6t2"
+      ]
+    },
+    {
+      "id": 43,
+      "title": "評估指標 · 方法與連結",
+      "guideDomain": 6,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d6t9",
+        "d6t10",
+        "d6t11"
+      ]
+    },
+    {
+      "id": 44,
+      "title": "評估指標 · 應用與取捨",
+      "guideDomain": 6,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d6t18",
+        "d6t19",
+        "d6t20"
+      ]
+    },
+    {
+      "id": 45,
+      "title": "電腦視覺 · 概念與辨識",
+      "guideDomain": 7,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d7t0",
+        "d7t1",
+        "d7t2"
+      ]
+    },
+    {
+      "id": 46,
+      "title": "電腦視覺 · 方法與連結",
+      "guideDomain": 7,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d7t11",
+        "d7t12",
+        "d7t13"
+      ]
+    },
+    {
+      "id": 47,
+      "title": "電腦視覺 · 應用與取捨",
+      "guideDomain": 7,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d7t22",
+        "d7t23",
+        "d7t24"
+      ]
+    },
+    {
+      "id": 48,
+      "title": "自然語言處理與序列模型 · 概念與辨識",
+      "guideDomain": 8,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d8t0",
+        "d8t1",
+        "d8t2"
+      ]
+    },
+    {
+      "id": 49,
+      "title": "自然語言處理與序列模型 · 方法與連結",
+      "guideDomain": 8,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d8t9",
+        "d8t10",
+        "d8t11"
+      ]
+    },
+    {
+      "id": 50,
+      "title": "自然語言處理與序列模型 · 應用與取捨",
+      "guideDomain": 8,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d8t18",
+        "d8t19",
+        "d8t20"
+      ]
+    },
+    {
+      "id": 51,
+      "title": "Transformer 與注意力機制 · 概念與辨識",
+      "guideDomain": 9,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d9t0",
+        "d9t1",
+        "d9t2"
+      ]
+    },
+    {
+      "id": 52,
+      "title": "Transformer 與注意力機制 · 方法與連結",
+      "guideDomain": 9,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d9t9",
+        "d9t10",
+        "d9t11"
+      ]
+    },
+    {
+      "id": 53,
+      "title": "Transformer 與注意力機制 · 應用與取捨",
+      "guideDomain": 9,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d9t18",
+        "d9t19",
+        "d9t20"
+      ]
+    },
+    {
+      "id": 54,
+      "title": "大型語言模型與文字生成 · 概念與辨識",
+      "guideDomain": 10,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d10t0",
+        "d10t1",
+        "d10t2"
+      ]
+    },
+    {
+      "id": 55,
+      "title": "大型語言模型與文字生成 · 方法與連結",
+      "guideDomain": 10,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d10t11",
+        "d10t12",
+        "d10t13"
+      ]
+    },
+    {
+      "id": 56,
+      "title": "大型語言模型與文字生成 · 應用與取捨",
+      "guideDomain": 10,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d10t22",
+        "d10t23",
+        "d10t24"
+      ]
+    },
+    {
+      "id": 57,
+      "title": "RAG 與知識檢索 · 概念與辨識",
+      "guideDomain": 11,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d11t0",
+        "d11t1",
+        "d11t2"
+      ]
+    },
+    {
+      "id": 58,
+      "title": "RAG 與知識檢索 · 方法與連結",
+      "guideDomain": 11,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d11t10",
+        "d11t11",
+        "d11t12"
+      ]
+    },
+    {
+      "id": 59,
+      "title": "RAG 與知識檢索 · 應用與取捨",
+      "guideDomain": 11,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d11t20",
+        "d11t21",
+        "d11t22"
+      ]
+    },
+    {
+      "id": 60,
+      "title": "微調與模型壓縮 · 概念與辨識",
+      "guideDomain": 12,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d12t0",
+        "d12t1",
+        "d12t2"
+      ]
+    },
+    {
+      "id": 61,
+      "title": "微調與模型壓縮 · 方法與連結",
+      "guideDomain": 12,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d12t9",
+        "d12t10",
+        "d12t11"
+      ]
+    },
+    {
+      "id": 62,
+      "title": "微調與模型壓縮 · 應用與取捨",
+      "guideDomain": 12,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d12t18",
+        "d12t19",
+        "d12t20"
+      ]
+    },
+    {
+      "id": 63,
+      "title": "影像、影片與音訊生成 · 概念與辨識",
+      "guideDomain": 13,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d13t0",
+        "d13t1",
+        "d13t2"
+      ]
+    },
+    {
+      "id": 64,
+      "title": "影像、影片與音訊生成 · 方法與連結",
+      "guideDomain": 13,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d13t12",
+        "d13t13",
+        "d13t14"
+      ]
+    },
+    {
+      "id": 65,
+      "title": "影像、影片與音訊生成 · 應用與取捨",
+      "guideDomain": 13,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d13t24",
+        "d13t25",
+        "d13t26"
+      ]
+    },
+    {
+      "id": 66,
+      "title": "強化學習與偏好對齊 · 概念與辨識",
+      "guideDomain": 14,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d14t0",
+        "d14t1",
+        "d14t2"
+      ]
+    },
+    {
+      "id": 67,
+      "title": "強化學習與偏好對齊 · 方法與連結",
+      "guideDomain": 14,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d14t8",
+        "d14t9",
+        "d14t10"
+      ]
+    },
+    {
+      "id": 68,
+      "title": "強化學習與偏好對齊 · 應用與取捨",
+      "guideDomain": 14,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d14t16",
+        "d14t17",
+        "d14t18"
+      ]
+    },
+    {
+      "id": 69,
+      "title": "AI Agent、工具與 MCP · 概念與辨識",
+      "guideDomain": 15,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d15t0",
+        "d15t1",
+        "d15t2"
+      ]
+    },
+    {
+      "id": 70,
+      "title": "AI Agent、工具與 MCP · 方法與連結",
+      "guideDomain": 15,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d15t12",
+        "d15t13",
+        "d15t14"
+      ]
+    },
+    {
+      "id": 71,
+      "title": "AI Agent、工具與 MCP · 應用與取捨",
+      "guideDomain": 15,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d15t24",
+        "d15t25",
+        "d15t26"
+      ]
+    },
+    {
+      "id": 72,
+      "title": "推論、硬體與效能 · 概念與辨識",
+      "guideDomain": 16,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d16t0",
+        "d16t1",
+        "d16t2"
+      ]
+    },
+    {
+      "id": 73,
+      "title": "推論、硬體與效能 · 方法與連結",
+      "guideDomain": 16,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d16t11",
+        "d16t12",
+        "d16t13"
+      ]
+    },
+    {
+      "id": 74,
+      "title": "推論、硬體與效能 · 應用與取捨",
+      "guideDomain": 16,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d16t22",
+        "d16t23",
+        "d16t24"
+      ]
+    },
+    {
+      "id": 75,
+      "title": "安全、隱私與負責任 AI · 概念與辨識",
+      "guideDomain": 17,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d17t0",
+        "d17t1",
+        "d17t2"
+      ]
+    },
+    {
+      "id": 76,
+      "title": "安全、隱私與負責任 AI · 方法與連結",
+      "guideDomain": 17,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d17t11",
+        "d17t12",
+        "d17t13"
+      ]
+    },
+    {
+      "id": 77,
+      "title": "安全、隱私與負責任 AI · 應用與取捨",
+      "guideDomain": 17,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d17t22",
+        "d17t23",
+        "d17t24"
+      ]
+    },
+    {
+      "id": 78,
+      "title": "工程、部署與維運 · 概念與辨識",
+      "guideDomain": 18,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d18t0",
+        "d18t1",
+        "d18t2"
+      ]
+    },
+    {
+      "id": 79,
+      "title": "工程、部署與維運 · 方法與連結",
+      "guideDomain": 18,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d18t8",
+        "d18t9",
+        "d18t10"
+      ]
+    },
+    {
+      "id": 80,
+      "title": "工程、部署與維運 · 應用與取捨",
+      "guideDomain": 18,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d18t16",
+        "d18t17",
+        "d18t18"
+      ]
+    },
+    {
+      "id": 81,
+      "title": "梯度上升（Gradient Ascent）：最大化目標與下降法的關係",
+      "guideDomain": 5,
+      "practice": true,
+      "pitfall": true,
+      "interaction": [
+        "d5t-ascent"
+      ]
+    }
+  ],
+  "engineChecks": [
+    {
+      "id": "calc-activation",
+      "title": "神經元與激活函數",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "輸入 x",
+        "權重 w",
+        "偏置 b"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "calc-gradient",
+      "title": "梯度下降單步",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "目前 w",
+        "學習率 η"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "calc-metrics",
+      "title": "混淆矩陣與分類指標",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "TP 真陽性",
+        "FP 假陽性",
+        "FN 假陰性",
+        "TN 真陰性"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "calc-sampling",
+      "title": "Softmax 與取樣分布",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "Temperature",
+        "Top-k",
+        "Top-p"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "calc-conv",
+      "title": "卷積尺寸與展平",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "輸入邊長",
+        "核邊長",
+        "步幅",
+        "填補",
+        "輸出通道"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "calc-batch",
+      "title": "批次與更新次數",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "樣本數",
+        "微批次",
+        "累積次數",
+        "輪次"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "calc-vector",
+      "title": "向量、範數與相似度",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "A₁",
+        "A₂",
+        "B₁",
+        "B₂"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "calc-memory",
+      "title": "量化與記憶體規模",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "參數量（百萬）",
+        "每權重位元",
+        "序列長度"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "calc-lora",
+      "title": "LoRA 參數預算",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "輸出 m",
+        "輸入 n",
+        "rank"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "calc-discount",
+      "title": "折扣回報",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "折扣 γ"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "calc-clip",
+      "title": "梯度裁剪與連乘",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "最大梯度範數",
+        "每層導數",
+        "相乘層數"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "calc-standard",
+      "title": "標準化",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "數值",
+        "平均",
+        "標準差"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "calc-error",
+      "title": "誤差、交叉熵與困惑度",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "誤差1",
+        "誤差2",
+        "真類別機率"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "learning-plan",
+      "title": "任務與學習訊號規劃",
+      "type": "流程模擬",
+      "defaultsCompute": true,
+      "controls": [
+        "任務",
+        "有標籤樣本",
+        "無標籤樣本",
+        "可取得行動獎勵"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "adaptation",
+      "title": "少樣本、遷移與標註預算",
+      "type": "流程模擬",
+      "defaultsCompute": true,
+      "controls": [
+        "新任務樣本數",
+        "曾見任務數",
+        "更新方式",
+        "每筆標註成本"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "capability",
+      "title": "跨任務能力與治理檢查",
+      "type": "流程模擬",
+      "defaultsCompute": true,
+      "controls": [
+        "語言任務",
+        "視覺任務",
+        "推理任務",
+        "陌生任務"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "data-clean",
+      "title": "缺值、離群與資料轉換",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "資料（空欄為缺值）",
+        "缺值處理",
+        "縮放",
+        "以Q1−1.5IQR至Q3+1.5IQR截斷"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "split",
+      "title": "資料切分與洩漏",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "切分方式",
+        "訓練比例",
+        "使用事後資訊欄位"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "balance",
+      "title": "類別重抽樣與代價",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "正常樣本",
+        "陽性樣本",
+        "訓練抽樣"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "drift",
+      "title": "分布與概念漂移",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "舊資料",
+        "新資料",
+        "舊相同特徵群陽性率",
+        "新相同特徵群陽性率"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "provenance",
+      "title": "來源與版本追溯",
+      "type": "流程模擬",
+      "defaultsCompute": true,
+      "controls": [
+        "已記來源",
+        "已確認使用條件",
+        "已固定資料與腳本版本",
+        "已記產物雜湊"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "augment",
+      "title": "影像增強與合成雜訊",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "轉換",
+        "亮度倍率"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "matrix",
+      "title": "矩陣、張量與形狀",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "A₁₁",
+        "A₁₂",
+        "A₂₁",
+        "A₂₂",
+        "批次",
+        "通道"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "statistics",
+      "title": "統計與相關",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "X",
+        "Y"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "bayes",
+      "title": "貝氏更新與MLE／MAP",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "疾病先驗",
+        "靈敏度",
+        "偽陽性率",
+        "正面次數",
+        "反面次數",
+        "Beta先驗 α",
+        "Beta先驗 β"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "distribution",
+      "title": "熵、交叉熵與KL",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "P權重",
+        "Q權重"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "calculus",
+      "title": "導數、鏈式與曲率",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "x",
+        "y"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "pca",
+      "title": "二維PCA與低秩重建",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "X",
+        "Y"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "regression",
+      "title": "回歸與多項式擬合",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "一次係數",
+        "截距",
+        "二次係數"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "knn",
+      "title": "k-NN與距離排序",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "查詢X",
+        "查詢Y",
+        "近鄰k"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "kmeans",
+      "title": "K-Means迭代",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "樣本",
+        "初始中心1",
+        "初始中心2",
+        "迭代次數"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "hierarchy",
+      "title": "階層與密度分群",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "樣本",
+        "方法",
+        "合併距離／eps",
+        "minPts"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "gmm",
+      "title": "高斯混合與軟歸屬",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "樣本x",
+        "平均1",
+        "平均2",
+        "共用標準差",
+        "成分1權重"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "tree",
+      "title": "決策樹與分類邊界",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "溫度閾值",
+        "電流閾值"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "ensemble",
+      "title": "Bagging與集成投票",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "種子",
+        "模型1預測",
+        "模型2預測",
+        "模型3預測"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "boost",
+      "title": "提升法與殘差擬合",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "初始預測",
+        "縮減率",
+        "輪數"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "svm",
+      "title": "線性邊界與Hinge Loss",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "w₁",
+        "w₂",
+        "偏置"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "naivebayes",
+      "title": "樸素貝氏後驗",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "垃圾信先驗",
+        "垃圾信P(免費)",
+        "垃圾信P(特價)",
+        "正常信P(免費)",
+        "正常信P(特價)"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "recommend",
+      "title": "推薦與低秩評分",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "使用者維度1",
+        "使用者維度2",
+        "排除已看項目A"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "timeseries",
+      "title": "移動平均與異常分數",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "時間序列",
+        "歷史視窗",
+        "統計訓練點數"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "mlp",
+      "title": "XOR與隱藏層",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "二元輸入1",
+        "二元輸入2",
+        "啟用ReLU"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "normalization",
+      "title": "BatchNorm、LayerNorm與RMSNorm",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "第二樣本偏移",
+        "模式"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "dropout",
+      "title": "Dropout與推論模式",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "失活率",
+        "種子",
+        "訓練模式"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "residual",
+      "title": "殘差、跳接與初始化尺度",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "x₁",
+        "x₂",
+        "F(x)倍率",
+        "fan-in",
+        "連接"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "autodiff",
+      "title": "計算圖與解析反傳",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "x",
+        "w",
+        "b",
+        "目標y"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "optimizer",
+      "title": "SGD、Momentum與Adam",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "最佳化器",
+        "學習率",
+        "步數",
+        "權重衰減λ"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "regularization",
+      "title": "正則化與權重衰減",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "λ",
+        "學習率",
+        "資料損失"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "learning-curve",
+      "title": "泛化、早停與搜尋",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "模型複雜度",
+        "早停耐心值",
+        "學習率候選數",
+        "層數候選數"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "threshold",
+      "title": "閾值、ROC與PR",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "陽性閾值"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "regression-metrics",
+      "title": "回歸誤差與R²",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "真值",
+        "預測"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "calibration",
+      "title": "機率校準與Brier分數",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "校準溫度"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "cv",
+      "title": "交叉驗證與評估污染",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "K折",
+        "依個體分折",
+        "已知測試重疊筆數"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "ablation",
+      "title": "消融與人工評分表",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "完整系統分數",
+        "移除元件分數",
+        "正確性",
+        "完整性",
+        "可讀性"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "convolution-grid",
+      "title": "卷積、池化與影像重採樣",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "操作",
+        "卷積核",
+        "卷積步幅",
+        "卷積每側填補"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "boxes",
+      "title": "IoU、NMS與物件位移",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "框B的X",
+        "框B的Y",
+        "NMS閾值",
+        "框B分數"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "segmentation",
+      "title": "語意、實例與全景標註",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "標註方式",
+        "加入一格遮擋"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "patches",
+      "title": "ViT區塊與感受野",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "影像邊長",
+        "Patch邊長",
+        "通道數",
+        "3×3 stride1卷積層數"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "tokenizer",
+      "title": "字元、詞項與BPE",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "空白分詞的語料",
+        "BPE合併步數",
+        "檢視"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "embedding",
+      "title": "文字向量與相似排序",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "查詢",
+        "每行一份文件"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "rnn",
+      "title": "RNN、GRU與LSTM狀態",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "輸入序列",
+        "單元",
+        "保留／遺忘比例"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "text-tasks",
+      "title": "語言任務與規則基準",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "文字",
+        "任務",
+        "回答僅使用提供來源"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "transcript",
+      "title": "轉錄錯誤與編輯距離",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "參考稿",
+        "辨識稿"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "attention",
+      "title": "QKV注意力與遮罩",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "Q分數倍率",
+        "因果遮罩",
+        "最後位置為PAD"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "attention-cost",
+      "title": "注意力位置、稀疏與KV快取",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "長度N",
+        "視窗大小",
+        "Q頭數",
+        "KV頭數",
+        "層數",
+        "位置旋轉角"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "moe",
+      "title": "MoE路由與負載",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "四專家分數",
+        "選用專家數",
+        "每專家參數（百萬）"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "prompt",
+      "title": "提示設計與訓練目標",
+      "type": "流程模擬",
+      "defaultsCompute": true,
+      "controls": [
+        "任務",
+        "來源",
+        "要求引用",
+        "要求JSON",
+        "資料目標"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "decoding",
+      "title": "貪婪與Beam搜尋",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "保留候選數",
+        "獨立候選檢查成本"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "json",
+      "title": "JSON結構、Schema與停止規則",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "待驗證JSON",
+        "示範輸出字串",
+        "停止序列"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "masking",
+      "title": "遮罩目標與串流切片",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "以空白分詞",
+        "遮罩／顯示到位置",
+        "模式"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "chunking",
+      "title": "文件切塊、重疊與壓縮",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "文件",
+        "區塊字元數",
+        "重疊字元數",
+        "查詢詞"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "retrieval",
+      "title": "關鍵字、混合排序與權限",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "查詢",
+        "每行格式：部門|內容",
+        "存取範圍",
+        "餘弦排名權重",
+        "取回數"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "query-evidence",
+      "title": "查詢改寫、引用與忠實度",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "問題",
+        "前文實體",
+        "來源",
+        "回答",
+        "加入保固同義詞"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "graph",
+      "title": "知識圖譜與多跳路徑",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "關係資料",
+        "起點",
+        "終點"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "quantize",
+      "title": "量化、反量化與剪枝",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "權重",
+        "整數位元數",
+        "剪枝絕對閾值"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "distill",
+      "title": "教師、學生與蒸餾",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "教師logits",
+        "學生logits",
+        "蒸餾溫度"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "adapt-budget",
+      "title": "凍結、適配器與前綴預算",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "隱藏維度d",
+        "瓶頸維度r",
+        "虛擬詞元數",
+        "層數",
+        "凍結骨幹"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "merge-forget",
+      "title": "模型合併、持續與聯邦更新",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "模型A權重",
+        "模型B權重",
+        "A的權重比例",
+        "端A樣本數",
+        "端B樣本數",
+        "用樣本數比例聚合"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "signal",
+      "title": "波形、噪聲與去噪",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "基頻（每64點週期數）",
+        "噪聲幅度",
+        "隨機種子",
+        "聲線示意：諧波倍率"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "source-separation",
+      "title": "雙通道線性音源分離",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "第二通道混音係數",
+        "觀測噪聲"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "latent",
+      "title": "編碼、潛在取樣與重建",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "四個輸入",
+        "潛在標準差",
+        "種子",
+        "在潛在空間取樣"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "generation-ode",
+      "title": "擴散、流場與數值取樣",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "初始噪聲位置",
+        "目標位置",
+        "時間步數",
+        "求解器",
+        "條件引導倍率"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "conditioning",
+      "title": "條件圖、遮罩與生成流程",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "操作",
+        "條件位置",
+        "條件強度",
+        "排除右側區域"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "temporal-world",
+      "title": "時間一致性與世界動態",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "真實速度",
+        "預測速度偏差",
+        "影格數",
+        "外觀閃爍幅度"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "gan",
+      "title": "GAN判別與生成目標",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "D(真樣本)",
+        "D(生成樣本)"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "qlearning",
+      "title": "Q-Learning與探索",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "學習率α",
+        "折扣γ",
+        "探索ε",
+        "回合數",
+        "種子"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "policy-preference",
+      "title": "策略、偏好與獎勵駭取",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "較佳回答logit",
+        "較差回答logit",
+        "偏好β",
+        "拖延行為代理獎勵",
+        "回饋來源"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "agent-workflow",
+      "title": "代理工具、重試與冪等",
+      "type": "流程模擬",
+      "defaultsCompute": true,
+      "controls": [
+        "成功前暫時失敗次數",
+        "允許重試次數",
+        "同請求使用冪等鍵",
+        "已具備假寫入授權",
+        "相同請求送達次數"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "mcp-tools",
+      "title": "Host–Client–Server與工具驗證",
+      "type": "流程模擬",
+      "defaultsCompute": true,
+      "controls": [
+        "工具參數JSON",
+        "假工具",
+        "允許使用該能力"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "memory-retrieval",
+      "title": "記憶保存、檢索與失效",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "查詢",
+        "記憶型別",
+        "排除過期紀錄"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "onehot",
+      "title": "獨熱編碼與未知類別",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "類別表",
+        "輸入類別",
+        "未知類別容許全零"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "logistic-contrast",
+      "title": "Logistic與對比表示",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "x",
+        "w",
+        "b",
+        "正樣本距離",
+        "負樣本距離",
+        "距離margin"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "repetition",
+      "title": "重複懲罰與來源上下文",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "重複懲罰",
+        "已出現候選",
+        "本次上下文"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "serving",
+      "title": "請求排程與延遲／吞吐",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "排程",
+        "同時槽位",
+        "每請求prefill毫秒",
+        "每詞元毫秒"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "cache-speculate",
+      "title": "前綴快取與推測成本",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "重複前綴詞元",
+        "請求數",
+        "快取命中率",
+        "草稿候選數",
+        "草稿接受率",
+        "每候選草稿成本"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "roofline",
+      "title": "硬體與記憶體瓶頸",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "工作量（十億FLOPs）",
+        "硬體算力（TFLOP/s）",
+        "需搬移資料（GB）",
+        "頻寬（GB/s）",
+        "固定開銷ms"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "parallel-checkpoint",
+      "title": "平行、重計算與卸載",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "模型相關記憶體GiB",
+        "激活GiB",
+        "裝置數",
+        "微批次數",
+        "分配",
+        "重計算：激活減半",
+        "卸載：模型相關狀態減半"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "fairness",
+      "title": "群體公平與混淆矩陣",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "A群TP",
+        "A群FP",
+        "B群TP",
+        "B群FP"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "privacy",
+      "title": "差分隱私噪聲與個資遮罩",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "原始計數",
+        "ε",
+        "噪聲種子（僅演示）",
+        "虛構文字"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "guardrails",
+      "title": "提示注入與最小權限",
+      "type": "流程模擬",
+      "defaultsCompute": true,
+      "controls": [
+        "外部文件含惡意指令",
+        "把文件隔離為不可信資料",
+        "允許外傳資料",
+        "允許寫入",
+        "敏感操作要求人工確認"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "adversarial",
+      "title": "線性模型擾動與投毒",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "x₁",
+        "x₂",
+        "兩軸共同擾動",
+        "假資料標籤翻轉筆數",
+        "加入後門觸發條件"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "governance",
+      "title": "模型卡、資料說明與風險檢查",
+      "type": "流程模擬",
+      "defaultsCompute": true,
+      "controls": [
+        "用途",
+        "限制",
+        "有資料來源及授權說明",
+        "有分群評估",
+        "有人工更正與申訴路徑",
+        "有可核對的規則或解釋"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "watermark",
+      "title": "訊號浮水印與內容真偽",
+      "type": "實際演算法",
+      "defaultsCompute": true,
+      "controls": [
+        "標記強度",
+        "後處理噪聲",
+        "保留取樣數"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "pipeline",
+      "title": "CI、訓練與推論管線",
+      "type": "流程模擬",
+      "defaultsCompute": true,
+      "controls": [
+        "流程",
+        "資料／介面格式通過",
+        "必要測試通過",
+        "品質評估通過",
+        "正式發布決定"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "release",
+      "title": "金絲雀、影子與回滾",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "流量",
+        "新版流量比例",
+        "舊版錯誤率",
+        "新版錯誤率",
+        "模式"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "monitor",
+      "title": "追蹤、成本與速率限制",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "檢索ms",
+        "模型ms",
+        "驗證ms",
+        "每分鐘請求",
+        "每分鐘上限",
+        "每請求成本"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "float-format",
+      "title": "FP16、BF16與FP8精度",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "輸入數值",
+        "格式",
+        "超出有限範圍時飽和"
+      ],
+      "assumptions": true
+    },
+    {
+      "id": "gradient-ascent",
+      "title": "梯度上升：目標、概似與策略回報（Gradient Ascent）",
+      "type": "數值計算",
+      "defaultsCompute": true,
+      "controls": [
+        "目標（Objective）",
+        "起始參數 w／θ",
+        "學習率 η（Learning Rate）",
+        "更新步數（Steps）",
+        "成功次數 k（概似模式）",
+        "行動 A 獎勵（策略模式）",
+        "行動 B 獎勵（策略模式）"
+      ],
+      "assumptions": true
+    }
+  ],
+  "reviewDate": "2026-11-09",
+  "method": "Static coverage review, curated domain/core-lesson supplements, default engine computation and render checks. Not a full expert proof of every statement, boundary input or browser layout.",
+  "before": {
+    "lessonsMissingDedicatedPracticeOrPitfall": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ]
+  },
+  "improvements": [
+    "24 core lessons now have dedicated practice and pitfalls",
+    "19 domain-specific prerequisite/procedure/interpretation/limitation guides",
+    "107 engine scope and acceptance explanations",
+    "Flow simulations use qualitative predictions and collapse internal program traces",
+    "Core lesson interactions link to matching engine"
+  ]
+}
