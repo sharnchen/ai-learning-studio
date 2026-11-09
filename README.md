@@ -114,3 +114,6 @@ Cloudflare正式問答服務已配置於 `ai-learning-studio-api.liesharn.worker
 
 ## 題幹完整化（題庫版本2）
 577情境題改為直接提供情境與具體判讀問題，不再引用「本課實作指引」。另重寫8個具體情境題及10個過短課程題，補齊數據、假設與解析；課程內題目同步。1322題檢查無教材位置依賴用語；TronClass沿用同一題目資料並驗證洗牌後答案對應。執行 `node scripts/test-assessment-wording.cjs`。字詞掃描不代表所有題目的難度、鑑別度或教學有效性已校準。
+
+## 使用者 Word 影片匯入
+從 `02 iPAS AI 初級.docx` 讀取207支唯一YouTube影片、9個原始分類；同標題但不同ID保留。原有49支影片保留，影片庫合計256支。82堂課各加2支依標題人工配對的補充影片；清楚標示尚未逐支驗證內容、頻道及播放。原始清單與對應索引為 `imported-video-index.json`。`node scripts/test-imported-videos.cjs` 驗證數量、來源分類、課程對應與搜尋分頁。
