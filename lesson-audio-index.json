@@ -5,493 +5,493 @@
     {
       "id": 0,
       "paragraphs": 12,
-      "characters": 773,
+      "characters": 772,
       "segments": 71
     },
     {
       "id": 1,
       "paragraphs": 12,
-      "characters": 577,
+      "characters": 576,
       "segments": 41
     },
     {
       "id": 2,
       "paragraphs": 12,
-      "characters": 760,
+      "characters": 759,
       "segments": 51
     },
     {
       "id": 3,
       "paragraphs": 12,
-      "characters": 653,
+      "characters": 652,
       "segments": 41
     },
     {
       "id": 4,
       "paragraphs": 11,
-      "characters": 610,
+      "characters": 609,
       "segments": 60
     },
     {
       "id": 5,
       "paragraphs": 11,
-      "characters": 638,
+      "characters": 637,
       "segments": 48
     },
     {
       "id": 6,
       "paragraphs": 12,
-      "characters": 662,
+      "characters": 661,
       "segments": 67
     },
     {
       "id": 7,
       "paragraphs": 11,
-      "characters": 581,
+      "characters": 580,
       "segments": 40
     },
     {
       "id": 8,
       "paragraphs": 11,
-      "characters": 664,
+      "characters": 663,
       "segments": 65
     },
     {
       "id": 9,
       "paragraphs": 11,
-      "characters": 688,
+      "characters": 687,
       "segments": 49
     },
     {
       "id": 10,
       "paragraphs": 11,
-      "characters": 696,
+      "characters": 695,
       "segments": 54
     },
     {
       "id": 11,
       "paragraphs": 11,
-      "characters": 636,
+      "characters": 635,
       "segments": 69
     },
     {
       "id": 12,
       "paragraphs": 10,
-      "characters": 543,
+      "characters": 542,
       "segments": 48
     },
     {
       "id": 13,
       "paragraphs": 10,
-      "characters": 603,
+      "characters": 602,
       "segments": 63
     },
     {
       "id": 14,
       "paragraphs": 11,
-      "characters": 664,
+      "characters": 663,
       "segments": 55
     },
     {
       "id": 15,
       "paragraphs": 11,
-      "characters": 499,
+      "characters": 498,
       "segments": 34
     },
     {
       "id": 16,
       "paragraphs": 10,
-      "characters": 553,
+      "characters": 552,
       "segments": 37
     },
     {
       "id": 17,
       "paragraphs": 10,
-      "characters": 587,
+      "characters": 586,
       "segments": 55
     },
     {
       "id": 18,
       "paragraphs": 10,
-      "characters": 540,
+      "characters": 539,
       "segments": 37
     },
     {
       "id": 19,
       "paragraphs": 11,
-      "characters": 529,
+      "characters": 528,
       "segments": 32
     },
     {
       "id": 20,
       "paragraphs": 10,
-      "characters": 491,
+      "characters": 490,
       "segments": 23
     },
     {
       "id": 21,
       "paragraphs": 10,
-      "characters": 519,
+      "characters": 518,
       "segments": 33
     },
     {
       "id": 22,
       "paragraphs": 10,
-      "characters": 479,
-      "segments": 25
+      "characters": 478,
+      "segments": 24
     },
     {
       "id": 23,
       "paragraphs": 11,
-      "characters": 526,
+      "characters": 525,
       "segments": 32
     },
     {
       "id": 24,
       "paragraphs": 17,
-      "characters": 987,
+      "characters": 986,
       "segments": 50
     },
     {
       "id": 25,
       "paragraphs": 17,
-      "characters": 918,
+      "characters": 917,
       "segments": 46
     },
     {
       "id": 26,
       "paragraphs": 17,
-      "characters": 902,
+      "characters": 901,
       "segments": 45
     },
     {
       "id": 27,
       "paragraphs": 21,
-      "characters": 977,
+      "characters": 976,
       "segments": 55
     },
     {
       "id": 28,
       "paragraphs": 21,
-      "characters": 1045,
+      "characters": 1044,
       "segments": 51
     },
     {
       "id": 29,
       "paragraphs": 20,
-      "characters": 962,
+      "characters": 961,
       "segments": 48
     },
     {
       "id": 30,
       "paragraphs": 20,
-      "characters": 910,
+      "characters": 909,
       "segments": 62
     },
     {
       "id": 31,
       "paragraphs": 20,
-      "characters": 1041,
+      "characters": 1040,
       "segments": 78
     },
     {
       "id": 32,
       "paragraphs": 20,
-      "characters": 1019,
+      "characters": 1018,
       "segments": 68
     },
     {
       "id": 33,
       "paragraphs": 19,
-      "characters": 899,
+      "characters": 898,
       "segments": 49
     },
     {
       "id": 34,
       "paragraphs": 19,
-      "characters": 980,
+      "characters": 979,
       "segments": 55
     },
     {
       "id": 35,
       "paragraphs": 18,
-      "characters": 918,
+      "characters": 917,
       "segments": 44
     },
     {
       "id": 36,
       "paragraphs": 20,
-      "characters": 949,
+      "characters": 948,
       "segments": 64
     },
     {
       "id": 37,
       "paragraphs": 20,
-      "characters": 1066,
+      "characters": 1065,
       "segments": 77
     },
     {
       "id": 38,
       "paragraphs": 19,
-      "characters": 1054,
+      "characters": 1053,
       "segments": 69
     },
     {
       "id": 39,
       "paragraphs": 23,
-      "characters": 1124,
+      "characters": 1123,
       "segments": 65
     },
     {
       "id": 40,
       "paragraphs": 23,
-      "characters": 1210,
+      "characters": 1209,
       "segments": 76
     },
     {
       "id": 41,
       "paragraphs": 21,
-      "characters": 1061,
+      "characters": 1060,
       "segments": 58
     },
     {
       "id": 42,
       "paragraphs": 18,
-      "characters": 901,
+      "characters": 900,
       "segments": 87
     },
     {
       "id": 43,
       "paragraphs": 18,
-      "characters": 1017,
+      "characters": 1016,
       "segments": 80
     },
     {
       "id": 44,
       "paragraphs": 16,
-      "characters": 818,
+      "characters": 817,
       "segments": 51
     },
     {
       "id": 45,
       "paragraphs": 20,
-      "characters": 1039,
+      "characters": 1038,
       "segments": 60
     },
     {
       "id": 46,
       "paragraphs": 20,
-      "characters": 877,
+      "characters": 876,
       "segments": 57
     },
     {
       "id": 47,
       "paragraphs": 20,
-      "characters": 1053,
+      "characters": 1052,
       "segments": 69
     },
     {
       "id": 48,
       "paragraphs": 18,
-      "characters": 916,
+      "characters": 915,
       "segments": 61
     },
     {
       "id": 49,
       "paragraphs": 18,
-      "characters": 973,
+      "characters": 972,
       "segments": 71
     },
     {
       "id": 50,
       "paragraphs": 18,
-      "characters": 948,
+      "characters": 947,
       "segments": 68
     },
     {
       "id": 51,
       "paragraphs": 18,
-      "characters": 905,
+      "characters": 904,
       "segments": 79
     },
     {
       "id": 52,
       "paragraphs": 18,
-      "characters": 973,
+      "characters": 972,
       "segments": 78
     },
     {
       "id": 53,
       "paragraphs": 18,
-      "characters": 987,
+      "characters": 986,
       "segments": 77
     },
     {
       "id": 54,
       "paragraphs": 20,
-      "characters": 1102,
+      "characters": 1101,
       "segments": 72
     },
     {
       "id": 55,
       "paragraphs": 20,
-      "characters": 1118,
+      "characters": 1117,
       "segments": 80
     },
     {
       "id": 56,
       "paragraphs": 20,
-      "characters": 1077,
+      "characters": 1076,
       "segments": 84
     },
     {
       "id": 57,
       "paragraphs": 19,
-      "characters": 953,
+      "characters": 952,
       "segments": 55
     },
     {
       "id": 58,
       "paragraphs": 19,
-      "characters": 982,
+      "characters": 981,
       "segments": 55
     },
     {
       "id": 59,
       "paragraphs": 18,
-      "characters": 917,
+      "characters": 916,
       "segments": 49
     },
     {
       "id": 60,
       "paragraphs": 18,
-      "characters": 968,
+      "characters": 967,
       "segments": 59
     },
     {
       "id": 61,
       "paragraphs": 18,
-      "characters": 914,
+      "characters": 913,
       "segments": 52
     },
     {
       "id": 62,
       "paragraphs": 18,
-      "characters": 909,
+      "characters": 908,
       "segments": 56
     },
     {
       "id": 63,
       "paragraphs": 21,
-      "characters": 1080,
+      "characters": 1079,
       "segments": 86
     },
     {
       "id": 64,
       "paragraphs": 21,
-      "characters": 1080,
+      "characters": 1079,
       "segments": 66
     },
     {
       "id": 65,
       "paragraphs": 21,
-      "characters": 1012,
+      "characters": 1011,
       "segments": 56
     },
     {
       "id": 66,
       "paragraphs": 17,
-      "characters": 752,
+      "characters": 751,
       "segments": 42
     },
     {
       "id": 67,
       "paragraphs": 17,
-      "characters": 950,
+      "characters": 949,
       "segments": 55
     },
     {
       "id": 68,
       "paragraphs": 16,
-      "characters": 965,
+      "characters": 964,
       "segments": 55
     },
     {
       "id": 69,
       "paragraphs": 21,
-      "characters": 1080,
+      "characters": 1079,
       "segments": 79
     },
     {
       "id": 70,
       "paragraphs": 21,
-      "characters": 1013,
+      "characters": 1012,
       "segments": 70
     },
     {
       "id": 71,
       "paragraphs": 21,
-      "characters": 1099,
+      "characters": 1098,
       "segments": 76
     },
     {
       "id": 72,
       "paragraphs": 20,
-      "characters": 983,
+      "characters": 982,
       "segments": 65
     },
     {
       "id": 73,
       "paragraphs": 20,
-      "characters": 1087,
+      "characters": 1086,
       "segments": 78
     },
     {
       "id": 74,
       "paragraphs": 18,
-      "characters": 961,
+      "characters": 960,
       "segments": 61
     },
     {
       "id": 75,
       "paragraphs": 20,
-      "characters": 988,
+      "characters": 987,
       "segments": 64
     },
     {
       "id": 76,
       "paragraphs": 20,
-      "characters": 1028,
+      "characters": 1027,
       "segments": 53
     },
     {
       "id": 77,
       "paragraphs": 20,
-      "characters": 1002,
+      "characters": 1001,
       "segments": 52
     },
     {
       "id": 78,
       "paragraphs": 17,
-      "characters": 919,
+      "characters": 918,
       "segments": 42
     },
     {
       "id": 79,
       "paragraphs": 17,
-      "characters": 897,
+      "characters": 896,
       "segments": 46
     },
     {
       "id": 80,
       "paragraphs": 16,
-      "characters": 795,
+      "characters": 794,
       "segments": 46
     },
     {
       "id": 81,
       "paragraphs": 10,
-      "characters": 874,
+      "characters": 873,
       "segments": 87
     }
   ]
