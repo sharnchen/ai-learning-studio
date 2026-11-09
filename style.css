@@ -34,3 +34,5 @@ img,svg{-webkit-user-drag:none}
 
 /* Keep short substitution chains on one line; wrap only between relations. */
 .math-step-chain{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;column-gap:.45em;row-gap:.25em}.math-step-chain math{display:block;flex:0 0 auto;margin:0;padding:3px 0;max-width:none;overflow:visible}.math-step-chain math:first-child{margin-right:.1em}
+
+.guided-practice{background:#f7f5ff;border:1px solid #dfd8f0;padding:20px;border-radius:14px;margin:24px 0}.guide-nav{display:flex;flex-wrap:wrap;gap:8px}.guide-nav button[aria-current=step]{background:#7155df;color:white}.guide-workspace{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,1.4fr);gap:20px;align-items:start}.guide-workspace>section{min-width:0}.guide-controls{display:grid;gap:12px}.guide-controls label{display:grid;gap:6px}.guide-controls input,.guide-controls select,.guide-controls textarea{max-width:100%;padding:10px;font:inherit}.guide-workspace table{font-size:12px}.guided-practice p{line-height:1.9}@media(max-width:800px){.guide-workspace{grid-template-columns:1fr}.guided-practice{padding:12px}}
