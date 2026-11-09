@@ -117,3 +117,6 @@ Cloudflare正式問答服務已配置於 `ai-learning-studio-api.liesharn.worker
 
 ## 使用者 Word 影片匯入
 從 `02 iPAS AI 初級.docx` 讀取207支唯一YouTube影片、9個原始分類；同標題但不同ID保留。原有49支影片保留，影片庫合計256支。82堂課各加2支依標題人工配對的補充影片；清楚標示尚未逐支驗證內容、頻道及播放。原始清單與對應索引為 `imported-video-index.json`。`node scripts/test-imported-videos.cjs` 驗證數量、來源分類、課程對應與搜尋分頁。
+
+## 完整語音導讀
+82堂課以現有教材、例子、關鍵詞定義、領域指引、實作與限制組成完整講稿，支援中文及英文語音切換、縮寫逐字母發音、分段播放、暫停／繼續、停止及語速選擇。英文預設0.8倍。使用瀏覽器Speech Synthesis，並非預錄音檔，實際發音品質及可用語言取決於系統語音。需使用者按播放；不呼叫LLM。關閉課程或切換頁面會停止，避免重疊。`node scripts/test-lesson-audio.cjs` 驗證講稿、發音規則、語音佇列及取消行為；未代表已人工聽完全部82堂音訊。
