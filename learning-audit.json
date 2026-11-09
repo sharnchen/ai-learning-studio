@@ -28,9 +28,9 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d1t0",
-        "d1t1",
-        "d1t2"
+        "d1t2",
+        "d1t3",
+        "d1t28"
       ]
     },
     {
@@ -40,9 +40,9 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d0t0",
-        "d0t2",
-        "d0t3"
+        "d0t7",
+        "d0t8",
+        "d0t11"
       ]
     },
     {
@@ -65,8 +65,7 @@
       "pitfall": true,
       "interaction": [
         "d3t5",
-        "d3t7",
-        "d6t17"
+        "d5t18"
       ]
     },
     {
@@ -76,9 +75,8 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d2t24",
-        "d5t18",
-        "d5t19"
+        "d3t0",
+        "d2t24"
       ]
     },
     {
@@ -88,8 +86,8 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d2t26",
-        "d2t27",
+        "d5t10",
+        "d5t7",
         "d2t28"
       ]
     },
@@ -100,9 +98,8 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d5t17",
-        "d5t24",
-        "d5t25"
+        "d5t32",
+        "d5t24"
       ]
     },
     {
@@ -113,8 +110,7 @@
       "pitfall": true,
       "interaction": [
         "d4t1",
-        "d4t2",
-        "d4t8"
+        "d4t12"
       ]
     },
     {
@@ -125,8 +121,7 @@
       "pitfall": true,
       "interaction": [
         "d4t20",
-        "d4t21",
-        "d4t22"
+        "d4t30"
       ]
     },
     {
@@ -136,9 +131,8 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d7t19",
-        "d7t20",
-        "d7t21"
+        "d7t11",
+        "d7t19"
       ]
     },
     {
@@ -148,9 +142,8 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d1t25",
         "d6t0",
-        "d6t1"
+        "d6t6"
       ]
     },
     {
@@ -160,9 +153,7 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d8t3",
-        "d8t4",
-        "d8t5"
+        "d8t3"
       ]
     },
     {
@@ -172,9 +163,7 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d9t0",
-        "d9t1",
-        "d9t2"
+        "d9t1"
       ]
     },
     {
@@ -184,9 +173,8 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d10t11",
-        "d10t28",
-        "d10t29"
+        "d10t3",
+        "d16t0"
       ]
     },
     {
@@ -196,9 +184,8 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d10t3",
-        "d10t4",
-        "d10t5"
+        "d10t13",
+        "d10t12"
       ]
     },
     {
@@ -208,9 +195,7 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d11t0",
-        "d11t1",
-        "d11t7"
+        "d11t0"
       ]
     },
     {
@@ -220,9 +205,7 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d3t27",
-        "d12t2",
-        "d12t3"
+        "d12t14"
       ]
     },
     {
@@ -232,9 +215,7 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d15t0",
-        "d15t1",
-        "d15t2"
+        "d15t5"
       ]
     },
     {
@@ -244,9 +225,8 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d18t0",
-        "d18t1",
-        "d18t2"
+        "d15t16",
+        "d15t19"
       ]
     },
     {
@@ -256,9 +236,7 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d10t30",
-        "d11t20",
-        "d11t21"
+        "d11t0"
       ]
     },
     {
@@ -268,9 +246,7 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d7t2",
-        "d7t6",
-        "d7t9"
+        "d7t1"
       ]
     },
     {
@@ -280,9 +256,7 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d15t24",
-        "d17t1",
-        "d17t2"
+        "d17t12"
       ]
     },
     {
@@ -292,9 +266,8 @@
       "practice": true,
       "pitfall": true,
       "interaction": [
-        "d17t0",
-        "d17t3",
-        "d17t5"
+        "d18t9",
+        "d6t19"
       ]
     },
     {
