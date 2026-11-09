@@ -108,3 +108,6 @@ Cloudflare正式問答服務已配置於 `ai-learning-studio-api.liesharn.worker
 
 ## 2026-11-09 學習單元補強
 82 堂課、577 詞條與107模板已做結構及預設案例檢查。新增19領域先備／操作／解讀／限制說明，補齊前24課專屬練習與易錯提醒，改善課程案例連結及流程模擬的預測與運算紀錄標示。`node scripts/audit-learning-units.cjs` 產生 `learning-audit.json`。此檢查不是對所有敘述、邊界輸入或瀏覽器版面的完整專家驗證。
+
+## 課程參考影片
+82堂課已明確對應49支單支影片，提供中文／英語、來源、觀看重點及涵蓋範圍。影片連結從原作者課程頁或已核對標題取得；無搜尋網址或泛用播放清單。來源核對日期2026-11-09，未逐支驗證完整播放、地區及字幕。索引為 `course-video-index.json`；檢查執行 `node scripts/test-course-videos.cjs`。不載入自動播放 iframe。

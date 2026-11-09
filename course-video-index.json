@@ -1,0 +1,999 @@
+{
+  "checkedOn": "2026-11-09",
+  "lessonCount": 82,
+  "uniqueVideos": 49,
+  "catalog": {
+    "ml": {
+      "title": "機器學習入門（Introduction to ML）",
+      "url": "https://youtu.be/Gv9_4yMHFhI",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "觀察如何由資料建立預測；區分規則、資料與模型。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "cv": {
+      "title": "交叉驗證（Cross Validation）",
+      "url": "https://youtu.be/fSytzGwwBVw",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "核對訓練／評估分工及不同切分的影響。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "confusion": {
+      "title": "混淆矩陣（Confusion Matrix）",
+      "url": "https://youtu.be/Kdsp6soqA7o",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "先定義正類，再逐筆對照真值與預測。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "bias": {
+      "title": "偏差與變異（Bias and Variance）",
+      "url": "https://youtu.be/EuBBz3bI-aA",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "比較訓練擬合與新資料表現。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "roc": {
+      "title": "ROC 與 AUC",
+      "url": "https://youtu.be/4jRBRDbJemM",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "觀察門檻如何改變真陽性率與假陽性率。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "ridge": {
+      "title": "L2 正則化（Ridge Regression）",
+      "url": "https://youtu.be/Q81RR3yKn30",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "理解懲罰項如何改變參數與擬合。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "pca": {
+      "title": "主成分分析（PCA）",
+      "url": "https://youtu.be/FgakZw6K1QQ",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "對照投影方向、變異及低維表示。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "encoding": {
+      "title": "類別編碼（Categorical Encoding）",
+      "url": "https://youtu.be/589nCGeWG1w",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "比較類別表示及目標編碼的洩漏風險。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "linear": {
+      "title": "線性回歸（Linear Regression）",
+      "url": "https://youtu.be/7ArmBVF2dCs",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "對照直線、殘差及最小平方法。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "stats": {
+      "title": "平均、變異與標準差（Mean / Variance / SD）",
+      "url": "https://youtu.be/SzZ6GpcfoQY",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "區分資料位置、分散程度與估計。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "bayes": {
+      "title": "Bayes 定理（Bayes’ Theorem）",
+      "url": "https://youtu.be/9wCnvr7Xw4E",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "逐步辨認先驗、概似與後驗。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "entropy": {
+      "title": "熵（Entropy）",
+      "url": "https://youtu.be/YtebGVx-Fxw",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "對照機率分布與不確定性。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "kmeans": {
+      "title": "K-Means 分群",
+      "url": "https://youtu.be/4b5d3muPQmA",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "追蹤指派群組與更新中心的交替步驟。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "tree": {
+      "title": "決策樹（Decision Trees）",
+      "url": "https://youtu.be/_L39rN6gz7Y",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "追蹤特徵分裂與分類路徑。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "nn": {
+      "title": "神經網路基本觀念（Neural Networks）",
+      "url": "https://youtu.be/CqOfi41LfDw",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "區分權重、激活與網路輸出。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "backprop": {
+      "title": "反向傳播（Backpropagation）",
+      "url": "https://youtu.be/IN2XmBhILt4",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "將損失對參數的影響沿計算圖往回追。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "relu": {
+      "title": "ReLU 激活函數",
+      "url": "https://youtu.be/68BZ5f7P94E",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "觀察激活如何改變分段線性輸出。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "ce": {
+      "title": "交叉熵（Cross Entropy）",
+      "url": "https://youtu.be/6ArSys5qHAU",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "比較真實類別被分配不同機率時的損失。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "cnn": {
+      "title": "卷積與影像分類（CNN）",
+      "url": "https://youtu.be/HGwBXDKFk9I",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "辨認卷積、局部特徵與分類輸出。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "rnn": {
+      "title": "循環神經網路（RNN）",
+      "url": "https://youtu.be/AsNTP8Kwu80",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "追蹤序列狀態如何跨時間傳遞。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "lstm": {
+      "title": "長短期記憶網路（LSTM）",
+      "url": "https://youtu.be/YCzL96nL7j0",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "對照記憶與閘門機制。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "embedding": {
+      "title": "詞嵌入（Word Embedding / Word2Vec）",
+      "url": "https://youtu.be/viZrOnJclY0",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "理解文字索引與向量表示的不同。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "attention": {
+      "title": "注意力（Attention）",
+      "url": "https://youtu.be/PSs6nxngL6k",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "對照查詢、鍵、值與加權結果。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "transformer": {
+      "title": "Transformer 架構",
+      "url": "https://youtu.be/zxQyTK8quyY",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "連結注意力、位置與模型資料流。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "rl": {
+      "title": "強化學習基礎（Reinforcement Learning）",
+      "url": "https://youtu.be/Z-T0iJEXiwM",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "明確區分狀態、動作與獎勵。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "rlhf": {
+      "title": "人類回饋強化學習（RLHF）",
+      "url": "https://youtu.be/qPN_XZcJf_s",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "理解偏好資料、獎勵與策略更新的角色。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "matrix": {
+      "title": "神經網路矩陣運算（Matrix Algebra）",
+      "url": "https://youtu.be/ZTt9gsGcdDo",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "先檢查形狀，再對照矩陣乘法。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "gradient": {
+      "title": "梯度下降（Gradient Descent）",
+      "url": "https://youtu.be/sDv4f4s2SB8",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "逐步核對梯度、學習率與參數更新。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "mle": {
+      "title": "最大概似（Maximum Likelihood）",
+      "url": "https://youtu.be/XepXtl9YKwc",
+      "author": "StatQuest · Josh Starmer",
+      "language": "英語",
+      "focus": "比較參數改變時資料概似如何變動。",
+      "sourceUrl": "https://statquest.org/video_index.html",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "zh-ai": {
+      "title": "生成式 AI 基礎",
+      "url": "https://youtu.be/JGtqpQXfJis",
+      "author": "臺灣大學 · 李宏毅",
+      "language": "中文",
+      "focus": "區分生成式 AI 與其他任務；作為入門延伸。",
+      "sourceUrl": "https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "zh-prompt": {
+      "title": "提示與資訊提供",
+      "url": "https://youtu.be/A3Yx35KrSN0",
+      "author": "臺灣大學 · 李宏毅",
+      "language": "中文",
+      "focus": "對照提示條件、上下文與輸出。",
+      "sourceUrl": "https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "zh-pretrain": {
+      "title": "預訓練與自我學習",
+      "url": "https://youtu.be/cCpErV7To2o",
+      "author": "臺灣大學 · 李宏毅",
+      "language": "中文",
+      "focus": "辨認預訓練資料、訓練目標與推論的差別。",
+      "sourceUrl": "https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "zh-finetune": {
+      "title": "監督微調與指令學習",
+      "url": "https://youtu.be/Q9cNkUPXUB8",
+      "author": "臺灣大學 · 李宏毅",
+      "language": "中文",
+      "focus": "區分基礎模型與後續微調。",
+      "sourceUrl": "https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "zh-agent": {
+      "title": "LLM Agent",
+      "url": "https://youtu.be/bJZTJ7MjYqg",
+      "author": "臺灣大學 · 李宏毅",
+      "language": "中文",
+      "focus": "觀察模型如何與工具、規劃及環境互動。",
+      "sourceUrl": "https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "zh-eval": {
+      "title": "語言模型能力評估",
+      "url": "https://youtu.be/Hk8Z0uhmWg4",
+      "author": "臺灣大學 · 李宏毅",
+      "language": "中文",
+      "focus": "區分測試集、評分規則及能力結論。",
+      "sourceUrl": "https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "zh-safety": {
+      "title": "模型偏見與安全",
+      "url": "https://youtu.be/MSnvknLywUc",
+      "author": "臺灣大學 · 李宏毅",
+      "language": "中文",
+      "focus": "思考群體差異、風險與驗收限制。",
+      "sourceUrl": "https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "zh-injection": {
+      "title": "提示注入與攻擊",
+      "url": "https://youtu.be/CNTondxaguo",
+      "author": "臺灣大學 · 李宏毅",
+      "language": "中文",
+      "focus": "區分外部資料與可信指示。",
+      "sourceUrl": "https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "zh-speculate": {
+      "title": "推測解碼（Speculative Decoding）",
+      "url": "https://youtu.be/MAbGgsWKrg8",
+      "author": "臺灣大學 · 李宏毅",
+      "language": "中文",
+      "focus": "觀察草稿與驗證如何影響推論流程。",
+      "sourceUrl": "https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "zh-media": {
+      "title": "影像與影片生成",
+      "url": "https://youtu.be/5H2bVEmYDNg",
+      "author": "臺灣大學 · 李宏毅",
+      "language": "中文",
+      "focus": "對照影像／時間條件與生成的限制。",
+      "sourceUrl": "https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "zh-generative": {
+      "title": "VAE、Flow、Diffusion、GAN",
+      "url": "https://youtu.be/OYN_GvAqv-A",
+      "author": "臺灣大學 · 李宏毅",
+      "language": "中文",
+      "focus": "比較不同生成機制；本片是導讀，非完整實作教程。",
+      "sourceUrl": "https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php",
+      "verifiedOn": "2026-11-09",
+      "verification": "原作者課程頁列有此影片連結；未驗證各地區完整播放。"
+    },
+    "rag": {
+      "title": "檢索增強生成（RAG）",
+      "url": "https://www.youtube.com/watch?v=T-D1OfcDW1M",
+      "author": "IBM Technology",
+      "language": "英語",
+      "focus": "區分檢索提供證據與模型生成答案；核對知識來源。",
+      "sourceUrl": "https://www.ibm.com/think/videos/rag",
+      "verifiedOn": "2026-11-09",
+      "verification": "IBM 官方影片頁及搜尋結果核對。"
+    },
+    "lora": {
+      "title": "LoRA：低秩適配（Low-Rank Adaptation）",
+      "url": "https://www.youtube.com/watch?v=DhRoTONcyZE",
+      "author": "LoRA 作者專案推薦的解說影片",
+      "language": "英語",
+      "focus": "對照凍結原權重與低秩可訓練矩陣；不代表本片涵蓋全部量化方法。",
+      "sourceUrl": "https://github.com/microsoft/LoRA",
+      "verifiedOn": "2026-11-09",
+      "verification": "Microsoft LoRA 專案所列 video explainer。"
+    },
+    "fs-deploy": {
+      "title": "模型部署（Deployment）",
+      "url": "https://www.youtube.com/watch?v=W3hKjXg7fXM",
+      "author": "Full Stack Deep Learning · 2022",
+      "language": "英語",
+      "focus": "對照模型服務、批次、快取及部署取捨。",
+      "sourceUrl": "https://fullstackdeeplearning.com/course/2022/lecture-5-deployment/",
+      "verifiedOn": "2026-11-09",
+      "verification": "官方單堂課程頁的嵌入影片ID；未驗證完整串流。"
+    },
+    "fs-monitor": {
+      "title": "模型監測實作（Model Monitoring）",
+      "url": "https://www.youtube.com/watch?v=-mKzxSC0r7w",
+      "author": "Full Stack Deep Learning · 2022",
+      "language": "英語",
+      "focus": "觀察使用者回饋、分布與錯誤分析；工具介面可能已改版。",
+      "sourceUrl": "https://fullstackdeeplearning.com/course/2022/lab-8-model-monitoring/",
+      "verifiedOn": "2026-11-09",
+      "verification": "官方單堂課程頁的嵌入影片ID；未驗證完整串流。"
+    },
+    "fs-data": {
+      "title": "資料管理（Data Management）",
+      "url": "https://www.youtube.com/watch?v=Jlm4oqW41vY",
+      "author": "Full Stack Deep Learning · 2022",
+      "language": "英語",
+      "focus": "對照資料來源、探索、標註與版本化。",
+      "sourceUrl": "https://fullstackdeeplearning.com/course/2022/lecture-4-data-management/",
+      "verifiedOn": "2026-11-09",
+      "verification": "官方單堂課程頁的嵌入影片ID；未驗證完整串流。"
+    },
+    "fs-test": {
+      "title": "機器學習測試（Troubleshooting & Testing）",
+      "url": "https://www.youtube.com/watch?v=RLemHNAO5Lw",
+      "author": "Full Stack Deep Learning · 2022",
+      "language": "英語",
+      "focus": "分清資料、軟體與模型測試，以及失敗排查。",
+      "sourceUrl": "https://fullstackdeeplearning.com/course/2022/lecture-3-troubleshooting-and-testing/",
+      "verifiedOn": "2026-11-09",
+      "verification": "官方單堂課程頁的嵌入影片ID；未驗證完整串流。"
+    },
+    "fs-ethics": {
+      "title": "機器學習倫理（ML Ethics）",
+      "url": "https://www.youtube.com/watch?v=7FQpbYTqjAA",
+      "author": "Full Stack Deep Learning · 2022",
+      "language": "英語",
+      "focus": "對照公平性、資料權利與問責；不是法律意見。",
+      "sourceUrl": "https://fullstackdeeplearning.com/course/2022/lecture-9-ethics/",
+      "verifiedOn": "2026-11-09",
+      "verification": "官方單堂課程頁的嵌入影片ID；未驗證完整串流。"
+    },
+    "fs-project": {
+      "title": "何時使用機器學習（When to Use ML）",
+      "url": "https://www.youtube.com/watch?v=-Iob-FW5jVM",
+      "author": "Full Stack Deep Learning · 2022",
+      "language": "英語",
+      "focus": "從問題可行性及產品生命週期定義成果。",
+      "sourceUrl": "https://fullstackdeeplearning.com/course/2022/lecture-1-course-vision-and-when-to-use-ml/",
+      "verifiedOn": "2026-11-09",
+      "verification": "官方單堂課程頁的嵌入影片ID；未驗證完整串流。"
+    },
+    "mcp": {
+      "title": "MCP 與 API：工具整合差異",
+      "url": "https://www.youtube.com/watch?v=7j1t3UZA1TY",
+      "author": "IBM Technology",
+      "language": "英語",
+      "focus": "比較 MCP 的工具發現、外部資料連接與 API 的角色；實作仍需依現行規格。",
+      "sourceUrl": "https://www.youtube.com/watch?v=7j1t3UZA1TY",
+      "verifiedOn": "2026-11-09",
+      "verification": "已核對影片標題；未驗證完整串流。"
+    }
+  },
+  "lessons": {
+    "0": {
+      "videos": [
+        "ml",
+        "zh-ai"
+      ]
+    },
+    "1": {
+      "videos": [
+        "fs-data",
+        "encoding"
+      ]
+    },
+    "2": {
+      "videos": [
+        "ml",
+        "rl"
+      ]
+    },
+    "3": {
+      "videos": [
+        "cv",
+        "fs-test"
+      ]
+    },
+    "4": {
+      "videos": [
+        "linear",
+        "gradient"
+      ]
+    },
+    "5": {
+      "videos": [
+        "ce",
+        "confusion"
+      ]
+    },
+    "6": {
+      "videos": [
+        "gradient",
+        "backprop"
+      ]
+    },
+    "7": {
+      "videos": [
+        "bias",
+        "ridge"
+      ]
+    },
+    "8": {
+      "videos": [
+        "nn",
+        "relu"
+      ]
+    },
+    "9": {
+      "videos": [
+        "backprop",
+        "gradient"
+      ]
+    },
+    "10": {
+      "videos": [
+        "cnn"
+      ]
+    },
+    "11": {
+      "videos": [
+        "confusion",
+        "roc"
+      ]
+    },
+    "12": {
+      "videos": [
+        "embedding",
+        "rnn"
+      ]
+    },
+    "13": {
+      "videos": [
+        "attention",
+        "transformer"
+      ]
+    },
+    "14": {
+      "videos": [
+        "zh-pretrain",
+        "zh-finetune"
+      ]
+    },
+    "15": {
+      "videos": [
+        "zh-prompt"
+      ]
+    },
+    "16": {
+      "videos": [
+        "rag",
+        "fs-test"
+      ]
+    },
+    "17": {
+      "videos": [
+        "lora",
+        "zh-finetune"
+      ]
+    },
+    "18": {
+      "videos": [
+        "zh-agent",
+        "mcp"
+      ]
+    },
+    "19": {
+      "videos": [
+        "zh-agent",
+        "fs-test"
+      ]
+    },
+    "20": {
+      "videos": [
+        "rag",
+        "fs-deploy"
+      ]
+    },
+    "21": {
+      "videos": [
+        "cnn",
+        "fs-deploy"
+      ]
+    },
+    "22": {
+      "videos": [
+        "zh-injection",
+        "fs-ethics"
+      ]
+    },
+    "23": {
+      "videos": [
+        "fs-project",
+        "fs-test"
+      ]
+    },
+    "24": {
+      "videos": [
+        "ml",
+        "zh-ai"
+      ]
+    },
+    "25": {
+      "videos": [
+        "ml",
+        "rl"
+      ]
+    },
+    "26": {
+      "videos": [
+        "fs-project",
+        "zh-ai"
+      ]
+    },
+    "27": {
+      "videos": [
+        "fs-data",
+        "stats"
+      ]
+    },
+    "28": {
+      "videos": [
+        "encoding",
+        "cv"
+      ]
+    },
+    "29": {
+      "videos": [
+        "fs-data",
+        "fs-test"
+      ]
+    },
+    "30": {
+      "videos": [
+        "matrix",
+        "stats"
+      ]
+    },
+    "31": {
+      "videos": [
+        "bayes",
+        "entropy"
+      ]
+    },
+    "32": {
+      "videos": [
+        "pca",
+        "matrix"
+      ]
+    },
+    "33": {
+      "videos": [
+        "linear",
+        "tree"
+      ]
+    },
+    "34": {
+      "videos": [
+        "kmeans",
+        "tree"
+      ]
+    },
+    "35": {
+      "videos": [
+        "cv",
+        "bias"
+      ]
+    },
+    "36": {
+      "videos": [
+        "nn",
+        "relu"
+      ]
+    },
+    "37": {
+      "videos": [
+        "backprop",
+        "cnn"
+      ]
+    },
+    "38": {
+      "videos": [
+        "nn",
+        "cnn"
+      ]
+    },
+    "39": {
+      "videos": [
+        "gradient",
+        "ce"
+      ]
+    },
+    "40": {
+      "videos": [
+        "backprop",
+        "ridge"
+      ]
+    },
+    "41": {
+      "videos": [
+        "bias",
+        "cv"
+      ]
+    },
+    "42": {
+      "videos": [
+        "confusion",
+        "roc"
+      ]
+    },
+    "43": {
+      "videos": [
+        "roc",
+        "cv"
+      ]
+    },
+    "44": {
+      "videos": [
+        "confusion",
+        "zh-eval"
+      ]
+    },
+    "45": {
+      "videos": [
+        "cnn"
+      ],
+      "note": "影片聚焦 CNN 與影像分類；本單元的偵測／分割等其他詞條仍需搭配教材與實驗，不宣稱一片涵蓋全部。"
+    },
+    "46": {
+      "videos": [
+        "cnn",
+        "fs-data"
+      ],
+      "note": "影片聚焦 CNN 與影像分類；本單元的偵測／分割等其他詞條仍需搭配教材與實驗，不宣稱一片涵蓋全部。"
+    },
+    "47": {
+      "videos": [
+        "cnn",
+        "fs-deploy"
+      ],
+      "note": "影片聚焦 CNN 與影像分類；本單元的偵測／分割等其他詞條仍需搭配教材與實驗，不宣稱一片涵蓋全部。"
+    },
+    "48": {
+      "videos": [
+        "embedding",
+        "rnn"
+      ]
+    },
+    "49": {
+      "videos": [
+        "lstm",
+        "embedding"
+      ]
+    },
+    "50": {
+      "videos": [
+        "rnn",
+        "fs-test"
+      ]
+    },
+    "51": {
+      "videos": [
+        "attention",
+        "matrix"
+      ]
+    },
+    "52": {
+      "videos": [
+        "transformer",
+        "attention"
+      ]
+    },
+    "53": {
+      "videos": [
+        "transformer",
+        "fs-deploy"
+      ]
+    },
+    "54": {
+      "videos": [
+        "zh-pretrain",
+        "transformer"
+      ]
+    },
+    "55": {
+      "videos": [
+        "zh-finetune",
+        "zh-prompt"
+      ]
+    },
+    "56": {
+      "videos": [
+        "zh-eval",
+        "zh-speculate"
+      ]
+    },
+    "57": {
+      "videos": [
+        "rag",
+        "embedding"
+      ],
+      "note": "RAG 影片建立檢索與生成的關係；切塊、混合檢索及忠實度細節請接著在本課實作核對。"
+    },
+    "58": {
+      "videos": [
+        "rag",
+        "fs-data"
+      ],
+      "note": "RAG 影片建立檢索與生成的關係；切塊、混合檢索及忠實度細節請接著在本課實作核對。"
+    },
+    "59": {
+      "videos": [
+        "rag",
+        "fs-test"
+      ],
+      "note": "RAG 影片建立檢索與生成的關係；切塊、混合檢索及忠實度細節請接著在本課實作核對。"
+    },
+    "60": {
+      "videos": [
+        "lora",
+        "zh-finetune"
+      ],
+      "note": "LoRA 影片對應低秩適配；部署影片僅補充壓縮取捨，不代表涵蓋所有剪枝、蒸餾或量化算法。"
+    },
+    "61": {
+      "videos": [
+        "lora",
+        "fs-deploy"
+      ],
+      "note": "LoRA 影片對應低秩適配；部署影片僅補充壓縮取捨，不代表涵蓋所有剪枝、蒸餾或量化算法。"
+    },
+    "62": {
+      "videos": [
+        "lora",
+        "fs-test"
+      ],
+      "note": "LoRA 影片對應低秩適配；部署影片僅補充壓縮取捨，不代表涵蓋所有剪枝、蒸餾或量化算法。"
+    },
+    "63": {
+      "videos": [
+        "zh-generative",
+        "zh-media"
+      ]
+    },
+    "64": {
+      "videos": [
+        "zh-generative",
+        "zh-media"
+      ]
+    },
+    "65": {
+      "videos": [
+        "zh-media",
+        "zh-eval"
+      ]
+    },
+    "66": {
+      "videos": [
+        "rl"
+      ]
+    },
+    "67": {
+      "videos": [
+        "rl",
+        "rlhf"
+      ]
+    },
+    "68": {
+      "videos": [
+        "rlhf",
+        "zh-safety"
+      ]
+    },
+    "69": {
+      "videos": [
+        "zh-agent",
+        "mcp"
+      ]
+    },
+    "70": {
+      "videos": [
+        "mcp",
+        "zh-agent"
+      ]
+    },
+    "71": {
+      "videos": [
+        "zh-agent",
+        "fs-test"
+      ]
+    },
+    "72": {
+      "videos": [
+        "fs-deploy"
+      ],
+      "note": "參考片對應推論部署、快取或解碼；不是指定 GPU 的測速、記憶體規格或各種平行策略完整課程。"
+    },
+    "73": {
+      "videos": [
+        "zh-speculate",
+        "fs-deploy"
+      ],
+      "note": "參考片對應推論部署、快取或解碼；不是指定 GPU 的測速、記憶體規格或各種平行策略完整課程。"
+    },
+    "74": {
+      "videos": [
+        "fs-deploy",
+        "fs-monitor"
+      ],
+      "note": "參考片對應推論部署、快取或解碼；不是指定 GPU 的測速、記憶體規格或各種平行策略完整課程。"
+    },
+    "75": {
+      "videos": [
+        "zh-safety",
+        "fs-ethics"
+      ]
+    },
+    "76": {
+      "videos": [
+        "zh-injection",
+        "fs-ethics"
+      ]
+    },
+    "77": {
+      "videos": [
+        "fs-ethics",
+        "zh-eval"
+      ]
+    },
+    "78": {
+      "videos": [
+        "fs-deploy",
+        "fs-data"
+      ]
+    },
+    "79": {
+      "videos": [
+        "fs-test",
+        "fs-data"
+      ]
+    },
+    "80": {
+      "videos": [
+        "fs-monitor",
+        "fs-deploy"
+      ]
+    },
+    "81": {
+      "videos": [
+        "gradient",
+        "mle"
+      ],
+      "note": "這兩支影片分別講下降法與最大概似，並非專講梯度上升。本課請用 L＝−J 推導上升更新，再回實驗核對。"
+    }
+  }
+}
