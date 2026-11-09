@@ -90,7 +90,7 @@ KL 散度|Kullback–Leibler Divergence, KL Divergence|衡量分布差異的非�
 偏導數|Partial Derivative|固定其他自變數時，函數對某一變數的變化率。
 梯度|Gradient|由各偏導數組成的向量，指向函數局部增加最快的方向。
 鏈式法則|Chain Rule|計算複合函數導數的規則，是反向傳播的基礎。
-雅可比矩陣|Jacobian Matrix|向量值函數各輸出對各輸入的一階偏導數矩陣。
+Jacobian矩陣|Jacobian Matrix|向量值函數各輸出對各輸入的一階偏導數矩陣。
 海森矩陣|Hessian Matrix|純量函數的二階偏導數矩陣，用於描述局部曲率。
 凸最佳化|Convex Optimization|在凸可行域上最小化凸函數；局部最小值也是全域最小值。
 # 傳統機器學習|Classical Machine Learning

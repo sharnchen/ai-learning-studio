@@ -544,7 +544,7 @@
     },
     {
       "id": "d2t30",
-      "zh": "雅可比矩陣",
+      "zh": "Jacobian矩陣",
       "en": "Jacobian Matrix",
       "engineId": "calculus"
     },
