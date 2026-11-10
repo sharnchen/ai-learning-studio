@@ -20,3 +20,9 @@ globalThis.fetch=async(url,opts)=>{assert.equal(url,'https://generativelanguage.
 assert.equal((await (await worker.fetch(req(body),geminiEnv)).json()).answer,'Native Gemini answer');
 console.log('Gemini native request and visible-text-only response parsing passed');
 let limits=[];globalThis.fetch=async(url,opts)=>{const b=JSON.parse(opts.body);limits.push(b.generationConfig.maxOutputTokens);assert(b.systemInstruction.parts[0].text.length<1500);return Response.json({candidates:[{content:{parts:[{text:'short'}]}}]})};await worker.fetch(req(body),geminiEnv);await worker.fetch(req({...body,messages:[{role:'user',content:'請詳細說明'}]}),geminiEnv);assert.deepEqual(limits,[2048,4096]);console.log('Default and detailed output budgets passed');
+// Floating aliases must not inherit an incompatible model family's optional fields.
+for(const [model,expected] of [['gemini-flash-lite-latest',undefined],['gemini-2.5-flash-lite',{thinkingBudget:512}],['gemini-3.1-flash-lite',{thinkingLevel:'low'}],['gemini-3.1-flash-lite-image',undefined]]){
+ globalThis.fetch=async(url,opts)=>{const b=JSON.parse(opts.body);assert.deepEqual(b.generationConfig.thinkingConfig,expected);return Response.json({candidates:[{content:{parts:[{text:'connected'}]}}]})};
+ const response=await worker.fetch(req(body),{...geminiEnv,AI_MODEL:model});const data=await response.json();assert.equal(response.status,200);assert.equal(data.model,model);assert.equal(data.answer,'connected');
+}
+console.log('Explicit thinking families and floating-alias compatibility passed');

@@ -50,3 +50,5 @@ img,svg{-webkit-user-drag:none}
 .data-guide{margin:18px 0;padding:18px;border:1px solid #e0d7f3;border-radius:14px;background:#faf9ff}.data-guide h3{margin-top:0}.data-guide details{margin:12px 0}.learning-reference summary{cursor:pointer;color:#6545c1;font-weight:600}.learning-reference table,.confusion-explanation table{margin:12px 0}.confusion-explanation{margin:18px 0}.data-guide p{line-height:1.8}
 
 .formula-explanation{padding:16px;margin:16px 0;background:#fff;border-left:4px solid #8665d8;border-radius:8px;line-height:1.9}.formula-explanation h4{margin-top:0}.lesson-formulas details{margin:12px 0}.lesson-formulas summary{cursor:pointer;color:#6545c1}
+
+.tutor-mode-banner{padding:14px 18px;border:1px solid #d9cfef;border-radius:12px;background:#f6f2ff;line-height:1.8}.tutor-settings details[open]{padding:12px;border:1px solid #e2daee;border-radius:12px}
