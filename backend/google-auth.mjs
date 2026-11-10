@@ -1,3 +1,4 @@
+import {loginPage} from './login-page.mjs';
 // Google sign-in: public client ID, Google-signed ID token, server-only session key.
 const enc=new TextEncoder();
 const encode=b=>btoa(String.fromCharCode(...new Uint8Array(b))).replaceAll('+','-').replaceAll('/','_').replace(/=+$/,'');
@@ -30,7 +31,7 @@ export async function verifyGoogleToken(token,clientId,nonce,transport=fetch){
  if(!await crypto.subtle.verify('RSASSA-PKCS1-v1_5',key,decode(parts[2]),enc.encode(parts[0]+'.'+parts[1])))throw Error('Invalid signature');
  return {sub:claims.sub,email:claims.email};
 }
-export const loginClient=`window.onload=()=>{const box=document.getElementById('google-login'),status=document.getElementById('status');if(!window.google){status.textContent='Google 登入元件無法載入，請重新整理。';return}google.accounts.id.initialize({client_id:box.dataset.client,nonce:box.dataset.nonce,auto_select:false,callback:async result=>{status.textContent='正在確認登入…';try{const r=await fetch('/auth/google',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({credential:result.credential})});if(!r.ok)throw Error();location.replace('/studio/#tutor')}catch{status.textContent='登入未完成，請重新整理後再試。'}}});google.accounts.id.renderButton(box,{theme:'outline',size:'large',text:'signin_with',locale:'zh_TW'});};`;
+export const loginClient=`window.onload=()=>{const box=document.getElementById('google-login'),status=document.getElementById('status');if(!window.google){status.textContent='Google 登入元件無法載入，請重新整理。';return}google.accounts.id.initialize({client_id:box.dataset.client,nonce:box.dataset.nonce,auto_select:false,callback:async result=>{status.textContent='正在確認登入…';try{const r=await fetch('/auth/google',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({credential:result.credential})});if(!r.ok)throw Error();location.replace('/studio/#tutor')}catch{status.textContent='登入未完成，請重新整理後再試。'}}});google.accounts.id.renderButton(box,{theme:'outline',size:'large',text:'signin_with',locale:'zh_TW',width:Math.min(360,document.getElementById('google-login').clientWidth)});};`;
 export async function googleAuthRoute(request,env){
  const url=new URL(request.url),path=url.pathname,origin=url.origin;
  const reply=(data,status=200,extra={})=>Response.json(data,{status,headers:{'Cache-Control':'no-store',...extra}});
@@ -38,7 +39,7 @@ export async function googleAuthRoute(request,env){
  if(path==='/auth/login'&&request.method==='GET'){
  if(!env.GOOGLE_CLIENT_ID||!env.SESSION_SIGNING_KEY)return reply({error:'Login not configured'},503);
  const nonce=encode(crypto.getRandomValues(new Uint8Array(32)));
- return new Response(`<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>登入 AI 學習所</title><style>body{font:18px system-ui;background:#f6f5fc;color:#20263e;display:grid;place-items:center;min-height:95vh;margin:0}main{background:white;padding:40px;border-radius:24px;max-width:480px;margin:20px}h1{font-size:28px}p{line-height:1.7;color:#5d6475}</style><main><h1>登入 AI 學習所</h1><p>使用 Google 帳號，即可開始 AI 學習問答。</p><div id="google-login" data-client="${env.GOOGLE_CLIENT_ID.replace(/[^a-zA-Z0-9._-]/g,'')}" data-nonce="${nonce}"></div><p id="status" role="status">只讀取基本帳號資料，不存取信件或雲端硬碟。</p><a href="https://sharnchen.github.io/ai-learning-studio/#tutor">返回教材</a></main><script src="https://accounts.google.com/gsi/client" async defer></script><script src="/auth/client.js" defer></script></html>`,{headers:{...pageHeaders,'Set-Cookie':setCookie(nonceName,nonce,600)}});
+ return new Response(loginPage(env.GOOGLE_CLIENT_ID.replace(/[^a-zA-Z0-9._-]/g,''),nonce),{headers:{...pageHeaders,'Set-Cookie':setCookie(nonceName,nonce,600)}});
  }
  if(path==='/auth/google'&&request.method==='POST'){
  if(request.headers.get('Origin')!==origin||!request.headers.get('Content-Type')?.includes('application/json'))return reply({error:'Origin denied'},403);

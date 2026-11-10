@@ -21,5 +21,5 @@ assert.equal((await worker.fetch(new Request(origin+'/studio/'),env)).headers.ge
 assert.equal((await worker.fetch(req('/session'),env)).status,200);
 assert.equal((await worker.fetch(new Request(origin+'/tutor',{method:'POST',headers:{Cookie:'__Host-ai_session='+session,Origin:'https://evil.example'}}),env)).status,403);
 assert.equal((await googleAuthRoute(new Request(origin+'/auth/google',{method:'POST',headers:{Origin:'https://evil.example'}}),env)).status,403);
-const login=await googleAuthRoute(new Request(origin+'/auth/login'),env);assert(login.headers.get('Set-Cookie').includes('HttpOnly'));assert((await login.text()).includes('使用 Google 帳號'));
+const login=await googleAuthRoute(new Request(origin+'/auth/login'),env);assert(login.headers.get('Set-Cookie').includes('HttpOnly'));assert((await login.text()).includes('登入 · AI Learning Studio｜AI 學習所'));
 console.log('PASS: real RSA signatures, wrong issuer/audience/expiry/nonce/signature, any Google sub, signed sessions, tampering, CSRF, protected routes and login page');
