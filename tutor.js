@@ -6,6 +6,7 @@ const tutorSecureHost=typeof location!=='undefined'&&location.origin===TUTOR_SEC
 try{sessionStorage.removeItem('ai-learning-tutor-connection-v1')}catch{}
 let tutorConnectionStatus=tutorSecureHost?'正在確認登入工作階段…':'教材模式；登入 AI 助教後即可使用模型。';
 let tutorTopic='d5t-ascent',tutorMessages=[],tutorChallenge=null,tutorBusy=false,tutorAbort=null,tutorEndpoint=tutorSecureHost?TUTOR_SECURE_ORIGIN+'/tutor':'',tutorSessionUser='',tutorSessionReady=false;
+if(tutorSecureHost&&!location.hash)location.hash='#tutor';
 if(tutorSecureHost){const topic=new URLSearchParams(location.search).get('topic');if(keywordCatalog.some(t=>t.id===topic))tutorTopic=topic}
 function tutorLoginUrl(){return TUTOR_SECURE_ORIGIN+'/studio/?topic='+encodeURIComponent(tutorTopic)+'#tutor'}
 async function tutorCheckSession(){if(!tutorSecureHost)return;try{const r=await fetch('/session',{credentials:'same-origin',redirect:'manual',signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error('登入已到期，請重新登入。');const data=await r.json();if(data.authenticated!==true)throw Error('尚未登入。');tutorSessionUser=data.email;tutorSessionReady=true;tutorConnectionStatus='已登入；模型尚未進行本次回答測試。'}catch(error){tutorSessionUser='';tutorSessionReady=false;tutorConnectionStatus=error.message}tutorRefresh()}
