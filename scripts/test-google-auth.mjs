@@ -8,7 +8,7 @@ const jwk=await crypto.subtle.exportKey('jwk',pair.publicKey);jwk.kid='test';
 const b=x=>Buffer.from(typeof x==='string'?x:JSON.stringify(x)).toString('base64url');
 const now=Math.floor(Date.now()/1000),claims={iss:'https://accounts.google.com',aud:env.GOOGLE_CLIENT_ID,exp:now+3600,iat:now,sub:'any-google-user',email:'other@example.com',email_verified:true,nonce:'nonce'};
 async function token(c=claims){const data=b({alg:'RS256',kid:'test'})+'.'+b(c);return data+'.'+Buffer.from(await crypto.subtle.sign('RSASSA-PKCS1-v1_5',pair.privateKey,new TextEncoder().encode(data))).toString('base64url')}
-const transport=async()=>Response.json({keys:[jwk]});
+const transport=async(url,options)=>{assert.equal(options.redirect,'manual','Workers only supports manual/follow redirect modes');return Response.json({keys:[jwk]})};
 assert.equal((await verifyGoogleToken(await token(),env.GOOGLE_CLIENT_ID,'nonce',transport)).sub,'any-google-user');
 for(const change of [{aud:'attacker'},{exp:now-1},{iss:'attacker'},{nonce:'wrong'},{email_verified:false}])await assert.rejects(()=>token({...claims,...change}).then(t=>verifyGoogleToken(t,env.GOOGLE_CLIENT_ID,'nonce',transport)));
 const good=await token();await assert.rejects(()=>verifyGoogleToken(good.slice(0,-6)+'aaaaaa',env.GOOGLE_CLIENT_ID,'nonce',transport));
@@ -33,3 +33,6 @@ const originalFetch=globalThis.fetch;globalThis.fetch=transport;
 const callbackResponse=await googleAuthRoute(new Request(origin+'/auth/google',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json',Cookie:'__Host-ai_nonce=nonce'},body:JSON.stringify({credential:await token()})}),env);
 assert.equal(callbackResponse.status,200);const issued=callbackResponse.headers.getSetCookie().find(x=>x.startsWith('__Host-ai_session='));assert(issued);const signedRequest=new Request(origin+'/auth/login',{headers:{Cookie:issued.split(';')[0]}});assert.equal((await googleAuthRoute(signedRequest,env)).headers.get('Location'),'/studio/#home');globalThis.fetch=originalFetch;
 console.log('PASS: full Google callback/session cookie, homepage redirects, browser callback navigation, and blocked-Cookie error');
+
+await assert.rejects(()=>verifyGoogleToken(good,env.GOOGLE_CLIENT_ID,'nonce',async()=>new Response(null,{status:302,headers:{Location:'https://untrusted.example'}})),/Google keys unavailable/);
+console.log('PASS: Workers-compatible Google key fetch and redirect rejection');

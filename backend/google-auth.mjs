@@ -25,7 +25,7 @@ export async function verifyGoogleToken(token,clientId,nonce,transport=fetch){
  if(head.alg!=='RS256'||typeof head.kid!=='string'||!['accounts.google.com','https://accounts.google.com'].includes(claims.iss)||claims.aud!==clientId||(claims.azp&&claims.azp!==clientId)||!Number.isFinite(claims.exp)||claims.exp<=now||!Number.isFinite(claims.iat)||claims.iat>now+60||claims.nonce!==nonce||typeof claims.sub!=='string'||!claims.sub||typeof claims.email!=='string'||claims.email_verified!==true)throw Error('Invalid claims');
  const url='https://www.googleapis.com/oauth2/v3/certs';
  const cache=typeof caches!=='undefined'?caches.default:null;
- let response=await cache?.match(url);if(!response){response=await transport(url,{signal:AbortSignal.timeout(10000),redirect:'error'});if(!response.ok)throw Error('Google keys unavailable');if(cache)await cache.put(url,response.clone())}
+ let response=await cache?.match(url);if(!response){response=await transport(url,{signal:AbortSignal.timeout(10000),redirect:'manual'});if(!response.ok)throw Error('Google keys unavailable');if(cache)try{await cache.put(url,response.clone())}catch{/* Cache outages must not invalidate an otherwise valid login. */}}
  const {keys}=await response.json(),jwk=keys?.find(k=>k.kid===head.kid&&k.kty==='RSA'&&(!k.alg||k.alg==='RS256'));
  if(!jwk)throw Error('Unknown signing key');const key=await crypto.subtle.importKey('jwk',jwk,{name:'RSASSA-PKCS1-v1_5',hash:'SHA-256'},false,['verify']);
  if(!await crypto.subtle.verify('RSASSA-PKCS1-v1_5',key,decode(parts[2]),enc.encode(parts[0]+'.'+parts[1])))throw Error('Invalid signature');
@@ -63,7 +63,7 @@ export async function googleAuthRoute(request,env){
  try{const reader=request.body?.getReader();let text='',size=0;if(!reader)throw Error();for(;;){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>16000){await reader.cancel();throw Error()}text+=new TextDecoder().decode(value)}
  const {credential}=JSON.parse(text),identity=await verifyGoogleToken(credential,env.GOOGLE_CLIENT_ID,cookie(request,nonceName));
  const headers=new Headers({'Cache-Control':'no-store','Content-Type':'application/json'});headers.append('Set-Cookie',setCookie(sessionName,await makeSession(identity,env),28800));headers.append('Set-Cookie',setCookie(nonceName,'',0));return new Response('{"authenticated":true}',{headers});
- }catch{return reply({error:'Google login failed; refresh and try again'},401)}
+ }catch(error){const code=error.message==='Invalid credential'?'LOGIN_REFRESH_REQUIRED':error.message==='Google keys unavailable'?'GOOGLE_KEYS_UNAVAILABLE':'GOOGLE_VERIFICATION_FAILED';console.error(JSON.stringify({event:'google_login_failed',code}));return reply({error:'Google login failed; refresh and try again',code},401)}
  }
  if(path==='/auth/logout'&&request.method==='POST'){
  if(request.headers.get('Origin')!==origin)return reply({error:'Origin denied'},403);
