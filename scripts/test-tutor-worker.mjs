@@ -26,3 +26,17 @@ for(const [model,expected] of [['gemini-flash-lite-latest',undefined],['gemini-2
  const response=await worker.fetch(req(body),{...geminiEnv,AI_MODEL:model});const data=await response.json();assert.equal(response.status,200);assert.equal(data.model,model);assert.equal(data.answer,'connected');
 }
 console.log('Explicit thinking families and floating-alias compatibility passed');
+// Access mode requires a platform-authenticated identity with the configured app audience.
+const accessEnv={...geminiEnv,TUTOR_AUTH_MODE:'access',ACCESS_AUD:'test-audience'};
+const accessCtx={access:{aud:'test-audience',getIdentity:async()=>({email:'student@example.com'})}};
+const accessReq=(path='/tutor',method='POST',value=body,origin='https://worker.example')=>new Request('https://worker.example'+path,{method,headers:{...(origin?{Origin:origin}:{}),'Content-Type':'application/json'},...(method==='POST'?{body:JSON.stringify(value)}:{})});
+assert.equal((await worker.fetch(accessReq(),accessEnv)).status,401);
+assert.equal((await worker.fetch(accessReq(),accessEnv,{access:{aud:'other-app',getIdentity:accessCtx.access.getIdentity}})).status,401);
+assert.equal((await worker.fetch(accessReq('/tutor','POST',body,'https://evil.example'),accessEnv,accessCtx)).status,403);
+const session=await worker.fetch(accessReq('/session','GET'),accessEnv,accessCtx);assert.equal((await session.json()).email,'student@example.com');
+let userKeys=[];globalThis.fetch=async(url,opts)=>Response.json({candidates:[{content:{parts:[{text:'Authenticated Gemini answer'}]}}]});
+const accessAnswer=await worker.fetch(accessReq(),{...accessEnv,TUTOR_RATE_LIMITER:{limit:async({key})=>{userKeys.push(key);return {success:true}}}},accessCtx);assert.equal(accessAnswer.status,200);assert.equal((await accessAnswer.json()).answer,'Authenticated Gemini answer');assert(userKeys[0].includes('student@example.com'));
+// Public assets are fetched from a fixed trusted origin without browser cookies or auth headers.
+globalThis.fetch=async(url,opts)=>{assert.equal(url,'https://sharnchen.github.io/ai-learning-studio/tutor.js?v=access1');assert(!opts.headers.Cookie&&!opts.headers.Authorization);return new Response('public-code',{headers:{'Content-Type':'text/javascript'}})};
+const asset=await worker.fetch(accessReq('/studio/tutor.js?v=access1','GET'),accessEnv,accessCtx);assert.equal(await asset.text(),'public-code');assert(asset.headers.get('Content-Security-Policy').includes("connect-src 'self'"));assert.equal((await worker.fetch(accessReq('/studio/private.json','GET'),accessEnv,accessCtx)).status,404);
+console.log('Access identity/audience, CSRF origin, per-user limits, secure session and credential-free static proxy passed');

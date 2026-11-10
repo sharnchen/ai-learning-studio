@@ -1,35 +1,30 @@
-# 啟用 AI 自由問答與動態反問
+# AI 問答登入與後端設定
 
-目前 GitHub Pages 的預設模式是本地教材檢索／預設分支反問，**尚未連接生成式模型**。本資料夾提供可獨立部署的 Cloudflare Worker；此後端不會因推送 GitHub Pages 而自動執行。
+公開教材保留於 https://sharnchen.github.io/ai-learning-studio/ 。AI 問答的安全入口為 https://ai-learning-studio-api.liesharn.workers.dev/studio/#tutor 。使用者由公開教材按「登入並開啟 AI 問答」即可進入，所選主題以非敏感 query 參數傳遞。
 
-1. 在 Cloudflare Workers 建立 JavaScript Worker，將 `tutor-worker.mjs` 內容貼入並部署。
-2. 設定一般環境變數：`AI_PROVIDER` 為 `gemini` 或 `groq`；`AI_MODEL` 填該帳號實際可用且有免費額度的文字模型 ID；`ALLOWED_ORIGIN` 為 `https://sharnchen.github.io`（Origin 不含路徑）。不要假設所有模型都免費。
-3. 在 Worker 的 Secrets 設定 `AI_API_KEY`（模型服務金鑰）及 `TUTOR_ACCESS_TOKEN`（自行產生的獨立存取碼）。不要提交到 GitHub。可配置 `TUTOR_RATE_LIMITER` 平台限流 binding；若未配置，仍受模型服務限額控制。
-4. 在學習網站「雙向學習問答 → AI 連線設定」輸入 `https://實際Worker網址/tutor` 與後端存取碼。**存取碼不是模型 API Key**。設定僅存在本分頁記憶體，重整後重填。
-5. 送出問題或點選「請反問我一題」。畫面顯示「AI 生成」才是模型回應；錯誤／429 額度耗盡會明確回報，不會用本地教材冒充。
+## 登入與名單
 
-只有你設定的後端會收到提問、最近最多10則對話、目前教材與相關實驗輸入／結果。自由文字仍需人工核對。免費額度、適用地區、資料使用政策依供應商與帳號而定；請勿輸入學生個資。
+Cloudflare Access 應用程式：`AI Learning Studio Login`。使用 Email 一次性驗證碼，登入工作階段最長 8 小時，Cookie 使用 HttpOnly。Access 政策套用到整個 `ai-learning-studio-api` Worker，包含 production 與其他 hostname；不新增公開 bypass。
 
-存取碼適合個人或小組試用；全校公開服務應改成個別帳號驗證及集中式配額。Origin 檢查不是使用者身分驗證。Worker secrets 保留在伺服器，前端設定不包含供應商金鑰。
+允許名單在 Cloudflare Zero Trust → Access → Applications → AI Learning Studio Login → Policies → Allowed learner emails → Include → Emails 維護。僅新增管理者確定授權的 Email，勿改成 Everyone。學生或同事不需取得模型金鑰或共用後端存取碼。每人每分鐘最多 6 次問答；所有人的模型用量共用同一 Gemini API 專案額度。
 
-官方資料：
-- Gemini 定價：https://ai.google.dev/gemini-api/docs/pricing
-- Gemini OpenAI 相容 API：https://ai.google.dev/gemini-api/docs/openai
-- Groq 速率限制：https://console.groq.com/docs/rate-limits
-- Groq API：https://console.groq.com/docs/api-reference
-- 本機 Qwen：https://ollama.com/library/qwen3 （本機運算免雲端 Token 費，但需自備硬體；本 Worker 未直接連接個人電腦的 localhost。）
+## Worker 設定
 
-後端測試採 mock provider 驗證路由、CORS、存取碼、請求限制與供應商呼叫格式；未使用真實 API 金鑰驗證模型回覆。
+- `TUTOR_AUTH_MODE=access`、`ACCESS_AUD` 為該 Access 應用的 audience。
+- `AI_PROVIDER=gemini`、`AI_MODEL` 填目前可用文字模型。
+- `AI_API_KEY` 保存在 Worker Secrets。原 `TUTOR_ACCESS_TOKEN` 仍保留於 Secrets，正式 Access 模式不將它傳給前端，也不接受它替代使用者登入。
+- `TUTOR_RATE_LIMITER` 綁定每分鐘 6 次的速率限制；Access 模式按登入 Email 分開計數。
 
-## 已配置的正式服務
-Worker：`ai-learning-studio-api`。網址：`https://ai-learning-studio-api.liesharn.workers.dev/tutor`。
-網站已預填該網址；仍先使用教材模式，填入獨立存取碼並套用後才啟用 AI。新增「檢查後端狀態」會讀取 `/health`，只回報缺少的設定名稱，不公開秘密值。
-正式配置為 `AI_PROVIDER=gemini`、`AI_MODEL=gemini-3.8-flash`、`ALLOWED_ORIGIN=https://sharnchen.github.io`。獨立存取碼已配置為 Secret，不存入原始碼。**目前尚缺使用者的 `AI_API_KEY`；未驗證真實模型推論。**
-已設6次／60秒的每IP限流（依Cloudflare節點計數，並非全域嚴格配額）、固定雜湊長度的常數時間存取碼比較、請求串流大小限制、Worker Logs及抽樣Traces。服務不記錄問題、答案或金鑰到應用程式日誌。
+Worker 以平台提供的 `ctx.access` 檢查應用 audience 與已驗證身分，不信任使用者自行傳入的 Email／JWT header。API 的 POST 另檢查同來源 Origin，以防跨網站提交。`/session` 只回傳目前登入者身分；回應皆禁止快取。
 
-## 已完成真實推論驗證
-已改用 Gemini 原生 `generateContent` API；目前正式模型為 `gemini-3.1-flash-lite`，thinking level 為 low、輸出上限4096。`AI_API_KEY` 已轉為 Secret，保留既有存取碼。真實網站測試已取得繁體中文梯度上升解釋及延伸反問。先前「尚缺金鑰／未驗證」記錄為舊狀態，以本節為準。
-「驗證模型設定」會透過後端、以目前金鑰查詢模型清單，供帳號權限排查；列出模型不保證該帳號有推論配額。模型API錯誤分別顯示無此模型、金鑰權限、額度、暫時不可用或空回答，不再全部誤報為網址／存取碼問題。Gemini 可見答案只取非 thought 的文字，不傳回思考內容。
+## 教材與問答的來源
 
-## 精簡呼叫
-送出最近4則有效對話，較早每則最多600字元、最新提問保留最多2000字元；略過連線失敗訊息。教材只附當前定義與必要提醒，問到例子／實作才附相應段落，總計最多1000字元。後端再套用同樣上限。預設回答約150中文字，輸出Token上限2048；明確要求詳細／完整推導才提高至4096。保留low thinking及完整必要計算步驟。上限不代表實際Token用量，中文字符與Token並非一對一。
+`/studio/` 從固定的公開 GitHub Pages 位置讀取 allowlist 中的 HTML、JS、CSS；不轉送瀏覽器的 Cookie、Authorization 或任意 URL。問答在相同 Worker 網域使用 Cookie，不依賴第三方 Cookie。原公開教材的學習紀錄仍保留在 GitHub Pages 的瀏覽器儲存；安全入口的學習紀錄獨立，必要時可用匯出／匯入搬移。
+
+前端會清除舊版本暫存在 sessionStorage 的後端存取碼，不再提供金鑰／存取碼輸入欄位。對話僅存在目前分頁記憶體，不會存入共用後端。退出登入使用 Cloudflare Access 的 `/cdn-cgi/access/logout`。
+
+## 驗證
+
+執行 `node scripts/test-tutor-worker.mjs`、`node scripts/test-tutor-connection.cjs` 與 `node scripts/test-tutor.cjs`。測試涵蓋未登入拒絕、錯誤 audience、跨來源提交拒絕、分開限流、固定來源資產代理、舊憑證清除與登入到期。
+
+正式端需由允許名單內的使用者完成 Email 驗證後，按「測試 AI 實際回答」。健康檢查不等同模型生成成功，未完成登入或配額用完時不得冒充模型回答。
