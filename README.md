@@ -120,3 +120,9 @@ Cloudflare正式問答服務已配置於 `ai-learning-studio-api.liesharn.worker
 
 ## 完整語音導讀
 82堂課以現有教材、例子、關鍵詞定義、領域指引、實作與限制組成完整講稿，支援中文及英文語音切換、縮寫逐字母發音、分段播放、暫停／繼續、停止及語速選擇。英文預設0.8倍。使用瀏覽器Speech Synthesis，並非預錄音檔，實際發音品質及可用語言取決於系統語音。需使用者按播放；不呼叫LLM。關閉課程或切換頁面會停止，避免重疊。`node scripts/test-lesson-audio.cjs` 驗證講稿、發音規則、語音佇列及取消行為；未代表已人工聽完全部82堂音訊。
+
+### 教學內容維護
+
+課程、詞條與實驗共用 `method-content.js` 的機制說明，由 `learning-handbook.js` 組成問題動機、原理、拆解、輸入、算例、應用限制與驗收導覽。每個輸入的解釋按該實驗的控制項順序對應；增加或調整控制項時，必須同步修改解釋。方法由來以設計動機說明，不推定歷史發明者或年代。
+
+預設算例及單變量比較都使用現有實驗引擎計算。文字應用情境與數值實驗分開標明。修改 `src/practice-ui.js` 後，執行 `node scripts/build-traces.cjs` 更新瀏覽器版本。發布前執行 `node scripts/test-learning-handbook.cjs`、`node scripts/test-formula-guides.cjs`、`node scripts/test-lesson-audio.cjs`，檢查對應完整性、算例、任務與語音內容。

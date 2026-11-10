@@ -1,6 +1,6 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
 const c=vm.createContext({console,TextEncoder,Blob,MutationObserver:class{observe(){}},document:{addEventListener(){},body:{},querySelector(){return null}}});
-for(const f of ['lessons.js','scope.js','practice-data.js','math-notation.js','math-formulas.js','calculation-trace.js','practice-ui.js','lab-engines.js','lab-ui.js','assessment-data.js','learning-experience.js','learning-plan-guide.js','unit-guidance.js','learning-reference.js'])vm.runInContext(fs.readFileSync(f,'utf8'),c);
+for(const f of ['lessons.js','scope.js','practice-data.js','math-notation.js','math-formulas.js','calculation-trace.js','practice-ui.js','lab-engines.js','lab-ui.js','assessment-data.js','learning-experience.js','learning-plan-guide.js','unit-guidance.js','learning-reference.js','method-content.js','learning-handbook.js'])vm.runInContext(fs.readFileSync(f,'utf8'),c);
 vm.runInContext(`function escapeHtml(s){return String(s).replace(/[&<>\"]/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[x]))}`,c);
 
 vm.runInContext(fs.readFileSync('formula-guide.js','utf8'),c);
