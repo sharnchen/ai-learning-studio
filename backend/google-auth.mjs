@@ -9,8 +9,8 @@ const setCookie=(n,v,age)=>`${n}=${v}; Path=/; Secure; HttpOnly; SameSite=Lax; M
 const sessionName='__Host-ai_session',nonceName='__Host-ai_nonce';
 const pageHeaders={'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','Referrer-Policy':'no-referrer','X-Content-Type-Options':'nosniff','Cross-Origin-Opener-Policy':'same-origin-allow-popups','Content-Security-Policy':"default-src 'self'; script-src 'self' https://accounts.google.com/gsi/client; frame-src https://accounts.google.com; connect-src 'self' https://accounts.google.com/gsi/; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: https://*.googleusercontent.com; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"};
 async function sessionKey(env){return crypto.subtle.importKey('raw',enc.encode(env.SESSION_SIGNING_KEY),{name:'HMAC',hash:'SHA-256'},false,['sign','verify'])}
-export async function makeSession(identity,env,now=Math.floor(Date.now()/1000)){
- const payload=encode(enc.encode(JSON.stringify({sub:identity.sub,email:identity.email,iat:now,exp:now+28800,aud:env.GOOGLE_CLIENT_ID})));
+export async function makeSession(identity,env,now=Math.floor(Date.now()/1000),ttl=28800){
+ const payload=encode(enc.encode(JSON.stringify({sub:identity.sub,email:identity.email,iat:now,exp:now+ttl,aud:env.GOOGLE_CLIENT_ID})));
  return payload+'.'+encode(await crypto.subtle.sign('HMAC',await sessionKey(env),enc.encode(payload)));
 }
 export async function googleSession(request,env){

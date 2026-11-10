@@ -1,26 +1,25 @@
-# AI 問答與 Google 登入
-正式登入採網站自己的 Google Identity Services / OpenID Connect，不使用 Cloudflare Access 的 Email 允許名單或登入畫面。所有 Google 帳號皆可登入（Google OAuth 專案也須允許 External 並完成適當發布設定）。
+# AI Learning Studio：固定 GitHub Pages 入口
+首頁、Google 登入畫面與登入後教材均使用 https://sharnchen.github.io/ai-learning-studio/ 。首頁用同來源 login.html iframe 顯示品牌登入介面；瀏覽器頂層網址不會跳到 Cloudflare。Google 帳號選擇視窗仍由 Google 提供。登入後驗證工作階段，再移除登入畫面並顯示學習首頁。課程導覽仍使用同一路徑下的 #home、#courses、#tutor 等頁內位置。
 
-## Google Console 必要設定
-使用既有 Web application OAuth Client ID，在「已授權的 JavaScript 來源」新增：
-`https://ai-learning-studio-api.liesharn.workers.dev`
-此版本採 GIS popup callback，由同來源 JavaScript POST ID token 至 /auth/google；不使用原 Access callback，不需要把 Client Secret 放進網站或 Worker。不要刪除其他應用仍在使用的來源或重新導向 URI。
+## Google Console
+Google Auth Platform → 用戶端 → AILEARNING → 已授權的 JavaScript 來源，新增：
+`https://sharnchen.github.io`
+來源不得包含 /ai-learning-studio 路徑；儲存後依 Google 提示等待生效。OAuth 類型為 Web application；若要開放所有 Google 帳號，External 應用需完成 Google 要求的發布設定。本站不要求重新提供 Client Secret，也不使用舊 Cloudflare Access callback。
+舊 Worker /auth/login、/studio/ 及 / 入口重新導向公開 GitHub Pages 首頁。
 
-若 OAuth 專案仍是 Testing，先加入測試使用者；若要讓所有 Google 使用者登入，需按 Google Console 的要求將 External 應用發布為 In production。測試名單限制由 Google 控制，網站無法繞過。
+## 認證
+- GET /public/challenge：僅允許 GitHub Pages origin，回傳十分鐘 HMAC 簽署的 nonce 挑戰與公開 Client ID。
+- POST /public/login：驗證挑戰目的、簽章、有效期限與 Google ID token 的 nonce、Google RS256 簽章、iss、aud、azp、iat、exp、email_verified。
+- Google sub 作使用者主鍵。成功後回傳一小時網站工作階段憑證；僅存於 GitHub Pages 的 sessionStorage，不存 API key、Client Secret、後端共用存取碼或 Google token。
+- GET /public/session、POST /public/tutor 使用 Authorization Bearer；不依賴第三方 Cookie。Origin 與 CORS 限定 https://sharnchen.github.io，不接受萬用來源。所有憑證放在 POST body 或 header，不放網址。
+- 登出清除分頁工作階段，重新整理會先由後端確認身分。這是短效 bearer 工作階段，若遭竊取可在期限內使用；保護前端免受 XSS，輪替 SESSION_SIGNING_KEY 可撤銷所有工作階段。
+- 未登入模型端點回401，跨來源回403，錯誤簽章或挑戰不可登入。Google公鑰取用使用 Workers 支援的 manual redirect，且拒絕重新導向。
+- 每 Google sub 每分鐘6次、全站近似每分鐘60次，登入入口按IP每分鐘10次。皆保留原有綁定。模型額度由站主 Gemini 專案共用。
 
-## 後端設定
-TUTOR_AUTH_MODE=google，GOOGLE_CLIENT_ID=Google Web Client ID（公開識別碼）。
-SESSION_SIGNING_KEY=隨機生成的後端 Secret；AI_API_KEY 保存在 Worker Secret。Cloudflare 管理帳號與管理工作階段不會共用給使用者。
-每人依 Google sub 限流 6 次/分鐘，全站綁定限流 60 次/分鐘（Cloudflare rate-limit 綁定為分散式近似限制，非精確計費上限）。Google 驗證入口另按 IP 限流 10 次/分鐘；所有人共用站主的 Gemini 專案配額。
-生產環境必須先部署 google 模式與 Secret，再解除舊 Access App 的 Worker 保護，避免未驗證的模型端點暴露。
+Cloudflare 管理連線不會提供給使用者。AI_API_KEY 與 SESSION_SIGNING_KEY 只在 Worker Secrets。
+GitHub Pages 本質上公開提供教材檔案；登入介面控制正常使用流程，不能將靜態教材當成保密內容。AI後端則一律強制驗證登入。
 
-## 驗證與工作階段
-/auth/login 產生 10 分鐘隨機 nonce，HttpOnly/Secure/SameSite=Lax Cookie，傳入 Google 登入請求。
-/auth/google 只接受同來源 JSON POST；限制 request 大小；驗證 nonce、Google RS256 簽章、公鑰、iss、aud、azp、iat、exp、email_verified。以 sub 作使用者識別，不將 Email 當帳號主鍵。Google 公鑰依 Cache-Control 透過 Worker cache 保存。
-成功後簽發 8 小時 HMAC Cookie（HttpOnly、Secure、SameSite=Lax），清除 nonce。不儲存 Google token、Client Secret 或對話於瀏覽器儲存。/session 只回目前身分；未登入 /tutor 回 401，跨來源 POST 回 403。
-/auth/logout 接受同來源 POST 清除 Cookie。登出清除該瀏覽器 Cookie；已被竊取的有效 Cookie 不會即時撤銷，輪替 SESSION_SIGNING_KEY 可使所有工作階段失效。
-/studio/ 僅代理固定 GitHub Pages 的 HTML/JS/CSS，不轉送瀏覽器 Cookie。學習紀錄依瀏覽器及網站來源保存，對話僅在分頁記憶體。
-
-## 測試
-`node scripts/test-google-auth.mjs`
-測試真實 RSA 簽章、錯誤 audience/issuer/expiry/nonce/signature、其他 Google sub、工作階段防竄改、CSRF、未登入拒絕與登入頁。另須在正式 Google 頁面完成登入，再送出實際 Gemini 問題；僅出現按鈕不代表已驗收完整登入。
+## 檢查
+node scripts/test-google-auth.mjs
+node scripts/test-public-auth.mjs
+測試涵蓋 Google 簽章、挑戰防竄改與用途隔離、跨來源拒絕、CORS preflight、一小時工作階段、未登入拒絕、模型代理，以及舊網址導回 GitHub Pages。正式端仍須在 Google Console 授權新來源後完成一次實際 Google 登入與 AI 問答驗收。

@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import worker from '../backend/tutor-worker.mjs';
+const host='https://ai-learning-studio-api.liesharn.workers.dev',origin='https://sharnchen.github.io';
+const env={TUTOR_AUTH_MODE:'google',GOOGLE_CLIENT_ID:'client.apps.googleusercontent.com',SESSION_SIGNING_KEY:'test-only-very-long-secret-12345678901234567890',AI_API_KEY:'test-only',AI_MODEL:'gemini-test',AI_PROVIDER:'gemini',TUTOR_RATE_LIMITER:{limit:async()=>({success:true})},TUTOR_GLOBAL_RATE_LIMITER:{limit:async()=>({success:true})},AUTH_RATE_LIMITER:{limit:async()=>({success:true})}};
+const request=(path,method='GET',body,token,originValue=origin)=>new Request(host+path,{method,headers:{Origin:originValue,...(body?{'Content-Type':'application/json'}:{}),...(token?{Authorization:'Bearer '+token}:{})},...(body?{body:JSON.stringify(body)}:{})});
+assert.equal((await worker.fetch(request('/public/session'),env)).status,401);
+assert.equal((await worker.fetch(request('/public/challenge','GET',null,null,'https://evil.example'),env)).status,403);
+const preflight=await worker.fetch(request('/public/login','OPTIONS'),env);assert.equal(preflight.status,204);assert.equal(preflight.headers.get('Access-Control-Allow-Origin'),origin);assert(!preflight.headers.has('Access-Control-Allow-Credentials'));
+const c=await (await worker.fetch(request('/public/challenge'),env)).json();assert(c.nonce&&c.challenge);assert.equal((await worker.fetch(request('/public/session','GET',null,c.challenge),env)).status,401);
+const pair=await crypto.subtle.generateKey({name:'RSASSA-PKCS1-v1_5',modulusLength:2048,publicExponent:new Uint8Array([1,0,1]),hash:'SHA-256'},true,['sign','verify']);const jwk=await crypto.subtle.exportKey('jwk',pair.publicKey);jwk.kid='test';
+const b=x=>Buffer.from(JSON.stringify(x)).toString('base64url');const now=Math.floor(Date.now()/1000);
+async function token(nonce=c.nonce){const p=b({alg:'RS256',kid:'test'})+'.'+b({iss:'https://accounts.google.com',aud:env.GOOGLE_CLIENT_ID,iat:now,exp:now+3600,sub:'other-user',email:'other@example.com',email_verified:true,nonce});return p+'.'+Buffer.from(await crypto.subtle.sign('RSASSA-PKCS1-v1_5',pair.privateKey,new TextEncoder().encode(p))).toString('base64url')}
+const oldFetch=globalThis.fetch;globalThis.fetch=async(url,opts)=>{if(url.includes('/oauth2/v3/certs')){assert.equal(opts.redirect,'manual');return Response.json({keys:[jwk]})}if(url.includes(':generateContent'))return Response.json({candidates:[{content:{parts:[{text:'Test answer'}]}}]});throw Error('Unexpected upstream')};
+const invalid=await worker.fetch(request('/public/login','POST',{challenge:c.challenge,credential:await token('wrong')}),env);assert.equal(invalid.status,401);
+const login=await worker.fetch(request('/public/login','POST',{challenge:c.challenge,credential:await token()}),env);assert.equal(login.status,200);const data=await login.json();assert(data.authenticated&&data.token);assert.equal(data.expiresIn,3600);assert(!login.headers.has('Set-Cookie'));
+const session=await worker.fetch(request('/public/session','GET',null,data.token),env);assert.equal(session.status,200);assert.equal((await session.json()).email,'other@example.com');
+const answer=await worker.fetch(request('/public/tutor','POST',{context:'AI',messages:[{role:'user',content:'test'}]},data.token),env);assert.equal(answer.status,200);assert.equal((await answer.json()).answer,'Test answer');assert.equal(answer.headers.get('Access-Control-Allow-Origin'),origin);
+const altered=await worker.fetch(request('/public/session','GET',null,data.token.slice(0,-8)+'tampered'),env);assert.equal(altered.status,401);
+assert.equal((await worker.fetch(new Request(host+'/auth/login'),env)).headers.get('Location'),origin+'/ai-learning-studio/');assert.equal((await worker.fetch(new Request(host+'/studio/'),env)).headers.get('Location'),origin+'/ai-learning-studio/');
+globalThis.fetch=oldFetch;console.log('PASS: fixed-origin CORS, preflight, challenge integrity/purpose, Google nonce/signature, one-hour bearer session, tamper rejection, authenticated model request, and canonical GitHub redirects');

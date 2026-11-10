@@ -17,15 +17,15 @@ const req=path=>new Request(origin+path,{headers:{Cookie:'__Host-ai_session='+se
 assert.equal((await googleSession(req('/session'),env)).sub,claims.sub);
 assert.equal(await googleSession(new Request(origin,{headers:{Cookie:'__Host-ai_session='+session.slice(0,-8)+'tampered'}}),env),null);
 assert.equal((await worker.fetch(new Request(origin+'/tutor',{method:'POST',headers:{Origin:origin}}),env)).status,401);
-assert.equal((await worker.fetch(new Request(origin+'/studio/'),env)).headers.get('Location'),origin+'/auth/login');
+assert.equal((await worker.fetch(new Request(origin+'/studio/'),env)).headers.get('Location'),'https://sharnchen.github.io/ai-learning-studio/');
 assert.equal((await worker.fetch(req('/session'),env)).status,200);
 assert.equal((await worker.fetch(new Request(origin+'/tutor',{method:'POST',headers:{Cookie:'__Host-ai_session='+session,Origin:'https://evil.example'}}),env)).status,403);
 assert.equal((await googleAuthRoute(new Request(origin+'/auth/google',{method:'POST',headers:{Origin:'https://evil.example'}}),env)).status,403);
 const login=await googleAuthRoute(new Request(origin+'/auth/login'),env);assert(login.headers.get('Set-Cookie').includes('HttpOnly'));assert((await login.text()).includes('登入 · AI Learning Studio｜AI 學習所'));
 console.log('PASS: real RSA signatures, wrong issuer/audience/expiry/nonce/signature, any Google sub, signed sessions, tampering, CSRF, protected routes and login page');
 const revisit=await googleAuthRoute(req('/auth/login'),env);assert.equal(revisit.status,302);assert.equal(revisit.headers.get('Location'),'/studio/#home');
-assert.equal((await worker.fetch(req('/'),env)).headers.get('Location'),origin+'/studio/#home');
-const {loginClient}=await import('./google-auth.mjs');const {default:vm}=await import('node:vm');
+assert.equal((await worker.fetch(req('/'),env)).headers.get('Location'),'https://sharnchen.github.io/ai-learning-studio/');
+const {loginClient}=await import('../backend/google-auth.mjs');const {default:vm}=await import('node:vm');
 async function browserFlow(sessionOk){let callback,redirect=null;const status={textContent:''};const box={dataset:{client:env.GOOGLE_CLIENT_ID,nonce:'nonce'},clientWidth:360};const sandbox={window:{},document:{getElementById:id=>id==='status'?status:box},google:{accounts:{id:{initialize:x=>callback=x.callback,renderButton:()=>{}}}},AbortSignal,location:{replace:x=>redirect=x},fetch:async path=>Response.json(path==='/session'?{authenticated:sessionOk}:{authenticated:true})};sandbox.window.google=sandbox.google;vm.runInNewContext(loginClient,sandbox);sandbox.window.onload();await callback({credential:'mock'});return {redirect,status:status.textContent};}
 assert.equal((await browserFlow(true)).redirect,'/studio/#home');const failedCookie=await browserFlow(false);assert.equal(failedCookie.redirect,null);assert(failedCookie.status.includes('Cookie'));
 // Full Google callback, signed cookie issuance, then server-side home redirect.
