@@ -31,14 +31,29 @@ export async function verifyGoogleToken(token,clientId,nonce,transport=fetch){
  if(!await crypto.subtle.verify('RSASSA-PKCS1-v1_5',key,decode(parts[2]),enc.encode(parts[0]+'.'+parts[1])))throw Error('Invalid signature');
  return {sub:claims.sub,email:claims.email};
 }
-export const loginClient=`window.onload=()=>{const box=document.getElementById('google-login'),status=document.getElementById('status');if(!window.google){status.textContent='Google 登入元件無法載入，請重新整理。';return}google.accounts.id.initialize({client_id:box.dataset.client,nonce:box.dataset.nonce,auto_select:false,callback:async result=>{status.textContent='正在確認登入…';try{const r=await fetch('/auth/google',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({credential:result.credential})});if(!r.ok)throw Error();location.replace('/studio/#tutor')}catch{status.textContent='登入未完成，請重新整理後再試。'}}});google.accounts.id.renderButton(box,{theme:'outline',size:'large',text:'signin_with',locale:'zh_TW',width:Math.min(360,document.getElementById('google-login').clientWidth)});};`;
+export const loginClient=`window.onload=()=>{
+ const box=document.getElementById('google-login'),status=document.getElementById('status');
+ const home='/studio/#home';
+ async function confirmedSession(){const r=await fetch('/session',{credentials:'same-origin',cache:'no-store',signal:AbortSignal.timeout(10000)});return r.ok&&(await r.json()).authenticated===true}
+ async function finishLogin(result){status.textContent='正在確認登入…';
+ try{const r=await fetch('/auth/google',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',signal:AbortSignal.timeout(20000),body:JSON.stringify({credential:result.credential})});
+ if(!r.ok){if(await confirmedSession()){location.replace(home);return}throw Error(r.status===429?'登入嘗試太頻繁，請稍候一分鐘再試。':'網站未能確認 Google 登入，請重新整理後再試。')}
+ if(!await confirmedSession())throw Error('Google 驗證完成，但網站未能保存登入狀態；請允許此網站的 Cookie，再重新登入。');
+ status.textContent='登入成功，正在進入學習首頁…';location.replace(home);
+ }catch(error){status.textContent=error.name==='TimeoutError'?'登入連線逾時，請檢查網路後再試。':error.message||'登入未完成，請重新整理後再試。';}}
+ if(!window.google){status.textContent='Google 登入元件無法載入，請重新整理。';return}
+ google.accounts.id.initialize({client_id:box.dataset.client,nonce:box.dataset.nonce,auto_select:false,callback:finishLogin});
+ google.accounts.id.renderButton(box,{theme:'outline',size:'large',text:'signin_with',locale:'zh_TW',width:Math.min(360,box.clientWidth)});
+};`;
 export async function googleAuthRoute(request,env){
  const url=new URL(request.url),path=url.pathname,origin=url.origin;
  const reply=(data,status=200,extra={})=>Response.json(data,{status,headers:{'Cache-Control':'no-store',...extra}});
  if(path==='/auth/client.js'&&request.method==='GET')return new Response(loginClient,{headers:{'Content-Type':'application/javascript','Cache-Control':'no-store'}});
  if(path==='/auth/login'&&request.method==='GET'){
  if(!env.GOOGLE_CLIENT_ID||!env.SESSION_SIGNING_KEY)return reply({error:'Login not configured'},503);
- const nonce=encode(crypto.getRandomValues(new Uint8Array(32)));
+ if(await googleSession(request,env))return new Response(null,{status:302,headers:{Location:'/studio/#home','Cache-Control':'no-store'}});
+ const existingNonce=cookie(request,nonceName);
+ const nonce=/^[A-Za-z0-9_-]{43}$/.test(existingNonce)?existingNonce:encode(crypto.getRandomValues(new Uint8Array(32)));
  return new Response(loginPage(env.GOOGLE_CLIENT_ID.replace(/[^a-zA-Z0-9._-]/g,''),nonce),{headers:{...pageHeaders,'Set-Cookie':setCookie(nonceName,nonce,600)}});
  }
  if(path==='/auth/google'&&request.method==='POST'){

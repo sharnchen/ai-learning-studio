@@ -18,8 +18,8 @@ export default {async fetch(request,env,ctx={}){
  const identity=googleMode?await googleSession(request,env):accessMode?await accessIdentity(ctx,env):null;
  if(googleMode&&!identity){if(request.method==='GET'&&(pathname==='/'||pathname==='/studio'||pathname.startsWith('/studio/')))return Response.redirect(ownOrigin+'/auth/login',302);return reply({error:'Sign in required',code:'LOGIN_REQUIRED'},401);}
  if(accessMode&&!identity)return reply({error:'Sign in required',code:'LOGIN_REQUIRED'},401);
- if(sessionMode&&pathname==='/')return Response.redirect(ownOrigin+'/studio/#tutor',302);
- if(sessionMode&&pathname==='/studio')return Response.redirect(ownOrigin+'/studio/#tutor',302);
+ if(sessionMode&&pathname==='/')return Response.redirect(ownOrigin+'/studio/#home',302);
+ if(sessionMode&&pathname==='/studio')return Response.redirect(ownOrigin+'/studio/#home',302);
  if(sessionMode&&pathname.startsWith('/studio/'))return studioAsset(request);
  if(sessionMode&&pathname==='/session'&&request.method==='GET')return reply({authenticated:true,email:identity.email,sessionDuration:'8h'});
  if(request.method==='GET'&&pathname==='/health'&&(!origin||origin===allowed)){const missing=['AI_API_KEY','AI_MODEL','AI_PROVIDER',googleMode?'GOOGLE_CLIENT_ID':accessMode?'ACCESS_AUD':'TUTOR_ACCESS_TOKEN'].filter(k=>!env[k]);return reply({service:'ai-learning-studio-api',configured:!missing.length,missing,provider:env.AI_PROVIDER||null,model:env.AI_MODEL||null,generationVerified:false})}
