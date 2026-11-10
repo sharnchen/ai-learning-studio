@@ -1,3 +1,4 @@
+import {learningProgress,learningAccountId} from './learning-progress.mjs';
 import {verifyGoogleToken,makeSession,googleSession} from './google-auth.mjs';
 const PUBLIC_ORIGIN='https://sharnchen.github.io';
 const encoder=new TextEncoder();
@@ -23,7 +24,8 @@ export async function publicApi(request,env,ctx,worker){
  }
  const bearer=request.headers.get('Authorization')||'';if(!bearer.startsWith('Bearer ')||bearer.length>4096)return reply({error:'Sign in required'},401);
  const token=bearer.slice(7);const internalHeaders=new Headers({'Cookie':'__Host-ai_session='+token});const identity=await googleSession(new Request(own.origin+'/session',{headers:internalHeaders}),env);if(!identity)return reply({error:'Session expired'},401);
- if(path==='/public/session'&&request.method==='GET')return reply({authenticated:true,email:identity.email});
+ if(path==='/public/session'&&request.method==='GET')return reply({authenticated:true,email:identity.email,accountId:await learningAccountId(identity.sub)});
+ if(path==='/public/progress')return learningProgress(request,env,identity,reply);
  if(path!=='/public/tutor')return reply({error:'Not found'},404);
  if(request.method!=='POST')return reply({error:'POST required'},405);
  if(!request.headers.get('Content-Type')?.includes('application/json'))return reply({error:'JSON required'},415);
