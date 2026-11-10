@@ -1,30 +1,26 @@
-# AI 問答登入與後端設定
+# AI 問答與 Google 登入
+正式登入採網站自己的 Google Identity Services / OpenID Connect，不使用 Cloudflare Access 的 Email 允許名單或登入畫面。所有 Google 帳號皆可登入（Google OAuth 專案也須允許 External 並完成適當發布設定）。
 
-公開教材保留於 https://sharnchen.github.io/ai-learning-studio/ 。AI 問答的安全入口為 https://ai-learning-studio-api.liesharn.workers.dev/studio/#tutor 。使用者由公開教材按「登入並開啟 AI 問答」即可進入，所選主題以非敏感 query 參數傳遞。
+## Google Console 必要設定
+使用既有 Web application OAuth Client ID，在「已授權的 JavaScript 來源」新增：
+`https://ai-learning-studio-api.liesharn.workers.dev`
+此版本採 GIS popup callback，由同來源 JavaScript POST ID token 至 /auth/google；不使用原 Access callback，不需要把 Client Secret 放進網站或 Worker。不要刪除其他應用仍在使用的來源或重新導向 URI。
 
-## 登入與名單
+若 OAuth 專案仍是 Testing，先加入測試使用者；若要讓所有 Google 使用者登入，需按 Google Console 的要求將 External 應用發布為 In production。測試名單限制由 Google 控制，網站無法繞過。
 
-Cloudflare Access 應用程式：`AI Learning Studio Login`。使用 Email 一次性驗證碼，登入工作階段最長 8 小時，Cookie 使用 HttpOnly。Access 政策套用到整個 `ai-learning-studio-api` Worker，包含 production 與其他 hostname；不新增公開 bypass。
+## 後端設定
+TUTOR_AUTH_MODE=google，GOOGLE_CLIENT_ID=Google Web Client ID（公開識別碼）。
+SESSION_SIGNING_KEY=隨機生成的後端 Secret；AI_API_KEY 保存在 Worker Secret。Cloudflare 管理帳號與管理工作階段不會共用給使用者。
+每人依 Google sub 限流 6 次/分鐘，全站綁定限流 60 次/分鐘（Cloudflare rate-limit 綁定為分散式近似限制，非精確計費上限）。Google 驗證入口另按 IP 限流 10 次/分鐘；所有人共用站主的 Gemini 專案配額。
+生產環境必須先部署 google 模式與 Secret，再解除舊 Access App 的 Worker 保護，避免未驗證的模型端點暴露。
 
-允許名單在 Cloudflare Zero Trust → Access → Applications → AI Learning Studio Login → Policies → Allowed learner emails → Include → Emails 維護。僅新增管理者確定授權的 Email，勿改成 Everyone。學生或同事不需取得模型金鑰或共用後端存取碼。每人每分鐘最多 6 次問答；所有人的模型用量共用同一 Gemini API 專案額度。
+## 驗證與工作階段
+/auth/login 產生 10 分鐘隨機 nonce，HttpOnly/Secure/SameSite=Lax Cookie，傳入 Google 登入請求。
+/auth/google 只接受同來源 JSON POST；限制 request 大小；驗證 nonce、Google RS256 簽章、公鑰、iss、aud、azp、iat、exp、email_verified。以 sub 作使用者識別，不將 Email 當帳號主鍵。Google 公鑰依 Cache-Control 透過 Worker cache 保存。
+成功後簽發 8 小時 HMAC Cookie（HttpOnly、Secure、SameSite=Lax），清除 nonce。不儲存 Google token、Client Secret 或對話於瀏覽器儲存。/session 只回目前身分；未登入 /tutor 回 401，跨來源 POST 回 403。
+/auth/logout 接受同來源 POST 清除 Cookie。登出清除該瀏覽器 Cookie；已被竊取的有效 Cookie 不會即時撤銷，輪替 SESSION_SIGNING_KEY 可使所有工作階段失效。
+/studio/ 僅代理固定 GitHub Pages 的 HTML/JS/CSS，不轉送瀏覽器 Cookie。學習紀錄依瀏覽器及網站來源保存，對話僅在分頁記憶體。
 
-## Worker 設定
-
-- `TUTOR_AUTH_MODE=access`、`ACCESS_AUD` 為該 Access 應用的 audience。
-- `AI_PROVIDER=gemini`、`AI_MODEL` 填目前可用文字模型。
-- `AI_API_KEY` 保存在 Worker Secrets。原 `TUTOR_ACCESS_TOKEN` 仍保留於 Secrets，正式 Access 模式不將它傳給前端，也不接受它替代使用者登入。
-- `TUTOR_RATE_LIMITER` 綁定每分鐘 6 次的速率限制；Access 模式按登入 Email 分開計數。
-
-Worker 以平台提供的 `ctx.access` 檢查應用 audience 與已驗證身分，不信任使用者自行傳入的 Email／JWT header。API 的 POST 另檢查同來源 Origin，以防跨網站提交。`/session` 只回傳目前登入者身分；回應皆禁止快取。
-
-## 教材與問答的來源
-
-`/studio/` 從固定的公開 GitHub Pages 位置讀取 allowlist 中的 HTML、JS、CSS；不轉送瀏覽器的 Cookie、Authorization 或任意 URL。問答在相同 Worker 網域使用 Cookie，不依賴第三方 Cookie。原公開教材的學習紀錄仍保留在 GitHub Pages 的瀏覽器儲存；安全入口的學習紀錄獨立，必要時可用匯出／匯入搬移。
-
-前端會清除舊版本暫存在 sessionStorage 的後端存取碼，不再提供金鑰／存取碼輸入欄位。對話僅存在目前分頁記憶體，不會存入共用後端。退出登入使用 Cloudflare Access 的 `/cdn-cgi/access/logout`。
-
-## 驗證
-
-執行 `node scripts/test-tutor-worker.mjs`、`node scripts/test-tutor-connection.cjs` 與 `node scripts/test-tutor.cjs`。測試涵蓋未登入拒絕、錯誤 audience、跨來源提交拒絕、分開限流、固定來源資產代理、舊憑證清除與登入到期。
-
-正式端需由允許名單內的使用者完成 Email 驗證後，按「測試 AI 實際回答」。健康檢查不等同模型生成成功，未完成登入或配額用完時不得冒充模型回答。
+## 測試
+`node scripts/test-google-auth.mjs`
+測試真實 RSA 簽章、錯誤 audience/issuer/expiry/nonce/signature、其他 Google sub、工作階段防竄改、CSRF、未登入拒絕與登入頁。另須在正式 Google 頁面完成登入，再送出實際 Gemini 問題；僅出現按鈕不代表已驗收完整登入。
