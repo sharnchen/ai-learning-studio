@@ -42,7 +42,7 @@
  history.replaceState(null,'',location.pathname+'#'+page);window.render();
  const validLesson=Number.isInteger(p.lessonId)&&p.lessonId>=0&&p.lessonId<lessons.length;
  if(validLesson&&(p.view!=='page'||!p.view))openLesson(p.lessonId);
- if(p.view==='keyword'&&term(p.keywordId)){openKeyword(p.keywordId,['example','interact','practice'].includes(p.keywordTab)?p.keywordTab:'example');if(p.keywordTab==='practice'&&p.practice&&typeof guidedPracticeSession!=='undefined'){const t=labCases.find(t=>t.id===p.keywordId);if(t){const e=labEngineFor(t);guidedPracticeSession={id:t.id,stage:Math.max(0,Math.min(2,Number(p.practice.stage)||0)),values:sanitizeLabValues(e,p.practice.values,labCaseDefaults(t,e)),baseline:e.compute(labCaseDefaults(t,e))};guidedPracticeRender()}}}
+ if(['keyword','lab'].includes(p.view)&&term(p.keywordId)){openKeyword(p.keywordId,['example','interact','practice'].includes(p.keywordTab)?p.keywordTab:'example');if(p.keywordTab==='practice'&&p.practice&&typeof guidedPracticeSession!=='undefined'){const t=labCases.find(t=>t.id===p.keywordId);if(t){const e=labEngineFor(t);guidedPracticeSession={id:t.id,stage:Math.max(0,Math.min(2,Number(p.practice.stage)||0)),values:sanitizeLabValues(e,p.practice.values,labCaseDefaults(t,e)),baseline:e.compute(labCaseDefaults(t,e))};guidedPracticeRender()}}}
  if(p.view==='lab'&&typeof labCases!=='undefined'&&labCases.some(t=>t.id===p.labTerm)){openLab(p.labTerm);const t=labCases.find(t=>t.id===p.labTerm),e=labEngineFor(t);activeLabValues=sanitizeLabValues(e,p.labValues,labCaseDefaults(t,e));for(const c of e.controls){const el=get('lx-'+c.id),slider=document.querySelector('[data-lab-slider="'+c.id+'"]');if(!el)continue;if(c.type==='checkbox')el.checked=!!activeLabValues[c.id];else el.value=activeLabValues[c.id];if(slider)slider.value=activeLabValues[c.id]}runLab(false)}
  const context=p.view==='lab'?'lab':p.view==='keyword'&&p.keywordTab==='practice'?'practice':null;
  if(context){if(typeof visualExpanded!=='undefined')visualExpanded.set(context,!!p.visualExpanded);if(typeof updateVisualStep==='function')updateVisualStep(context,Math.max(0,Math.min(3,Number(p.visualStep)||0)));if(typeof knnViews!=='undefined'&&p.knn){const k=knnViews.get(context);if(k){k.step=Math.max(0,Math.min(5,Number(p.knn.step)||0));k.selected=['A₁','A₂','A₃','B₁','B₂','B₃'].includes(p.knn.selected)?p.knn.selected:'B₁';const el=get('visual-guide-'+context);if(el)el.outerHTML=renderKnnLearning(k.e,k.v,k.r,context)}}}
@@ -53,7 +53,9 @@
  }catch(error){restoring=false;console.warn('Learning location could not be fully restored');window.render()}
  }
  window.LearningLocation={capture,restore,reset};
- for(const type of ['click','input','change','toggle','close','scroll'])document.addEventListener(type,schedule,true);
+ // Closing a restored overlay immediately replaces its resume target with the visible parent.
+ document.addEventListener('close',event=>{if(restoring||!['reader','keyword-reader','lab-reader'].includes(event.target?.id))return;clearTimeout(timer);capture();window.AccountLearning?.flush()},true);
+ for(const type of ['click','input','change','toggle','scroll'])document.addEventListener(type,schedule,true);
  window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('hashchange',schedule);
  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'){capture();window.AccountLearning?.flush()}});
  window.addEventListener('pagehide',()=>{capture();window.AccountLearning?.flush()});
