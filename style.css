@@ -63,3 +63,56 @@ img,svg{-webkit-user-drag:none}
 
 .video-explanation{margin-top:1rem;line-height:1.85;overflow-wrap:anywhere}.video-explanation summary{color:var(--purple,#7054df);cursor:pointer;font-weight:600}.video-explanation h5{font-size:1rem;margin:1.25rem 0 .5rem}.video-explanation table{width:100%;border-collapse:collapse}.video-explanation th,.video-explanation td{text-align:left;padding:.4rem;border-bottom:1px solid #e5e0f4}.video-explanation math{font-size:1.25rem}.video-source-intro{font-size:.9rem;color:#556078}.video-explanation section+section{border-top:1px solid #e5e0f4;margin-top:1rem}.video-card{min-width:0}
 .video-card:has(>.video-explanation[open]){grid-column:1/-1}.video-card:has(>.video-explanation[open])>.video-explanation{max-width:900px}.video-explanation ol{padding-left:1.5rem}
+
+/* 2026-11 TTS teaching case + mobile usability */
+.scenario-content{min-width:0;max-width:100%;overflow-wrap:anywhere}
+.scenario-content .diagram{width:100%;max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain}
+.scenario-content .diagram svg,.scenario-content .diagram img{display:block;max-width:100%;height:auto}
+.scenario-content .diagram pre,.scenario-content details pre{max-width:100%;overflow-x:auto;white-space:pre;font-size:12px;line-height:1.65}
+.scenario-content .scroll{width:100%;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.scenario-content .scroll table{min-width:620px}
+.scenario-content .exp select{max-width:100%;min-height:44px}
+.scenario-content code{overflow-wrap:anywhere}
+@media(max-width:760px){
+  body{font-size:15px;overflow-x:hidden}
+  aside{position:relative;z-index:2;padding:12px 14px 8px}
+  aside .brand{min-height:44px}
+  nav{margin-top:9px;padding-bottom:6px;scroll-snap-type:x proximity;gap:8px;max-width:100%;-webkit-overflow-scrolling:touch}
+  nav>a,nav .nav-scenarios>summary{scroll-snap-align:start;min-height:44px;display:flex;align-items:center;justify-content:center;padding:9px 12px;font-size:13px}
+  nav .nav-scenarios{flex:0 0 auto;position:relative}
+  nav .nav-scenarios-items{position:absolute;z-index:20;left:0;top:100%;min-width:218px;max-width:min(320px,calc(100vw - 24px));padding:8px;background:white;border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 28px #1112}
+  nav .nav-scenarios-items a{white-space:normal;padding:12px;min-height:44px}
+  header{height:auto;min-height:45px;padding:7px 14px}
+  main{padding:18px 14px 42px;min-width:0}
+  .shell,.shell main,.scenario-content,.scenario-content section{min-width:0}
+  h1{font-size:clamp(22px,6vw,27px);overflow-wrap:anywhere}
+  h2{font-size:19px}
+  .hero{padding:20px}
+  .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .stat strong{font-size:18px}
+  .panel,.card{padding:16px}
+  .scenario-content h2{font-size:19px;line-height:1.55}
+  .scenario-content h3{font-size:16px;line-height:1.6}
+  .scenario-content .kpi{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .scenario-content .kpi>div{min-width:0;padding:12px}
+  .scenario-content .diagram-section{padding:12px;overflow:hidden}
+  .scenario-content .diagram{padding:6px}
+  .scenario-content .scroll{margin:12px -2px;padding-bottom:6px}
+  .scenario-content .scroll table{font-size:13px}
+  .scenario-content .scroll th,.scenario-content .scroll td{padding:9px}
+  .scenario-content .exp{padding:12px}
+  #scenario-note{width:100%;min-height:130px}
+  .scenario-learning button{min-height:44px}
+  dialog{width:calc(100% - 16px);max-height:95dvh;padding:16px;margin:auto}
+  .audio-controls button{min-height:44px}
+  .audio-settings select{min-height:44px}
+  .video-card-grid,.video-library-grid,.lab-catalog{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:390px){
+  main{padding-inline:11px}
+  .scenario-content .kpi{grid-template-columns:1fr 1fr}
+  .stats{gap:6px}
+  .stat{padding:9px}
+  .stat strong{font-size:16px}
+  .scenario-content .scroll table{font-size:12px}
+}
