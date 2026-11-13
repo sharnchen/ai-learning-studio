@@ -1,7 +1,7 @@
 'use strict';
 // Store UI position only. Conversations and OAuth credentials are deliberately excluded.
 (()=>{
- const pages=new Set(['home','courses','curriculum','lab','assessment','videos','explore','tutor','glossary','notes']);
+ const pages=new Set(['home','courses','curriculum','lab','assessment','videos','explore','tutor','glossary','notes','scenarios']);
  let timer=null,restoring=false,generation=0;
  const get=id=>document.getElementById(id);
  const term=id=>typeof keywordCatalog!=='undefined'&&keywordCatalog.some(t=>t.id===id);
@@ -20,7 +20,7 @@
  if(typeof assessmentTab!=='undefined')p.assessmentView={tab:assessmentTab,page:assessmentPage,query:assessmentQuery,domain:assessmentDomain,difficulty:assessmentDifficulty,kind:assessmentKind,source:assessmentSource,wrongPage:assessmentWrongPage,historyId:assessmentHistoryId};
  if(typeof videoLibraryQuery!=='undefined')p.videos={query:videoLibraryQuery,category:videoLibraryCategory,page:videoLibraryPage};
  if(typeof explorerDomain!=='undefined')p.explorerDomain=explorerDomain;
- if(page==='tutor'&&typeof tutorTopic!=='undefined')p.tutorTopic=tutorTopic;
+ if(page==='tutor'&&typeof tutorTopic!=='undefined')p.tutorTopic=tutorTopic;if(page==='scenarios'&&typeof activeScenarioId!=='undefined')p.scenarioId=activeScenarioId;
  window.AccountLearning?.position(p);
  }
  function schedule(){if(restoring||!window.AIStudioAuth?.ready)return;clearTimeout(timer);timer=setTimeout(capture,250)}
@@ -39,6 +39,7 @@
  if(p.labCatalog&&typeof labQuery!=='undefined'){labQuery=String(p.labCatalog.query||'').slice(0,500);labDomain=String(p.labCatalog.domain||'all');labType=String(p.labCatalog.type||'all');labView=p.labCatalog.view==='keywords'?'keywords':'engines';labPage=Math.max(0,Math.min(100,Number(p.labCatalog.page)||0))}
  if(p.courses&&typeof filter!=='undefined'){filter=typeof groups!=='undefined'&&groups.includes(p.courses.filter)?p.courses.filter:'全部';query=String(p.courses.query||'').slice(0,500)}
  if(term(p.tutorTopic)&&typeof tutorTopic!=='undefined')tutorTopic=p.tutorTopic;
+ if(page==='scenarios'&&typeof activeScenarioId!=='undefined')activeScenarioId=['txt2img','img2img'].includes(p.scenarioId)?p.scenarioId:'txt2img';
  history.replaceState(null,'',location.pathname+'#'+page);window.render();
  const validLesson=Number.isInteger(p.lessonId)&&p.lessonId>=0&&p.lessonId<lessons.length;
  if(validLesson&&(p.view!=='page'||!p.view))openLesson(p.lessonId);
