@@ -26,3 +26,15 @@
 .scenario-learning textarea{width:100%;min-height:100px;border-radius:8px;border:1px solid var(--line);padding:10px}
 .scenario-learning button{margin-top:8px}.scenario-learning .status{color:var(--muted);font-size:12px}
 @media(max-width:800px){.scenario-content{padding:16px}.scenarios-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Qwen3-TTS case study mobile reading and responsive diagrams */
+.scenario-content .qtts-study{max-width:100%;min-width:0;overflow-wrap:anywhere}
+.scenario-content .qtts-study .diagram{max-width:100%;overflow:auto;overscroll-behavior-inline:contain;display:block;text-align:center}
+.scenario-content .qtts-study .diagram svg{max-width:100%;height:auto}
+.scenario-content .qtts-study pre.source{max-width:100%;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;padding:14px;line-height:1.65}
+.scenario-content .qtts-study .scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.scenario-content .qtts-study table{min-width:590px}
+.scenario-content .qtts-study details summary{cursor:pointer;padding:10px 2px;min-height:44px}
+.scenario-content .qtts-study .exp select{max-width:100%;min-height:44px}
+@media(max-width:700px){.scenario-content .qtts-study h2{font-size:20px;line-height:1.5}.scenario-content .qtts-study h3{font-size:16px}.scenario-content .qtts-study .diagram-section{padding:12px;margin:14px 0}.scenario-content .qtts-study .kpi{grid-template-columns:repeat(2,minmax(0,1fr))}.scenario-content .qtts-study table{font-size:12px}.scenario-content .qtts-study th,.scenario-content .qtts-study td{padding:8px}}
+@media(max-width:400px){.scenario-content .qtts-study .kpi{grid-template-columns:1fr}}
