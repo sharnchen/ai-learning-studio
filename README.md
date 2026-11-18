@@ -126,3 +126,14 @@ Cloudflare正式問答服務已配置於 `ai-learning-studio-api.liesharn.worker
 課程、詞條與實驗共用 `method-content.js` 的機制說明，由 `learning-handbook.js` 組成問題動機、原理、拆解、輸入、算例、應用限制與驗收導覽。每個輸入的解釋按該實驗的控制項順序對應；增加或調整控制項時，必須同步修改解釋。方法由來以設計動機說明，不推定歷史發明者或年代。
 
 預設算例及單變量比較都使用現有實驗引擎計算。文字應用情境與數值實驗分開標明。修改 `src/practice-ui.js` 後，執行 `node scripts/build-traces.cjs` 更新瀏覽器版本。發布前執行 `node scripts/test-learning-handbook.cjs`、`node scripts/test-formula-guides.cjs`、`node scripts/test-lesson-audio.cjs`，檢查對應完整性、算例、任務與語音內容。
+
+### 正則化與 λ 自動學習（2026-11-19）
+
+在側邊導覽新增「正則化與 λ 自動學習」，亦整合至過擬合課程（ID 7）及訓練／正則化相關課程（ID 40、41）。由 `regularization-guide.js` 提供繁體中文說明與四項本機互動：
+
+- L2 公式、權重平方懲罰與 λ 滑桿；說明 SGD 的權重衰減係數與 λ 的公式慣例，以及 AdamW 的解耦差異。
+- Dropout 的隨機遮罩與 inverted scaling、推論模式差異。
+- 預設學習曲線的 Early Stopping / Patience、最佳 checkpoint 選擇。
+- λ 超參數搜尋（固定候選網格）及一次可微分內層更新的雙層最佳化／超梯度實例，說明為何不能直接以同一訓練損失更新 λ。
+
+互動數字均屬教學玩具模型，不會訓練 CNN、RNN 或讀取股價。頁面在瀏覽器內計算，沒有新增遠端服務。若需調整教材或公式，請修改 `regularization-guide.js`；`app.js` 透過 `RegularizationGuide.render/mount` 注入課程內容，`index.html` 必須在 `app.js` 前載入此模組。
