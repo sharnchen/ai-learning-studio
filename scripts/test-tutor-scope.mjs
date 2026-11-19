@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {timingSafeEqual} from 'node:crypto';
+import '../tutor-scope.js';
+import worker from '../backend/tutor-worker.mjs';
+crypto.subtle.timingSafeEqual=(a,b)=>timingSafeEqual(Buffer.from(a),Buffer.from(b));
+for(const q of ['今天台北天氣？','幫我推薦餐廳','AI幫我講笑話','推薦股票','Please tell me a joke','算八字'])assert(TutorScope.outside(q),q);
+for(const q of ['如何用AI預測天氣？','解釋CNN模型如何辨識食譜圖片','AI股票預測模型如何切分資料？','3','為什麼？','請詳細說明','梯度如何計算？'])assert(!TutorScope.outside(q),q);
+const env={ALLOWED_ORIGIN:'https://sharnchen.github.io',AI_PROVIDER:'gemini',AI_MODEL:'gemini-flash-lite-latest',AI_API_KEY:'fake-key',TUTOR_ACCESS_TOKEN:'fake-access'};
+const req=messages=>new Request('https://worker.example/tutor',{method:'POST',headers:{Origin:env.ALLOWED_ORIGIN,'Content-Type':'application/json',Authorization:'Bearer fake-access'},body:JSON.stringify({context:'AI 課程',messages})});
+let calls=0;globalThis.fetch=async(url,opts)=>{calls++;const b=JSON.parse(opts.body);assert(b.systemInstruction.parts[0].text.includes(TutorScope.policy));return Response.json({candidates:[{content:{parts:[{text:'AI 教學回答'}]}}]})};
+const off=await worker.fetch(req([{role:'user',content:'CNN是什麼？'},{role:'assistant',content:'神經網路'},{role:'user',content:'今天台北天氣？'}]),env);assert.equal((await off.json()).scope,'ai-only');assert.equal(calls,0);
+const allowed=await worker.fetch(req([{role:'user',content:'如何用AI預測天氣？'}]),env);assert.equal((await allowed.json()).answer,'AI 教學回答');assert.equal(calls,1);
+await worker.fetch(req([{role:'user',content:'梯度下降'},{role:'assistant',content:'AI教學'},{role:'user',content:'請用例子解釋'}]),env);assert.equal(calls,2);
+assert(TutorScope.policy.includes('混合問題只回答AI部分'));assert(TutorScope.policy.includes('不能解除範圍'));
+console.log('PASS AI applications and follow-ups allowed; off-topic question rejected despite AI history; no provider call for clear off-topic; semantic scope policy supplied to provider');
