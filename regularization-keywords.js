@@ -13,11 +13,11 @@ d6t15:['把資料輪流分成訓練組和驗證組，挑選比較可靠的設定
 };
 for(const t of keywordCatalog){const d=details[t.id];if(d)plainKeywordDefinitions[t.id]=d[0];}
 const formulae={
-d5t25:[['L1 正則化',String.raw`L_{\\mathrm{total}}=L_{\\mathrm{data}}+\\lambda\\sum_i |w_i|`],['計算範例',String.raw`0.1\\,(|2|+|-1|)=0.3`]],
-d5t26:[['L2 正則化',String.raw`L_{\\mathrm{total}}=L_{\\mathrm{data}}+\\lambda\\sum_i w_i^2`],['計算範例',String.raw`0.1\\,(2^2+(-1)^2)=0.5`],['梯度（無 1/2 係數）',String.raw`\\nabla_w L_{\\mathrm{total}}=\\nabla_w L_{\\mathrm{data}}+2\\lambda w`],['另一常見定義',String.raw`L_{\\mathrm{total}}=L_{\\mathrm{data}}+\\frac{\\lambda}{2}\\sum_i w_i^2`]],
-d5t27:[['SGD 權重衰減',String.raw`w_{t+1}=(1-\\eta\\lambda)w_t-\\eta\\nabla_w L_{\\mathrm{data}}(w_t)`]],
-d4t11:[['內層：訓練模型權重',String.raw`w^*(\\lambda)=\\operatorname*{arg\\,min}_w\\left[L_{\\mathrm{train}}(w)+\\lambda R(w)\\right]`],['外層：驗證集調整正則化強度',String.raw`\\lambda^*=\\operatorname*{arg\\,min}_{\\lambda\\ge0}L_{\\mathrm{val}}(w^*(\\lambda))`],['非負參數化',String.raw`\\lambda=\\operatorname{softplus}(a)=\\ln(1+e^a)`]],
-d6t15:[['候選正則化係數',String.raw`\\lambda\\in\\{0,10^{-4},10^{-3},10^{-2},10^{-1}\\}`]]
+d5t25:[['L1 正則化',String.raw`L_{\mathrm{total}}=L_{\mathrm{data}}+\lambda\sum_i |w_i|`],['計算範例',String.raw`0.1\,(|2|+|-1|)=0.3`]],
+d5t26:[['L2 正則化',String.raw`L_{\mathrm{total}}=L_{\mathrm{data}}+\lambda\sum_i w_i^2`],['計算範例',String.raw`0.1\,(2^2+(-1)^2)=0.5`],['梯度（無 1/2 係數）',String.raw`\nabla_w L_{\mathrm{total}}=\nabla_w L_{\mathrm{data}}+2\lambda w`],['另一常見定義',String.raw`L_{\mathrm{total}}=L_{\mathrm{data}}+\frac{\lambda}{2}\sum_i w_i^2`]],
+d5t27:[['SGD 權重衰減',String.raw`w_{t+1}=(1-\eta\lambda)w_t-\eta\nabla_w L_{\mathrm{data}}(w_t)`]],
+d4t11:[['內層：訓練模型權重',String.raw`w^*(\lambda)=\operatorname*{arg\,min}_w\left[L_{\mathrm{train}}(w)+\lambda R(w)\right]`],['外層：驗證集調整正則化強度',String.raw`\lambda^*=\operatorname*{arg\,min}_{\lambda\ge0}L_{\mathrm{val}}(w^*(\lambda))`],['非負參數化',String.raw`\lambda=\operatorname{softplus}(a)=\ln(1+e^a)`]],
+d6t15:[['候選正則化係數',String.raw`\lambda\in\{0,10^{-4},10^{-3},10^{-2},10^{-1}\}`]]
 };
 function renderMath(items){return items.map(([label,latex])=>{try{return '<div class="keyword-math" style="margin:12px 0;overflow-x:auto"><div style="font-weight:600;margin-bottom:5px">'+escapeHtml(label)+'</div>'+ (typeof katex!=='undefined'?katex.renderToString(latex,{displayMode:true,throwOnError:false,output:'htmlAndMathml'}):'<code>'+escapeHtml(latex)+'</code>')+'</div>';}catch{return '<p>'+escapeHtml(label+': '+latex)+'</p>';}}).join('');}
 const previous=keywordDefinitions;
