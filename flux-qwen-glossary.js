@@ -10,7 +10,7 @@ const domain=curriculum.find(d=>d.id===13);
 for(const row of entries){
   const alias=row.en.split(/[—\/]/).map(norm).filter(Boolean);
   let term=keywordCatalog.find(t=>t.zh===row.zh);
-  if(!term){term=keywordCatalog.find(t=>alias.some(a=>a.length>3&&(norm(t.en)===a||norm(t.en).split(/[,;]/).map(norm).includes(a))));}
+  if(!term){term=keywordCatalog.find(t=>alias.some(a=>a.length>=2&&(norm(t.en)===a||t.en.split(/[,，;\/—]/).map(norm).includes(a))));}
   if(term){
     additions[term.id]=row.definition;
     continue;
