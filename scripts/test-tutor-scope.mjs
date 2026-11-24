@@ -1,15 +1,9 @@
-import assert from 'node:assert/strict';
-import {timingSafeEqual} from 'node:crypto';
-import fs from 'node:fs';import vm from 'node:vm';
+import assert from 'node:assert/strict';import {timingSafeEqual} from 'node:crypto';
 import '../tutor-scope.js';import worker from '../backend/tutor-worker.mjs';
 crypto.subtle.timingSafeEqual=(a,b)=>timingSafeEqual(Buffer.from(a),Buffer.from(b));
-const c=vm.createContext({});for(const f of ['lessons.js','scope.js'])vm.runInContext(fs.readFileSync(f,'utf8'),c);
-assert.deepEqual([...TutorScope.domains],Array.from(vm.runInContext('curriculum.map(d=>d.title)',c)));assert.equal(TutorScope.domains.length,19);
-const env={ALLOWED_ORIGIN:'https://sharnchen.github.io',AI_PROVIDER:'gemini',AI_MODEL:'gemini-flash-lite-latest',AI_API_KEY:'fake-key',TUTOR_ACCESS_TOKEN:'fake-access'};
-const req=messages=>new Request('https://worker.example/tutor',{method:'POST',headers:{Origin:env.ALLOWED_ORIGIN,'Content-Type':'application/json',Authorization:'Bearer fake-access'},body:JSON.stringify({context:'詞彙庫未命中',messages})});
-let calls=0;globalThis.fetch=async(url,opts)=>{calls++;const b=JSON.parse(opts.body);assert(b.systemInstruction.parts[0].text.includes(TutorScope.policy));const last=b.contents.at(-1).parts[0].text;return Response.json({candidates:[{content:{parts:[{text:last==='推薦餐廳'?'OUT_OF_SCOPE':'領域內補充教學'}]}}]})};
-const off=await worker.fetch(req([{role:'user',content:'CNN是什麼？'},{role:'assistant',content:'神經網路'},{role:'user',content:'推薦餐廳'}]),env);assert.deepEqual(await off.json(),{answer:'問題超出學習網範圍。',scope:'out-of-scope'});assert.equal(calls,1);
-const allowed=await worker.fetch(req([{role:'user',content:'如何用AI預測天氣？'}]),env);assert.equal((await allowed.json()).answer,'領域內補充教學');assert.equal(calls,2);
-await worker.fetch(req([{role:'user',content:'梯度下降'},{role:'assistant',content:'AI教學'},{role:'user',content:'請用例子解釋'}]),env);assert.equal(calls,3);
-assert(TutorScope.policy.includes('混合問題只回答領域內部分'));assert(TutorScope.policy.includes('詞彙庫沒有收錄'));
-console.log('PASS exact 19-domain policy, model scope decision, short out-of-scope response, in-domain fallback and follow-up context');
+const env={ALLOWED_ORIGIN:'https://sharnchen.github.io',AI_PROVIDER:'gemini',AI_MODEL:'gemini-2.5-flash-lite',AI_API_KEY:'fake-key',TUTOR_ACCESS_TOKEN:'fake-access'};
+const req=q=>new Request('https://worker.example/tutor',{method:'POST',headers:{Origin:env.ALLOWED_ORIGIN,'Content-Type':'application/json',Authorization:'Bearer fake-access'},body:JSON.stringify({context:'詞彙庫未命中',messages:[{role:'user',content:q}]})});
+const budgets=[];let calls=0;globalThis.fetch=async(url,opts)=>{calls++;const b=JSON.parse(opts.body),p=b.systemInstruction.parts[0].text;assert(p.includes('不限制問題主題'));assert(!p.includes('OUT_OF_SCOPE'));assert(p.includes('約80至120字'));budgets.push(b.generationConfig.maxOutputTokens);assert.equal(b.generationConfig.thinkingConfig.thinkingBudget,128);return Response.json({candidates:[{content:{parts:[{text:'簡短回答'}]}}]})};
+for(const q of ['如何整理旅遊行程？','介紹餐廳選擇方式','解釋一個數學觀念']){const r=await worker.fetch(req(q),env);assert.equal((await r.json()).answer,'簡短回答')}
+await worker.fetch(req('請詳細說明一個例子'),env);assert.deepEqual(budgets,[768,768,768,1536]);assert.equal(calls,4);
+console.log('PASS unrestricted topic requests reach provider, concise policy, lower default/detail budgets and reduced thinking budget');
