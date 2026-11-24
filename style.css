@@ -116,3 +116,45 @@ img,svg{-webkit-user-drag:none}
   .stat strong{font-size:16px}
   .scenario-content .scroll table{font-size:12px}
 }
+
+
+/* Shared reading layout */
+body{font-size:16px}
+body>.shell{min-width:0}
+body>.shell>main{width:100%;max-width:1600px;padding-inline:clamp(16px,3vw,48px)}
+body>.shell>header{height:auto;min-height:64px;gap:8px 16px;flex-wrap:wrap;padding-block:10px;font-size:.875rem}
+body>aside{overflow-y:auto}
+body>.shell main h1{font-size:clamp(1.65rem,2.7vw,2.25rem);letter-spacing:-.025em}
+body>.shell main h2{font-size:clamp(1.2rem,1.8vw,1.5rem)}
+body>.shell .card p{font-size:.9375rem}
+body>.shell footer{gap:12px;flex-wrap:wrap;font-size:.8125rem}
+body>.shell .glossary{grid-template-columns:repeat(2,minmax(0,1fr))}
+#reader,#keyword-reader,#lab-reader{
+  width:calc(100% - 32px);
+  max-height:calc(100dvh - 32px);
+  padding:clamp(18px,3vw,40px);
+  overflow-wrap:anywhere;
+}
+#reader{max-width:1020px}
+#keyword-reader{max-width:1200px}
+#keyword-reader .keyword-definition,#keyword-reader .keyword-section{font-size:1rem}
+#keyword-reader .close,#reader .close,#lab-reader .close{z-index:2}
+.cnn-diagram{margin:1rem 0}
+.cnn-diagram svg{display:block;width:100%;height:auto}
+.cnn-diagram figcaption{margin-top:.5rem;color:var(--muted);font-size:.875rem}
+.cnn-flow-mobile{display:none!important}
+.cnn-layer-table{overflow-x:auto}
+.cnn-layer-table th,.cnn-layer-table td{padding:.55rem .7rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.cnn-layer-table thead{background:var(--bg)}
+.cnn-layer-table table{width:100%;min-width:36rem;border-collapse:collapse}
+@media(max-width:760px){
+  body>.shell>header{min-height:54px;padding-inline:16px}
+  body>.shell .glossary{grid-template-columns:minmax(0,1fr)}
+  body>aside>nav{min-height:42px;align-items:center;padding-bottom:4px}
+  body>aside>nav>a,body>aside>nav>details>summary{font-size:.875rem;white-space:nowrap}
+  #reader,#keyword-reader,#lab-reader{width:calc(100% - 16px);max-height:calc(100dvh - 16px);padding:16px}
+  #keyword-reader .keyword-tabs{flex-wrap:wrap;overflow:visible}
+  #keyword-reader .keyword-tabs button{white-space:normal}
+  .cnn-flow-desktop{display:none!important}
+  .cnn-flow-mobile{display:block!important;max-width:375px;margin-inline:auto}
+}
