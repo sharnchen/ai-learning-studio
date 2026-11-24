@@ -75,6 +75,7 @@
       + (id ? termButton(id, '詞條') : '—') + '</td></tr>'
     ).join('');
     return '<section class="keyword-section"><h2>手寫數字辨識 CNN 結構圖</h2>'
+      + '<figure class="cnn-diagram"><a href="cnn-handwritten.html" target="_blank" rel="noopener"><img src="assets/cnn-handwritten-architecture.jpg" width="2047" height="667" style="display:block;width:100%;height:auto" alt="CNN 手寫數字辨識的卷積、池化、展平與分類架構"></a><figcaption><a href="cnn-handwritten.html" target="_blank" rel="noopener">開啟完整圖文說明</a></figcaption></figure>'
       + architectureDiagram()
       + '<p>這個例子使用兩層 3 × 3 卷積（步幅 1、每邊補 1 格），卷積核數分別為 32 與 64。兩次最大池化都用 2 × 2 視窗、步幅 2。</p>'
       + '<div class="cnn-layer-table" tabindex="0" role="region" aria-label="可橫向捲動的 CNN 層級表"><table><thead><tr><th scope="col">操作</th><th scope="col">輸出形狀</th><th scope="col">處理方式</th><th scope="col">可訓練參數</th><th scope="col">詳細說明</th></tr></thead><tbody>' + rows + '</tbody></table></div>'
