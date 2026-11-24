@@ -32,21 +32,37 @@
     ['Softmax 輸出', '10 個機率', 'd4t18', '將分數轉為機率，取機率最高的類別。', '0']
   ];
 
-  function architectureDiagram() {
-    const nodes = stages.map(([name, shape], i) => {
-      const x = 12 + (i % 3) * 186;
-      const y = 12 + Math.floor(i / 3) * 92;
-      const column = i % 3;
-      const color = i < 1 ? '#eaf0ff' : i < 5 ? '#e5f5ef' : '#eee8fc';
-      const connector = i === 8 ? '' : column === 2
-        ? '<path d="M ' + (x + 84) + ' ' + (y + 56) + ' v 14 H 96 v 14" />'
-        : '<path d="M ' + (x + 169) + ' ' + (y + 28) + ' h 15" />';
-      return '<g><rect x="' + x + '" y="' + y + '" width="168" height="56" rx="10" fill="' + color + '" stroke="#9aaac2"/>'
-        + '<text x="' + (x + 84) + '" y="' + (y + 23) + '" font-weight="700">' + escapeHtml(name) + '</text>'
-        + '<text x="' + (x + 84) + '" y="' + (y + 44) + '">' + escapeHtml(shape) + '</text>'
-        + '<g fill="none" stroke="#627594" stroke-width="1.5" marker-end="url(#cnn-arrow)">' + connector + '</g></g>';
+  let diagramCount = 0;
+  function drawFlow(columns, name, diagramId) {
+    const marker = 'cnn-arrow-' + name + '-' + diagramId;
+    const columnWidth = columns === 1 ? 288 : 186;
+    const boxWidth = columnWidth - 18;
+    const nodes = stages.map(([label, shape], index) => {
+      const column = index % columns;
+      const x = 9 + column * columnWidth;
+      const y = 8 + Math.floor(index / columns) * 86;
+      const center = x + boxWidth / 2;
+      const color = index === 0 ? '#eaf0ff' : index < 5 ? '#e5f5ef' : '#eee8fc';
+      let connector = '';
+      if (index < stages.length - 1) {
+        if (columns === 1) connector = 'M' + center + ' ' + (y + 56) + ' v28';
+        else if (column < columns - 1) connector = 'M' + (x + boxWidth) + ' ' + (y + 28) + ' h16';
+        else connector = 'M' + center + ' ' + (y + 56) + ' v15 H' + (9 + boxWidth / 2) + ' v13';
+      }
+      return '<g><rect x="' + x + '" y="' + y + '" width="' + boxWidth + '" height="56" rx="10" fill="' + color + '" stroke="#9aaac2"/>'
+        + '<text x="' + center + '" y="' + (y + 23) + '" font-weight="700">' + escapeHtml(label) + '</text>'
+        + '<text x="' + center + '" y="' + (y + 44) + '">' + escapeHtml(shape) + '</text>'
+        + (connector ? '<path d="' + connector + '" fill="none" stroke="#627594" stroke-width="1.5" marker-end="url(#' + marker + ')"/>' : '') + '</g>';
     }).join('');
-    return '<figure style="margin:1rem 0;overflow-x:auto"><svg viewBox="0 0 564 264" role="img" aria-label="手寫數字 CNN 從輸入到 Softmax 的九步流程" style="width:100%;min-width:480px;display:block" text-anchor="middle" font-size="14" fill="#172640"><defs><marker id="cnn-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#627594"/></marker></defs>' + nodes + '</svg><figcaption>尺寸依高 × 寬 × 通道排列。每列從左向右閱讀。</figcaption></figure>';
+    return '<svg class="cnn-flow-' + name + '" aria-hidden="true" viewBox="0 0 ' + columns * columnWidth + ' ' + (Math.ceil(stages.length / columns) * 86 - 14)
+      + '" text-anchor="middle" font-size="14" fill="#172640"><defs><marker id="' + marker
+      + '" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#627594"/></marker></defs>' + nodes + '</svg>';
+  }
+
+  function architectureDiagram() {
+    const diagramId = ++diagramCount;
+    return '<figure class="cnn-diagram">' + drawFlow(3, 'desktop', diagramId) + drawFlow(1, 'mobile', diagramId)
+      + '<figcaption>手寫數字辨識的九個處理步驟。各層的輸出尺寸與說明見下表。</figcaption></figure>';
   }
 
   function termButton(id, text) {
@@ -61,7 +77,7 @@
     return '<section class="keyword-section"><h2>手寫數字辨識 CNN 結構圖</h2>'
       + architectureDiagram()
       + '<p>這個例子使用兩層 3 × 3 卷積（步幅 1、每邊補 1 格），卷積核數分別為 32 與 64。兩次最大池化都用 2 × 2 視窗、步幅 2。</p>'
-      + '<div style="overflow-x:auto"><table><thead><tr><th scope="col">操作</th><th scope="col">輸出形狀</th><th scope="col">處理方式</th><th scope="col">可訓練參數</th><th scope="col">詳細說明</th></tr></thead><tbody>' + rows + '</tbody></table></div>'
+      + '<div class="cnn-layer-table" tabindex="0" role="region" aria-label="可橫向捲動的 CNN 層級表"><table><thead><tr><th scope="col">操作</th><th scope="col">輸出形狀</th><th scope="col">處理方式</th><th scope="col">可訓練參數</th><th scope="col">詳細說明</th></tr></thead><tbody>' + rows + '</tbody></table></div>'
       + '<p>兩層卷積各有 (3 × 3 × 1 + 1) × 32 = 320 和 (3 × 3 × 32 + 1) × 64 = 18,496 個參數。全連接層有 (3,136 + 1) × 10 = 31,370 個參數，合計 50,186。每個算式的 +1 為偏置。</p>'
       + '<h3>手算卷積、ReLU 與最大池化</h3><p>局部影像只有上排 [1, 1, 1]，卷積核上排為 1、中排為 0、下排為 −1。逐格相乘加總得到 3，通過 ReLU 後仍為 3。若相同亮線移到下排，卷積值是 −3，ReLU 輸出 0。若池化讀到 [0, 3; 1, 2]，輸出最大值 3。</p>'
       + '<h3>從預測到訓練</h3><p>以數字 5 為例，模型可先找局部橫線與直線，再組合出轉角與下方彎弧。Softmax 將 10 個分數轉為機率。如果正解是 5，預測 p₅ = 0.8 時，交叉熵約為 0.223。p₅ 降至 0.1 時，損失升為 2.303。反向傳播求梯度，再由最佳化器更新參數。</p>'
@@ -75,6 +91,12 @@
     const example = examples[term.id];
     return example ? base + '<section class="keyword-section"><h3>手寫數字辨識範例</h3><p>'
       + escapeHtml(example) + '</p>' + termButton(cnnId, '查看 CNN 結構圖') + '</section>' : base;
+  };
+
+  const previousLearningButton = keywordLearningButton;
+  keywordLearningButton = function (term) {
+    const buttons = previousLearningButton(term);
+    return term.id === cnnId ? buttons.replace('實例・互動・實作', 'CNN 結構圖與實例') : buttons;
   };
 
   const cnn = keywordCatalog.find(term => term.id === cnnId);
