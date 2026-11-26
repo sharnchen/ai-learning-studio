@@ -173,3 +173,21 @@
   r.querySelector('[data-bpe101-out]').textContent=['步驟 0／2：l + o 和 o + w 均為 7 次，本例同分時先選 l + o。','步驟 1／2：已新增 lo；lo + w 共 7 次，下一步合併。','步驟 2／2：已新增 low，完成兩次合併。真實 BPE 可繼續訓練。'][step];
   r.querySelector('[data-bpe101-step]').disabled=step===2;
  });
+
+
+ // 10.2 Attention: stable softmax and causal mask teaching demo.
+ function updateAtt102(r){
+  const inputs=[...r.querySelectorAll('[data-att102-score]')],scores=inputs.map(x=>Number(x.value));
+  if(scores.some(x=>!Number.isFinite(x)))return;
+  const soft=(a,b)=>{const m=Math.max(a,b),x=Math.exp(a-m),y=Math.exp(b-m);return [x/(x+y),y/(x+y)]};
+  const row1=r.querySelector('[data-att102-mask]').checked?[1,0]:soft(1/Math.sqrt(2),0),row2=soft(...scores);
+  inputs.forEach((x,k)=>r.querySelector('[data-att102-label="'+k+'"]').textContent=scores[k].toFixed(4));
+  [...row1,...row2].forEach((p,k)=>{
+   r.querySelector('[data-att102-cell="'+k+'"]').setAttribute('fill-opacity',.12+.78*p);
+   const t=r.querySelector('[data-att102-text="'+k+'"]');t.textContent=(100*p).toFixed(2)+'%';t.setAttribute('fill',p>.6?'#fff':'#203452');
+  });
+  r.querySelector('[data-att102-result]').textContent='第二個 Token 的輸出 O₂ ≈ ['+(2*row2[0]).toFixed(4)+', '+(4*row2[1]).toFixed(4)+']；每列權重合計 100%。';
+ }
+ document.addEventListener('input',e=>{if(e.target.matches('[data-att102-score]'))updateAtt102(e.target.closest('.ipas-att102'))});
+ document.addEventListener('change',e=>{if(e.target.matches('[data-att102-mask]'))updateAtt102(e.target.closest('.ipas-att102'))});
+ document.addEventListener('click',e=>{const b=e.target.closest('[data-att102-reset]');if(!b)return;const r=b.closest('.ipas-att102');r.querySelector('[data-att102-score="0"]').value='0';r.querySelector('[data-att102-score="1"]').value='0.7071';r.querySelector('[data-att102-mask]').checked=true;updateAtt102(r)});
