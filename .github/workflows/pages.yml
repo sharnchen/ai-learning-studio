@@ -29,6 +29,8 @@ jobs:
         run: |
           node tests/math-notation.cjs
           node scripts/test-formula-guides.cjs
+      - name: Validate experiment record recovery
+        run: node tests/lab-record-recovery.cjs
       - name: Stamp release and version assets
         run: python3 .github/scripts/build-release.py
       - name: Name Pages artifact
