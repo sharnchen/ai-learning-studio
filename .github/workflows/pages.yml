@@ -25,6 +25,10 @@ jobs:
           node --check site-update.js
           node --check account-learning.js
           node --check public-auth.js
+      - name: Validate formula rendering
+        run: |
+          node tests/math-notation.cjs
+          node scripts/test-formula-guides.cjs
       - name: Stamp release and version assets
         run: python3 .github/scripts/build-release.py
       - name: Name Pages artifact

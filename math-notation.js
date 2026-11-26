@@ -19,9 +19,24 @@ function renderStandardMath(r){const c=r.calculation;if(!c)return '';const id=c.
 if(id==='activation'){add(mi('z'),row(mi('w'),mi('x'),op('+'),mi('b')));add(row(mi('σ'),f(mi('z'))),frac(mn(1),row(mn(1),op('+'),sup(mi('e'),row(op('−'),mi('z'))))));add(row(mi('ReLU'),f(mi('z'))),mathFunction('max',[mn(0),mi('z')]))}
 if(id==='gradient-ascent'){add(mi('θ新'),row(mi('θ舊'),op('+'),mi('η'),mi('g')));add(mi('L'),row(op('−'),mi('J')));if(v.mode==='quadratic'){add(row(mi('J'),f(mi('w'))),row(mn(9),op('−'),sup(f(row(mi('w'),op('−'),mn(3))),mn(2))));add(mi('g'),row(op('−'),mn(2),f(row(mi('w'),op('−'),mn(3)))))}else{add(mi('p'),frac(mn(1),row(mn(1),op('+'),sup(mi('e'),row(op('−'),mi('θ'))))));if(v.mode==='likelihood'){add(mi('ℓ'),row(mi('k'),mi('θ'),op('−'),mn(10),mathFunction('softplus',[mi('θ')])));add(mi('g'),row(mi('k'),op('−'),mn(10),mi('p')))}else{add(mi('J'),row(mi('p'),mi('R_A'),op('+'),f(row(mn(1),op('−'),mi('p'))),mi('R_B')));add(mi('g'),row(f(row(mi('R_A'),op('−'),mi('R_B'))),mi('p'),f(row(mn(1),op('−'),mi('p')))))}}}
 if(id==='gradient'||id==='optimizer'&&v.mode==='sgd'){add(row(mi('L'),f(mi('w'))),sup(f(row(mi('w'),op('−'),mn(3))),mn(2)));add(mi('g'),row(mn(2),f(row(mi('w'),op('−'),mn(3)))));add('<msub><mi>w</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub>',row('<msub><mi>w</mi><mi>t</mi></msub>',op('−'),mi('eta'),'<msub><mi>g</mi><mi>t</mi></msub>'))}
+if(id==='optimizer'&&v.mode!=='sgd'){
+const sub=(name,t)=>'<msub>'+mi(name)+t+'</msub>',prev=row(mi('t'),op('−'),mn(1)),at=(name)=>sub(name,mi('t')),old=(name)=>sub(name,prev),hat=name=>'<mover accent="true">'+at(name)+'<mo>^</mo></mover>';
+add(row(mi('L'),f(mi('w'))),sup(f(row(mi('w'),op('−'),mn(3))),mn(2)));
+add(at('g'),row(mn(2),f(row(old('w'),op('−'),mn(3)))));
+if(v.mode==='momentum'){
+add(at('vel'),row(mn(0.9),old('vel'),op('+'),at('g')));
+add(at('w'),row(old('w'),op('−'),mi('eta'),at('vel')));
+}else if(v.mode==='adam'||v.mode==='adamw'){
+add(at('m'),row(mn(0.9),old('m'),op('+'),mn(0.1),at('g')));
+add(at('s'),row(mn(0.999),old('s'),op('+'),mn(0.001),sup(at('g'),mn(2))));
+add(hat('m'),frac(at('m'),row(mn(1),op('−'),sup(mn(0.9),mi('t')))));
+add(hat('s'),frac(at('s'),row(mn(1),op('−'),sup(mn(0.999),mi('t')))));
+const update=frac(hat('m'),row(root(hat('s')),op('+'),mn(1e-8)));
+add(at('w'),row(v.mode==='adamw'?row(f(row(mn(1),op('−'),mi('eta'),mi('lambda'))),old('w')):old('w'),op('−'),mi('eta'),update));
+}}
 if(id==='metrics'){for(const [name,a,b]of [['Accuracy','TP+TN','TP+FP+FN+TN'],['Precision','TP','TP+FP'],['Recall','TP','TP+FN'],['Specificity','TN','TN+FP'],['F1','2×TP','2×TP+FP+FN']]){const parts=s=>row(...s.split(/([+×])/).map(s=>/[+×]/.test(s)?op(s):s==='2'?mn(2):mi(s)));add(mi(name),frac(parts(a),parts(b)))}}
 if(id==='standard')add(mi('z'),frac(row(mi('x'),op('−'),mi('mu')),mi('sigma')));
-if(id==='error'||id==='regression-metrics'){const sum=term=>row('<munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover>',term),e='<msub><mi>e</mi><mi>i</mi></msub>';add(mi('MSE'),frac(sum(sup(e,mn(2))),mi('n')));add(mi('MAE'),frac(sum(mathFence(e,'|','|')),mi('n')));add(mi('RMSE'),root(mi('MSE')));if(id==='error'){add(mi('NLL'),row(op('−'),mathFunction('log',[mi('p')])));add(mi('PPL'),sup(mi('e'),mi('NLL')))}}
+if(id==='error'||id==='regression-metrics'){const sum=term=>row('<munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover>',term),e='<msub><mi>e</mi><mi>i</mi></msub>';add(mi('MSE'),frac(sum(sup(e,mn(2))),mi('n')));add(mi('MAE'),frac(sum(mathFence(e,'|','|')),mi('n')));add(mi('RMSE'),root(mi('MSE')));if(id==='regression-metrics'){const yi='<msub><mi>y</mi><mi>i</mi></msub>',yhat='<mover accent="true">'+yi+'<mo>^</mo></mover>',ybar='<mover accent="true"><mi>y</mi><mo>¯</mo></mover>';add(e,row(yi,op('−'),yhat));add(ybar,frac(sum(yi),mi('n')));add(sup(mi('R'),mn(2)),row(mn(1),op('−'),frac(sum(sup(e,mn(2))),sum(sup(f(row(yi,op('−'),ybar)),mn(2))))));}if(id==='error'){add(mi('NLL'),row(op('−'),mathFunction('log',[mi('p')])));add(mi('PPL'),sup(mi('e'),mi('NLL')))}}
 if(id==='vector'){add(row(mi('A'),op('⋅'),mi('B')),row(mi('a1'),mi('b1'),op('+'),mi('a2'),mi('b2')));add(row(mi('cos'),mi('theta')),frac(row(mi('A'),op('⋅'),mi('B')),row(f(mi('A'),'‖','‖'),f(mi('B'),'‖','‖'))));add(mi('d'),root(row(sup(f(row(mi('a1'),op('−'),mi('b1'))),mn(2)),op('+'),sup(f(row(mi('a2'),op('−'),mi('b2'))),mn(2)))))}
 if(id==='lora'){add('<msub><mi>P</mi><mtext>full</mtext></msub>',row(mi('m'),mi('n')));add('<msub><mi>P</mi><mtext>LoRA</mtext></msub>',row(mi('r'),f(row(mi('m'),op('+'),mi('n')))))}
 if(id==='memory')add('<msub><mi>M</mi><mtext>GiB</mtext></msub>',frac(row(mi('P'),op('×'),mi('bits')),row(mn(8),op('×'),sup(mn(1024),mn(3)))));
