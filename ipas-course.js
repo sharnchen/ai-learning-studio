@@ -299,3 +299,39 @@ function ground11(values){const n=values.length,s=values.filter(x=>x==="supporte
  function init(){document.querySelectorAll('[data-ch11-demo="shot"]:not([data-ch11-ready])').forEach(r=>{r.dataset.ch11Ready="1";update(r)})}
  new MutationObserver(init).observe(document.body,{childList:true,subtree:true});init();
 })();
+
+
+// Chapter 12 RAG: local simulations, no external calls or account writes.
+(()=>{
+function chunks12(l,c,o){if(!Number.isInteger(l)||!Number.isInteger(c)||!Number.isInteger(o)||l<0||c<=0||o<0||o>=c)return null;const list=[];for(let i=0;i<l;i+=c-o){const e=Math.min(i+c,l);list.push([i,e]);if(e===l)break}return list}
+function cosine12(a,b){if(a.length!==b.length||!a.length)return null;const den=Math.hypot(...a)*Math.hypot(...b);return den?Math.max(-1,Math.min(1,a.reduce((sum,v,i)=>sum+v*b[i],0)/den)):null}
+function rank12(q,k){return [[1,1],[0,1],[-1,0]].map((v,i)=>({id:"ABC"[i],score:cosine12(q,v)})).filter(x=>x.score!==null).sort((a,b)=>b.score-a.score||a.id.localeCompare(b.id)).slice(0,k)}
+function metrics12(ranked,gold,k){const top=ranked.slice(0,k),g=new Set(gold),h=top.filter(x=>g.has(x)).length,first=top.findIndex(x=>g.has(x));return {hits:h,precision:k>0?h/k:null,recall:g.size?h/g.size:null,rr:first<0?0:1/(first+1)}}
+function retrieve12(query,access,bad){const id=query==="repair"?"B":query==="warranty"?"A":null;if(!id||id==="B"&&!access)return {id:null,answer:"資料不足，無法依已授權證據回答。"};if(bad)return {id:"C",answer:"候選 C 與問題不相關；資料不足，不生成無依據答案。"};return {id,answer:id==="B"?"送修需提供設備序號與故障現象。[B]":"保固期限為 12 個月。[A]"}}
+ const pct=x=>x===null?"未定義":(100*x).toFixed(2)+"%";
+ function update(r){
+  const q=s=>r.querySelector(s),all=s=>[...r.querySelectorAll(s)],input=k=>q('[data-rag12="'+k+'"]'),val=k=>Number(input(k).value),label=(k,v)=>{const n=q('[data-rag12-label="'+k+'"]');if(n)n.textContent=v},out=q('[data-rag12-out]');
+  if(r.dataset.rag12Demo==="purpose"){
+   out.textContent=input("enabled").checked?"文件 B：送修需提供設備序號與故障現象。":"未取得外部證據；此教學系統不提供來源式回答。";
+  }else if(r.dataset.rag12Demo==="chunk"){
+   const l=val("l"),c=val("c"),o=Math.min(val("o"),c-1);input("o").max=c-1;input("o").value=o;label("l",l);label("c",c);label("o",o);
+   const list=chunks12(l,c,o);out.textContent="步長 "+(c-o)+"，分塊 "+list.length+" 個；總索引 Token 數（含重疊） "+list.reduce((a,[s,e])=>a+e-s,0)+"。";
+   const area=q("[data-rag12-chunks]");area.replaceChildren();
+   list.forEach(([s,e],i)=>{const row=document.createElement("div"),name=document.createElement("div"),track=document.createElement("div"),bar=document.createElement("div");name.textContent="Chunk "+(i+1)+"：["+s+", "+e+")";track.style.cssText="height:13px;background:#e5e7eb;margin:3px 0 7px;border-radius:4px;position:relative";bar.style.cssText="position:absolute;height:100%;background:#6480ad;border-radius:4px;left:"+(100*s/l)+"%;width:"+(100*(e-s)/l)+"%";track.append(bar);row.append(name,track);area.append(row)});
+  }else if(r.dataset.rag12Demo==="cos"){
+   const x=val("x"),y=val("y"),k=val("k");label("x",x);label("y",y);label("k",k);q("[data-rag12-vector]").setAttribute("d","M160 110L"+(160+30*x)+" "+(110-30*y));q("[data-rag12-q]").setAttribute("x",Math.max(4,Math.min(305,165+30*x)));q("[data-rag12-q]").setAttribute("y",Math.max(12,Math.min(213,104-30*y)));
+   const result=rank12([x,y],3);out.replaceChildren();
+   if(!result.length){out.textContent="查詢為零向量：Cosine 無定義，不能排序。";return;}
+   result.forEach((v,i)=>{const row=document.createElement("p");row.textContent=(i+1)+". 文件 "+v.id+"：Cosine="+v.score.toFixed(4)+(i<k?"（取回）":"（未取回）");out.append(row)});
+  }else if(r.dataset.rag12Demo==="retrieve"){
+   const result=retrieve12(input("query").value,input("access").checked,input("bad").checked);out.textContent="候選來源："+(result.id||"無")+"\n回答："+result.answer;
+  }else if(r.dataset.rag12Demo==="metrics"){
+   const k=val("k"),gold=all('[data-rag12="gold"]:checked').map(x=>x.value),m=metrics12("ABCDE".split(""),gold,k);label("k",k);
+   out.textContent="命中 "+m.hits+" 項；Precision@"+k+" = "+pct(m.precision)+"；Recall@"+k+" = "+pct(m.recall)+"；RR@"+k+" = "+m.rr.toFixed(4)+"。";
+  }
+ }
+ function event(e){const r=e.target.closest("[data-rag12-demo]");if(r&&e.target.matches("[data-rag12]"))update(r)}
+ document.addEventListener("input",event);document.addEventListener("change",event);
+ function init(){document.querySelectorAll("[data-rag12-demo]:not([data-rag12-ready])").forEach(r=>{r.dataset.rag12Ready="1";update(r)})}
+ new MutationObserver(init).observe(document.body,{childList:true,subtree:true});init();
+})();
