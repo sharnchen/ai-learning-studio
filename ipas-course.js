@@ -74,5 +74,6 @@
 
  function renderIPASMath(){if(!window.katex)return;for(const n of document.querySelectorAll('.ipas-root .ipas-math')){const t=n.textContent.trim();if(n.querySelector('math')||!t.startsWith('\\[')||!t.endsWith('\\]'))continue;try{n.innerHTML=katex.renderToString(t.slice(2,-2),{output:'mathml',displayMode:true,throwOnError:true,trust:false})}catch(e){n.dataset.mathError='true';console.warn('iPAS formula',e)}}}
  new MutationObserver(renderIPASMath).observe(document.body,{childList:true,subtree:true});window.addEventListener('load',renderIPASMath);
+ document.addEventListener('change',e=>{if(!e.target.matches('[data-privacy-field]'))return;const root=e.target.closest('.ipas-privacy-demo'),fields=[...root.querySelectorAll('[data-privacy-field]:checked')],needed=fields.filter(f=>Number(f.dataset.privacyField)>=4).length,extra=fields.length-needed;root.querySelector('[data-privacy-result]').textContent='保留'+needed+'項必要欄位；額外個資欄位'+extra+'項。'+(needed<2?'缺少任務所需資料。':'')+(extra?'請確認額外個資是否必要。':'')+'仍須檢查自由文字。'});
  window.IPASCourse={render:renderPage,sanitize:clean};
 })();
