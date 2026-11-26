@@ -17,7 +17,16 @@ jobs:
       artifact_name: ${{ steps.package.outputs.artifact_name }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 30
       - uses: actions/configure-pages@v5
+      - name: Validate update scripts
+        run: |
+          node --check site-update.js
+          node --check account-learning.js
+          node --check public-auth.js
+      - name: Stamp release and version assets
+        run: python3 .github/scripts/build-release.py
       - name: Name Pages artifact
         id: package
         run: echo "artifact_name=github-pages-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" >> "$GITHUB_OUTPUT"
