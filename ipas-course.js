@@ -27,10 +27,20 @@
  function quizView(w,r){const sc=score(w,r),answered=r.answers.filter(a=>a>=0).length;
   return '<section class="panel ipas-quiz"><h3>'+(w.n===8||w.n===16?w.questions.length+' 題模擬測驗':'本週 '+w.questions.length+' 題練習')+'</h3><p class="muted">自編單選題，非官方試題或完整正式考試格式。'+answered+' / '+w.questions.length+' 題已作答。</p>'+(sc===null?'':'<div class="ipas-score"><strong>'+sc+' 分</strong> · 答對 '+r.answers.filter((a,i)=>a===w.questions[i].correct).length+' 題／共 '+w.questions.length+' 題 · 建議目標 80 分</div>')+w.questions.map((q,i)=>'<fieldset><legend>'+(i+1)+'. '+q.q+'</legend>'+q.choices.map((c,j)=>'<label class="'+(r.submitted?(j===q.correct?'ipas-right':(r.answers[i]===j?'ipas-wrong':'')):'')+'"><input type="radio" name="ipas-q-'+i+'" data-ipas-q="'+i+'" value="'+j+'" '+(r.answers[i]===j?'checked ':'')+(r.submitted?'disabled':'')+'>'+String.fromCharCode(65+j)+'. '+c+'</label>').join('')+(r.submitted?'<p class="ipas-explain">'+(r.answers[i]===q.correct?'✓ 答對':'✕ 答錯')+'｜正確答案 '+String.fromCharCode(65+q.correct)+'：'+q.explanation+'</p>':'')+'</fieldset>').join('')+'<div class="ipas-toolbar">'+(r.submitted?button('重新練習','retry'):button('提交並評分','submit',answered!==w.questions.length?'disabled class="primary" id="ipas-submit"':'class="primary" id="ipas-submit"'))+'<a href="#assessment">更多站內題庫 →</a></div></section>'
  }
+ // Keep the selected chapter visible after the app replaces its DOM.
+ function alignChapterMenu(){
+  const menu=document.querySelector('.ipas-chapter-menu');
+  const active=menu?.querySelector('button[data-ipas="week"][aria-current="true"]');
+  if(!active||!menu.clientHeight)return;
+  const item=active.getBoundingClientRect(),box=menu.getBoundingClientRect();
+  const target=menu.scrollTop+item.top-box.top-menu.clientTop-(menu.clientHeight-item.height)/2;
+  menu.scrollTop=Math.max(0,Math.min(menu.scrollHeight-menu.clientHeight,target));
+ }
  function renderPage(){
   if(!weeks.length)return '<p>iPAS 教材載入失敗，請重新整理。</p>';
   const s=get(),w=current(),r=rec(w),done=weeks.filter(x=>s.records[x.n]?.done).length;
-  return '<section class="ipas-root"><div class="eyebrow">iPAS CERTIFICATION / 115.06</div><h1>iPAS 考照專欄</h1><p class="muted">AI 應用規劃師（初級）｜16 週、32 小時｜'+weeks.reduce((n,w)=>n+w.slides.length,0)+' 頁教材、'+weeks.reduce((n,w)=>n+w.questions.length,0)+' 道自編練習題</p><div class="panel ipas-overview"><div><b>學習進度 '+done+' / 16 週</b><progress max="16" value="'+done+'" aria-label="已完成週數"></progress></div><div>'+links+'</div><small>依 115.06 版評鑑範圍規劃，進階模型原理屬教學延伸，報名前請核對當年度官方簡章。</small></div><div class="ipas-layout"><div>'+weekList(s)+'</div><div class="ipas-main"><div class="ipas-heading"><div class="eyebrow">第 '+w.n+' 週 · '+w.code+'</div><h2>'+w.title+'</h2><p class="muted">120 分鐘 · '+w.slides.length+' 頁教材</p><div class="ipas-tabs">'+[['slides','逐頁教材'],['guide','教師講稿'],['quiz','線上測驗']].filter(([v])=>v!=='guide'||canDownloadGuide()).map(([v,t])=>button(t,'mode','data-mode="'+v+'" aria-pressed="'+(s.mode===v)+'"')).join('')+'</div></div>'+(s.mode==='guide'&&canDownloadGuide()?guideView(w):s.mode==='quiz'?quizView(w,r):slideView(w,r))+'<div class="panel ipas-footer"><div>'+button(r.done?'✓ 已完成（取消）':'✓ 標記本週完成','done','class="primary"')+' '+(w.n<16?button('下一週 →','nextweek'):'')+'</div><p class="muted">進度及測驗紀錄沿用現有帳號同步與 JSON 匯出。</p><a href="#glossary">AI 詞彙庫</a>　<a href="#lab">互動實驗室</a>　<a href="#tutor">雙向學習問答</a></div></div></div></section>'
+  requestAnimationFrame(alignChapterMenu);
+  return '<section class="ipas-root"><div class="eyebrow">iPAS CERTIFICATION / 115.06</div><h1>iPAS 考照專欄</h1><p class="muted">AI 應用規劃師（初級）｜16 週、32 小時｜'+weeks.reduce((n,w)=>n+w.slides.length,0)+' 頁教材、'+weeks.reduce((n,w)=>n+w.questions.length,0)+' 道自編練習題</p><div class="panel ipas-overview"><div><b>學習進度 '+done+' / 16 週</b><progress max="16" value="'+done+'" aria-label="已完成週數"></progress></div><div>'+links+'</div><small>依 115.06 版評鑑範圍規劃，進階模型原理屬教學延伸，報名前請核對當年度官方簡章。</small></div><div class="ipas-layout"><div class="ipas-chapter-menu" role="region" aria-label="章節選單" tabindex="0">'+weekList(s)+'</div><div class="ipas-main"><div class="ipas-heading"><div class="eyebrow">第 '+w.n+' 週 · '+w.code+'</div><h2>'+w.title+'</h2><p class="muted">120 分鐘 · '+w.slides.length+' 頁教材</p><div class="ipas-tabs">'+[['slides','逐頁教材'],['guide','教師講稿'],['quiz','線上測驗']].filter(([v])=>v!=='guide'||canDownloadGuide()).map(([v,t])=>button(t,'mode','data-mode="'+v+'" aria-pressed="'+(s.mode===v)+'"')).join('')+'</div></div>'+(s.mode==='guide'&&canDownloadGuide()?guideView(w):s.mode==='quiz'?quizView(w,r):slideView(w,r))+'<div class="panel ipas-footer"><div>'+button(r.done?'✓ 已完成（取消）':'✓ 標記本週完成','done','class="primary"')+' '+(w.n<16?button('下一週 →','nextweek'):'')+'</div><p class="muted">進度及測驗紀錄沿用現有帳號同步與 JSON 匯出。</p><a href="#glossary">AI 詞彙庫</a>　<a href="#lab">互動實驗室</a>　<a href="#tutor">雙向學習問答</a></div></div></div></section>'
  }
  function refresh(){save();render()}
  async function download(w){
@@ -57,7 +67,12 @@
   // In fullscreen mode update contents in place instead of replacing the fullscreen element.
   if(document.fullscreenElement?.classList.contains('ipas-stage')&&['prev','next'].includes(a)){save();const tmp=document.createElement('div');tmp.innerHTML=slideView(w,r);document.fullscreenElement.innerHTML=tmp.firstElementChild.innerHTML;return}
   refresh();
-  if(['week','nextweek','mode'].includes(a))document.querySelector('.ipas-heading')?.scrollIntoView({block:'start'});
+  if(a==='week'||a==='nextweek'){
+   alignChapterMenu();
+   const menu=document.querySelector('.ipas-chapter-menu');
+   if(a==='week'&&e.detail===0)menu?.querySelector('button[aria-current="true"]')?.focus({preventScroll:true});
+   menu?.scrollIntoView({block:a==='nextweek'?'start':'nearest',inline:'nearest'});
+  }else if(a==='mode')document.querySelector('.ipas-heading')?.scrollIntoView({block:'start'});
  });
  document.addEventListener('change',e=>{
   if(location.hash!=='#ipas')return;const w=current(),r=rec(w),t=e.target;
