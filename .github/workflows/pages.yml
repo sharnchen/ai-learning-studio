@@ -39,6 +39,10 @@ jobs:
         run: |
           node scripts/test-login-account-choice.cjs
           node tests/auth-session-switch.cjs
+      - name: Validate Python code runner
+        run: |
+          node --check python-runner.js
+          node tests/python-runner.cjs
       - name: Stamp release and version assets
         run: python3 .github/scripts/build-release.py
       - name: Name Pages artifact
