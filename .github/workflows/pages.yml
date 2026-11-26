@@ -17,6 +17,8 @@ jobs:
       artifact_name: ${{ steps.package.outputs.artifact_name }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 30
       - uses: actions/configure-pages@v5
       - name: Stamp release and version assets
         run: python3 .github/scripts/build-release.py
