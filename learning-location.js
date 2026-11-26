@@ -1,7 +1,7 @@
 'use strict';
 // Store UI position only. Conversations and OAuth credentials are deliberately excluded.
 (()=>{
- const pages=new Set(['home','courses','curriculum','lab','assessment','videos','explore','tutor','glossary','notes','scenarios']);
+ const pages=new Set(['home','courses','curriculum','lab','assessment','videos','explore','tutor','glossary','notes','scenarios','ipas']);
  let timer=null,restoring=false,generation=0;
  const get=id=>document.getElementById(id);
  const term=id=>typeof keywordCatalog!=='undefined'&&keywordCatalog.some(t=>t.id===id);
