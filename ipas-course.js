@@ -5,13 +5,13 @@
  const clean=raw=>{
   const r=raw&&typeof raw==='object'?raw:{},records={};
   for(const w of weeks){const a=r.records?.[w.n];if(!a||typeof a!=='object')continue;
-   const answers=w.questions.map((_,i)=> (w.n<=3 && a.quizVersion!==2) ? -1 :Number.isInteger(a.answers?.[i])&&a.answers[i]>=0&&a.answers[i]<w.questions[i].choices.length?a.answers[i]:-1);
-   records[w.n]={quizVersion:w.n<=3?2:1,slide:Math.max(0,Math.min(w.slides.length-1,Number.isInteger(a.slide)?a.slide:0)),done:a.done===true,answers,submitted:a.submitted===true&&answers.every(x=>x>=0)};
+   const answers=w.questions.map((_,i)=> (w.n<=4 && a.quizVersion!==2) ? -1 :Number.isInteger(a.answers?.[i])&&a.answers[i]>=0&&a.answers[i]<w.questions[i].choices.length?a.answers[i]:-1);
+   records[w.n]={quizVersion:w.n<=4?2:1,slide:Math.max(0,Math.min(w.slides.length-1,Number.isInteger(a.slide)?a.slide:0)),done:a.done===true,answers,submitted:a.submitted===true&&answers.every(x=>x>=0)};
   }
   return {week:Math.max(1,Math.min(16,Number.isInteger(r.week)?r.week:1)),mode:['slides','guide','quiz'].includes(r.mode)?r.mode:'slides',records};
  };
  function get(){if(!state.ipas)state.ipas=clean({});return state.ipas}
- function rec(w){const s=get();return s.records[w.n]||(s.records[w.n]={quizVersion:w.n<=3?2:1,slide:0,done:false,answers:w.questions.map(()=>-1),submitted:false})}
+ function rec(w){const s=get();return s.records[w.n]||(s.records[w.n]={quizVersion:w.n<=4?2:1,slide:0,done:false,answers:w.questions.map(()=>-1),submitted:false})}
  function current(){return weeks[get().week-1]||weeks[0]}
  function score(w,r){return r.submitted?Math.round(r.answers.filter((a,i)=>a===w.questions[i].correct).length/w.questions.length*100):null}
  function button(label,action,attrs=''){return '<button type="button" data-ipas="'+action+'" '+attrs+'>'+label+'</button>'}
