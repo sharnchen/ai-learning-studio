@@ -158,3 +158,6 @@ body>.shell .glossary{grid-template-columns:repeat(2,minmax(0,1fr))}
   .cnn-flow-desktop{display:none!important}
   .cnn-flow-mobile{display:block!important;max-width:375px;margin-inline:auto}
 }
+
+/* Formula layout: no fixed-height or nested formula scrollbars. */
+.standard-math math,.math-step math,.ipas-math math,.tutor-formula math{max-width:100%;overflow:visible!important;max-height:none!important;line-height:normal;font-family:"Cambria Math","STIX Two Math",math}.math-steps{max-height:none;overflow:visible}.ipas-math{margin:1em 0;min-width:0;max-width:100%;overflow-x:auto;overflow-y:hidden}.ipas-math math{display:block;text-align:left}.ipas-math[data-math-error]{white-space:pre-wrap;overflow-wrap:anywhere}
