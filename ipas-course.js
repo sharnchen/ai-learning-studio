@@ -272,3 +272,30 @@
   if(b.matches('[data-cost105-reset]')){const r=b.closest('.ipas-cost105');for(const [k,v] of [['in',2],['out',.5],['ip',30],['op',120]])r.querySelector('[data-cost105="'+k+'"]').value=v;updateCost105(r)}
   else{const r=b.closest('.ipas-score105');r.querySelector('[data-score105-cost]').value=25;r.querySelector('[data-score105-offline]').checked=false;updateScore105(r)}
  });
+
+
+// Chapter 11: self-contained teaching simulations. No network or storage writes.
+(()=>{
+function validate11(raw){let o;try{o=JSON.parse(raw)}catch{return "JSON 語法錯誤。"}if(!o||typeof o!=="object"||Array.isArray(o))return "必須為 JSON 物件。";const keys=["phenomenon","cause","action"];if(keys.some(k=>!Object.prototype.hasOwnProperty.call(o,k)))return "缺少必要欄位。";if(Object.keys(o).some(k=>!keys.includes(k)))return "包含額外欄位。";if(keys.some(k=>typeof o[k]!=="string"))return "欄位型別必須為字串。";return "結構通過；仍需查核事實內容。"}
+function messages11(n,sys,q){const examples=[["背光電路元件燒毀。","硬體問題"],["程式發生記憶體存取錯誤。","軟體問題"],["設備停止，尚未完成分析。","待確認"]];return [...(sys?[{role:"system",content:"你是品質工程師。依證據分類為硬體問題、軟體問題或待確認，不得推測根因。"}]:[]),...examples.slice(0,n).flatMap(([question,answer])=>[{role:"user",content:question},{role:"assistant",content:answer}]),{role:"user",content:q}]}
+function rates11(a,b){return [a*10,b*10,(b-a)*10]}
+function ground11(values){const n=values.length,s=values.filter(x=>x==="supported").length,u=values.filter(x=>x==="unknown").length,c=values.filter(x=>x==="contradicted").length;return {n,s,u,c,rate:n?100*s/n:null}}
+ const parts=["你是品質工程師。","整理工程異常摘要。","HUD 偶發無畫面，根因待確認。","只依證據，不補造根因。","輸出異常現象、原因、後續措施三欄。","畫面異常｜待確認｜蒐集日誌。"];
+ const routes=[["文字","LLM","文字","摘要、分類、問答"],["影像＋文字","VLM","文字","影像理解"],["文字","Diffusion 等","影像","文字生成圖片"],["影像＋條件","Diffusion 等","影像","依參考圖編輯"],["語音","語音辨識模型","文字","語音轉文字"],["文字","語音合成模型","語音","文字轉語音"],["文字","影片生成模型","影片","文字生成影片"],["影像＋條件","影片生成模型","影片","靜態圖轉影片"]];
+ const initialJson=JSON.stringify({phenomenon:"HUD 無畫面",cause:"待確認",action:"蒐集日誌"},null,2);
+ function update(r){
+  const q=s=>r.querySelector(s), all=s=>[...r.querySelectorAll(s)],val=k=>q('[data-ch11="'+k+'"]').value,out=q('[data-ch11-out]'),status=q('[data-ch11-status]');
+  const demo=r.dataset.ch11Demo;
+  if(demo==="prompt"){const list=all('[data-ch11="part"]').filter(x=>x.checked);out.textContent=list.map(x=>parts[Number(x.dataset.index)]).join("\n")||"尚未選擇提示欄位。";status.textContent="已指定 "+list.length+" / 6 欄位；欄位數不代表回答正確率。"+(list.some(x=>x.dataset.index==="3")?"":" 尚未設定限制。")}
+  else if(demo==="shot"){const n=Number(val("shot")),m=messages11(n,q('[data-ch11="system"]').checked,val("question"));out.textContent=JSON.stringify(m,null,2);status.textContent="範例 "+n+" 個；訊息 "+m.length+" 則。";}
+  else if(demo==="json"){out.textContent=validate11(val("json"))}
+  else if(demo==="ab"){const a=Number(val("a")),b=Number(val("b")),[pa,pb,d]=rates11(a,b);for(const [k,v,p] of [["a",a,pa],["b",b,pb]]){q('[data-ch11-label="'+k+'"]').textContent=v;q('[data-ch11-'+k+']').textContent=p+"%";q('[data-ch11-bar="'+k+'"]').style.width=p+"%"}out.textContent="差異："+(d>0?"+":"")+d+" 個百分點。"}
+  else if(demo==="modality"){const x=routes[Number(val("task"))];if(x)out.textContent=x.slice(0,3).join(" → ")+"；"+x[3]}
+  else if(demo==="ground"){const {n,s,u,c,rate}=ground11(all('[data-ch11="claim"]').map(x=>x.value));out.textContent="支持 "+s+"／"+n+"＝"+(rate===null?"未定義":rate.toFixed(0)+"%")+"；不足 "+u+"；矛盾 "+c+"。";for(const [k,v] of [["supported",s],["unknown",u],["contradicted",c]])q('[data-ch11-bar="'+k+'"]').style.width=(n?100*v/n:0)+"%";}
+ }
+ document.addEventListener("input",e=>{const r=e.target.closest("[data-ch11-demo]");if(r&&e.target.matches("[data-ch11]")&&r.dataset.ch11Demo!=="json")update(r)});
+ document.addEventListener("change",e=>{const r=e.target.closest("[data-ch11-demo]");if(r&&e.target.matches("[data-ch11]")&&r.dataset.ch11Demo!=="json")update(r)});
+ document.addEventListener("click",e=>{const b=e.target.closest("[data-ch11-action]");if(!b)return;const r=b.closest("[data-ch11-demo]");if(!r)return;const action=b.dataset.ch11Action;if(r.dataset.ch11Demo==="prompt"&&(action==="all"||action==="reset"))r.querySelectorAll('[data-ch11="part"]').forEach((x,i)=>x.checked=action==="all"||i===1||i===2);if(r.dataset.ch11Demo==="json"&&action==="reset"){r.querySelector('[data-ch11="json"]').value=initialJson;r.querySelector('[data-ch11-out]').textContent="等待驗證。";return}update(r)});
+ function init(){document.querySelectorAll('[data-ch11-demo="shot"]:not([data-ch11-ready])').forEach(r=>{r.dataset.ch11Ready="1";update(r)})}
+ new MutationObserver(init).observe(document.body,{childList:true,subtree:true});init();
+})();
