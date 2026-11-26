@@ -23,3 +23,15 @@ api.restore({page:'invalid',view:'lab',labTerm:'missing',lessonId:99});drain();a
 // Capturing is disabled while logged out, and all relevant UI event families are registered.
 const old=last;c.AIStudioAuth.ready=false;api.capture();assert.equal(last,old);for(const e of ['hashchange','click','change','scroll','close','toggle','pagehide'])assert(events[e]?.length);
 console.log('PASS page/lesson/keyword/lab capture, input and visual restoration, scroll cancellation, filters and account isolation');
+
+c.activeScenarioId='txt2img';c.ScenarioContent={items:{txt2img:{},img2img:{},tts:{},qwen3tts:{}}};
+c.AIStudioAuth.ready=true;
+for(const id of Object.keys(c.ScenarioContent.items)){
+ api.restore({page:'scenarios',view:'page',scenarioId:id,scroll:{page:42}});drain();
+ assert.equal(c.location.hash,'#scenarios');assert.equal(c.activeScenarioId,id);assert.equal(c.scrollY,42);
+ api.capture();assert.equal(last.scenarioId,id);
+}
+for(const id of ['missing','constructor','__proto__','toString',null,{},[]]){
+ api.restore({page:'scenarios',view:'page',scenarioId:id});drain();assert.equal(c.activeScenarioId,'txt2img');
+}
+console.log('PASS all four scenario resume targets and invalid scenario fallback');

@@ -31,6 +31,10 @@ jobs:
           node scripts/test-formula-guides.cjs
       - name: Validate experiment record recovery
         run: node tests/lab-record-recovery.cjs
+      - name: Validate site navigation and restored location
+        run: |
+          node tests/navigation.cjs
+          node scripts/test-learning-location.cjs
       - name: Stamp release and version assets
         run: python3 .github/scripts/build-release.py
       - name: Name Pages artifact
