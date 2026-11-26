@@ -63,5 +63,8 @@
   if(t.id==='ipas-jump'){r.slide=Number(t.value);if(document.fullscreenElement?.classList.contains('ipas-stage')){save();const tmp=document.createElement('div');tmp.innerHTML=slideView(w,r);document.fullscreenElement.innerHTML=tmp.firstElementChild.innerHTML}else refresh()}
   else if(t.matches('[data-ipas-q]')&&!r.submitted){r.answers[Number(t.dataset.ipasQ)]=Number(t.value);save();const p=document.querySelector('.ipas-quiz > .muted');if(p)p.textContent='自編單選題，非官方試題或完整正式考試格式。'+r.answers.filter(a=>a>=0).length+' / '+w.questions.length+' 題已作答。';const b=document.getElementById('ipas-submit');if(b)b.disabled=r.answers.some(x=>x<0)}
  });
+
+ function updateStatDemo(root){const input=root.querySelector('[data-stat-slider]');if(!input)return;const salary=Number(input.value),v=[30,32,35,salary],mean=v.reduce((a,b)=>a+b,0)/4,variance=v.reduce((a,b)=>a+(b-mean)**2,0)/4;for(const [k,val] of Object.entries({salary,mean:mean.toFixed(2),variance:variance.toFixed(2),sd:Math.sqrt(variance).toFixed(2)}))root.querySelector('[data-stat="'+k+'"]').textContent=val;v.forEach((n,i)=>{const bar=root.querySelector('[data-stat-bar="'+i+'"]'),label=root.querySelector('[data-stat-label="'+i+'"]');bar.setAttribute('y',180-n*.4);bar.setAttribute('height',n*.4);label.setAttribute('y',173-n*.4);label.textContent=n});const line=root.querySelector('[data-stat-line="mean"]');line.setAttribute('y1',180-mean*.4);line.setAttribute('y2',180-mean*.4)}
+ document.addEventListener('input',e=>{if(e.target.matches('[data-stat-slider]'))updateStatDemo(e.target.closest('.ipas-stat-demo'))});
  window.IPASCourse={render:renderPage,sanitize:clean};
 })();
