@@ -218,3 +218,26 @@
  document.addEventListener('input',e=>{if(e.target.matches('[data-ctx103-value]'))updateCtx103(e.target.closest('.ipas-ctx103'))});
  document.addEventListener('change',e=>{if(e.target.matches('[data-ctx103-cap]'))updateCtx103(e.target.closest('.ipas-ctx103'))});
  document.addEventListener('click',e=>{const b=e.target.closest('[data-ctx103-reset]');if(!b)return;const r=b.closest('.ipas-ctx103');r.querySelector('[data-ctx103-cap]').value='8192';r.querySelectorAll('[data-ctx103-value]').forEach((x,k)=>x.value=[512,2048,1024,2048][k]);updateCtx103(r)});
+
+
+ // 10.4 sampling parameters: temperature, top-k, top-p, renormalization.
+ function sample104(r,draw=false){
+  const get=k=>Number(r.querySelector('[data-sample104="'+k+'"]').value);
+  const t=get('t'),k=get('k'),p=get('p');if(!(t>0&&k>=1&&k<=5&&p>0&&p<=1))return;
+  const e=[3,2,1,0,-1].map(z=>Math.exp((z-3)/t)),sum=e.reduce((a,b)=>a+b,0),raw=e.map(v=>v/sum);
+  const ks=e.slice(0,k).reduce((a,b)=>a+b,0),kp=e.map((v,j)=>j<k?v/ks:0);
+  let cum=0,m=0;do{cum+=kp[m++]}while(m<k&&cum<p-1e-12);
+  const final=kp.map((v,j)=>j<m?v/cum:0),pct=x=>(100*x).toFixed(2)+'%';
+  for(const [n,v] of [['t',t.toFixed(1)],['k',k],['p',p.toFixed(2)]])r.querySelector('[data-sample104-label="'+n+'"]').textContent=v;
+  for(let j=0;j<5;j++){
+   for(const [n,v] of [['raw',raw[j]],['final',final[j]]]){
+    const bar=r.querySelector('[data-sample104-'+n+'bar="'+j+'"]');bar.setAttribute('y',175-v*150);bar.setAttribute('height',v*150);
+    r.querySelector('[data-sample104-'+n+'="'+j+'"]').textContent=pct(v);
+   }
+  }
+  r.querySelector('[data-sample104-summary]').textContent='保留 '+m+' / 5 個候選；最高機率 '+pct(final[0])+'。';
+  let result='尚未取樣。';if(draw){const u=Math.random();let c=0,j=0;for(;j<m-1;j++){c+=final[j];if(u<c)break}result='本次取樣：Token '+'ABCDE'[j]+'，機率 '+pct(final[j])+'。'}
+  r.querySelector('[data-sample104-draw]').textContent=result;
+ }
+ document.addEventListener('input',e=>{if(e.target.matches('[data-sample104]'))sample104(e.target.closest('.ipas-sample104'))});
+ document.addEventListener('click',e=>{const b=e.target.closest('[data-sample104-draw-btn],[data-sample104-reset]');if(!b)return;const r=b.closest('.ipas-sample104');if(b.matches('[data-sample104-reset]')){for(const [k,v] of [['t',1],['k',5],['p',.9]])r.querySelector('[data-sample104="'+k+'"]').value=v;sample104(r)}else sample104(r,true)});
