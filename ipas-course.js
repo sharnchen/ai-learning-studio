@@ -391,3 +391,30 @@ function monitor14(down,p95,accuracy,critical){const period=30*24*60,allowance=p
  function init(){document.querySelectorAll("[data-plan14-demo]:not([data-plan14-ready])").forEach(r=>{r.dataset.plan14Ready="1";update(r)})}
  new MutationObserver(init).observe(document.body,{childList:true,subtree:true});init();
 })();
+
+
+// Chapter 15: deterministic risk-management teaching simulations; no real approvals or external actions.
+(()=>{
+function matrix15(l0,i0,l1,i1){const initial=l0*i0,residual=l1*i1,level=x=>x>=16?"高":x>=8?"中":"低";return {initial,residual,initialLevel:level(initial),residualLevel:level(residual),changed:residual-initial,review:i1===5||residual>=16}}
+function policy15(origin,action,scope,approved,sensitive){if(origin!=="user")return "untrusted";if(!scope||!["read","draft","export"].includes(action))return "forbidden";if(action==="export"&&sensitive)return "sensitive";if(action==="export"&&!approved)return "approval";return "permitted"}
+function privacy15(necessary,extra,service,rights){return {missing:3-necessary,extra,ready:necessary===3&&extra===0&&service&&rights}}
+function incident15(severity,contained,fixed,owner){const missing=[];if(!contained)missing.push("限制影響／核對結果");if(!fixed)missing.push("修正與回歸驗證");if(!owner)missing.push("責任人批准");return {ready:missing.length===0,missing,action:severity==="high"?"暫停受影響功能、通報並保留必要證據。":severity==="unknown"?"暫停重試，先核對外部結果。":"人工修訂、記錄問題及檢查影響。"}}
+function rubric15(r,blocker,evidence){const weights=[20,20,25,15,20],parts=r.map((v,i)=>v*weights[i]/5),score=parts.reduce((a,b)=>a+b,0);return {parts,score,pass:score>=80&&!blocker&&evidence}}
+ const reasons={untrusted:"拒絕：外部內容不能自行授權工具行動。",forbidden:"拒絕：動作不在授權範圍。",sensitive:"拒絕：包含禁止外傳的敏感資料，即使已批准亦不可外傳。",approval:"暫停：須取得具體人工批准。",permitted:"通過本案例政策預檢；未執行任何外部操作。"};
+ function update(r){
+  const q=s=>r.querySelector(s),inp=k=>q('[data-risk15="'+k+'"]'),val=k=>Number(inp(k).value),on=k=>inp(k).checked,out=q("[data-risk15-out]");
+  r.querySelectorAll("input[type=range][data-risk15]").forEach(x=>{const el=q('[data-risk15-label="'+x.dataset.risk15+'"]');if(el)el.textContent=x.value});
+  function show(lines){out.replaceChildren();for(const line of lines){const p=document.createElement("p");p.textContent=line;out.append(p)}}
+  switch(r.dataset.risk15Demo){
+   case "matrix":{const l0=val("l0"),i0=val("i0"),l1=val("l1"),i1=val("i1"),a=matrix15(l0,i0,l1,i1);const first=q('[data-risk15-mark="initial"]'),last=q('[data-risk15-mark="residual"]');first.setAttribute("x",52+(l0-1)*43);first.setAttribute("y",16+(5-i0)*39);last.setAttribute("cx",72+(l1-1)*43);last.setAttribute("cy",34+(5-i1)*39);show(["初始風險："+a.initial+"（"+a.initialLevel+"）","剩餘風險："+a.residual+"（"+a.residualLevel+"）；分數差："+(a.changed>0?"+":"")+a.changed,a.review?"須依重大影響或高風險硬性門檻審查。":"仍需由責任人確認控制證據及剩餘風險。"]);break;}
+   case "injection":show([reasons[policy15(inp("origin").value,inp("action").value,on("scope"),on("approved"),on("sensitive"))]]);break;
+   case "privacy":{const a=privacy15(["model","symptom","status"].filter(on).length,["name","phone","address"].filter(on).length,on("service"),on("rights"));show(["必要欄位缺少："+a.missing+"；非必要欄位："+a.extra,a.ready?"通過本案例初步檢核；仍須檢查自由文字及適用法規。":"尚未通過初步檢核，應修正欄位並確認處理授權及素材權利。"]);break;}
+   case "incident":{const a=incident15(inp("severity").value,on("contained"),on("fixed"),on("owner"));show([a.action,a.ready?"通過本案例恢復閘門；仍應依計畫受控恢復及監控。":"不可恢復，尚缺："+a.missing.join("、")]);break;}
+   case "rubric":{const a=rubric15([0,1,2,3,4].map(i=>val("r"+i)),on("blocker"),on("evidence"));show(["各項加權分數："+a.parts.join("／"),"總分："+a.score+" / 100",a.pass?"通過本案例驗收示例。":"未通過；需達 80 分、無重大未解決風險並具備完整測試證據。"]);break;}
+  }
+ }
+ function event(e){const r=e.target.closest("[data-risk15-demo]");if(r&&e.target.matches("[data-risk15]"))update(r)}
+ document.addEventListener("input",event);document.addEventListener("change",event);
+ function init(){document.querySelectorAll("[data-risk15-demo]:not([data-risk15-ready])").forEach(r=>{r.dataset.risk15Ready="1";update(r)})}
+ new MutationObserver(init).observe(document.body,{childList:true,subtree:true});init();
+})();
