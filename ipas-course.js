@@ -241,3 +241,34 @@
  }
  document.addEventListener('input',e=>{if(e.target.matches('[data-sample104]'))sample104(e.target.closest('.ipas-sample104'))});
  document.addEventListener('click',e=>{const b=e.target.closest('[data-sample104-draw-btn],[data-sample104-reset]');if(!b)return;const r=b.closest('.ipas-sample104');if(b.matches('[data-sample104-reset]')){for(const [k,v] of [['t',1],['k',5],['p',.9]])r.querySelector('[data-sample104="'+k+'"]').value=v;sample104(r)}else sample104(r,true)});
+
+
+ // 10.5 model selection: cost budget and hard-constraint weighted ranking.
+ function updateCost105(r){
+  const get=k=>{const v=Number(r.querySelector('[data-cost105="'+k+'"]').value);return Number.isFinite(v)?Math.max(0,v):0};
+  const n=get('in'),o=get('out'),ip=get('ip'),op=get('op'),parts=[n*ip,o*op],total=parts[0]+parts[1];
+  const money=v=>'NT$ '+v.toFixed(2);
+  r.querySelector('[data-cost105-label="in"]').textContent=n.toFixed(1);
+  r.querySelector('[data-cost105-label="out"]').textContent=o.toFixed(1);
+  r.querySelector('[data-cost105-total]').textContent='預估成本：'+money(total);
+  parts.forEach((v,k)=>{r.querySelector('[data-cost105-part="'+k+'"]').textContent=money(v);r.querySelector('[data-cost105-bar="'+k+'"]').style.width=(total>0?100*v/total:0)+'%'});
+  r.querySelector('[data-cost105-calc]').textContent=n+' × '+ip+' + '+o+' × '+op+' = '+money(total);
+ }
+ function updateScore105(r){
+  const k=Number(r.querySelector('[data-score105-cost]').value),offline=r.querySelector('[data-score105-offline]').checked;
+  if(!Number.isFinite(k)||k<0||k>65)return;
+  const weights=[65-k,20,k,15],models=[{"name":"A｜雲端 API","r":[4,3,5,4],"offline":false},{"name":"B｜本地部署","r":[5,4,3,3],"offline":true},{"name":"C｜私有雲","r":[4,4,2,5],"offline":false}];
+  r.querySelector('[data-score105-cost-label]').textContent=k+'%';
+  weights.forEach((v,j)=>{r.querySelector('[data-score105-weight="'+j+'"]').textContent=v+'%';r.querySelector('[data-score105-wbar="'+j+'"]').style.width=v+'%'});
+  const results=models.map(m=>({...m,eligible:!offline||m.offline,score:m.r.reduce((a,v,j)=>a+v*weights[j]/100,0)}));
+  results.forEach((m,j)=>{r.querySelector('[data-score105-result="'+j+'"]').textContent=m.eligible?m.score.toFixed(2)+' / 5':'不符合硬性要求';r.querySelector('[data-score105-bar="'+j+'"]').style.width=(m.eligible?20*m.score:0)+'%'});
+  const eligible=results.filter(m=>m.eligible),max=Math.max(...eligible.map(m=>m.score)),best=eligible.filter(m=>Math.abs(m.score-max)<1e-9);
+  r.querySelector('[data-score105-best]').textContent=best.length?'目前評分最高的合格方案：'+best.map(m=>m.name).join('、')+'（'+max.toFixed(2)+' / 5）':'無合格方案，請重新評估。';
+ }
+ document.addEventListener('input',e=>{if(e.target.matches('[data-cost105]'))updateCost105(e.target.closest('.ipas-cost105'));if(e.target.matches('[data-score105-cost]'))updateScore105(e.target.closest('.ipas-score105'))});
+ document.addEventListener('change',e=>{if(e.target.matches('[data-score105-offline]'))updateScore105(e.target.closest('.ipas-score105'))});
+ document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-cost105-reset],[data-score105-reset]');if(!b)return;
+  if(b.matches('[data-cost105-reset]')){const r=b.closest('.ipas-cost105');for(const [k,v] of [['in',2],['out',.5],['ip',30],['op',120]])r.querySelector('[data-cost105="'+k+'"]').value=v;updateCost105(r)}
+  else{const r=b.closest('.ipas-score105');r.querySelector('[data-score105-cost]').value=25;r.querySelector('[data-score105-offline]').checked=false;updateScore105(r)}
+ });
