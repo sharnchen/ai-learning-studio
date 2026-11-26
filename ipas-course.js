@@ -191,3 +191,30 @@
  document.addEventListener('input',e=>{if(e.target.matches('[data-att102-score]'))updateAtt102(e.target.closest('.ipas-att102'))});
  document.addEventListener('change',e=>{if(e.target.matches('[data-att102-mask]'))updateAtt102(e.target.closest('.ipas-att102'))});
  document.addEventListener('click',e=>{const b=e.target.closest('[data-att102-reset]');if(!b)return;const r=b.closest('.ipas-att102');r.querySelector('[data-att102-score="0"]').value='0';r.querySelector('[data-att102-score="1"]').value='0.7071';r.querySelector('[data-att102-mask]').checked=true;updateAtt102(r)});
+
+
+ // 10.3 autoregressive generation and context-budget teaching demos.
+ document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-gen103-step],[data-gen103-reset]');if(!b)return;
+  const r=b.closest('.ipas-gen103');if(!r)return;
+  const stages=[{"tokens":["今天"],"names":["天氣","早上","EOS"],"probs":[60,30,10]},{"tokens":["今天","天氣"],"names":["很好","不錯","EOS"],"probs":[70,20,10]},{"tokens":["今天","天氣","很好"],"names":["EOS","。"],"probs":[80,20]},{"tokens":["今天","天氣","很好","EOS"],"names":[],"probs":[]}];
+  const step=b.matches('[data-gen103-reset]')?0:Math.min(3,Number(r.dataset.step)+1);r.dataset.step=String(step);
+  const s=stages[step],tokens=r.querySelector('[data-gen103-tokens]'),probs=r.querySelector('[data-gen103-probs]');tokens.replaceChildren();probs.replaceChildren();
+  s.tokens.forEach((t,k)=>{const el=document.createElement('span');el.textContent=t;el.style.cssText='display:inline-block;padding:5px 10px;border-radius:6px;margin:2px;border:1px solid #b9c9e2;color:#203452';el.style.background=k===0?'#e8eef8':t==='EOS'?'#e5e7eb':'#c8e9de';tokens.append(el)});
+  s.names.forEach((n,k)=>{const row=document.createElement('div'),label=document.createElement('b'),track=document.createElement('div'),bar=document.createElement('div');row.style.margin='8px 0';label.textContent=n+'：'+s.probs[k]+'%';track.style.cssText='height:12px;background:#e8eef8;border-radius:6px';bar.style.cssText='height:12px;background:#168b78;border-radius:6px;width:'+s.probs[k]+'%';track.append(bar);row.append(label,track);probs.append(row)});
+  r.querySelector('[data-gen103-count]').textContent='Step '+step+' / 3';
+  r.querySelector('[data-gen103-out]').textContent=step===3?'生成完成：新增文字「天氣很好」；含 Prompt 為「今天天氣很好」；停止原因 EOS。':'下一個 Token：'+s.names[0]+'（'+s.probs[0]+'%）';
+  r.querySelector('[data-gen103-step]').disabled=step===3;
+ });
+ function updateCtx103(r){
+  const C=Number(r.querySelector('[data-ctx103-cap]').value),vs=[...r.querySelectorAll('[data-ctx103-value]')].map(x=>Number(x.value));
+  if(!(C>0)||vs.length!==4||vs.some(x=>!Number.isFinite(x)||x<0))return;
+  const input=vs[0]+vs[1]+vs[2],reserved=vs[3],used=input+reserved,remaining=C-input,spare=C-used;
+  vs.forEach((v,k)=>{r.querySelector('[data-ctx103-label="'+k+'"]').textContent=v;r.querySelector('[data-ctx103-bar="'+k+'"]').style.width=(100*v/Math.max(C,used))+'%'});
+  r.querySelector('[data-ctx103-used]').textContent='輸入 '+input+'＋預留輸出 '+reserved+'＝'+used+' / '+C+' Tokens（'+(100*used/C).toFixed(2)+'%）';
+  r.querySelector('[data-ctx103-left]').textContent=remaining<0?'輸入已超出容量 '+(-remaining)+' Tokens。':'理論剩餘生成容量：'+remaining+' Tokens；'+(spare<0?'預留後超出 '+(-spare)+' Tokens。':'預留後尚餘 '+spare+' Tokens。');
+  const status=r.querySelector('[data-ctx103-status]');status.textContent=used>C?'超出共同上下文上限：請減少輸入或預留輸出。':'符合共同上下文上限，仍須確認服務的獨立輸出限制。';status.style.color=used>C?'#b04444':'';
+ }
+ document.addEventListener('input',e=>{if(e.target.matches('[data-ctx103-value]'))updateCtx103(e.target.closest('.ipas-ctx103'))});
+ document.addEventListener('change',e=>{if(e.target.matches('[data-ctx103-cap]'))updateCtx103(e.target.closest('.ipas-ctx103'))});
+ document.addEventListener('click',e=>{const b=e.target.closest('[data-ctx103-reset]');if(!b)return;const r=b.closest('.ipas-ctx103');r.querySelector('[data-ctx103-cap]').value='8192';r.querySelectorAll('[data-ctx103-value]').forEach((x,k)=>x.value=[512,2048,1024,2048][k]);updateCtx103(r)});
