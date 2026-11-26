@@ -152,3 +152,24 @@
  }
  document.addEventListener('input',ipasTest95);
  document.addEventListener('change',ipasTest95);
+
+
+ // 10.1 BPE teaching simulation: weighted pair frequencies, two deterministic merges.
+ document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-bpe101-step],[data-bpe101-reset]');if(!b)return;
+  const r=b.closest('.ipas-bpe101');if(!r)return;
+  const step=b.matches('[data-bpe101-reset]')?0:Math.min(2,Number(r.dataset.step)+1);r.dataset.step=String(step);
+  const rows=[{word:'low',count:5,tokens:['l','o','w']},{word:'lower',count:2,tokens:['l','o','w','e','r']},{word:'new',count:3,tokens:['n','e','w']}];
+  for(const [a,z] of [['l','o'],['lo','w']].slice(0,step))for(const row of rows){
+   const next=[];for(let k=0;k<row.tokens.length;k++){if(row.tokens[k]===a&&row.tokens[k+1]===z){next.push(a+z);k++}else next.push(row.tokens[k])}row.tokens=next;
+  }
+  const f=new Map();
+  for(const row of rows){
+   const el=r.querySelector('[data-bpe101-word="'+row.word+'"]');el.replaceChildren();
+   for(const t of row.tokens){const span=document.createElement('span');span.textContent=t;span.style.cssText='display:inline-block;padding:4px 9px;border:1px solid #b9c9e2;border-radius:6px;background:#e8eef8;color:#203452;margin:2px;white-space:pre';if(t.length>1)span.style.background='#d8eee6';el.append(span)}
+   for(let k=0;k<row.tokens.length-1;k++){const key=row.tokens[k]+' + '+row.tokens[k+1];f.set(key,(f.get(key)||0)+row.count)}
+  }
+  r.querySelector('[data-bpe101-freq]').textContent='相鄰組合次數：'+[...f].sort((a,b)=>b[1]-a[1]).map(([k,v])=>k+'：'+v).join('；');
+  r.querySelector('[data-bpe101-out]').textContent=['步驟 0／2：l + o 和 o + w 均為 7 次，本例同分時先選 l + o。','步驟 1／2：已新增 lo；lo + w 共 7 次，下一步合併。','步驟 2／2：已新增 low，完成兩次合併。真實 BPE 可繼續訓練。'][step];
+  r.querySelector('[data-bpe101-step]').disabled=step===2;
+ });
