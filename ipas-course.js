@@ -335,3 +335,31 @@ function retrieve12(query,access,bad){const id=query==="repair"?"B":query==="war
  function init(){document.querySelectorAll("[data-rag12-demo]:not([data-rag12-ready])").forEach(r=>{r.dataset.rag12Ready="1";update(r)})}
  new MutationObserver(init).observe(document.body,{childList:true,subtree:true});init();
 })();
+
+
+// Chapter 13: local teaching simulations; no external calls, real approvals or account writes.
+(()=>{
+function step13(s,scenario,max){if(s.done)return s;const lines=[...s.lines];let n=s.n,done=false;if(scenario==="missing"){lines.push("缺少工單 ID，要求使用者補充；未呼叫工具。");done=true}else if(n>=max){lines.push("達最大步數，停止並轉人工。");done=true}else{n++;if(n===1){lines.push("步驟 1：查詢工單 101。");if(scenario==="fail"){lines.push("工具回傳失敗，未取得狀態；停止並轉人工。");done=true}else lines.push("工具回傳 pending。")}else{lines.push("步驟 2：根據已確認狀態產生草稿；未寄信。");done=true}if(!done&&n>=max){lines.push("達最大步數，停止並轉人工。");done=true}}return {n,done,lines}}
+function tool13(name,raw,access){if(name!=="lookup_status")return {ok:false,error:"tool_not_allowed"};if(!access)return {ok:false,error:"forbidden"};let a;try{a=JSON.parse(raw)}catch{return {ok:false,error:"invalid_json"}}if(!a||typeof a!=="object"||Array.isArray(a)||Object.keys(a).length!==1||!Object.hasOwn(a,"id")||!Number.isSafeInteger(a.id)||a.id<1)return {ok:false,error:"invalid_arguments"};const db={101:"pending",102:"closed"};return Object.hasOwn(db,a.id)?{ok:true,status:db[a.id]}:{ok:false,error:"not_found"}}
+function memory13(c,h){return c-512-128-h-1024}
+function policy13(op,allowed,approved,n,limit,spent,budget){if(!["read","send"].includes(op)||!allowed)return "forbidden";if(n+1>limit||spent+2>budget)return "limit";if(op==="send"&&!approved)return "approval_required";return "permitted"}
+function evaluate13(w,a,wc,ac,violation){const rows=[{name:"Workflow",s:w,c:wc,eligible:w>=16},{name:"Agent",s:a,c:ac,eligible:a>=16&&!violation}].map(x=>({...x,rate:x.s/20,perTask:x.c/20,perSuccess:x.s?x.c/x.s:null}));const eligible=rows.filter(x=>x.eligible).sort((x,y)=>x.perSuccess-y.perSuccess||y.s-x.s);let winner="無合格方案";if(eligible.length){winner=eligible.length===2&&Math.abs(eligible[0].perSuccess-eligible[1].perSuccess)<1e-10&&eligible[0].s===eligible[1].s?"兩者並列":eligible[0].name}return {rows,winner}}
+ const loops=new WeakMap();
+ const initial=()=>({n:0,done:false,lines:[]});
+ const reasons={forbidden:"拒絕：工具禁止或無權限。",limit:"停止：下一步將超出步數或預算。",approval_required:"暫停：此動作需要明確批准。",permitted:"政策預檢通過；僅模擬，未執行外部動作。"};
+ function update(r,action){
+  const q=s=>r.querySelector(s),inp=k=>q('[data-agent13="'+k+'"]'),val=k=>Number(inp(k).value),label=k=>{const n=q('[data-agent13-label="'+k+'"]');if(n)n.textContent=inp(k).value},out=q("[data-agent13-out]");
+  switch(r.dataset.agent13Demo){
+   case "loop":{label("max");let s=loops.get(r)||initial();if(action==="reset")s=initial();if(action==="next")s=step13(s,inp("scenario").value,val("max"));loops.set(r,s);out.textContent=s.lines.join("\n")||"等待開始。";q('[data-agent13-action="next"]').disabled=s.done;break;}
+   case "tool":if(action==="call")out.textContent=JSON.stringify(tool13(inp("tool").value,inp("args").value,inp("access").checked),null,2);else out.textContent="等待呼叫。";break;
+   case "memory":{label("history");const c=val("capacity"),b=memory13(c,val("history")),used=c-b;q("[data-agent13-bar]").style.width=Math.min(100,100*used/c)+"%";q("[data-agent13-bar]").style.background=b<0?"#b04444":"#6480ad";out.textContent=b<0?"超出容量 "+(-b)+" Token；請減少輸入或預留。":"已使用／預留 "+used+" Token；證據容量 "+b+" Token。";break;}
+   case "policy":{["used","limit","spent","budget"].forEach(label);out.textContent=reasons[policy13(inp("operation").value,inp("allowed").checked,inp("approved").checked,val("used"),val("limit"),val("spent"),val("budget"))];break;}
+   case "eval":{["workflow","agent","wc","ac"].forEach(label);const e=evaluate13(val("workflow"),val("agent"),val("wc"),val("ac"),inp("violation").checked);out.replaceChildren();for(const x of e.rows){const p=document.createElement("p");p.textContent=x.name+"：成功率 "+(100*x.rate).toFixed(0)+"%；每任務 NT$ "+x.perTask.toFixed(2)+"；每成功任務 "+(x.perSuccess===null?"未定義":"NT$ "+x.perSuccess.toFixed(2))+"；"+(x.eligible?"合格":"不合格");out.append(p)}const p=document.createElement("p");p.textContent="依本實驗規準："+e.winner;out.append(p);break;}
+  }
+ }
+ function input(e){const r=e.target.closest("[data-agent13-demo]");if(r&&e.target.matches("[data-agent13]"))update(r,r.dataset.agent13Demo==="loop"?"reset":undefined)}
+ document.addEventListener("input",input);document.addEventListener("change",input);
+ document.addEventListener("click",e=>{const b=e.target.closest("[data-agent13-action]");if(!b)return;const r=b.closest("[data-agent13-demo]");if(r)update(r,b.dataset.agent13Action)});
+ function init(){document.querySelectorAll("[data-agent13-demo]:not([data-agent13-ready])").forEach(r=>{r.dataset.agent13Ready="1";update(r)})}
+ new MutationObserver(init).observe(document.body,{childList:true,subtree:true});init();
+})();
