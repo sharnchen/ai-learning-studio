@@ -21,7 +21,8 @@
   const slide=w.slides[r.slide];
   return '<section class="panel ipas-stage"><div class="ipas-toolbar"><span>第 '+slide.n+' / '+w.slides.length+' 頁 · '+slide.minutes+' 分鐘</span>'+button('全螢幕','fullscreen')+'</div><progress max="'+w.slides.length+'" value="'+(r.slide+1)+'" aria-label="投影片進度"></progress><div class="ipas-slide"><div class="eyebrow">WEEK '+String(w.n).padStart(2,'0')+' / '+w.code+'</div><h2>'+slide.title+'</h2>'+(slide.answerPage?'<details><summary>完成作答後展開解答</summary>'+slide.html+'</details>':slide.html||'<p>休息 10 分鐘</p>')+'</div><div class="ipas-toolbar">'+button('← 上一頁','prev',r.slide===0?'disabled':'')+'<label>跳至 <select id="ipas-jump" aria-label="選擇投影片">'+w.slides.map((x,i)=>'<option value="'+i+'" '+(r.slide===i?'selected':'')+'>'+x.n+' · '+x.title+'</option>').join('')+'</select></label>'+button('下一頁 →','next',r.slide===w.slides.length-1?'disabled':'')+'</div><details class="ipas-notes"><summary>教師講稿及教學指引</summary>'+slide.notes+'</details></section>'
  }
- function guideView(w){return '<section class="panel ipas-guide"><div class="ipas-toolbar"><h3>本週完整教師講稿</h3>'+button('下載本週 HTML 講稿','download')+' '+button('列印／另存 PDF','print')+'</div>'+w.slides.map(x=>'<article><div class="eyebrow">SLIDE '+String(x.n).padStart(2,'0')+' · '+x.minutes+' 分鐘</div><h3>'+x.title+'</h3>'+x.html+'<div class="ipas-notes"><b>教師講稿</b>'+x.notes+'</div></article>').join('')+'</section>'}
+ function canDownloadGuide(){const auth=window.AIStudioAuth;return auth?.ready===true&&['sharnchen@gmail.com','liesharn@gmail.com'].includes(String(auth.email||'').trim().toLowerCase())}
+ function guideView(w){return '<section class="panel ipas-guide"><div class="ipas-toolbar"><h3>本週完整教師講稿</h3>'+(canDownloadGuide()?button('下載本週 HTML 講稿','download'):'')+'</div>'+w.slides.map(x=>'<article><div class="eyebrow">SLIDE '+String(x.n).padStart(2,'0')+' · '+x.minutes+' 分鐘</div><h3>'+x.title+'</h3>'+x.html+'<div class="ipas-notes"><b>教師講稿</b>'+x.notes+'</div></article>').join('')+'</section>'}
  function quizView(w,r){const sc=score(w,r),answered=r.answers.filter(a=>a>=0).length;
   return '<section class="panel ipas-quiz"><h3>'+(w.n===8||w.n===16?w.questions.length+' 題模擬測驗':'本週 '+w.questions.length+' 題練習')+'</h3><p class="muted">自編單選題，非官方試題或完整正式考試格式。'+answered+' / '+w.questions.length+' 題已作答。</p>'+(sc===null?'':'<div class="ipas-score"><strong>'+sc+' 分</strong> · 答對 '+r.answers.filter((a,i)=>a===w.questions[i].correct).length+' 題／共 '+w.questions.length+' 題 · 建議目標 80 分</div>')+w.questions.map((q,i)=>'<fieldset><legend>'+(i+1)+'. '+q.q+'</legend>'+q.choices.map((c,j)=>'<label class="'+(r.submitted?(j===q.correct?'ipas-right':(r.answers[i]===j?'ipas-wrong':'')):'')+'"><input type="radio" name="ipas-q-'+i+'" data-ipas-q="'+i+'" value="'+j+'" '+(r.answers[i]===j?'checked ':'')+(r.submitted?'disabled':'')+'>'+String.fromCharCode(65+j)+'. '+c+'</label>').join('')+(r.submitted?'<p class="ipas-explain">'+(r.answers[i]===q.correct?'✓ 答對':'✕ 答錯')+'｜正確答案 '+String.fromCharCode(65+q.correct)+'：'+q.explanation+'</p>':'')+'</fieldset>').join('')+'<div class="ipas-toolbar">'+(r.submitted?button('重新練習','retry'):button('提交並評分','submit',answered!==w.questions.length?'disabled class="primary" id="ipas-submit"':'class="primary" id="ipas-submit"'))+'<a href="#assessment">更多站內題庫 →</a></div></section>'
  }
@@ -32,6 +33,7 @@
  }
  function refresh(){save();render()}
  function download(w){
+ if(!canDownloadGuide())return;
  const body=w.slides.map(x=>'<article><small>SLIDE '+x.n+' · '+x.minutes+' 分鐘</small><h2>'+x.title+'</h2>'+x.html+'<section><b>教師講稿</b>'+x.notes+'</section></article>').join('');
  const html='<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+w.title+'</title><style>body{max-width:900px;margin:auto;padding:24px;font-family:system-ui,sans-serif;line-height:1.8;color:#243047}article{border-bottom:1px solid #bbb;padding:16px 0;break-inside:avoid}section{background:#f0f3f8;padding:12px}small{color:#52677b}</style><h1>iPAS 第 '+w.n+' 週｜'+w.title+'</h1><p>'+w.code+' · 120 分鐘 · 自編教材</p>'+body+'</html>';
  const url=URL.createObjectURL(new Blob([html],{type:'text/html;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='iPAS_Week_'+String(w.n).padStart(2,'0')+'_Guide.html';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
@@ -40,7 +42,7 @@
   const b=e.target.closest('[data-ipas]');if(!b||location.hash!=='#ipas')return;
   const s=get(),w=current(),r=rec(w),a=b.dataset.ipas;
   if(a==='fullscreen'){const el=document.querySelector('.ipas-stage');try{if(document.fullscreenElement)await document.exitFullscreen();else if(el?.requestFullscreen)await el.requestFullscreen();else toast('此瀏覽器不支援全螢幕')}catch{toast('無法進入全螢幕')}return}
-  if(a==='download'){download(w);return}if(a==='print'){window.print();return}
+  if(a==='download'){if(canDownloadGuide())download(w);return}
   if(a==='week'){s.week=Number(b.dataset.n);s.mode='slides'}
   else if(a==='mode'){s.mode=b.dataset.mode}
   else if(a==='prev'){r.slide=Math.max(0,r.slide-1)}
