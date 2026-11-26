@@ -72,7 +72,7 @@
 
  document.addEventListener('input',e=>{if(!e.target.matches('[data-matrix-w1],[data-matrix-w2]'))return;const root=e.target.closest('.ipas-matrix-demo'),a=Number(root.querySelector('[data-matrix-w1]').value),b=Number(root.querySelector('[data-matrix-w2]').value);for(const [k,v] of [['v1',a],['v2',b],['svg1',a],['svg2',b]])root.querySelector('[data-matrix-'+k+']').textContent=v;const fmt=n=>Number(n.toFixed(2));root.querySelector('[data-matrix-formula]').textContent=[[20,2],[30,4],[40,6]].map(([x,y],i)=>{const v=fmt(x*a+y*b);root.querySelector('[data-matrix-y="'+i+'"]').textContent=v;return x+'×'+a+'+'+y+'×'+b+'='+v}).join('；')});
 
- let mathBusy=false,mathAgain=false;function renderIPASMath(){if(!window.MathJax?.typesetPromise)return;if(mathBusy){mathAgain=true;return}const nodes=[...document.querySelectorAll('.ipas-root .ipas-math')].filter(n=>!n.querySelector('mjx-container')&&n.textContent.includes('\\\\['));if(!nodes.length)return;mathBusy=true;MathJax.typesetPromise(nodes).catch(console.warn).finally(()=>{mathBusy=false;if(mathAgain){mathAgain=false;renderIPASMath()}})}
+ function renderIPASMath(){if(!window.katex)return;for(const n of document.querySelectorAll('.ipas-root .ipas-math')){const t=n.textContent.trim();if(n.querySelector('math')||!t.startsWith('\\[')||!t.endsWith('\\]'))continue;try{n.innerHTML=katex.renderToString(t.slice(2,-2),{output:'mathml',displayMode:true,throwOnError:true,trust:false})}catch(e){n.dataset.mathError='true';console.warn('iPAS formula',e)}}}
  new MutationObserver(renderIPASMath).observe(document.body,{childList:true,subtree:true});window.addEventListener('load',renderIPASMath);
  window.IPASCourse={render:renderPage,sanitize:clean};
 })();
