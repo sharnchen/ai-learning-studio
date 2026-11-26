@@ -363,3 +363,31 @@ function evaluate13(w,a,wc,ac,violation){const rows=[{name:"Workflow",s:w,c:wc,e
  function init(){document.querySelectorAll("[data-agent13-demo]:not([data-agent13-ready])").forEach(r=>{r.dataset.agent13Ready="1";update(r)})}
  new MutationObserver(init).observe(document.body,{childList:true,subtree:true});init();
 })();
+
+
+// Chapter 14: deterministic local planning exercises; no external operations.
+(()=>{
+function kpi14(before,after,pass,leak){const improvement=before>0?(before-after)/before*100:null;return {improvement,pass,eligible:before>0&&after<=before*.8+1e-10&&pass>=95&&!leak}}
+function select14(weight,offline){const weights=[80-weight,weight,20];const rows=[{name:"Cloud API",ratings:[4,5,4],local:false},{name:"On-premises",ratings:[4,2,2],local:true},{name:"Hybrid",ratings:[5,3,3],local:false}].map(x=>({...x,score:x.ratings.reduce((s,v,i)=>s+v*weights[i],0)/100,eligible:!offline||x.local}));const eligible=rows.filter(x=>x.eligible);const max=Math.max(...eligible.map(x=>x.score));return {weights,rows,winners:eligible.filter(x=>Math.abs(x.score-max)<1e-10).map(x=>x.name)}}
+function roi14(n,minutes,wage,real,initial,operating,months){const hours=n*minutes/60,gross=hours*wage*real/100,net=gross-operating,tco=initial+months*operating,benefit=months*gross,roi=tco>0?(benefit-tco)/tco*100:null,payback=net>0?(initial===0?0:initial/net):null;return {hours,gross,net,tco,benefit,roi,payback}}
+function gate14(stage,quality,safety,ops,approval){const missing=[];if(!quality)missing.push("技術與品質");if(!safety)missing.push("安全與資料控制");if(!ops)missing.push("營運與回退準備");if(!approval)missing.push("階段批准");return {ok:missing.length===0,missing,next:{poc:"Pilot（受控試點）",pilot:"Rollout（分批上線）",rollout:"Operations（正式營運監控）"}[stage]}}
+function monitor14(down,p95,accuracy,critical){const period=30*24*60,allowance=period*.001,availability=(period-down)/period*100;const issues=[];if(down>allowance+1e-10)issues.push("可用率未達目標");if(p95>2000)issues.push("P95 延遲超標");if(accuracy<95)issues.push("正確率未達標");return {availability,allowance,remaining:allowance-down,issues,status:critical?"重大安全事件：立即停止受影響功能，轉人工並啟動事件應變。":issues.length?"暫停擴大部署，診斷異常；必要時依計畫回滾。":"本組教學監控指標符合門檻，持續觀察。"}}
+ const money=x=>"NT$ "+x.toLocaleString("zh-TW",{minimumFractionDigits:0,maximumFractionDigits:2});
+ const pct=x=>x===null?"未定義":x.toFixed(2)+"%";
+ function update(r){
+  const q=s=>r.querySelector(s),inp=k=>q('[data-plan14="'+k+'"]'),val=k=>Number(inp(k).value),checked=k=>inp(k).checked,out=q("[data-plan14-out]");
+  r.querySelectorAll("input[type=range][data-plan14]").forEach(x=>{const label=q('[data-plan14-label="'+x.dataset.plan14+'"]');if(label)label.textContent=x.value});
+  function show(lines){out.replaceChildren();for(const line of lines){const p=document.createElement("p");p.textContent=line;out.append(p)}}
+  switch(r.dataset.plan14Demo){
+   case "kpi":{const a=kpi14(val("before"),val("after"),val("pass"),checked("leak"));show(["耗時降低："+pct(a.improvement)+"；正確率："+pct(a.pass),a.eligible?"通過本案例驗收門檻。":"未通過；不得僅依速度改善判定成功。"]);break;}
+   case "select":{const s=select14(val("weight"),checked("offline"));show(["品質／成本／維護權重："+s.weights.join("%／")+"%",...s.rows.map(x=>x.name+"："+x.score.toFixed(2)+" 分；"+(x.eligible?"符合硬性條件":"排除：不支援完全離線")),"合格方案最高分："+s.winners.join("、")]);break;}
+   case "roi":{const a=roi14(val("n"),val("minutes"),val("wage"),val("real"),val("initial"),val("operating"),val("months"));show(["每月節省工時："+a.hours.toFixed(2)+" 小時","每月可實現毛效益："+money(a.gross),"每月淨效益："+money(a.net),"期間 TCO："+money(a.tco),"期間毛效益："+money(a.benefit),"期間 ROI："+pct(a.roi),"簡化回收期："+(val("initial")===0?"無初始投入（仍需檢查每月淨效益）":a.payback===null?"無有限正回收期":a.payback.toFixed(2)+" 個月")]);break;}
+   case "gate":{const a=gate14(inp("stage").value,checked("quality"),checked("safety"),checked("ops"),checked("approval"));show([a.ok?"通過本階段模擬檢核，可依計畫進入 "+a.next:"尚未通過：缺少 "+a.missing.join("、")+"；不得推進。"]);break;}
+   case "monitor":{const a=monitor14(val("down"),val("p95"),val("accuracy"),checked("critical"));show(["可用率："+a.availability.toFixed(4)+"%；允許停機："+a.allowance.toFixed(1)+" 分鐘","剩餘停機預算："+a.remaining.toFixed(1)+" 分鐘",...(a.issues.length?[a.issues.join("、")]:[]),a.status]);break;}
+  }
+ }
+ function event(e){const r=e.target.closest("[data-plan14-demo]");if(r&&e.target.matches("[data-plan14]"))update(r)}
+ document.addEventListener("input",event);document.addEventListener("change",event);
+ function init(){document.querySelectorAll("[data-plan14-demo]:not([data-plan14-ready])").forEach(r=>{r.dataset.plan14Ready="1";update(r)})}
+ new MutationObserver(init).observe(document.body,{childList:true,subtree:true});init();
+})();
