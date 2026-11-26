@@ -1,0 +1,6 @@
+'use strict';
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const c=vm.createContext({window:{},document:{addEventListener(){}},URL,escapeHtml:s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')});
+for(const f of ['ipas-data.js','imported-videos.js','ipas-video-map.js'])vm.runInContext(fs.readFileSync(f,'utf8'),c,{filename:f});
+const result=vm.runInContext(`(()=>{let pairs=0;const ids=new Set();for(const [k,v] of Object.entries(ipasVideoMap)){const [week,page]=k.split('/').map(Number);if(!window.IPASWeeks.find(w=>w.n===week)?.slides.some(s=>s.n===page))throw Error(k);if(new Set(v).size!==v.length)throw Error('duplicate '+k);for(const id of v){if(!importedVideoCatalog.some(x=>x.id===id)||!ipasVideoTargets(id).some(t=>t.week===week&&t.page===page))throw Error(id);ids.add(id);pairs++}}for(const w of window.IPASWeeks){if(!ipasVideoRows(w.n).length)throw Error('empty chapter '+w.n);const html=ipasVideoPanel(w,w.slides[0]);if(!html.includes('本章全部影片'))throw Error(w.n)}for(const v of importedVideoCatalog.filter(v=>v.category==='02 iPAS AI 初級'))if(!ids.has(v.id))throw Error('unmapped '+v.id);return {chapters:window.IPASWeeks.length,pages:Object.keys(ipasVideoMap).length,unique:ids.size,pairs}})()`,c);
+assert.equal(result.chapters,16);console.log('PASS iPAS bidirectional mappings',JSON.stringify(result));

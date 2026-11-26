@@ -43,6 +43,8 @@ jobs:
         run: |
           node --check python-runner.js
           node tests/python-runner.cjs
+      - name: Validate iPAS video and chapter mappings
+        run: node tests/ipas-video-map.cjs
       - name: Stamp release and version assets
         run: python3 .github/scripts/build-release.py
       - name: Name Pages artifact
