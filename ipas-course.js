@@ -133,3 +133,22 @@
   const x=36+18*n;
   r.querySelector('[data-tco94-marker]').setAttribute('d','M'+x+' 30V210');
  });
+
+
+ // 9.5 workflow test pass rate demo.
+ function ipasTest95(e){
+  if(!e.target.matches('[data-test95-total],[data-test95-passed],[data-test95-critical]'))return;
+  const r=e.target.closest('.ipas-test95');if(!r)return;
+  const t=r.querySelector('[data-test95-total]'),p=r.querySelector('[data-test95-passed]'),n=Number(t.value);
+  p.max=String(n);
+  const pass=Math.max(0,Math.min(n,Number(p.value)));p.value=String(pass);
+  const rate=(100*pass/n).toFixed(2);
+  r.querySelector('[data-test95-n]').textContent=n;
+  r.querySelector('[data-test95-p]').textContent=pass;
+  r.querySelector('[data-test95-result]').textContent='通過率：'+rate+'%；失敗：'+(n-pass)+' 件';
+  r.querySelector('[data-test95-bar]').style.width=rate+'%';
+  r.querySelector('[data-test95-calc]').textContent=pass+' ÷ '+n+' × 100% = '+rate+'%';
+  r.querySelector('[data-test95-gate]').textContent=r.querySelector('[data-test95-critical]').checked?'存在重大安全缺陷：不得直接上線，須修正並重新驗證。':'仍須確認驗收門檻及其他上線條件。';
+ }
+ document.addEventListener('input',ipasTest95);
+ document.addEventListener('change',ipasTest95);
