@@ -35,3 +35,15 @@ for(const id of ['missing','constructor','__proto__','toString',null,{},[]]){
  api.restore({page:'scenarios',view:'page',scenarioId:id});drain();assert.equal(c.activeScenarioId,'txt2img');
 }
 console.log('PASS all four scenario resume targets and invalid scenario fallback');
+
+c.IPASWeeks=Array.from({length:16},(_,i)=>({n:i+1}));
+c.videoLibraryQuery='RAG';c.videoLibraryCategory='all';c.videoLibraryPage=1;c.videoLibraryIPASWeek=12;c.location.hash='#videos';c.scrollY=88;
+api.capture();const accountA=last;assert.equal(accountA.videos.ipasWeek,12);
+api.reset();api.restore({page:'videos',view:'page'});drain();assert.equal(c.videoLibraryIPASWeek,0);assert.equal(c.videoLibraryQuery,'');assert.equal(c.videoLibraryPage,0);
+api.restore({page:'videos',view:'page',videos:{query:'Agent',category:'all',page:0,ipasWeek:13}});drain();assert.equal(c.videoLibraryIPASWeek,13);api.capture();const accountB=last;
+api.restore(accountA);drain();assert.equal(c.videoLibraryIPASWeek,12);assert.equal(c.videoLibraryQuery,'RAG');assert.equal(c.videoLibraryPage,1);assert.equal(c.scrollY,88);
+api.restore(accountB);drain();assert.equal(c.videoLibraryIPASWeek,13);assert.equal(c.videoLibraryQuery,'Agent');
+for(let week=0;week<=16;week++){api.restore({page:'videos',videos:{ipasWeek:week}});drain();assert.equal(c.videoLibraryIPASWeek,week);api.capture();assert.equal(last.videos.ipasWeek,week)}
+for(const week of [undefined,null,-1,17,1.5,'12',{},[],true]){api.restore({page:'videos',videos:{ipasWeek:week}});drain();assert.equal(c.videoLibraryIPASWeek,0)}
+api.restore({page:'videos',videos:{query:'old',category:'all',page:2}});drain();assert.equal(c.videoLibraryIPASWeek,0);assert.equal(c.videoLibraryQuery,'old');assert.equal(c.videoLibraryPage,2);
+console.log('PASS video chapter recovery, all 17 filter options, invalid values, legacy records and A/B account isolation');

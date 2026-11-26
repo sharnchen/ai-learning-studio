@@ -18,7 +18,7 @@
  if(typeof labQuery!=='undefined')p.labCatalog={query:labQuery,domain:labDomain,type:labType,view:labView,page:labPage};
  if(typeof filter!=='undefined')p.courses={filter,query};
  if(typeof assessmentTab!=='undefined')p.assessmentView={tab:assessmentTab,page:assessmentPage,query:assessmentQuery,domain:assessmentDomain,difficulty:assessmentDifficulty,kind:assessmentKind,source:assessmentSource,wrongPage:assessmentWrongPage,historyId:assessmentHistoryId};
- if(typeof videoLibraryQuery!=='undefined')p.videos={query:videoLibraryQuery,category:videoLibraryCategory,page:videoLibraryPage};
+ if(typeof videoLibraryQuery!=='undefined')p.videos={query:videoLibraryQuery,category:videoLibraryCategory,page:videoLibraryPage,ipasWeek:typeof videoLibraryIPASWeek!=='undefined'?videoLibraryIPASWeek:0};
  if(typeof explorerDomain!=='undefined')p.explorerDomain=explorerDomain;
  if(page==='tutor'&&typeof tutorTopic!=='undefined')p.tutorTopic=tutorTopic;if(page==='scenarios'&&typeof activeScenarioId!=='undefined')p.scenarioId=activeScenarioId;
  window.AccountLearning?.position(p);
@@ -33,7 +33,8 @@
  if(typeof termQuery!=='undefined'){termQuery='';termDomain='all';termStatus='all';termPage=0}if(typeof labQuery!=='undefined'){labQuery='';labDomain='all';labType='all';labView='engines';labPage=0}if(typeof filter!=='undefined'){filter='全部';query=''}
 
  if(typeof assessmentTab!=='undefined'){const a=p.assessmentView||{};assessmentTab=['bank','build','test','review'].includes(a.tab)?a.tab:'bank';assessmentPage=Math.max(0,Math.min(100,Number(a.page)||0));assessmentQuery=String(a.query||'').slice(0,500);assessmentDomain=String(a.domain||'all');assessmentDifficulty=String(a.difficulty||'all');assessmentKind=String(a.kind||'all');assessmentSource=String(a.source||'all');assessmentWrongPage=Math.max(0,Math.min(100,Number(a.wrongPage)||0));assessmentHistoryId=typeof a.historyId==='string'?a.historyId.slice(0,80):null;assessmentDraftConfig=null}
- if(typeof videoLibraryQuery!=='undefined'){videoLibraryQuery=String(p.videos?.query||'').slice(0,500);videoLibraryCategory=String(p.videos?.category||'all');videoLibraryPage=Math.max(0,Math.min(100,Number(p.videos?.page)||0))}
+ if(typeof videoLibraryQuery!=='undefined'){videoLibraryQuery=String(p.videos?.query||'').slice(0,500);videoLibraryCategory=String(p.videos?.category||'all');videoLibraryPage=Math.max(0,Math.min(100,Math.floor(Number(p.videos?.page)||0)))}
+ if(typeof videoLibraryIPASWeek!=='undefined'){const week=p.videos?.ipasWeek;videoLibraryIPASWeek=Number.isInteger(week)&&week>=1&&window.IPASWeeks?.some(w=>w.n===week)?week:0}
  if(typeof explorerDomain!=='undefined')explorerDomain=Math.max(0,Math.min(18,Number(p.explorerDomain)||0));
  if(p.glossary&&typeof termQuery!=='undefined'){termQuery=String(p.glossary.query||'').slice(0,500);termDomain=String(p.glossary.domain||'all');termStatus=String(p.glossary.status||'all');termPage=Math.max(0,Math.min(100,Number(p.glossary.page)||0))}
  if(p.labCatalog&&typeof labQuery!=='undefined'){labQuery=String(p.labCatalog.query||'').slice(0,500);labDomain=String(p.labCatalog.domain||'all');labType=String(p.labCatalog.type||'all');labView=p.labCatalog.view==='keywords'?'keywords':'engines';labPage=Math.max(0,Math.min(100,Number(p.labCatalog.page)||0))}
