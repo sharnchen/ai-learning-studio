@@ -101,3 +101,20 @@
  document.addEventListener('change',function(e){if(!e.target.matches('[data-choice91]'))return;const r=e.target.closest('.ipas-choice91');const h=r.querySelector('[data-choice91="hard"]').checked,c=r.querySelector('[data-choice91="custom"]').checked;r.querySelector('[data-choice91-out]').textContent=h?'優先評估傳統開發或混合架構，驗證硬性限制。':c?'優先評估支援自訂程式的 Low Code。':'建議先評估 No Code 原型。'});
  window.IPASCourse={render:renderPage,sanitize:clean};
 })();
+
+ // 9.4 TCO 互動試算：使用與教材一致的教學假設。
+ document.addEventListener('input',e=>{
+  if(!e.target.matches('[data-tco94-years]'))return;
+  const r=e.target.closest('.ipas-tco94'),n=Number(e.target.value);
+  if(!r||!Number.isInteger(n)||n<1||n>15)return;
+  const plans=[['No Code',2,5],['Low Code',8,4],['傳統開發',20,3]],costs=plans.map(p=>p[1]+n*p[2]),max=Math.max(...costs),min=Math.min(...costs);
+  r.querySelector('[data-tco94-year]').textContent=n;
+  plans.forEach((p,k)=>{
+   r.querySelector('[data-tco94-total="'+k+'"]').textContent=costs[k];
+   r.querySelector('[data-tco94-calc="'+k+'"]').textContent=p[1]+' + '+n+' × '+p[2]+' = '+costs[k]+' 萬元';
+   r.querySelector('[data-tco94-bar="'+k+'"]').style.width=(100*costs[k]/max)+'%';
+  });
+  r.querySelector('[data-tco94-best]').textContent='最低成本：'+plans.filter((p,k)=>costs[k]===min).map(p=>p[0]).join(' 與 ')+'，'+min+' 萬元';
+  const x=36+18*n;
+  r.querySelector('[data-tco94-marker]').setAttribute('d','M'+x+' 30V210');
+ });
