@@ -135,5 +135,5 @@ assert y.shape == (1, 2, 4)
  renderKeyword=function(){previousRender.apply(this,arguments);document.querySelectorAll('#keyword-body [data-transformer-demo]').forEach(paint);};
  document.addEventListener('input',event=>{if(event.target.matches('[data-transformer-control]'))paint(event.target.closest('[data-transformer-demo]'));});
  document.addEventListener('click',event=>{const button=event.target.closest('[data-transformer-back],[data-transformer-next],[data-transformer-reset]');if(!button)return;const host=button.closest('[data-transformer-demo]');if(!host)return;if(button.hasAttribute('data-transformer-reset')){host.querySelector('[data-transformer-control="q1"]').value=1;host.querySelector('[data-transformer-control="q2"]').value=0;host.querySelector('[data-transformer-control="scaled"]').checked=true;host.querySelector('[data-transformer-control="causal"]').checked=false;host.dataset.stage='0';}else host.dataset.stage=String(Number(host.dataset.stage)+(button.hasAttribute('data-transformer-next')?1:-1));paint(host);});
- window.TransformerLesson={id,compute,softmax,layerNorm,equations,lesson,pyAttention,pyBlock};
+ window.TransformerLesson={id,compute,softmax,layerNorm,equations,lesson,interactive,pyAttention,pyBlock};
 })();

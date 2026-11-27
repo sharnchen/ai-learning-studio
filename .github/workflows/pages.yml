@@ -56,6 +56,7 @@ jobs:
           node tests/ipas-glossary.cjs
           node tests/glossary-depth.cjs
           node tests/transformer-keyword.cjs
+          node tests/self-attention-keyword.cjs
           node tests/method-flowcharts.cjs
       - name: Stamp release and version assets
         run: python3 .github/scripts/build-release.py
