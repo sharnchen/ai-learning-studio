@@ -106,6 +106,8 @@ function initPythonCards(){
    const run=button('▶ 執行',()=>launch(editor,input,output,status,run,halt)),halt=button('■ 停止',()=>{if(active?.run===run)stop('已停止')});halt.disabled=true;
    const reset=button('重設',()=>{if(active?.run===run)stop('已停止');editor.value=s;input.value='';output.textContent='';status.textContent='已還原教材程式'});
    actions.append(run,halt,reset);card.append(editor,details,actions,status,output);
+   // The editable card replaces its source; otherwise the observer repeatedly enhances the same pre.
+   pre.remove();
   });
  }
  function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;enhance()})}
