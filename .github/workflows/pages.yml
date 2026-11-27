@@ -54,6 +54,7 @@ jobs:
           node tests/ipas-resources.cjs
           node tests/ipas-lifecycle.cjs
           node tests/ipas-glossary.cjs
+          node tests/glossary-depth.cjs
           node tests/method-flowcharts.cjs
       - name: Stamp release and version assets
         run: python3 .github/scripts/build-release.py

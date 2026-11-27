@@ -579,7 +579,8 @@ plt.show()
 {
  const priorExample=keywordExample,priorRender=renderKeyword;
  const dedicated=new Set(['d3t10','d8t13']);
- const esc=escapeHtml;
+ // app.js defines escapeHtml after this file loads; resolve it when rendering.
+ const esc=s=>escapeHtml(s);
  const heading=(n,title,html)=>'<section class="keyword-section glossary-chapter"><h2>'+n+'. '+title+'</h2>'+html+'</section>';
  const paragraph=x=>'<p>'+esc(x)+'</p>';
  function flow(steps,id){
@@ -709,7 +710,7 @@ plt.show()
 {
  const previous=keywordExample,previousRender=renderKeyword;
  const active=new WeakMap();
- const safe=escapeHtml;
+ const safe=s=>escapeHtml(s);
  function controls(e,v){return e.controls.map(c=>{
  const name=safe(c.label),key=safe(c.id),value=v[c.id];
  if(c.type==='checkbox')return '<label><input type="checkbox" data-glossary-control="'+key+'" '+(value?'checked':'')+'> '+name+'</label>';

@@ -1,0 +1,16 @@
+#keyword-content .glossary-reading-map{padding:1rem 1.2rem;background:#f3efff;border:1px solid #d9cffa;border-radius:14px;margin:1rem 0 1.6rem}
+#keyword-content .glossary-reading-map ol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem 1.8rem;padding-left:1.5rem}
+#keyword-content .glossary-reading-map a{color:#5436b4;text-decoration:underline;text-underline-offset:.18em;line-height:1.7}
+#keyword-content .glossary-depth-section+.glossary-depth-section{border-top:1px solid #aeb7c4;margin-top:1.2rem;padding-top:1.5rem}
+#keyword-content .glossary-related{display:flex;flex-wrap:wrap;gap:.5rem;margin:.75rem 0}
+#keyword-content .glossary-related button{padding:.5rem .75rem;min-height:44px}
+#keyword-content .glossary-depth-table{overflow-x:auto;max-width:100%;margin:1rem 0}
+#keyword-content .glossary-depth-table table{border-collapse:collapse;width:100%}
+#keyword-content .glossary-depth-table th,#keyword-content .glossary-depth-table td{border:1px solid #939cad;padding:.7rem;text-align:left;vertical-align:top}
+#keyword-content .glossary-worked-steps li{padding:.4rem 0;line-height:1.9}
+#keyword-content .glossary-equation{overflow-x:auto;padding:.5rem 0;max-width:100%}
+#keyword-content .glossary-depth h2{scroll-margin-top:1rem}
+@media(max-width:650px){#keyword-content .glossary-reading-map ol{grid-template-columns:1fr}#keyword-content .glossary-reading-map{padding:.8rem}#keyword-content .glossary-depth h2{font-size:1.25rem}}
+
+#keyword-content .glossary-reading-map ol[hidden]{display:none}
+#keyword-content .glossary-reading-map>button{width:100%;text-align:left;border:0;background:transparent;padding:.25rem;line-height:1.8}
