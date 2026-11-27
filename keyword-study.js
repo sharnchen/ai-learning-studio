@@ -275,9 +275,8 @@ const keywordStudy = (() => {
     if (!practice) return '';
     const trace = walkthroughs[term.id];
     const flow = trace
-      ? '<h3>一步步看輸入與結果</h3><ol class="method-breakdown">'
-        + trace[0].map(step => '<li>' + escapeHtml(step) + '</li>').join('')
-        + '</ol><p>' + escapeHtml(trace[1]) + '</p>'
+      ? '<h3>一步步看輸入與結果</h3>' + methodFlowchart(trace[0],{title:term.zh+'：範例流程圖'})
+        + '<p>' + escapeHtml(trace[1]) + '</p>'
       : '';
     const action = practice.action === practice.expected ? ''
       : '<dt><strong>跟著做</strong></dt><dd>' + escapeHtml(practice.action) + '</dd>';
@@ -583,8 +582,8 @@ plt.show()
  const esc=escapeHtml;
  const heading=(n,title,html)=>'<section class="keyword-section glossary-chapter"><h2>'+n+'. '+title+'</h2>'+html+'</section>';
  const paragraph=x=>'<p>'+esc(x)+'</p>';
- function flow(steps){
-  return '<ol class="glossary-flow" aria-label="方法步驟圖">'+steps.map((s,i)=>'<li><b>STEP '+(i+1)+'</b><span>'+esc(s)+'</span></li>').join('')+'</ol>';
+ function flow(steps,id){
+  return methodFlowchart(steps,{id,title:'運作流程圖'});
  }
  const style=document.createElement('style');
  style.id='glossary-study-standard';
@@ -597,7 +596,7 @@ plt.show()
   const add=(title,html)=>sections.push(heading(++n,title,html));
   if(p){
    add('問題背景與核心觀念（Motivation & Principle）',paragraph(p.why)+paragraph(p.principle)+(d?.example?'<h3>具體應用情境</h3>'+paragraph(d.example):'')+'<p class="muted">本詞的正式定義見頁首。下方共用機制算例只示範與本詞有關的部分。</p>');
-   add('運作流程（Data Flow）',flow(p.steps));
+   add('運作流程（Data Flow）',flow(p.steps,e.id));
    const inputs=labCaseDefaults(t,e);
    add('輸入、符號與變數（Inputs & Symbols）',labTable(['輸入名稱','符號','意義與用途','預設值'],methodInputRows(e,inputs))+'<p class="muted">預設值為示範起點，非通用最佳參數。</p>');
    const guide=keywordFormulaGuide(t);
