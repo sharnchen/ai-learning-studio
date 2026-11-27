@@ -373,7 +373,7 @@ const keywordStudy = (() => {
       out.innerHTML=svg('<path d="M20 100H200M110 10V190" stroke="currentColor" opacity=".5"/><circle cx="110" cy="100" r="'+(v.r*20)+'" stroke="#159878" fill="#159878" fill-opacity=".1"/><circle cx="'+(110+20*v.x)+'" cy="'+(100-20*v.y)+'" r="5" fill="'+(z>threshold?'#d34c50':'#3974bd')+'"/><path d="M230 190V10" stroke="currentColor"/><rect x="255" y="'+(190-z*5)+'" width="40" height="'+z*5+'" fill="#3974bd"/><path d="M235 '+(190-threshold*5)+'H320" stroke="#159878" stroke-dasharray="5 4"/>')+'<p>z = '+v.x+'² + '+v.y+'² = '+fmt(z)+'；r² = '+fmt(threshold)+'；'+(z===threshold?'邊界':z>threshold?'外圍類別':'中心類別')+'</p>';
     }else{
       const k=Math.exp(-v.gamma*v.d*v.d),curve=Array.from({length:101},(_,i)=>(30+i*2.8)+','+(190-170*Math.exp(-v.gamma*(i*.05)**2))).join(' ');
-      out.innerHTML=svg('<path d="M30 10V190H310" stroke="currentColor" fill="none"/><polyline points="'+curve+'" stroke="#159878" stroke-width="2" fill="none"/><circle cx="'+(30+56*v.d)+'" cy="'+(190-170*k)+'" r="5" fill="#d97706"/>')+'<p>K = exp(−'+v.gamma+' × '+v.d+'²) = '+k.toFixed(6)+'（核相似度，非機率）</p>';
+      out.innerHTML=svg('<path d="M30 10V190H310" stroke="currentColor" fill="none"/><polyline points="'+curve+'" stroke="#159878" stroke-width="2" fill="none"/><circle cx="'+(30+56*v.d)+'" cy="'+(190-170*k)+'" r="5" fill="#d97706"/>')+'<p>K = e<sup>−'+v.gamma+' × '+v.d+'²</sup> = '+k.toFixed(6)+'（核相似度，非機率）</p>';
     }
   }
   document.addEventListener('input',e=>{if(e.target.matches('[data-svm-param]'))svmUpdate(e.target.closest('[data-svm-lab]'));});
@@ -655,7 +655,7 @@ plt.show()
  'fluxgloss-31':['固定同一圖片、提示與標註，比較候選遮罩的細部邊界和交並比。','HQ-SAM 等模型的改善幅度依資料和任務而異；本頁不載入權重。'],
  'fluxgloss-32':['逐通道計算 C=αF+(1−α)B；F 是前景、B 是背景、α 是前景覆蓋比例。','本式假設不透明背景且在適當色彩空間運算；不直接等同所有 RGBA 混合。'],
  'fluxgloss-33':['將二值遮罩邊緣轉成平滑的 α 過渡，保留核心區域。','羽化太寬會使細帶消失；過窄可能留下硬邊。'],
- 'fluxgloss-34':['高斯核的權重與 exp(−r²/(2σ²)) 成比例，正規化後加權鄰域像素。r 是距離，σ 控制分布寬度。','σ 增大通常增加平滑程度，但核大小、邊界處理也影響結果。'],
+ 'fluxgloss-34':['高斯核的權重與 e 的（−r²/(2σ²)）次方成比例，正規化後加權鄰域像素。r 是距離，σ 控制分布寬度。','σ 增大通常增加平滑程度，但核大小、邊界處理也影響結果。'],
  'fluxgloss-35':['辨認前後物件的遮擋順序，先合成背景，再以遮罩保留前方物件。','被遮擋區的真實外觀無法僅從可見像素確認。'],
  'fluxgloss-36':['針孔模型中 X 像素位置的相對值 u=fX/Z；f 為焦距、X 為橫向位置、Z 為深度。','平面裁切與透視投影不同；相關 ROI 實驗只用來核對座標。'],
  'fluxgloss-39':['先辨識可見屬性，再產生提示詞，將不確定欄位標為未知。','模型生成的描述不一定與圖像一致，必須核對參考圖。'],
@@ -692,7 +692,7 @@ plt.show()
  case 'fluxgloss-21':text='x(t) = (1−'+v.t+') × '+v.a+' + '+v.t+' × '+v.b+' = '+fmt((1-v.t)*v.a+v.t*v.b)+'；速度 = '+fmt(v.b-v.a);visual=bar(v.t,1);break;
  case 'fluxgloss-26':text='右下界 = ('+(v.a+v.c)+', '+(v.b+v.d)+')；面積 = '+v.c+' × '+v.d+' = '+fmt(v.c*v.d)+' 像素位置';visual='<svg viewBox="0 0 320 160" style="width:100%;max-width:480px"><rect x="10" y="10" width="300" height="140" fill="none" stroke="#94a3b8"/><rect x="'+(10+v.a*.15)+'" y="'+(10+v.b*.07)+'" width="'+v.c*.15+'" height="'+v.d*.07+'" fill="#0d9488" fill-opacity=".2" stroke="#0d9488"/></svg>';break;
  case 'fluxgloss-32':{const c=v.t*v.a+(1-v.t)*v.b;text='C = '+v.t+' × '+v.a+' + (1−'+v.t+') × '+v.b+' = '+fmt(c);visual='<div style="display:flex;gap:8px">'+[v.a,v.b,c].map((x,i)=>'<div style="flex:1;text-align:center"><div style="height:42px;background:rgb('+[x,x,x].map(Math.round).join(',')+');border:1px solid #94a3b8"></div>'+['前景','背景','合成'][i]+'</div>').join('')+'</div>';break;}
- case 'fluxgloss-34':{const g=Math.exp(-v.b*v.b/(2*v.a*v.a));text='未正規化相對權重 = exp(−'+v.b+'² / (2 × '+v.a+'²)) = '+fmt(g);visual=bar(g,1);break;}
+ case 'fluxgloss-34':{const g=Math.exp(-v.b*v.b/(2*v.a*v.a));text='未正規化相對權重 = e 的（−'+v.b+'² / (2 × '+v.a+'²)）次方 = '+fmt(g);visual=bar(g,1);break;}
  case 'fluxgloss-36':text='u = '+v.a+' × '+v.b+' / '+v.c+' = '+fmt(v.a*v.b/v.c)+'（相對主點的像素位置）';break;
  case 'fluxgloss-52':text=fmt(v.a)+' 百萬元素 × 4 bytes = '+fmt(v.a*4)+' MB（十進位），約 '+fmt(v.a*4e6/2**30)+' GiB';break;
  case 'fluxgloss-61':text='ε = '+v.a+' + '+v.t+' × ('+v.b+' − '+v.a+') = '+fmt(v.a+v.t*(v.b-v.a));break;

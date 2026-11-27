@@ -235,7 +235,7 @@
 <article id="softmax">
 <h3>Softmax 與分類結果</h3>
 <p>對每個類別分數 <code>zᵢ</code> 取指數，再除以所有類別指數值的總和，
-得到 <code>pᵢ = exp(zᵢ) ÷ Σⱼ exp(zⱼ)</code>。10 個機率相加為 1。
+得到 <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>p</mi><mi>i</mi></msub><mo>=</mo><mfrac><msup><mi>e</mi><msub><mi>z</mi><mi>i</mi></msub></msup><mrow><munder><mo>∑</mo><mi>j</mi></munder><msup><mi>e</mi><msub><mi>z</mi><mi>j</mi></msub></msup></mrow></mfrac></math>。10 個機率相加為 1。
 例如第 5 類的機率最高，模型就預測影像中的數字是 5。</p>
 </article>
 </section>

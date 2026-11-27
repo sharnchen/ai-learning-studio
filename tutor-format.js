@@ -1,8 +1,24 @@
 'use strict';
 // Treat AI output as untrusted text. Only our own markup and KaTeX MathML are inserted.
 function tutorFormatEscape(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+// Normalize only math; executable code stays unchanged.
+function tutorExponentialNotation(source){
+ const pattern=/\\operatorname\{exp\}\s*\(|\\exp\s*\(|(?<![A-Za-z\\])exp\s*\(/g;
+ let result='',start=0,match;
+ while((match=pattern.exec(source))){
+  let depth=1,end=pattern.lastIndex;
+  for(;end<source.length&&depth;end++){
+   if(source[end]==='(')depth++;
+   else if(source[end]===')')depth--;
+  }
+  if(depth)continue;
+  result+=source.slice(start,match.index)+'e^{'+tutorExponentialNotation(source.slice(pattern.lastIndex,end-1))+'}';
+  start=end;pattern.lastIndex=end;
+ }
+ return result+source.slice(start);
+}
 function tutorFormula(source,display=false){
- const latex=source.trim();
+ const latex=tutorExponentialNotation(source.trim());
  try{if(!latex||latex.length>5000||typeof katex==='undefined')throw Error('Formula unavailable');
  const math=katex.renderToString(latex,{output:'mathml',displayMode:display,throwOnError:true,trust:false,strict:'ignore',maxExpand:500,maxSize:15});
  return '<span class="tutor-formula '+(display?'tutor-formula-block':'tutor-formula-inline')+'">'+math+'</span>';
@@ -41,4 +57,4 @@ function tutorFitFormulas(root){
  }
 }
 if(typeof window!=='undefined')window.addEventListener('resize',()=>tutorFitFormulas(document.getElementById('tutor-thread')));
-if(typeof module!=='undefined'&&module.exports)module.exports={tutorFormula,tutorFormattedText,tutorFitFormulas};
+if(typeof module!=='undefined'&&module.exports)module.exports={tutorExponentialNotation,tutorFormula,tutorFormattedText,tutorFitFormulas};
