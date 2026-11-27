@@ -705,3 +705,27 @@ plt.show()
  renderKeyword=function(){previous.apply(this,arguments);document.querySelectorAll('#keyword-body [data-flux-study]').forEach(update);};
  document.addEventListener('input',e=>{if(e.target.matches('[data-flux-param]'))update(e.target.closest('[data-flux-study]'));});
 }
+
+/* In-place visual experiments use the same controls and preset as the lab. */
+{
+ const previous=keywordExample,previousRender=renderKeyword;
+ const active=new WeakMap();
+ const safe=escapeHtml;
+ function controls(e,v){return e.controls.map(c=>{
+ const name=safe(c.label),key=safe(c.id),value=v[c.id];
+ if(c.type==='checkbox')return '<label><input type="checkbox" data-glossary-control="'+key+'" '+(value?'checked':'')+'> '+name+'</label>';
+ if(c.type==='select')return '<label>'+name+'<select data-glossary-control="'+key+'">'+c.options.map(x=>{const i=x.indexOf(':'),k=i<0?x:x.slice(0,i),label=i<0?x:x.slice(i+1);return '<option value="'+safe(k)+'" '+(k===value?'selected':'')+'>'+safe(label)+'</option>'}).join('')+'</select></label>';
+ if(c.type==='textarea')return '<label>'+name+'<textarea data-glossary-control="'+key+'" maxlength="4000">'+safe(value)+'</textarea></label>';
+ return '<label>'+name+'<input type="number" data-glossary-control="'+key+'" min="'+c.min+'" max="'+c.max+'" step="'+c.step+'" value="'+value+'"></label>';
+ }).join('')}
+ function paint(host,session){const {e,v}=session,output=host.querySelector('[data-glossary-result]');
+ try{const r=e.compute({...v});output.innerHTML=renderVisualGuide(e,v,r,'glossary')+renderLabResult(r,false)+(r.calculation?'<details><summary>完整計算步驟與公式代入</summary>'+renderCalculation(r.calculation)+'</details>':'');}
+ catch(err){output.innerHTML='<p role="alert">'+safe(err.message)+'</p>'}}
+ function mount(host){const t=keywordCatalog.find(x=>x.id===host.dataset.glossaryLive),e=t&&methodEngine(t);if(!e)return;const v=labCaseDefaults(t,e),session={e,v,t};active.set(host,session);host.querySelector('[data-glossary-controls]').innerHTML=controls(e,v);paint(host,session)}
+ keywordExample=function(t,d){const html=previous(t,d);if(!html.includes('class="glossary-standard"')||!keywordStudy.hasMethod(t))return html;
+ const e=methodEngine(t),section='<section class="keyword-section glossary-chapter"><h2>即時圖解與數值實驗（Live Experiment）</h2><p>以下採用與本詞相關的實驗設定，並非完整模型訓練。輸入及圖解位於同一區域，可直接比較修改前後的結果。</p><div data-glossary-live="'+safe(t.id)+'"><div class="guide-workspace"><section><h3>實驗輸入</h3><div class="guide-controls" data-glossary-controls></div><button type="button" data-glossary-reset>重設輸入</button></section><section data-glossary-result aria-live="polite"></section></div></div></section>';
+ return html.replace(/<\/div>$/,section+'</div>');};
+ renderKeyword=function(){previousRender.apply(this,arguments);document.querySelectorAll('#keyword-body [data-glossary-live]').forEach(mount)};
+ document.addEventListener('change',event=>{const el=event.target;if(!el.matches('[data-glossary-control]'))return;const host=el.closest('[data-glossary-live]'),session=active.get(host);if(!session)return;const key=el.dataset.glossaryControl,c=session.e.controls.find(c=>c.id===key);if(!c)return;session.v[key]=c.type==='checkbox'?el.checked:c.type==='number'?Number(el.value):el.value;session.v=sanitizeLabValues(session.e,session.v,labCaseDefaults(session.t,session.e));paint(host,session)});
+ document.addEventListener('click',event=>{const b=event.target.closest('[data-glossary-reset]');if(b)mount(b.closest('[data-glossary-live]'))});
+}
