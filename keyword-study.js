@@ -388,3 +388,190 @@ const keywordStudy = (() => {
   const originalRender=renderKeyword;
   renderKeyword=function(){originalRender.apply(this,arguments);document.querySelectorAll('#keyword-body [data-svm-lab]').forEach(svmUpdate);};
 }
+
+/* RNN dedicated glossary lesson. */
+{
+ const previousExample=keywordExample, previousSummary=keywordStudy.summary, previousRender=renderKeyword;
+ const id='d8t13', term=keywordCatalog.find(t=>t.id===id);
+ if(term){term.definition='循環神經網路（RNN）使用共享權重，將前一時間步隱藏狀態與目前輸入結合，以學習序列中的時間關聯。';plainKeywordDefinitions[id]=term.definition;}
+ const eq=s=>'<div style="text-align:center;margin:1rem 0;max-width:100%;overflow-wrap:anywhere">'+(window.katex?katex.renderToString(s,{throwOnError:false,displayMode:true,output:'html'}):escapeHtml(s))+'</div>';
+ const table=(headers,rows)=>'<table style="width:100%;table-layout:fixed;overflow-wrap:anywhere;border-collapse:collapse;border:1.5px solid #8f96a3;margin:1.2rem 0"><thead><tr>'+headers.map(x=>'<th style="border:1.5px solid #8f96a3;padding:.65rem;background:#e9eef7;color:#172640;text-align:center">'+x+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(x=>'<td style="border:1.5px solid #8f96a3;padding:.65rem;vertical-align:middle;line-height:1.7">'+x+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+ const sec=(n,title,body)=>(n>1?'<hr style="border:0;border-top:1px solid #b7bdc9;margin:2rem 0">':'')+'<section class="keyword-section" style="min-width:0;padding-block:.5rem"><h2>'+n+'. '+title+'</h2>'+body+'</section>';
+ const svg=(body,h=200)=>'<svg viewBox="0 0 640 '+h+'" role="img" aria-label="RNN 教學圖解" style="display:block;width:100%;height:auto;max-width:760px;margin:1rem auto">'+body+'</svg>';
+ const rect=(x,y,w,h,label,color='#0d9488')=>'<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="6" fill="'+color+'" fill-opacity=".12" stroke="'+color+'"/><text x="'+(x+w/2)+'" y="'+(y+h/2+5)+'" text-anchor="middle" font-size="15" fill="currentColor">'+label+'</text>';
+ const arrow=(x,y,a,b,color='#0d9488')=>{const angle=Math.atan2(b-y,a-x);return '<path d="M'+x+' '+y+'L'+a+' '+b+' M'+(a-8*Math.cos(angle-.5))+' '+(b-8*Math.sin(angle-.5))+'L'+a+' '+b+'L'+(a-8*Math.cos(angle+.5))+' '+(b-8*Math.sin(angle+.5))+'" stroke="'+color+'" stroke-width="1.8" fill="none"/>'};
+ const sequence=(values=[1,2,3,4],states=null)=>svg(values.map((v,i)=>{const x=35+i*150;return rect(x,85,110,45,'h'+(i+1)+(states?' = '+states[i].toFixed(4):''))+rect(x,160,110,32,'x'+(i+1)+' = '+v,'#3974bd')+rect(x,10,110,32,'y'+(i+1),'#d97706')+arrow(x+55,160,x+55,130,'#3974bd')+arrow(x+55,85,x+55,42,'#d97706')+(i<values.length-1?arrow(x+110,107,x+150,107):'')}).join('')+arrow(2,107,35,107));
+ const flow=labels=>svg(labels.map((l,i)=>rect(110,10+i*60,420,42,l,i===labels.length-1?'#d97706':'#0d9488')+(i<labels.length-1?arrow(320,52+i*60,320,70+i*60):'')).join(''),labels.length*60);
+ const lab=(kind,items)=>'<div data-rnn-lab="'+kind+'" style="max-width:760px">'+items.map(([key,label,min,max,step,v])=>'<label style="display:block;margin:.65rem 0">'+label+'：<output data-rnn-value="'+key+'">'+v+'</output><input type="range" data-rnn-param="'+key+'" min="'+min+'" max="'+max+'" step="'+step+'" value="'+v+'" style="display:block;width:100%"></label>').join('')+'<button type="button" data-rnn-reset>重設實驗</button><div data-rnn-result aria-live="polite"></div></div>';
+ const chart=(series,min,max,xlabel,ylabel)=>{const X=i=>48+i*550/Math.max(1,series.length-1),Y=v=>165-(v-min)*140/(max-min||1);return svg('<path d="M48 20V165H598" fill="none" stroke="currentColor"/>'+[0,.25,.5,.75,1].map(t=>'<path d="M48 '+Y(min+t*(max-min))+'H598" stroke="currentColor" opacity=".12"/><text x="43" y="'+(Y(min+t*(max-min))+4)+'" text-anchor="end" font-size="10" fill="currentColor">'+Number((min+t*(max-min)).toPrecision(3))+'</text>').join('')+'<polyline points="'+series.map((v,i)=>X(i)+','+Y(v)).join(' ')+'" fill="none" stroke="#0d9488" stroke-width="2.5"/><text x="320" y="191" text-anchor="middle" font-size="13" fill="currentColor">'+xlabel+'</text><text x="50" y="12" font-size="12" fill="currentColor">'+ylabel+'</text>')};
+ const code=String.raw`import numpy as np
+import matplotlib.pyplot as plt
+import torch
+import torch.nn as nn
+
+# 1. 實驗參數
+MODEL_TYPE = "RNN"  # RNN / LSTM / GRU
+SEQ_LEN = 20
+HIDDEN_SIZE = 32
+NUM_LAYERS = 1
+EPOCHS = 200
+LR = 0.01
+torch.manual_seed(42)
+np.random.seed(42)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print("Device:", device)
+
+# 2. 建立正弦波時間序列
+time = np.linspace(0, 30, 600)
+data = np.sin(time).astype(np.float32)
+X, Y = [], []
+for i in range(len(data) - SEQ_LEN):
+    X.append(data[i:i + SEQ_LEN])
+    Y.append(data[i + SEQ_LEN])
+X = torch.tensor(np.array(X, dtype=np.float32)).unsqueeze(-1).to(device)
+Y = torch.tensor(np.array(Y, dtype=np.float32)).unsqueeze(-1).to(device)
+
+# 3. 依時間順序分割
+split = int(len(X) * 0.8)
+X_train, X_test = X[:split], X[split:]
+Y_train, Y_test = Y[:split], Y[split:]
+
+# 4. 建立模型
+class SequenceModel(nn.Module):
+    def __init__(self):
+        super().__init__()
+        cell = {"RNN": nn.RNN, "LSTM": nn.LSTM, "GRU": nn.GRU}[MODEL_TYPE]
+        self.rnn = cell(input_size=1, hidden_size=HIDDEN_SIZE,
+                        num_layers=NUM_LAYERS, batch_first=True)
+        self.fc = nn.Linear(HIDDEN_SIZE, 1)
+
+    def forward(self, x):
+        out, state = self.rnn(x)
+        return self.fc(out[:, -1, :])
+
+model = SequenceModel().to(device)
+print(model)
+print("Parameters:", sum(p.numel() for p in model.parameters() if p.requires_grad))
+print("Input shape:", X_train.shape)
+
+# 5. Loss 與 Optimizer
+criterion = nn.MSELoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=LR)
+loss_history = []
+
+# 6. 模型訓練
+for epoch in range(EPOCHS):
+    model.train()
+    pred = model(X_train)
+    loss = criterion(pred, Y_train)
+    optimizer.zero_grad()
+    loss.backward()
+    nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+    optimizer.step()
+    loss_history.append(loss.item())
+    if (epoch + 1) % 20 == 0:
+        print(f"Epoch {epoch+1}/{EPOCHS} | Loss: {loss.item():.6f}")
+
+# 7. 單步預測評估
+model.eval()
+with torch.no_grad():
+    prediction = model(X_test)
+    test_loss = criterion(prediction, Y_test)
+print("Test MSE:", test_loss.item())
+prediction = prediction.cpu().numpy().ravel()
+actual = Y_test.cpu().numpy().ravel()
+
+# 8. 訓練 Loss
+plt.figure(figsize=(10, 4))
+plt.plot(loss_history)
+plt.title(f"{MODEL_TYPE} Training Loss")
+plt.xlabel("Epoch")
+plt.ylabel("MSE Loss")
+plt.grid()
+plt.show()
+
+# 9. 預測結果
+plt.figure(figsize=(12, 4))
+plt.plot(actual, label="Actual")
+plt.plot(prediction, "--", label="Prediction")
+plt.title(f"{MODEL_TYPE} Time Series Prediction")
+plt.xlabel("Time Step")
+plt.ylabel("Value")
+plt.legend()
+plt.grid()
+plt.show()
+`;
+ const qs=[
+ ['RNN 和前饋網路主要差異？',['不需要權重','傳遞前一隱藏狀態','只能處理圖片','不需要訓練'],1,'Hidden State 傳遞歷史資訊。'],
+ ['歷史狀態轉換的權重？',['Wₓₕ','Wₕᵧ','Wₕₕ','bᵧ'],2,'Wₕₕ 負責循環狀態轉換。'],
+ ['序列長度增加時，模型參數？',['維持不變','加倍','指數增加','減少'],0,'各時間步共享權重。'],
+ ['RNN 的梯度計算方法？',['K-means','PCA','NMS','BPTT'],3,'沿時間展開的計算圖反向傳播。'],
+ ['每步梯度乘 0.5，連乘 20 次？',['梯度爆炸','梯度消失','梯度固定','參數增加'],1,'0.5²⁰ 約為 9.54×10⁻⁷。'],
+ ['LSTM 哪個閘門控制舊記憶？',['Forget Gate','Input Gate','Output Gate','Softmax'],0,'遺忘閘門決定保留比例。'],
+ ['GRU 與 LSTM 的主要差異？',['無權重','無隱藏狀態','無獨立 Cell State，使用兩個閘門','不能處理序列'],2,'GRU 使用 Reset 與 Update Gate。'],
+ ['整句情緒分類適合？',['One to Many','Many to One','Many to Many','不能使用 RNN'],1,'多個輸入對應一個分類結果。'],
+ ['Gradient Clipping 主要改善？',['資料洩漏','特徵不足','梯度消失','梯度爆炸'],3,'裁剪過大梯度範數。'],
+ ['單偏差 RNN，D=3、H=4，不含輸出層參數？',['12','16','32','48'],2,'HD+H²+H=12+16+4=32。']
+ ];
+ const quiz=()=>'<div data-rnn-quiz>'+qs.map(([q,a,c,e],i)=>'<fieldset style="margin:1rem 0"><legend>'+(i+1)+'. '+q+'</legend>'+a.map((v,j)=>'<label style="display:block"><input type="radio" name="rnn-q-'+i+'" value="'+j+'"> '+v+'</label>').join('')+'<p data-rnn-feedback="'+i+'"></p></fieldset>').join('')+'<button type="button" data-rnn-grade>批改答案</button> <button type="button" data-rnn-quiz-reset>重新測驗</button><p data-rnn-score aria-live="polite"></p></div>';
+ function lesson(){
+ const base=[1,2,3].reduce((a,x)=>[...a,Math.tanh(.5*x+.8*(a.at(-1)||0)+.1)],[]);
+ return '<div class="rnn-lesson" style="min-width:0">'+
+ sec(1,'為什麼需要 RNN？','<p>「我今天心情很好」與「我今天心情不好」的意義依賴上下文。一般獨立處理各詞的前饋網路沒有跨時間步的狀態；RNN 使用 Hidden State 使相同輸入在不同歷史下可能得到不同輸出。</p>'+sequence(['我','今天','心情','很好'])+'<p>目前狀態 = f(目前輸入, 過去狀態)。適用文字、語音、時間序列等有順序的資料。</p>')+
+ sec(2,'循環架構與時間展開',svg(rect(260,65,120,55,'RNN Cell')+rect(280,145,80,35,'xₜ','#3974bd')+rect(280,5,80,35,'yₜ','#d97706')+arrow(320,145,320,120,'#3974bd')+arrow(320,65,320,40,'#d97706')+'<path d="M380 77H430Q460 77 460 110Q460 135 430 135H390V110" stroke="#0d9488" stroke-width="2" fill="none"/>'+arrow(390,110,380,110)+'<text x="475" y="110" fill="currentColor" font-size="15">hₜ₋₁ → hₜ</text>')+sequence()+'<p>時間展開圖的多個 Cell 共用同一組參數（Weight Sharing）。</p>'+table(['名詞','意義'],[['Time Step','時間步'],['Hidden State','歷史特徵狀態'],['RNN Cell','更新狀態的單元'],['Sequence','有順序的資料'],['Unrolling','時間展開'],['Weight Sharing','權重共享'],['BPTT','時間反向傳播']]))+
+ sec(3,'數學公式及矩陣維度',eq('a_t=W_{xh}x_t+W_{hh}h_{t-1}+b_h')+eq('h_t=\\tanh(a_t)')+eq('o_t=W_{hy}h_t+b_y')+eq('\\hat y_t=\\operatorname{softmax}(o_t)')+'<p>分類可使用 Softmax，回歸可使用線性輸出。D、H、O 分別為輸入、隱藏、輸出維度。</p>'+table(['變數','維度','說明'],[['xₜ','D×1','目前輸入'],['hₜ₋₁、hₜ','H×1','前一／目前狀態'],['aₜ','H×1','激活前總和'],['Wₓₕ','H×D','輸入權重'],['Wₕₕ','H×H','循環權重'],['Wₕᵧ','O×H','輸出權重'],['bₕ','H×1','隱藏偏差'],['bᵧ、oₜ','O×1','輸出偏差／分數'],['t','純量','時間步索引']]))+
+ sec(4,'RNN Cell 內部運算',svg(rect(30,15,220,42,'Wₓₕ xₜ','#3974bd')+rect(390,15,220,42,'Wₕₕ hₜ₋₁')+arrow(140,57,280,91)+arrow(500,57,360,91)+rect(245,91,150,40,'加總 + bₕ','#d97706')+arrow(320,131,320,150)+rect(245,150,150,40,'tanh','#9333ea')+arrow(320,190,320,210)+rect(245,210,150,40,'hₜ')+arrow(395,230,570,230)+'<text x="500" y="218" fill="currentColor" font-size="13">下一時間步</text>',265)+'<p>兩路輸入分別轉換目前資料及歷史資訊，合併後經過激活函數。hₜ 同時傳至下一步與輸出層。</p>')+
+ sec(5,'tanh 激活函數',eq('\\tanh(x)=\\frac{e^x-e^{-x}}{e^x+e^{-x}}')+eq('\\frac{d\\tanh(x)}{dx}=1-\\tanh^2(x)')+'<p>e 為自然指數底數，x 為輸入。輸出介於 −1 與 1，具有非線性且以零為中心；飽和時導數接近零。</p>'+lab('tanh',[['x','輸入 x',-5,5,.1,.8]]))+
+ sec(6,'逐步手算範例','<p>設定 Wₓₕ=0.5、Wₕₕ=0.8、bₕ=0.1、h₀=0、Wₕᵧ=1、bᵧ=0，輸入 [1,2,3]。</p>'+eq('h_t=\\tanh(0.5x_t+0.8h_{t-1}+0.1)')+eq('\\begin{aligned}h_1&=\\tanh(0.5+0+0.1)\\\\&='+base[0].toFixed(5)+'\\end{aligned}')+eq('\\begin{aligned}h_2&=\\tanh(1+0.8h_1+0.1)\\\\&='+base[1].toFixed(5)+'\\end{aligned}')+eq('\\begin{aligned}h_3&=\\tanh(1.5+0.8h_2+0.1)\\\\&='+base[2].toFixed(5)+'\\end{aligned}')+table(['時間步','輸入','隱藏狀態'],base.map((h,i)=>[i+1,i+1,h.toFixed(5)]))+'<p>最後狀態間接受所有較早輸入影響；數值以完整精度運算後四捨五入。</p>')+
+ sec(7,'互動實驗：序列運算',lab('sequence',[['x1','x₁',-3,3,.5,1],['x2','x₂',-3,3,.5,2],['x3','x₃',-3,3,.5,3],['x4','x₄',-3,3,.5,0],['wx','Wₓₕ',-2,2,.1,.5],['wh','Wₕₕ',-2,2,.1,.8],['b','bₕ',-1,1,.1,.1],['t','查看時間步',1,4,1,1]])+'<p>將 Wₕₕ 設為零，觀察歷史輸入不再影響後續狀態。本實驗手動設定參數，不是訓練。</p>')+
+ sec(8,'Hidden State 如何記憶？','<p>隱藏狀態不是保存所有歷史資料，而是壓縮成特徵向量。暫時移除非線性及偏差：</p>'+eq('h_t=W_{xh}x_t+W_{hh}h_{t-1}')+eq('h_2=W_{xh}x_2+W_{hh}W_{xh}x_1+W_{hh}^2h_0')+eq('h_t=W_{hh}^th_0+\\sum_{k=1}^tW_{hh}^{t-k}W_{xh}x_k')+'<p>k 為歷史時間步。線性簡化模型若 Wₕₕ=0.8、Wₓₕ=1，歷史輸入係數如下；實際非線性 RNN 不一定固定比例衰減。</p>'+chart(Array.from({length:8},(_,i)=>.8**(7-i)),0,1,'由較早到目前時間步','相對係數'))+
+ sec(9,'權重共享與參數數量',eq('P_{RNN}=HD+H^2+H')+eq('P=HD+H^2+H+OH+O')+'<p>理論單偏差架構，D=3、H=4、O=2 時：12+16+4+8+2=42。PyTorch nn.RNN 預設兩組偏差，因此另增加 H。</p>'+lab('params',[['d','輸入 D',1,128,1,3],['h','隱藏 H',1,256,1,4],['o','輸出 O',1,100,1,2],['t','序列長度 T',1,100,1,10]]))+
+ sec(10,'五種輸入輸出架構',[
+ ['One to One（一對一）',[1],[1],'固定輸入與輸出，可作比較基準，不一定需要循環。'],
+ ['One to Many（一對多）',[1,0,0,0],[1,1,1,1],'例如影像描述生成。'],
+ ['Many to One（多對一）',[1,1,1,1],[0,0,0,1],'例如整句情緒分析。'],
+ ['Many to Many（等長）',[1,1,1,1],[1,1,1,1],'例如逐詞標註。'],
+ ['Many to Many（非等長）',[1,1,1,0,0],[0,0,0,1,1],'例如 Encoder–Decoder 翻譯。']
+ ].map(([name,ins,outs,desc])=>'<h3>'+name+'</h3>'+svg(ins.map((v,i)=>{const x=320-(ins.length-1)*55+i*110-35;return rect(x,65,70,35,'h'+(i+1))+(v?rect(x,125,70,28,'x','#3974bd')+arrow(x+35,125,x+35,100,'#3974bd'):'')+(outs[i]?rect(x,5,70,28,'y','#d97706')+arrow(x+35,65,x+35,33,'#d97706'):'')+(i<ins.length-1?arrow(x+70,82,x+110,82):'')}).join(''),160)+'<p>'+desc+'</p>').join(''))+
+ sec(11,'模型訓練流程與 Loss',flow(['輸入序列及標籤','初始化共享參數與狀態','前向傳播（逐時間步）','計算損失','BPTT 計算梯度','Optimizer 更新權重'])+eq('L=\\sum_{t=1}^T L_t')+eq('L_t=\\frac12(\\hat y_t-y_t)^2')+'<p>T 為序列長度，Lₜ 為單步損失，ŷₜ、yₜ 分別為預測與真值。Many-to-One 通常只計算最後輸出損失。</p>')+
+ sec(12,'BPTT：時間反向傳播與 Jacobian',sequence()+svg(arrow(590,35,45,35,'#d34c50')+'<text x="320" y="22" text-anchor="middle" font-size="15" fill="#d34c50">梯度從後往前傳遞</text>',55)+eq('\\frac{\\partial L_T}{\\partial h_k}=\\frac{\\partial L_T}{\\partial h_T}\\prod_{t=k+1}^T\\frac{\\partial h_t}{\\partial h_{t-1}}')+'<p>此連乘為純量表示，L_T 為最後損失、h_k 為較早狀態。向量情況須依正確次序乘 Jacobian 矩陣。</p>'+eq('J_t=\\operatorname{diag}(1-h_t^2)W_{hh}')+'<p>Jₜ 為 H×H Jacobian；diag 將向量放到對角線，平方為逐元素平方。純量局部梯度如下：</p>'+eq('\\frac{\\partial h_t}{\\partial h_{t-1}}=(1-h_t^2)W_{hh}'))+
+ sec(13,'Vanishing Gradient（梯度消失）','<p>若每步局部梯度倍率為 0.5，連乘使較早狀態收到很弱的訓練訊號。</p>'+table(['時間步數 n','0.5ⁿ'],[1,2,5,10,20].map(n=>[n,(.5**n).toPrecision(6)]))+'<p>長句前段資訊、長期感測器變化等依賴關係較難學習。</p>')+
+ sec(14,'Exploding Gradient（梯度爆炸）與 Gradient Clipping','<p>倍率為 1.5 時，連乘可能造成權重更新過大、Loss 震盪或數值溢位。</p>'+table(['時間步數 n','1.5ⁿ'],[5,10,20].map(n=>[n,(1.5**n).toPrecision(7)]))+lab('gradient',[['q','固定梯度倍率 q',.1,2,.05,.5],['n','反向步數 n',1,50,1,20]])+eq('g\'=\\begin{cases}g,&\\|g\\|\\le c\\\\c\\frac{g}{\\|g\\|},&\\|g\\|>c\\end{cases}')+'<p>g 為原梯度、g′ 為裁剪後梯度、c 為最大範數。裁剪改善爆炸，不能直接解決消失。實際 Jacobian 並非固定倍率。</p>')+
+ sec(15,'Truncated BPTT（截斷時間反向傳播）',svg(Array.from({length:9},(_,i)=>rect(20+i*68,22,52,34,String(i+1),['#3974bd','#0d9488','#9333ea'][Math.floor(i/3)])).join('')+[0,1,2].map(i=>arrow(208+i*204,78,20+i*204,78,'#d34c50')).join('')+'<text x="320" y="108" text-anchor="middle" font-size="14" fill="currentColor">每三步一段，梯度不跨區段</text>',120)+'<p>隱藏狀態可向前跨越區段，但梯度在區段邊界截斷，降低記憶體成本，也限制長距離依賴的直接學習。</p>')+
+ sec(16,'LSTM（Long Short-Term Memory）',flow(['xₜ 與 hₜ₋₁','Forget / Input / Output Gate 與候選狀態','Cₜ = 舊記憶 × 遺忘閘門 + 新記憶 × 輸入閘門','hₜ = 輸出閘門 × tanh(Cₜ)'])+eq('f_t=\\sigma(W_f[h_{t-1},x_t]+b_f)')+eq('i_t=\\sigma(W_i[h_{t-1},x_t]+b_i)')+eq('\\tilde C_t=\\tanh(W_c[h_{t-1},x_t]+b_c)')+eq('C_t=f_t\\odot C_{t-1}+i_t\\odot\\tilde C_t')+eq('o_t=\\sigma(W_o[h_{t-1},x_t]+b_o)')+eq('h_t=o_t\\odot\\tanh(C_t)')+table(['變數','功能'],[['fₜ','遺忘閘門'],['iₜ','輸入閘門'],['oₜ','輸出閘門'],['Cₜ₋₁、Cₜ','前一／目前細胞狀態'],['C̃ₜ','候選細胞狀態'],['W、b','各閘門及候選的權重與偏差'],['σ、⊙','Sigmoid、逐元素乘法'],['[hₜ₋₁,xₜ]','向量串接']])+'<p>加法更新路徑有助於保留長期資訊，但不保證消除梯度消失。</p><button type="button" data-learn-keyword="d8t14">LSTM 詞條</button>')+
+ sec(17,'互動實驗：LSTM 記憶閘門',lab('lstm',[['f','遺忘閘門 fₜ',0,1,.05,.8],['i','輸入閘門 iₜ',0,1,.05,.6],['o','輸出閘門 oₜ',0,1,.05,.9],['c','前一記憶 Cₜ₋₁',-2,2,.05,.5],['n','候選記憶 C̃ₜ',-1,1,.05,.7]])+'<p>本實驗直接設定閘門值。0 和 1 為極限示意，有限 Sigmoid 輸入不會精確達到兩端。</p>')+
+ sec(18,'GRU（Gated Recurrent Unit）',flow(['xₜ 與 hₜ₋₁','Reset Gate 控制候選狀態','Update Gate 混合舊狀態與新狀態','輸出 hₜ'])+eq('r_t=\\sigma(W_r[h_{t-1},x_t]+b_r)')+eq('z_t=\\sigma(W_z[h_{t-1},x_t]+b_z)')+eq('\\tilde h_t=\\tanh(W_h[r_t\\odot h_{t-1},x_t]+b_h)')+eq('h_t=(1-z_t)\\odot h_{t-1}+z_t\\odot\\tilde h_t')+'<p>rₜ 為重設閘門，zₜ 為更新閘門，此處表示新狀態比例；PyTorch 的 z 定義相反，候選狀態的重設位置也有實作差異。GRU 無獨立 Cell State。</p><button type="button" data-learn-keyword="d8t15">GRU 詞條</button>')+
+ sec(19,'RNN、LSTM、GRU 比較',table(['項目','RNN','LSTM','GRU'],[['閘門','0','3','2'],['Hidden State','有','有','有'],['Cell State','無','有','無'],['長期依賴','較弱','較強','較強'],['參數與運算','較少','較多','居中'],['梯度消失改善','有限','有','有']])+eq('P_{RNN}=H(D+H+1)')+eq('P_{LSTM}=4H(D+H+1)')+eq('P_{GRU}=3H(D+H+1)')+table(['D=32、H=64','參數（不含輸出）'],[['RNN','6,208'],['GRU','18,624'],['LSTM','24,832']])+'<p>此為單偏差理論值，框架實作可不同。</p>')+
+ sec(20,'Bidirectional RNN（雙向循環神經網路）',svg([0,1,2,3].map(i=>{const x=35+i*150;return rect(x,15,110,35,'y'+(i+1),'#d97706')+rect(x,65,110,35,'反向 h'+(i+1),'#9333ea')+rect(x,125,110,35,'正向 h'+(i+1),'#3974bd')+rect(x,185,110,35,'x'+(i+1))+arrow(x+55,185,x+55,160)+arrow(x+55,65,x+55,50)+(i<3?arrow(x+110,142,x+150,142,'#3974bd')+arrow(x+150,82,x+110,82,'#9333ea'):'')}).join(''),230)+eq('h_t=[\\overrightarrow h_t;\\overleftarrow h_t]')+'<p>兩組獨立 RNN 正向與反向處理同一序列，串接輸出，適合離線序列標註。即時零未來資訊的預測不適合完整 BiRNN。</p>')+
+ sec(21,'RNN、CNN、Transformer 比較',table(['項目','RNN','CNN','Transformer'],[['核心','循環狀態','卷積核','Attention'],['常見資料','時間序列','影像／序列','文字／多模態'],['平行運算','受限制','可','訓練時可'],['長距離關係','基本 RNN 較弱','依感受野','通常較強'],['串流狀態','固定大小','依架構','通常 KV Cache']])+'<p>Self-Attention 可直接建立不同位置的關聯，利於大型模型平行訓練。RNN 仍適合小模型、即時訊號及低記憶體裝置。</p>')+
+ sec(22,'Python／Colab 實作：時間序列預測','<p>使用真實前 20 筆正弦波觀測預測下一筆，支援 RNN、LSTM、GRU 三種模型。這是單步預測，非遞迴多步預測。需 PyTorch，請在 Colab 或本機執行。</p><pre><code class="language-python">'+escapeHtml(code)+'</code></pre>')+
+ sec(23,'Python 架構與 Tensor 維度',flow(['輸入 Batch × 20 × 1','RNN / LSTM / GRU，H=32','Output：Batch × 20 × 32','取 out[:, −1, :]','Linear(32,1)','預測 Batch × 1'])+table(['程式參數','說明'],[['MODEL_TYPE','切換三種架構'],['SEQ_LEN','序列長度'],['HIDDEN_SIZE','隱藏維度'],['NUM_LAYERS','循環層數'],['EPOCHS、LR','訓練輪數與學習率'],['batch_first','Batch、Sequence、Feature'],['loss.backward()','BPTT'],['clip_grad_norm_()','梯度裁剪'],['optimizer.step()','更新權重']])+'<p>比較三種模型的 Loss、參數及預測結果，正弦波不一定能充分反映長期記憶能力。</p>')+
+ sec(24,'應用：汽車電子與設備異常偵測',flow(['電壓、溫度、Sync Loss、背光狀態','時間視窗 × 特徵','RNN / LSTM / GRU','正常／疑似異常'])+table(['時間','電壓 V','Sync Loss','背光','錯誤計數'],[['t₁','12.2','0','1','0'],['t₂','12.1','0','1','0'],['t₃','11.9','1','0','1'],['t₄','12.0','1','0','2'],['t₅','12.2','0','0','0'],['t₆','12.2','0','0','0']])+'<p>以上為假設教學資料。歷史狀態有助辨識同步遺失後背光未恢復。AI 只作輔助診斷，不取代確定性功能安全監控。</p>')+
+ sec(25,'優點與限制',table(['優點','限制'],[['不同長度序列','時間步具有前後依賴'],['歷史狀態傳遞','梯度消失／爆炸'],['參數共享','長期依賴較難'],['即時串流','訓練保存中間狀態'],['固定大小推論狀態','平行化受限']]))+
+ sec(26,'iPAS 自我測驗（自編，非官方考古題）',quiz())+
+ sec(27,'核心公式總整理',table(['功能','公式'],[['隱藏狀態',eq('h_t=\\tanh(W_{xh}x_t+W_{hh}h_{t-1}+b_h)')],['輸出',eq('o_t=W_{hy}h_t+b_y')],['總損失',eq('L=\\sum_tL_t')],['tanh 導數',eq('1-\\tanh^2(x)')],['Jacobian',eq('\\operatorname{diag}(1-h_t^2)W_{hh}')],['參數',eq('H(D+H+1)')],['LSTM',eq('C_t=f_t\\odot C_{t-1}+i_t\\odot\\tilde C_t')],['GRU',eq('h_t=(1-z_t)\\odot h_{t-1}+z_t\\odot\\tilde h_t')]]))+
+ sec(28,'學習重點總結','<p>掌握 Hidden State、Recurrent Connection、Weight Sharing、BPTT、Vanishing／Exploding Gradient 及 LSTM／GRU 六大觀念。</p><button type="button" data-keyword-tab="interact">進入原有互動學習 →</button>')+'</div>';
+ }
+ function update(l){
+ const v={};l.querySelectorAll('[data-rnn-param]').forEach(el=>{v[el.dataset.rnnParam]=Number(el.value);l.querySelector('[data-rnn-value="'+el.dataset.rnnParam+'"]').textContent=el.value});
+ const out=l.querySelector('[data-rnn-result]'),f=n=>Number(n.toFixed(5));let html='';
+ switch(l.dataset.rnnLab){
+ case 'tanh':{const a=Math.tanh(v.x);html=chart(Array.from({length:101},(_,i)=>Math.tanh(-5+i*.1)),-1,1,'x：−5 至 5','tanh(x)')+eq('\\tanh('+v.x+')='+f(a))+eq('1-\\tanh^2('+v.x+')='+f(1-a*a));break;}
+ case 'sequence':{const xs=[v.x1,v.x2,v.x3,v.x4],rows=[];let prev=0;for(let i=0;i<xs.length;i++){const a=v.wx*xs[i]+v.wh*prev+v.b,h=Math.tanh(a);rows.push([i+1,xs[i],prev,a,h]);prev=h}const row=rows[v.t-1];html=sequence(xs,rows.map(r=>r[4]))+eq('\\begin{aligned}a_'+v.t+'&=('+v.wx+')('+row[1]+')+('+v.wh+')('+f(row[2])+')+('+v.b+')\\\\&='+f(row[3])+'\\\\h_'+v.t+'&=\\tanh(a_'+v.t+')='+f(row[4])+'\\end{aligned}')+chart([0,...rows.map(r=>r[4])],-1,1,'時間步 h₀ 至 h₄','Hidden State')+table(['t','xₜ','hₜ₋₁','aₜ','hₜ'],rows.map(r=>r.map(f)));break;}
+ case 'params':{const parts=[v.h*v.d,v.h*v.h,v.h,v.o*v.h,v.o],sum=parts.reduce((a,b)=>a+b,0);html=table(['項目','參數'],['輸入權重','循環權重','隱藏偏差','輸出權重','輸出偏差'].map((s,i)=>[s,parts[i].toLocaleString()]))+eq('P='+parts.join('+')+'='+sum)+'<p>序列長度 '+v.t+'，參數數量不變；PyTorch 雙偏差版本另加 '+v.h+'。</p>';break;}
+ case 'gradient':{const a=Array.from({length:v.n+1},(_,i)=>v.q**i),g=a.at(-1);html=chart(a,0,Math.max(1,...a),'反向步數 0 至 '+v.n,'梯度倍率')+eq('g_n=('+v.q+')^{'+v.n+'}='+g.toExponential(5))+'<p>'+(v.q<1?'梯度逐步衰減':v.q>1?'梯度逐步放大':'梯度不變')+'</p>';break;}
+ case 'lstm':{const old=v.f*v.c,newv=v.i*v.n,c=old+newv,h=v.o*Math.tanh(c);html=svg(rect(20,15,250,40,'舊記憶 × f = '+f(old),'#3974bd')+rect(370,15,250,40,'新記憶 × i = '+f(newv),'#9333ea')+arrow(145,55,270,85)+arrow(495,55,370,85)+rect(245,85,150,40,'Cₜ = '+f(c))+arrow(320,125,320,150)+rect(215,150,210,40,'hₜ = '+f(h),'#d97706'))+eq('\\begin{aligned}C_t&=('+v.f+')('+v.c+')+('+v.i+')('+v.n+')\\\\&='+f(old)+'+('+f(newv)+')='+f(c)+'\\\\h_t&='+v.o+'\\tanh('+f(c)+')='+f(h)+'\\end{aligned}');break;}
+ }
+ out.innerHTML=html;
+ }
+ keywordExample=function(t,p){return t.id===id?lesson():previousExample(t,p);};
+ keywordStudy.summary=function(t){return t.id===id?'<p>'+escapeHtml(t.definition)+'</p><p>完整 28 節、5 個互動實驗、PyTorch 實作與 10 題測驗。</p>':previousSummary(t);};
+ renderKeyword=function(){previousRender.apply(this,arguments);document.querySelectorAll('#keyword-body [data-rnn-lab]').forEach(update);};
+ document.addEventListener('input',e=>{if(e.target.matches('[data-rnn-param]'))update(e.target.closest('[data-rnn-lab]'));});
+ document.addEventListener('click',e=>{const b=e.target.closest('[data-rnn-reset],[data-rnn-grade],[data-rnn-quiz-reset]');if(!b)return;
+ if(b.hasAttribute('data-rnn-reset')){const l=b.closest('[data-rnn-lab]');l.querySelectorAll('input').forEach(i=>i.value=i.defaultValue);update(l);return}
+ const q=b.closest('[data-rnn-quiz]');if(!q)return;
+ if(b.hasAttribute('data-rnn-quiz-reset')){q.querySelectorAll('input').forEach(i=>i.checked=false);q.querySelectorAll('[data-rnn-feedback],[data-rnn-score]').forEach(p=>p.textContent='');return}
+ let n=0;qs.forEach(([title,a,c,ex],i)=>{const selected=q.querySelector('input[name="rnn-q-'+i+'"]:checked'),correct=selected&&Number(selected.value)===c;if(correct)n++;q.querySelector('[data-rnn-feedback="'+i+'"]').textContent=(correct?'正確：':'正解：'+a[c]+'。')+ex;});q.querySelector('[data-rnn-score]').textContent='得分：'+n+' / '+qs.length+'（'+n*10+' 分）';
+ });
+}
