@@ -304,3 +304,87 @@ const keywordStudy = (() => {
       + originalKeywordExample(term, practice) + '</details>';
   };
 }
+
+/* SVM: dedicated keyword lesson; no changes to navigation or learning-state lifecycle. */
+{
+  const previousExample = keywordExample;
+  const svmTerm = keywordCatalog.find(t=>t.id==='d3t10');
+  if(svmTerm){
+    svmTerm.definition='監督式分類方法，以最大化分類間隔建立最佳決策邊界；可使用核函數處理非線性資料，並延伸至回歸與異常偵測。';
+    plainKeywordDefinitions[svmTerm.id]=svmTerm.definition;
+  }
+  const eq=s=>'<p style="text-align:center;font-size:1.1em;overflow-wrap:anywhere">'+(window.katex?katex.renderToString(s,{throwOnError:false,displayMode:true}):escapeHtml(s))+'</p>';
+  const table=(headers,rows)=>'<table style="width:100%;table-layout:fixed;overflow-wrap:anywhere"><thead><tr>'+headers.map(x=>'<th>'+x+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(x=>'<td>'+x+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+  const sec=(n,title,body)=>'<section class="keyword-section"><h2>'+n+'. '+title+'</h2>'+body+'</section>';
+  const svg=(body)=>'<svg viewBox="0 0 360 220" role="img" aria-label="SVM 分類幾何示意" style="width:100%;height:auto;max-width:620px;display:block;margin:auto">'+body+'</svg>';
+  const points=(arr,c)=>arr.map(([x,y])=>'<circle cx="'+x+'" cy="'+y+'" r="5" fill="'+c+'"/>').join('');
+  const line=(x,c,d='')=>'<path d="M'+x+' 15V190" stroke="'+c+'" stroke-width="2" '+(d?'stroke-dasharray="5 4"':'')+'/>';
+  const diagram=svg('<rect x="135" y="15" width="90" height="175" fill="#159878" opacity=".12"/>'+line(135,'#3974bd',1)+line(180,'#159878')+line(225,'#d34c50',1)+points([[65,45],[90,100],[55,145],[135,65],[135,155]],'#3974bd')+points([[225,45],[225,145],[270,65],[290,110],[305,165]],'#d34c50')+'<g fill="none" stroke="currentColor">'+[[135,65],[135,155],[225,45],[225,145]].map(([x,y])=>'<circle cx="'+x+'" cy="'+y+'" r="9"/>').join('')+'</g><path d="M135 115H225" stroke="#a66c19"/><text x="180" y="109" text-anchor="middle" fill="#a66c19">Margin</text><g font-size="12" fill="currentColor" text-anchor="middle"><text x="135" y="208">f = −1</text><text x="180" y="208">f = 0</text><text x="225" y="208">f = +1</text></g>');
+  const inputs=(kind,items)=>'<div data-svm-lab="'+kind+'" style="max-width:700px">'+items.map(([id,label,min,max,step,val])=>'<label style="display:block;margin:.6rem 0">'+label+' <output data-svm-value="'+id+'">'+val+'</output><input style="display:block;width:100%" type="range" data-svm-param="'+id+'" min="'+min+'" max="'+max+'" step="'+step+'" value="'+val+'"></label>').join('')+'<div data-svm-result aria-live="polite"></div></div>';
+  const qs=[
+    ['SVM 的主要最佳化目標？',['最大化權重','最大化分類間隔','增加網路層數'],1,'最大間隔等價於在限制下最小化權重範數。'],
+    ['哪些點直接參與核 SVM 預測？',['所有資料等權重','平均點','支持向量'],2,'支持向量的對偶係數非零。'],
+    ['Kernel Trick 的用途？',['隱式計算高維內積','降低輸入維度','不需訓練'],0,'不必顯式建立映射後向量。'],
+    ['C 增大通常代表？',['降低違反間隔懲罰','提高違反間隔懲罰','取消核函數'],1,'C 大時更重視訓練間隔損失。'],
+    ['RBF Gamma 過大可能造成？',['過度擬合','必定線性','特徵消失'],0,'局部影響範圍縮小，邊界可能變複雜。'],
+    ['權重範數為 2，完整間隔為？',['0.5','1','4'],1,'2 / 2 = 1。'],
+    ['連續值預測使用？',['SVC','PCA','SVR'],2,'SVR 為支持向量回歸。']
+  ];
+  function svmLesson(){
+    return '<div class="svm-lesson">'+
+    sec(1,'基本原理與重要名詞','<p>有許多條直線能分開兩類資料，SVM 尋找離最近資料點最遠的決策邊界（Maximum Margin Classification）。圈出的點是支持向量（Support Vector），綠線是決策超平面（Hyperplane），虛線間為完整分類間隔（Margin）。</p>'+diagram+table(['名詞','意義'],[['Decision Boundary','分類分界'],['Kernel Function','特徵空間內積'],['Slack Variable','違反間隔程度'],['Regularization','限制模型複雜度']]))+
+    sec(2,'超平面與分類函數','<p>一維的超平面是點，二維是直線，三維是平面，n 維為 n−1 維仿射空間。</p>'+eq('f(\\mathbf x)=\\mathbf w^T\\mathbf x+b')+'<p>x 為輸入特徵，w 為超平面法向量，b 為偏差，T 為轉置。f 正值預測 +1、負值預測 −1、零為邊界。</p>'+eq('\\begin{aligned}f(3,2)&=2(3)+1(2)-6\\\\&=6+2-6=2\\end{aligned}')+'<p>例如 w=(2,1)、b=−6，輸入 (3,2) 判為 +1。</p>')+
+    sec(3,'互動實驗：權重、偏差、輸入點',inputs('plane',[['w1','w₁',-4,4,.5,2],['w2','w₂',-4,4,.5,1],['b','b',-20,10,.5,-6],['x1','x₁',0,6,.1,3],['x2','x₂',0,6,.1,2]])+'<p>此處手動調整決策函數，並非重新訓練 SVM。</p>')+
+    sec(4,'最大間隔與數學推導',eq('d=\\frac{|\\mathbf w^T\\mathbf x_0+b|}{\\|\\mathbf w\\|}')+eq('\\|\\mathbf w\\|=\\sqrt{\\sum_j w_j^2}')+'<p>x₀ 為任意點，d 為垂直距離。將正負兩側邊界正規化為 f=+1 和 f=−1，各離中心 1/||w||。</p>'+eq('M=\\frac{1}{\\|\\mathbf w\\|}+\\frac{1}{\\|\\mathbf w\\|}=\\frac{2}{\\|\\mathbf w\\|}')+eq('\\max M\\iff\\min_{\\mathbf w,b}\\frac12\\|\\mathbf w\\|^2')+'<p>M 為完整間隔。平方與 1/2 讓微分簡潔；最大間隔有助於泛化，但不保證測試表現。</p>')+
+    sec(5,'Hard Margin SVM（硬間隔）',eq('\\min_{\\mathbf w,b}\\frac12\\|\\mathbf w\\|^2')+eq('y_i(\\mathbf w^T\\mathbf x_i+b)\\ge1,\\quad i=1,\\ldots,N')+'<p>i 為樣本索引，N 為樣本數，yᵢ 為 ±1 標籤。硬間隔需要資料完全線性可分，對離群值敏感。</p>')+
+    sec(6,'Soft Margin SVM（軟間隔）',eq('y_i f(\\mathbf x_i)\\ge1-\\xi_i,\\quad\\xi_i\\ge0')+eq('\\min_{\\mathbf w,b,\\boldsymbol\\xi}\\left(\\frac12\\|\\mathbf w\\|^2+C\\sum_i\\xi_i\\right)')+'<p>ξᵢ 是第 i 筆樣本鬆弛變數，C>0 是間隔損失懲罰係數。</p>'+table(['最小可行 ξ','意義'],[['0','正確且在間隔邊界上或外'],['0 < ξ < 1','正確但在間隔內'],['1','位於決策邊界'],['> 1','分類錯誤']])+table(['參數','C 小','C 大'],[['正則化','較強','較弱'],['間隔','傾向寬','傾向窄'],['風險','欠擬合','過度擬合']]))+
+    sec(7,'Hinge Loss（合頁損失）',eq('L=\\max(0,1-yf(\\mathbf x))')+eq('\\min_{\\mathbf w,b}\\frac12\\|\\mathbf w\\|^2+C\\sum_i\\max(0,1-y_i f(\\mathbf x_i))')+'<p>令 z=yf(x)；z≥1 無損失，0<z<1 正確但有間隔損失，z<0 分類錯誤。</p>'+inputs('hinge',[['z','z = y f(x)',-2,4,.1,.5]]))+
+    sec(8,'Kernel Trick（核技巧）','<p>中心與外圍的資料無法用直線區分。映射到高維後可使用超平面。</p>'+svg('<circle cx="100" cy="100" r="62" fill="none" stroke="#159878" stroke-width="2"/>'+points([[80,90],[110,115],[95,70]],'#3974bd')+points([[100,25],[175,100],[100,175],[25,100]],'#d34c50')+'<path d="M185 100H210" stroke="currentColor"/><path d="M225 110L275 80L340 110L290 140Z" fill="#159878" opacity=".3"/>'+points([[250,45],[285,40],[315,60]],'#d34c50')+points([[260,155],[280,175],[315,160]],'#3974bd')+'<g fill="currentColor" font-size="12"><text x="35" y="210">二維圓形邊界</text><text x="220" y="210">高維平面</text></g>')+eq('\\phi(\\mathbf x)=(x_1,x_2,x_1^2+x_2^2)')+'<p>φ 是映射函數。點 (1,1) 映射後高度為 2，(3,4) 高度為 25。平面 z=9 對應原始空間半徑 3 的圓。</p>'+inputs('mapping',[['x','x₁',-4,4,.5,2],['y','x₂',-4,4,.5,1],['r','半徑 r',1,4,.5,3]])+eq('K(\\mathbf x_i,\\mathbf x_j)=\\phi(\\mathbf x_i)^T\\phi(\\mathbf x_j)')+'<p>核技巧直接計算映射空間內積，不必顯式建立高維向量。</p>')+
+    sec(9,'常見核函數',table(['Kernel','公式與用途'],[['Linear',eq('x_i^Tx_j')+'線性或高維稀疏文字資料'],['Polynomial',eq('(\\gamma x_i^Tx_j+r)^d')+'特徵交互作用'],['RBF / Gaussian',eq('e^{-\\gamma\\|x_i-x_j\\|^2}')+'非線性分類'],['Sigmoid',eq('\\tanh(\\gamma x_i^Tx_j+r)')+'並非所有參數都形成有效正半定核']])+'<p>γ 為尺度係數，r 為常數偏移，d 為多項式次數；RBF 輸出在 (0,1]，越近越接近 1。</p>')+
+    sec(10,'Gamma 互動實驗',eq('K=e^{-\\gamma d^2}')+'<p>此處 d 為兩點歐氏距離。Gamma 小影響範圍廣、邊界較平滑；Gamma 大影響範圍窄，可能過度擬合。</p>'+inputs('rbf',[['gamma','Gamma γ',.1,5,.1,1],['d','距離 d',0,5,.1,1.5]]))+
+    sec(11,'模型訓練：Lagrange、Dual、KKT',eq('\\mathcal L=\\frac12\\|w\\|^2-\\sum_i\\alpha_i[y_i(w^Tx_i+b)-1]')+'<p>αᵢ≥0 為拉格朗日乘數。</p>'+eq('\\frac{\\partial\\mathcal L}{\\partial w}=w-\\sum_i\\alpha_i y_ix_i=0')+eq('\\frac{\\partial\\mathcal L}{\\partial b}=-\\sum_i\\alpha_i y_i=0')+eq('w=\\sum_i\\alpha_i y_ix_i')+eq('\\max_\\alpha\\left[\\sum_i\\alpha_i-\\frac12\\sum_{i,j}\\alpha_i\\alpha_j y_iy_jK(x_i,x_j)\\right]')+'<p>限制：Σαᵢyᵢ=0；Hard Margin αᵢ≥0，Soft Margin 0≤αᵢ≤C。KKT 互補鬆弛：硬間隔 αᵢ[yᵢf(xᵢ)−1]=0。αᵢ>0 的樣本為支持向量。</p>'+eq('f(x)=\\sum_{i\\in SV}\\alpha_i y_iK(x_i,x)+b')+'<p>SV 為支持向量索引集合。常用 QP、SMO 等凸最佳化求解。</p>')+
+    sec(12,'訓練流程與多類別','<p>訓練資料 → 分割訓練/測試 → 標準化 → 選 Kernel、C、Gamma → 求解凸最佳化 → 得到支持向量與係數 → 決策函數 → 預測。</p>'+table(['方法','分類器數量','10 類'],[['OvR（One vs Rest）','k','10'],['OvO（One vs One）','k(k−1)/2','45']])+'<p>k 是類別數。scikit-learn SVC 內部採 OvO 訓練，預設可輸出 OvR 形式決策分數。</p>')+
+    sec(13,'Python / Colab 實作','<p>非線性月牙資料：比較 linear、poly、rbf、sigmoid。程式輸出準確率、支持向量、分類圖與混淆矩陣。</p><pre style="white-space:pre-wrap;overflow-wrap:anywhere"><code>'+escapeHtml('import numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import make_moons\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.svm import SVC\nfrom sklearn.metrics import accuracy_score, ConfusionMatrixDisplay\n\nC, GAMMA, KERNEL = 1.0, 1.0, "rbf"\nX, y = make_moons(n_samples=300, noise=0.15, random_state=42)\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.2, random_state=42, stratify=y)\nmodel = make_pipeline(StandardScaler(), SVC(C=C, gamma=GAMMA, kernel=KERNEL))\nmodel.fit(X_train, y_train)\ny_pred = model.predict(X_test)\nsvm = model.named_steps["svc"]\nprint("Accuracy:", accuracy_score(y_test, y_pred))\nprint("Support vectors:", svm.n_support_)\nxx, yy = np.meshgrid(np.linspace(X[:,0].min()-.5,X[:,0].max()+.5,300),np.linspace(X[:,1].min()-.5,X[:,1].max()+.5,300))\nZ = model.decision_function(np.c_[xx.ravel(),yy.ravel()]).reshape(xx.shape)\nplt.contourf(xx,yy,Z,levels=[-np.inf,0,np.inf],cmap="coolwarm",alpha=.18)\nplt.contour(xx,yy,Z,levels=[-1,0,1],colors=["blue","green","red"])\nplt.scatter(*X_train.T,c=y_train,cmap="coolwarm",s=20)\nplt.scatter(*X_test.T,c=y_test,cmap="coolwarm",marker="x")\nplt.scatter(*X_train[svm.support_].T,s=100,facecolors="none",edgecolors="black")\nplt.show()\nConfusionMatrixDisplay.from_predictions(y_test,y_pred)\nplt.show()')+'</code></pre><p>fit 訓練、predict 預測、decision_function 決策分數；support_ 是樣本索引，support_vectors_ 為標準化後特徵，n_support_ 為各類數量，dual_coef_ 為對偶係數。</p>')+
+    sec(14,'特徵標準化',eq("x'=\\frac{x-\\mu}{\\sigma}")+'<p>μ 與 σ 為訓練資料平均與標準差。年收入與年齡的尺度差異可能讓收入主導距離；標準化能減少此問題。應先分割資料，只用訓練集估計標準化參數以避免 Data Leakage。</p>')+
+    sec(15,'SVC、SVR、One-Class SVM',table(['模型','用途'],[['SVC','分類'],['SVR','連續值回歸'],['One-Class SVM','異常/新穎性偵測']])+eq('L_\\varepsilon=\\max(0,|y-f(x)|-\\varepsilon)')+'<p>ε 是 SVR 容許誤差範圍。</p>')+
+    sec(16,'比較與應用',table(['模型','核心','非線性'],[['SVM','最大間隔','核函數'],['Logistic Regression','機率','特徵轉換'],['Decision Tree','條件分割','支援'],['Neural Network','多層特徵轉換','支援']])+'<p>核 SVM 訓練成本隨資料量增加，通常適合小中型資料集；線性 SVM 適合高維稀疏資料。SVC 預設不輸出機率。</p>'+table(['應用','特徵'],[['工業品檢','影像、尺寸、顏色'],['汽車電子異常','電壓、溫度、錯誤計數'],['預防維護','振動、頻譜、轉速'],['文字分類','TF-IDF'],['影像分類','HOG、CNN 特徵']]))+
+    sec(17,'iPAS 自我測驗（自編練習，非官方考古題）','<div data-svm-quiz>'+qs.map(([q,a,c,e],i)=>'<fieldset style="margin:1rem 0"><legend>'+(i+1)+'. '+q+'</legend>'+a.map((x,j)=>'<label style="display:block"><input type="radio" name="svm-q-'+i+'" value="'+j+'"> '+x+'</label>').join('')+'<p data-svm-feedback="'+i+'"></p></fieldset>').join('')+'<button type="button" data-svm-grade>批改答案</button> <button type="button" data-svm-reset>重新測驗</button><p data-svm-score aria-live="polite"></p></div>')+
+    sec(18,'核心公式與觀念總結','<p>Hyperplane 建立分類邊界；Maximum Margin 尋找最大間隔；Support Vector 決定預測函數；Kernel Trick 處理非線性。C 控制違反間隔的懲罰，Gamma 控制 RBF 影響範圍。</p>'+eq('M=2/\\|w\\|,\\quad L=\\max(0,1-yf(x))')+'<button type="button" data-keyword-tab="interact">進入原有互動學習 →</button>')+'</div>';
+  }
+  keywordExample=function(term,practice){
+    if(term.id!=='d3t10')return previousExample(term,practice);
+    return svmLesson();
+  };
+  const summaryOriginal=keywordStudy.summary;
+  keywordStudy.summary=function(term){return term.id==='d3t10'?'<p>'+escapeHtml(term.definition)+'</p><p>完整原理、最大間隔推導、核函數、四個互動實驗與 Python 範例。</p>':summaryOriginal(term);};
+  function svmUpdate(lab){
+    const v={};lab.querySelectorAll('[data-svm-param]').forEach(el=>{v[el.dataset.svmParam]=Number(el.value);lab.querySelector('[data-svm-value="'+el.dataset.svmParam+'"]').textContent=el.value});
+    const out=lab.querySelector('[data-svm-result]'),fmt=x=>Number(x.toFixed(4)),kind=lab.dataset.svmLab;
+    if(kind==='plane'){
+      const {w1,w2,b,x1,x2}=v,n=Math.hypot(w1,w2),f=w1*x1+w2*x2+b;
+      if(!n){out.textContent='權重向量不可全部為零。';return}
+      const X=x=>30+30*x,Y=y=>190-30*y;
+      const lines=[-1,0,1].map(k=>Math.abs(w2)>=Math.abs(w1)?'<line x1="30" y1="'+Y((k-b)/w2)+'" x2="210" y2="'+Y((k-b-6*w1)/w2)+'" stroke="'+(k===0?'#159878':k<0?'#3974bd':'#d34c50')+'" stroke-width="2" stroke-dasharray="'+(k===0?'none':'5 4')+'"/>':'<line x1="'+X((k-b)/w1)+'" y1="190" x2="'+X((k-b-6*w2)/w1)+'" y2="10" stroke="'+(k===0?'#159878':k<0?'#3974bd':'#d34c50')+'" stroke-width="2" stroke-dasharray="'+(k===0?'none':'5 4')+'"/>').join('');
+      out.innerHTML=svg('<svg x="30" y="10" width="180" height="180" viewBox="30 10 180 180" overflow="hidden">'+lines+'<circle cx="'+X(x1)+'" cy="'+Y(x2)+'" r="6" fill="'+(f>=0?'#d34c50':'#3974bd')+'"/></svg><path d="M30 10V190H210" stroke="currentColor" fill="none"/><text x="215" y="205" fill="currentColor">x₁</text><text x="10" y="15" fill="currentColor">x₂</text>')+'<p>f = ('+w1+') × '+x1+' + ('+w2+') × '+x2+' + ('+b+') = '+fmt(f)+'</p><p>分類：'+(Math.abs(f)<1e-9?'邊界':f>0?'+1':'−1')+'；垂直距離 '+fmt(Math.abs(f)/n)+'；完整間隔 '+fmt(2/n)+'</p>';
+    }else if(kind==='hinge'){
+      const loss=Math.max(0,1-v.z),x=30+(v.z+2)*45,y=190-loss*50;
+      out.innerHTML=svg('<path d="M30 10V190H300" stroke="currentColor" fill="none"/><path d="M30 40L165 190H300" stroke="#159878" stroke-width="2" fill="none"/><circle cx="'+x+'" cy="'+y+'" r="6" fill="#d97706"/><text x="300" y="209" fill="currentColor">z</text>')+'<p>L = max(0, 1 − ('+v.z+')) = '+fmt(loss)+'</p>';
+    }else if(kind==='mapping'){
+      const z=v.x*v.x+v.y*v.y,threshold=v.r*v.r;
+      out.innerHTML=svg('<path d="M20 100H200M110 10V190" stroke="currentColor" opacity=".5"/><circle cx="110" cy="100" r="'+(v.r*20)+'" stroke="#159878" fill="#159878" fill-opacity=".1"/><circle cx="'+(110+20*v.x)+'" cy="'+(100-20*v.y)+'" r="5" fill="'+(z>threshold?'#d34c50':'#3974bd')+'"/><path d="M230 190V10" stroke="currentColor"/><rect x="255" y="'+(190-z*5)+'" width="40" height="'+z*5+'" fill="#3974bd"/><path d="M235 '+(190-threshold*5)+'H320" stroke="#159878" stroke-dasharray="5 4"/>')+'<p>z = '+v.x+'² + '+v.y+'² = '+fmt(z)+'；r² = '+fmt(threshold)+'；'+(z===threshold?'邊界':z>threshold?'外圍類別':'中心類別')+'</p>';
+    }else{
+      const k=Math.exp(-v.gamma*v.d*v.d),curve=Array.from({length:101},(_,i)=>(30+i*2.8)+','+(190-170*Math.exp(-v.gamma*(i*.05)**2))).join(' ');
+      out.innerHTML=svg('<path d="M30 10V190H310" stroke="currentColor" fill="none"/><polyline points="'+curve+'" stroke="#159878" stroke-width="2" fill="none"/><circle cx="'+(30+56*v.d)+'" cy="'+(190-170*k)+'" r="5" fill="#d97706"/>')+'<p>K = exp(−'+v.gamma+' × '+v.d+'²) = '+k.toFixed(6)+'（核相似度，非機率）</p>';
+    }
+  }
+  document.addEventListener('input',e=>{if(e.target.matches('[data-svm-param]'))svmUpdate(e.target.closest('[data-svm-lab]'));});
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('[data-svm-grade],[data-svm-reset]');if(!b)return;
+    const quiz=b.closest('[data-svm-quiz]');if(!quiz)return;
+    if(b.hasAttribute('data-svm-reset')){quiz.querySelectorAll('input').forEach(i=>i.checked=false);quiz.querySelectorAll('[data-svm-feedback],[data-svm-score]').forEach(p=>p.textContent='');return}
+    let count=0;qs.forEach(([q,a,c,ex],i)=>{const selected=quiz.querySelector('input[name="svm-q-'+i+'"]:checked'),correct=selected&&Number(selected.value)===c;if(correct)count++;quiz.querySelector('[data-svm-feedback="'+i+'"]').textContent=(correct?'正確：':'正解：'+a[c]+'。')+ex;});quiz.querySelector('[data-svm-score]').textContent='得分：'+count+' / '+qs.length+'（'+Math.round(100*count/qs.length)+' 分）';
+  });
+  // Initialize only the new lesson when it is inserted; no continuous observer or navigation changes.
+  const originalRender=renderKeyword;
+  renderKeyword=function(){originalRender.apply(this,arguments);document.querySelectorAll('#keyword-body [data-svm-lab]').forEach(svmUpdate);};
+}
