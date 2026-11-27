@@ -1,4 +1,31 @@
 'use strict';
+// Observe only the active iPAS view and yield initialization to the next frame.
+(() => {
+ const initializers=[];
+ let root=null, observer=null, pending=null;
+ function stop(){
+  observer?.disconnect();observer=null;root=null;
+  if(pending!==null){cancelAnimationFrame(pending);pending=null;}
+ }
+ function refresh(){
+  if(!root||pending!==null)return;
+  pending=requestAnimationFrame(()=>{
+   pending=null;
+   const active=root;
+   if(!active?.isConnected){stop();return;}
+   // Initializers write formulas and demo outputs. Do not observe those writes.
+   observer?.disconnect();
+   try{for(const init of initializers){try{init()}catch(error){console.warn('iPAS initialization',error)}}}
+   finally{if(root===active&&active.isConnected)observer?.observe(active,{childList:true,subtree:true});}
+  });
+ }
+ window.IPASLifecycle={
+  register(fn){initializers.push(fn);},
+  mount(view){stop();if(!view)return;root=view;observer=new MutationObserver(refresh);refresh();},
+  unmount:stop,refresh
+ };
+ window.addEventListener('pagehide',stop);
+})();
 (()=>{
  const weeks=window.IPASWeeks||[];
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -89,7 +116,7 @@
  document.addEventListener('input',e=>{if(!e.target.matches('[data-matrix-w1],[data-matrix-w2]'))return;const root=e.target.closest('.ipas-matrix-demo'),a=Number(root.querySelector('[data-matrix-w1]').value),b=Number(root.querySelector('[data-matrix-w2]').value);for(const [k,v] of [['v1',a],['v2',b],['svg1',a],['svg2',b]])root.querySelector('[data-matrix-'+k+']').textContent=v;const fmt=n=>Number(n.toFixed(2));root.querySelector('[data-matrix-formula]').textContent=[[20,2],[30,4],[40,6]].map(([x,y],i)=>{const v=fmt(x*a+y*b);root.querySelector('[data-matrix-y="'+i+'"]').textContent=v;return x+'×'+a+'+'+y+'×'+b+'='+v}).join('；')});
 
  function renderIPASMath(){if(!window.katex)return;for(const n of document.querySelectorAll('.ipas-root .ipas-math')){const t=n.textContent.trim();if(n.querySelector('math')||!t.startsWith('\\[')||!t.endsWith('\\]'))continue;try{n.innerHTML=katex.renderToString(t.slice(2,-2),{output:'mathml',displayMode:true,throwOnError:true,trust:false})}catch(e){n.dataset.mathError='true';console.warn('iPAS formula',e)}}}
- new MutationObserver(renderIPASMath).observe(document.body,{childList:true,subtree:true});window.addEventListener('load',renderIPASMath);
+ window.IPASLifecycle.register(renderIPASMath);window.addEventListener('load',()=>window.IPASLifecycle.refresh());
  document.addEventListener('change',e=>{if(!e.target.matches('[data-privacy-field]'))return;const root=e.target.closest('.ipas-privacy-demo'),fields=[...root.querySelectorAll('[data-privacy-field]:checked')],needed=fields.filter(f=>Number(f.dataset.privacyField)>=4).length,extra=fields.length-needed;root.querySelector('[data-privacy-result]').textContent='保留'+needed+'項必要欄位；額外個資欄位'+extra+'項。'+(needed<2?'缺少任務所需資料。':'')+(extra?'請確認額外個資是否必要。':'')+'仍須檢查自由文字。'});
  document.addEventListener('input',e=>{if(!e.target.matches('[data-cia-down]'))return;const root=e.target.closest('.ipas-cia-demo'),d=Number(e.target.value),a=((720-d)/720*100).toFixed(2);root.querySelector('[data-cia-hours]').textContent=d.toFixed(1);root.querySelector('[data-cia-result]').textContent=a+'%';root.querySelector('[data-cia-formula]').textContent='\\[\\frac{720-'+d.toFixed(1)+'}{720}\\times100\\%='+a+'\\%\\]';renderIPASMath()});
  document.addEventListener('input',e=>{if(!e.target.matches('[data-sup-w],[data-sup-b]'))return;const r=e.target.closest('.ipas-supervised-demo'),w=Number(r.querySelector('[data-sup-w]').value),b=Number(r.querySelector('[data-sup-b]').value),v=[1,2,3].map(x=>(w*x+b-2*x)**2),m=v.reduce((a,b)=>a+b,0)/3,l=r.querySelector('[data-sup-line]');l.setAttribute('y1',135-10*b);l.setAttribute('y2',135-10*(4*w+b));r.querySelector('[data-sup-output]').textContent='w='+w.toFixed(1)+'，b='+b.toFixed(1)+'；MSE='+m.toFixed(3);r.querySelector('[data-sup-formula]').textContent='\\[MSE=\\frac{'+v.map(x=>x.toFixed(2)).join('+')+'}{3}\\approx'+m.toFixed(3)+'\\]';renderIPASMath()});
@@ -298,7 +325,7 @@ function ground11(values){const n=values.length,s=values.filter(x=>x==="supporte
  document.addEventListener("change",e=>{const r=e.target.closest("[data-ch11-demo]");if(r&&e.target.matches("[data-ch11]")&&r.dataset.ch11Demo!=="json")update(r)});
  document.addEventListener("click",e=>{const b=e.target.closest("[data-ch11-action]");if(!b)return;const r=b.closest("[data-ch11-demo]");if(!r)return;const action=b.dataset.ch11Action;if(r.dataset.ch11Demo==="prompt"&&(action==="all"||action==="reset"))r.querySelectorAll('[data-ch11="part"]').forEach((x,i)=>x.checked=action==="all"||i===1||i===2);if(r.dataset.ch11Demo==="json"&&action==="reset"){r.querySelector('[data-ch11="json"]').value=initialJson;r.querySelector('[data-ch11-out]').textContent="等待驗證。";return}update(r)});
  function init(){document.querySelectorAll('[data-ch11-demo="shot"]:not([data-ch11-ready])').forEach(r=>{r.dataset.ch11Ready="1";update(r)})}
- new MutationObserver(init).observe(document.body,{childList:true,subtree:true});init();
+ window.IPASLifecycle.register(init);
 })();
 
 
@@ -334,7 +361,7 @@ function retrieve12(query,access,bad){const id=query==="repair"?"B":query==="war
  function event(e){const r=e.target.closest("[data-rag12-demo]");if(r&&e.target.matches("[data-rag12]"))update(r)}
  document.addEventListener("input",event);document.addEventListener("change",event);
  function init(){document.querySelectorAll("[data-rag12-demo]:not([data-rag12-ready])").forEach(r=>{r.dataset.rag12Ready="1";update(r)})}
- new MutationObserver(init).observe(document.body,{childList:true,subtree:true});init();
+ window.IPASLifecycle.register(init);
 })();
 
 
@@ -362,7 +389,7 @@ function evaluate13(w,a,wc,ac,violation){const rows=[{name:"Workflow",s:w,c:wc,e
  document.addEventListener("input",input);document.addEventListener("change",input);
  document.addEventListener("click",e=>{const b=e.target.closest("[data-agent13-action]");if(!b)return;const r=b.closest("[data-agent13-demo]");if(r)update(r,b.dataset.agent13Action)});
  function init(){document.querySelectorAll("[data-agent13-demo]:not([data-agent13-ready])").forEach(r=>{r.dataset.agent13Ready="1";update(r)})}
- new MutationObserver(init).observe(document.body,{childList:true,subtree:true});init();
+ window.IPASLifecycle.register(init);
 })();
 
 
@@ -390,7 +417,7 @@ function monitor14(down,p95,accuracy,critical){const period=30*24*60,allowance=p
  function event(e){const r=e.target.closest("[data-plan14-demo]");if(r&&e.target.matches("[data-plan14]"))update(r)}
  document.addEventListener("input",event);document.addEventListener("change",event);
  function init(){document.querySelectorAll("[data-plan14-demo]:not([data-plan14-ready])").forEach(r=>{r.dataset.plan14Ready="1";update(r)})}
- new MutationObserver(init).observe(document.body,{childList:true,subtree:true});init();
+ window.IPASLifecycle.register(init);
 })();
 
 
@@ -417,5 +444,5 @@ function rubric15(r,blocker,evidence){const weights=[20,20,25,15,20],parts=r.map
  function event(e){const r=e.target.closest("[data-risk15-demo]");if(r&&e.target.matches("[data-risk15]"))update(r)}
  document.addEventListener("input",event);document.addEventListener("change",event);
  function init(){document.querySelectorAll("[data-risk15-demo]:not([data-risk15-ready])").forEach(r=>{r.dataset.risk15Ready="1";update(r)})}
- new MutationObserver(init).observe(document.body,{childList:true,subtree:true});init();
+ window.IPASLifecycle.register(init);
 })();
