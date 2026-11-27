@@ -74,11 +74,11 @@ img,svg{-webkit-user-drag:none}
 .scenario-content .exp select{max-width:100%;min-height:44px}
 .scenario-content code{overflow-wrap:anywhere}
 @media(max-width:760px){
-  body{font-size:15px;overflow-x:hidden}
-  aside{position:relative;z-index:2;padding:12px 14px 8px}
+  body{font-size:15px;overflow-x:clip}
+  body>aside{position:sticky;top:0;z-index:2;overflow:visible;padding:12px 14px 8px}
   aside .brand{min-height:44px}
-  nav{margin-top:9px;padding-bottom:6px;scroll-snap-type:x proximity;gap:8px;max-width:100%;-webkit-overflow-scrolling:touch}
-  nav>a,nav .nav-scenarios>summary{scroll-snap-align:start;min-height:44px;display:flex;align-items:center;justify-content:center;padding:9px 12px;font-size:13px}
+  nav{margin-top:9px;padding-bottom:6px;gap:8px;max-width:100%;-webkit-overflow-scrolling:touch}
+  nav>a,nav .nav-scenarios>summary{min-height:44px;display:flex;align-items:center;justify-content:center;padding:9px 12px;font-size:13px}
   nav .nav-scenarios{flex:0 0 auto;position:relative}
   nav .nav-scenarios-items{position:absolute;z-index:20;left:0;top:100%;min-width:218px;max-width:min(320px,calc(100vw - 24px));padding:8px;background:white;border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 28px #1112}
   nav .nav-scenarios-items a{white-space:normal;padding:12px;min-height:44px}
@@ -123,7 +123,7 @@ body{font-size:16px}
 body>.shell{min-width:0}
 body>.shell>main{width:100%;max-width:1600px;padding-inline:clamp(16px,3vw,48px)}
 body>.shell>header{height:auto;min-height:64px;gap:8px 16px;flex-wrap:wrap;padding-block:10px;font-size:.875rem}
-body>aside{overflow-y:auto}
+@media(min-width:761px){body>aside{overflow-y:auto}}
 body>.shell main h1{font-size:clamp(1.65rem,2.7vw,2.25rem);letter-spacing:-.025em}
 body>.shell main h2{font-size:clamp(1.2rem,1.8vw,1.5rem)}
 body>.shell .card p{font-size:.9375rem}

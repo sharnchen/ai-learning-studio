@@ -18,6 +18,10 @@ nodes.reader.open=false;events.close[0]({target:{id:'reader'}});assert.equal(las
 // Cancel a deferred scroll restoration when account A signs out before frames run.
 api.restore({...saved,scroll:{page:999}});api.reset();c.scrollY=0;drain();assert.equal(c.scrollY,0);
 Object.values(nodes).forEach(n=>n.open=false);api.restore({page:'assessment',view:'page',scroll:{page:120}});drain();assert.equal(c.location.hash,'#assessment');assert.equal(c.scrollY,120);assert.equal(c.labQuery,'');assert.equal(c.termQuery,'');assert(!nodes.reader.open);
+// Changing tabs before the login scroll is restored must keep the new page at the top.
+api.restore({page:'ipas',view:'page',scroll:{page:999}});
+c.location.hash='#scenarios';c.scrollY=0;drain();
+assert.equal(c.scrollY,0);api.capture();assert.equal(last.page,'scenarios');
 // Invalid stale identifiers fall back safely without opening another topic.
 api.restore({page:'invalid',view:'lab',labTerm:'missing',lessonId:99});drain();assert.equal(c.location.hash,'#home');assert(!nodes['lab-reader'].open);
 // Capturing is disabled while logged out, and all relevant UI event families are registered.

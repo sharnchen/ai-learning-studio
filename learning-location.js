@@ -51,7 +51,7 @@
  const root=p.view==='lab'?get('lab-reader'):p.view==='keyword'?get('keyword-reader'):validLesson&&p.view!=='page'?get('reader'):null;
  if(root&&Array.isArray(p.details)){const opened=new Set(p.details.filter(Number.isInteger));root.querySelectorAll('details').forEach((d,i)=>{d.open=opened.has(i)})}
  const apply=()=>{if(turn!==generation)return;window.scrollTo(0,scrollValue(s.page));for(const [id,key]of [['reader','reader'],['keyword-reader','keyword'],['lab-reader','lab']]){const el=get(id);if(el?.open)el.scrollTop=scrollValue(s[key])}};
- requestAnimationFrame(()=>requestAnimationFrame(()=>{if(turn!==generation)return;apply();restoring=false}));
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{if(turn!==generation)return;if(location.hash==='#'+page)apply();restoring=false}));
  }catch(error){restoring=false;console.warn('Learning location could not be fully restored');window.render()}
  }
  window.LearningLocation={capture,restore,reset};
