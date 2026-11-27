@@ -632,3 +632,76 @@ plt.show()
   });
  };
 }
+
+/* 2026-11-27 audit: explicit experimental coverage for imported terms.
+   Related labs are demonstrations, not full implementations of the imported model. */
+{
+ const related={
+ 'fluxgloss-01':'learning-plan','fluxgloss-08':'embedding','fluxgloss-15':'conditioning','fluxgloss-18':'conditioning','fluxgloss-19':'conditioning','fluxgloss-21':'generation-ode','fluxgloss-24':'distill','fluxgloss-26':'boxes','fluxgloss-27':'roi','fluxgloss-28':'conditioning','fluxgloss-29':'segmentation','fluxgloss-30':'segmentation','fluxgloss-31':'segmentation','fluxgloss-32':'conditioning','fluxgloss-33':'conditioning','fluxgloss-34':'convolution-grid','fluxgloss-35':'boxes','fluxgloss-36':'roi','fluxgloss-39':'prompt','fluxgloss-40':'boxes','fluxgloss-41':'json','fluxgloss-43':'prompt','fluxgloss-45':'prompt','fluxgloss-46':'prompt','fluxgloss-47':'ablation','fluxgloss-49':'roofline','fluxgloss-51':'calc-memory','fluxgloss-52':'float-format','fluxgloss-56':'parallel-checkpoint','fluxgloss-60':'generation-ode','fluxgloss-61':'generation-ode','fluxgloss-62':'latent'
+ };
+ const notes={
+ 'fluxgloss-01':['先確定任務與輸入格式，再選模型，最後以未見樣本核對輸出。','模型名稱不能保證能力；辨識模型和生成模型的輸出不等價。'],
+ 'fluxgloss-08':['將兩段文字各編為同維度向量，計算餘弦相似度，再依分數排序。','向量相似不等於內容完全相同；零向量的餘弦相似度未定義。'],
+ 'fluxgloss-15':['以原圖為起點，指定要變更的屬性、區域及要保留的內容，對照修改前後。','整圖生成不保證保留人臉、背景或細節。'],
+ 'fluxgloss-18':['將參考圖編成模型支援的條件表示，與文字及原圖條件共同傳入生成流程。','條件格式、權重與控制精度取決於模型。'],
+ 'fluxgloss-19':['先指定每張參考圖各自提供的屬性，再核對輸出是否保留這些屬性。','參考圖互相矛盾或輸入次序不同可能影響結果。'],
+ 'fluxgloss-21':['令 x(t)=(1−t)x₀+t x₁，則理想直線速度 dx/dt=x₁−x₀。以 x₀=0、x₁=1 示範，速度為 1。','真實 Rectified Flow 學的是隨時間、位置變化的速度場；簡例不是模型訓練。'],
+ 'fluxgloss-24':['固定教師輸出及資料，以學生模型學習教師的分布或中間特徵，最後獨立評估。','蒸餾不保證更小模型完全保留教師能力。'],
+ 'fluxgloss-26':['外接框可用 (x₁,y₁,x₂,y₂)；以右下界不包含的座標約定，寬=x₂−x₁、高=y₂−y₁。','框內不一定全是物件；座標約定與縮放必須一致。'],
+ 'fluxgloss-27':['以左上 (x,y) 與寬高 (w,h) 裁切；NumPy 使用 image[y:y+h,x:x+w]，貼回時恢復偏移。','先限制在原圖邊界，空區域不能送模型。'],
+ 'fluxgloss-28':['將允許編輯像素設為 1，保留區設為 0；逐像素核對遮罩與原圖尺寸。','某些工具使用反向黑白約定，先驗證再處理。'],
+ 'fluxgloss-29':['將像素賦予類別或實例編號，再依目標類別取得遮罩。','類別編號不是亮度或機率。'],
+ 'fluxgloss-30':['提供正點、負點或方框提示，取得候選遮罩，再比較邊緣與目標區覆蓋。','共用分割實驗只示範標籤與遮罩，不會執行 SAM。'],
+ 'fluxgloss-31':['固定同一圖片、提示與標註，比較候選遮罩的細部邊界和交並比。','HQ-SAM 等模型的改善幅度依資料和任務而異；本頁不載入權重。'],
+ 'fluxgloss-32':['逐通道計算 C=αF+(1−α)B；F 是前景、B 是背景、α 是前景覆蓋比例。','本式假設不透明背景且在適當色彩空間運算；不直接等同所有 RGBA 混合。'],
+ 'fluxgloss-33':['將二值遮罩邊緣轉成平滑的 α 過渡，保留核心區域。','羽化太寬會使細帶消失；過窄可能留下硬邊。'],
+ 'fluxgloss-34':['高斯核的權重與 exp(−r²/(2σ²)) 成比例，正規化後加權鄰域像素。r 是距離，σ 控制分布寬度。','σ 增大通常增加平滑程度，但核大小、邊界處理也影響結果。'],
+ 'fluxgloss-35':['辨認前後物件的遮擋順序，先合成背景，再以遮罩保留前方物件。','被遮擋區的真實外觀無法僅從可見像素確認。'],
+ 'fluxgloss-36':['針孔模型中 X 像素位置的相對值 u=fX/Z；f 為焦距、X 為橫向位置、Z 為深度。','平面裁切與透視投影不同；相關 ROI 實驗只用來核對座標。'],
+ 'fluxgloss-39':['先辨識可見屬性，再產生提示詞，將不確定欄位標為未知。','模型生成的描述不一定與圖像一致，必須核對參考圖。'],
+ 'fluxgloss-40':['解析語句中的物件與方向，回傳位置並與原圖核對。','注意畫面左右與人物自身左右不同；外接框不代表精準輪廓。'],
+ 'fluxgloss-41':['定義屬性欄位，填入可見證據，再驗證資料型別與必要欄位。','缺少證據應標示未知，不能為了填滿欄位而猜測。'],
+ 'fluxgloss-43':['分開列出必須修改、必須保留及禁止修改的條件，逐項驗收。','文字約束不等於硬性像素限制，重要區域另用遮罩或規則。'],
+ 'fluxgloss-45':['將提示拆成屬性、對象與範圍；同一對象的互斥值需先消解。','不要把模型任意選擇的結果當成符合全部條件。'],
+ 'fluxgloss-46':['保留初始需求，每輪重寫後比較屬性、位置及限制是否變更。','文字相似度不能取代逐項要求核對。'],
+ 'fluxgloss-47':['定義可觀察的參考特徵，逐項核對，記錄符合、不符及不可判定。','主觀相似不能代替結構、材質及顏色的獨立評估。'],
+ 'fluxgloss-49':['確認 CUDA 裝置、模型及張量所在裝置，固定輸入比較 CPU/GPU 延遲。','CUDA 可用不代表所有算子都在 GPU；共用實驗是理論估算。'],
+ 'fluxgloss-51':['分別量測系統 RAM 與 VRAM，在模型載入及推論時記錄峰值。','純權重容量不包含活化值、暫存、框架及系統開銷。'],
+ 'fluxgloss-52':['FP32 每個元素 4 bytes；N 個元素的純資料容量為 4N bytes。','浮點精度與實際運算精度可能不同；容量不代表總記憶體。'],
+ 'fluxgloss-56':['將部分權重暫存於 CPU RAM，需要時移回 GPU，記錄記憶體與延遲。','卸載通常降低部分 VRAM 壓力，但增加傳輸成本。'],
+ 'fluxgloss-60':['固定模型、種子、提示及其他設定，只改取樣步數，記錄耗時與品質。','步數較多不保證品質較好；蒸餾模型可能只需少量步數。'],
+ 'fluxgloss-61':['常見 CFG 形式為 ε=εᵤ+s(ε꜀−εᵤ)，s 是引導倍率，εᵤ、ε꜀ 是無條件、條件預測。','不同架構可能使用不同引導方式；此公式不是 FLUX 所有版本的通式。'],
+ 'fluxgloss-62':['像素數為 W×H，W 與 H 是影像寬高；若為 RGB FP32 張量，純資料容量為 W×H×3×4 bytes。','像素數不是模型顯存需求，生成成本還受 latent 與模型架構影響。']
+ };
+ const models={
+ 'fluxgloss-21':[['a','起點 x₀',0,-5,5,.1],['b','終點 x₁',1,-5,5,.1],['t','時間 t',.5,0,1,.05]],
+ 'fluxgloss-26':[['a','左上 x₁',120,0,1000,10],['b','左上 y₁',400,0,1000,10],['c','寬',100,1,1000,1],['d','高',90,1,1000,1]],
+ 'fluxgloss-32':[['a','前景 F',200,0,255,1],['b','背景 B',100,0,255,1],['t','透明度 α',.25,0,1,.05]],
+ 'fluxgloss-34':[['a','標準差 σ',1,.2,5,.1],['b','鄰域距離 r',1,0,5,.1]],
+ 'fluxgloss-36':[['a','焦距 f',100,10,500,10],['b','橫向位置 X',2,-5,5,.1],['c','深度 Z',4,.1,10,.1]],
+ 'fluxgloss-52':[['a','元素數（百萬）',1000,1,2000,1]],
+ 'fluxgloss-61':[['a','無條件預測 εᵤ',.2,-2,2,.1],['b','條件預測 ε꜀',.6,-2,2,.1],['t','引導倍率 s',3,0,10,.1]],
+ 'fluxgloss-62':[['a','寬 W',512,64,2048,64],['b','高 H',512,64,2048,64]]
+ };
+ const old=keywordExample,previous=renderKeyword;
+ const fmt=n=>Number(n.toFixed(5)).toLocaleString('en-US');
+ const build=(id)=>'<div data-flux-study="'+id+'">'+models[id].map(([k,label,v,min,max,step])=>'<label style="display:block;margin:.75rem 0">'+label+'：<output data-flux-val="'+k+'">'+v+'</output><input style="display:block;width:100%" type="range" data-flux-param="'+k+'" value="'+v+'" min="'+min+'" max="'+max+'" step="'+step+'"></label>').join('')+'<p data-flux-result aria-live="polite"></p><div data-flux-visual></div></div>';
+ function update(l){const v={};l.querySelectorAll('[data-flux-param]').forEach(i=>{v[i.dataset.fluxParam]=Number(i.value);l.querySelector('[data-flux-val="'+i.dataset.fluxParam+'"]').textContent=i.value});let text='',visual='';
+ const bar=(n,max)=>'<div style="height:12px;background:#e9eef7;border-radius:5px"><div style="height:100%;border-radius:5px;background:#0d9488;width:'+Math.max(0,Math.min(100,n/max*100))+'%"></div></div>';
+ switch(l.dataset.fluxStudy){
+ case 'fluxgloss-21':text='x(t) = (1−'+v.t+') × '+v.a+' + '+v.t+' × '+v.b+' = '+fmt((1-v.t)*v.a+v.t*v.b)+'；速度 = '+fmt(v.b-v.a);visual=bar(v.t,1);break;
+ case 'fluxgloss-26':text='右下界 = ('+(v.a+v.c)+', '+(v.b+v.d)+')；面積 = '+v.c+' × '+v.d+' = '+fmt(v.c*v.d)+' 像素位置';visual='<svg viewBox="0 0 320 160" style="width:100%;max-width:480px"><rect x="10" y="10" width="300" height="140" fill="none" stroke="#94a3b8"/><rect x="'+(10+v.a*.15)+'" y="'+(10+v.b*.07)+'" width="'+v.c*.15+'" height="'+v.d*.07+'" fill="#0d9488" fill-opacity=".2" stroke="#0d9488"/></svg>';break;
+ case 'fluxgloss-32':{const c=v.t*v.a+(1-v.t)*v.b;text='C = '+v.t+' × '+v.a+' + (1−'+v.t+') × '+v.b+' = '+fmt(c);visual='<div style="display:flex;gap:8px">'+[v.a,v.b,c].map((x,i)=>'<div style="flex:1;text-align:center"><div style="height:42px;background:rgb('+[x,x,x].map(Math.round).join(',')+');border:1px solid #94a3b8"></div>'+['前景','背景','合成'][i]+'</div>').join('')+'</div>';break;}
+ case 'fluxgloss-34':{const g=Math.exp(-v.b*v.b/(2*v.a*v.a));text='未正規化相對權重 = exp(−'+v.b+'² / (2 × '+v.a+'²)) = '+fmt(g);visual=bar(g,1);break;}
+ case 'fluxgloss-36':text='u = '+v.a+' × '+v.b+' / '+v.c+' = '+fmt(v.a*v.b/v.c)+'（相對主點的像素位置）';break;
+ case 'fluxgloss-52':text=fmt(v.a)+' 百萬元素 × 4 bytes = '+fmt(v.a*4)+' MB（十進位），約 '+fmt(v.a*4e6/2**30)+' GiB';break;
+ case 'fluxgloss-61':text='ε = '+v.a+' + '+v.t+' × ('+v.b+' − '+v.a+') = '+fmt(v.a+v.t*(v.b-v.a));break;
+ case 'fluxgloss-62':text='像素數 = '+v.a+' × '+v.b+' = '+fmt(v.a*v.b)+'；RGB FP32 張量 = '+fmt(v.a*v.b*12)+' bytes';break;
+ }
+ l.querySelector('[data-flux-result]').textContent=text;l.querySelector('[data-flux-visual]').innerHTML=visual;
+ }
+ keywordExample=function(t,d){let html=old(t,d);const note=notes[t.id];if(!note)return html;const engine=labEngines.find(e=>e.id===related[t.id]);const term=engine&&labCases.find(c=>c.engineId===engine.id);const more='<section class="keyword-section glossary-chapter"><h2>補充：運作原理、限制與驗證</h2><h3>運作方式</h3><p>'+escapeHtml(note[0])+'</p><h3>假設與限制</h3><p>'+escapeHtml(note[1])+'</p>'+(models[t.id]?'<h3>專屬互動算例</h3>'+build(t.id):'')+(term?'<h3>相關機制實驗</h3><p>此實驗示範相關機制，並非直接執行本詞的完整模型。</p><button type="button" data-open-lab="'+escapeHtml(term.id)+'">'+escapeHtml(engine.title)+' →</button>':'')+'</section>';
+ return html.replace(/<\/div>$/,more+'</div>');};
+ renderKeyword=function(){previous.apply(this,arguments);document.querySelectorAll('#keyword-body [data-flux-study]').forEach(update);};
+ document.addEventListener('input',e=>{if(e.target.matches('[data-flux-param]'))update(e.target.closest('[data-flux-study]'));});
+}
