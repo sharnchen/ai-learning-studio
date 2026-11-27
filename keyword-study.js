@@ -314,7 +314,7 @@ const keywordStudy = (() => {
     plainKeywordDefinitions[svmTerm.id]=svmTerm.definition;
   }
   const eq=s=>'<p style="text-align:center;font-size:1.1em;overflow-wrap:anywhere">'+(window.katex?katex.renderToString(s,{throwOnError:false,displayMode:true}):escapeHtml(s))+'</p>';
-  const table=(headers,rows)=>'<table style="width:100%;table-layout:fixed;overflow-wrap:anywhere"><thead><tr>'+headers.map(x=>'<th>'+x+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(x=>'<td>'+x+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+  const table=(headers,rows)=>'<table style="width:100%;table-layout:fixed;overflow-wrap:anywhere;border-collapse:collapse;border:1.5px solid #8f96a3;margin:1.2rem 0"><thead><tr>'+headers.map(x=>'<th style="border:1.5px solid #8f96a3;padding:.7rem .8rem;background:#e9eef7;color:#172640;text-align:center;vertical-align:middle;font-weight:700">'+x+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(x=>'<td style="border:1.5px solid #8f96a3;padding:.7rem .8rem;vertical-align:middle;line-height:1.7">'+x+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
   const sec=(n,title,body)=>(n>1?'<hr class="svm-section-divider" style="border:0;border-top:1px solid var(--line, #b7bdc9);margin:2rem 0" aria-hidden="true">':'')+'<section class="keyword-section" style="padding-block:0.5rem"><h2>'+n+'. '+title+'</h2>'+body+'</section>';
   const svg=(body)=>'<svg viewBox="0 0 360 220" role="img" aria-label="SVM 分類幾何示意" style="width:100%;height:auto;max-width:620px;display:block;margin:auto">'+body+'</svg>';
   const points=(arr,c)=>arr.map(([x,y])=>'<circle cx="'+x+'" cy="'+y+'" r="5" fill="'+c+'"/>').join('');
