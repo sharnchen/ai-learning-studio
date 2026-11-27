@@ -1,0 +1,22 @@
+#keyword-content .transformer-chapter{padding:1.4rem 0;margin:0;border-top:1px solid #aab3c3;min-width:0}
+#keyword-content .transformer-table{overflow-x:auto;max-width:100%;margin:1rem 0}
+#keyword-content .transformer-table table,#keyword-content .transformer-heatmap{width:100%;border-collapse:collapse}
+#keyword-content .transformer-table th,#keyword-content .transformer-table td,#keyword-content .transformer-heatmap th,#keyword-content .transformer-heatmap td{border:1px solid #8f9aab;padding:.65rem;vertical-align:top;text-align:left}
+#keyword-content .transformer-table th{background:#eeeaf9}
+#keyword-content .transformer-equation{overflow-x:auto;max-width:100%;padding:.5rem 0}
+#keyword-content .transformer-equation-reading{color:#46536a}
+#keyword-content .transformer-figure{margin:1.2rem 0;padding:.75rem;border:1px solid #cbc7dd;border-radius:12px;background:#faf9ff}
+#keyword-content .transformer-figure svg{display:block;width:100%;height:auto}
+#keyword-content .transformer-figure svg text{font-size:14px;fill:#24334b}
+#keyword-content .transformer-box{fill:#eee9ff;stroke:#7959cb;stroke-width:1.5}
+#keyword-content .transformer-box.output{fill:#e4f6ef;stroke:#168a70}
+#keyword-content .transformer-edge{stroke:#68718d;stroke-width:1.6;fill:none}
+#keyword-content .transformer-figure figcaption{line-height:1.8;margin-top:.7rem}
+#keyword-content .transformer-demo{padding:1rem;background:#f7f4ff;border:1px solid #cfc5ed;border-radius:12px}
+#keyword-content .transformer-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+#keyword-content .transformer-controls label{display:block;line-height:1.8}
+#keyword-content .transformer-controls input[type=range]{display:block;width:100%}
+#keyword-content .transformer-stage-nav{display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+#keyword-content .transformer-stage-nav button{min-height:44px}
+#keyword-content .transformer-question{padding:1rem 0;border-top:1px solid #c4cad5}
+@media(max-width:650px){#keyword-content .transformer-controls{grid-template-columns:1fr}#keyword-content .transformer-chapter h2{font-size:1.25rem}#keyword-content .transformer-table th,#keyword-content .transformer-table td{padding:.45rem}}

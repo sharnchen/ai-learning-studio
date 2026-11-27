@@ -1,0 +1,56 @@
+{
+  "id": "d9t0",
+  "sections": 26,
+  "pythonExamples": 2,
+  "formulae": 14,
+  "defaultAttention": [
+    [
+      0.6697615493266569,
+      0.3302384506733431
+    ],
+    [
+      0.3302384506733431,
+      0.6697615493266569
+    ]
+  ],
+  "defaultOutput": [
+    [
+      1.3395230986533138,
+      0.3302384506733431
+    ],
+    [
+      0.6604769013466862,
+      0.6697615493266569
+    ]
+  ],
+  "causalOutput": [
+    [
+      2,
+      0
+    ],
+    [
+      0.6604769013466862,
+      0.6697615493266569
+    ]
+  ],
+  "covered": [
+    "architecture",
+    "tensor shapes",
+    "projections",
+    "scaled scores",
+    "softmax",
+    "weighted values",
+    "multihead",
+    "position",
+    "residual",
+    "layernorm",
+    "ffn",
+    "postnorm vs prenorm",
+    "masks",
+    "training vs decoding",
+    "complexity",
+    "interactive heatmap",
+    "python",
+    "applications and limitations"
+  ]
+}

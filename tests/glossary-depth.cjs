@@ -14,7 +14,7 @@ const initial=vm.runInContext('keywordCatalog.map(t=>({id:t.id,zh:t.zh,lessonId:
 const original=new Map(vm.runInContext('keywordCatalog.map(t=>[t.id,keywordExample(t,termPractice[t.zh])])',c));
 // Simulate standards mode for KaTeX; compile using the same vendored renderer as the site.
 c.document.compatMode='CSS1Compat';
-for(const f of ['vendor/katex-0.16.25.min.js','glossary-deep-data.js','glossary-formula-data.js','glossary-concept-fields.js','glossary-depth.js'])run(f);
+for(const f of ['vendor/katex-0.16.25.min.js','glossary-deep-data.js','glossary-formula-data.js','glossary-concept-fields.js','transformer-keyword.js','glossary-depth.js'])run(f);
 const terms=vm.runInContext('keywordCatalog',c),api=c.GlossaryDepth;
 assert.equal(terms.length,683);assert.equal(JSON.stringify(initial),JSON.stringify(terms.map(t=>({id:t.id,zh:t.zh,lessonId:t.lessonId}))),'preserve catalogue identities');
 assert.equal(api.deep.size,32);assert.equal(c.IPASGlossary.details.size,75);
