@@ -9,7 +9,13 @@
   plainKeywordDefinitions[t.id]=t.id==='d9t2'?'讓每個詞元依需要讀取同一序列中其他可見位置的資訊。':'先決定要參考哪些資訊、各占多少權重，再把內容加權組合。';
  }
  keywordDefinitions=function(t){return ids.has(t.id)?'<div class="keyword-definition"><strong>白話說明</strong><p>'+esc(plainKeywordDefinitions[t.id])+'</p><strong>正式定義</strong><p>'+esc(t.definition)+'</p></div>':priorDef(t);};
- function table(headers,rows){return '<div class="transformer-table"><table><thead><tr>'+headers.map(x=>'<th scope="col">'+esc(x)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(x=>'<td>'+esc(x)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';}
+ function projectionLabel(value){
+  return String(value).split(/(W\^[QKV]|QK\^T)/g).map(part=>{
+   if(!/^(W\^[QKV]|QK\^T)$/.test(part))return esc(part);
+   return window.katex?window.katex.renderToString(part,{output:'mathml',throwOnError:true,trust:false}):esc(part).replace(/\^([QKVT])/g,'<sup>$1</sup>');
+  }).join('');
+ }
+ function table(headers,rows){return '<div class="transformer-table"><table><thead><tr>'+headers.map(x=>'<th scope="col">'+esc(x)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(x=>'<td>'+projectionLabel(x)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';}
  const matrix=m=>table(['Query / 位置','位置 1','位置 2'],m.map((r,i)=>['位置 '+(i+1),...r.map(x=>Number.isFinite(x)?f(x):'−∞')]));
  const sec=(n,title,html)=>'<section class="keyword-section transformer-chapter"><h2>'+n+'. '+esc(title)+'</h2>'+html+'</section>';
  function eq(latex,reading){return '<div class="transformer-equation">'+(window.katex?window.katex.renderToString(latex,{output:'mathml',displayMode:true,throwOnError:true,trust:false}):'')+'</div><p>'+esc(reading)+'</p>';}
@@ -19,12 +25,12 @@
   return '<div data-self-attention-lesson="'+esc(t.id)+'">'+[
    sec(1,t.id==='d9t1'?'注意力機制：用途與自注意力的定位':'Self-Attention：為何需要上下文？','<p>注意力機制把目前的需求與可提供的資訊比較，決定各來源的權重，再聚合內容。以下先理解通用流程，再完整計算同一序列內的 Self-Attention。</p><p>例如「小明把球交給小華，因為他要離開」，理解「他」需要參考周圍內容。這句本身有歧義，注意力能建立關聯，但不保證唯一判斷代詞指涉。</p>'),
    sec(2,'從單一詞元走向上下文化表示','<p>每個 Token 最初轉成向量，但它在句中的作用仍取決於其他位置。Self-Attention 讓每個位置直接讀取其他可見位置，更新自己的表示，而不是只看孤立詞語。</p><p>一次更新分為：提出查詢、比較線索、決定權重、聚合內容。模型用資料與訓練損失學習投影，不是由人逐條指定每個詞該看誰。</p>'),
-   sec(3,'Self 是來源關係，不是只看自己',table(['機制','Query 來源','Key、Value 來源'],[['Self-Attention','目前序列','同一序列'],['Cross-Attention','一個序列','另一序列或資訊來源']])+'<p>沒有遮罩限制時，位置通常可讀取同序列所有位置，包括自己。因果遮罩決定可見性，Self／Cross 決定資訊來源，兩者不能混為一談。</p>'),
+   sec(3,'Self 是來源關係，不是只看自己',table(['機制','Query 來源','Key、Value 來源'],[['Self-Attention','目前序列','同一序列'],['Cross-Attention','一個序列','另一序列或資訊來源']])+'<p>沒有遮罩限制時，位置通常可讀取同序列所有位置，包括自己。因果遮罩決定可見性，Self／Cross 決定資訊來源，兩者不能混為一談。以下三組投影共用 X，特指 Self-Attention。Cross-Attention 由 X_q 產生 Q，另一來源 X_s 產生 K、V；查詢長度 n_q 與來源長度 n_k 可以不同，權重矩陣為 n_q×n_k，輸出為 n_q×dᵥ。</p>'),
    sec(4,'Q、K、V 的意義與資料流',diagram()+table(['符號','英文','作用'],[['Q','Query','目前位置用來尋找資訊的條件表示'],['K','Key','供 Query 比較的匹配線索'],['V','Value','最後被加權聚合的內容']])+'<p>可比喻為找資料的條件、索引線索及實際內容，但三者都是數值向量，不是人工整理的關鍵字清單。Q 也不一定是一句使用者問題。</p>'),
-   sec(5,'投影矩陣：同源為何還有三組向量？',eq('Q=XW^Q,\\quad K=XW^K,\\quad V=XW^V','輸入透過三組可學權重，得到三種用途的表示')+table(['符號','尺寸與意義'],[['X','n×d：n 個詞元，每個 d 維'],['WQ、WK','d×dₖ：Query 與 Key 的可學投影'],['WV','d×dᵥ：Value 的可學投影'],['Q、K','n×dₖ'],['V','n×dᵥ'],['dₖ、dᵥ','匹配向量與內容向量的維度']])+'<p>三組權重通常不同，因此 Q、K、V 通常不同。以下省略批次維度；多頭計算還有頭數維度。</p>'),
-   sec(6,'核心公式與四個計算步驟',eq('S=\\frac{QK^T}{\\sqrt{d_k}}+M,\\quad A=\\operatorname{softmax}_{\\rm row}(S),\\quad O=AV','內積比較 → 縮放及遮罩 → 逐列 Softmax → 聚合 Value')+table(['項目','解釋'],[['T','轉置，讓 Q 的每列與 K 的每列比較'],['S、M','分數與加法遮罩；不可見項使用 −∞'],['Aᵢⱼ','Query 位置 i 對 Key 位置 j 的權重'],['O','n×dᵥ 的輸出表示']])+'<p>每列權重加總為 1，不是整張表加總為 1。Q 與 K 決定權重，V 才是被聚合的資訊。</p>'),
-   sec(7,'完整算例一：先列清楚輸入與參數','<p>取兩個位置，d＝dₖ＝dᵥ＝2。X、WQ、WK 都是 [[1,0],[0,1]]，WV＝[[2,0],[0,1]]，因此：</p>'+table(['位置','Q','K','V'],[['1','[1,0]','[1,0]','[2,0]'],['2','[0,1]','[0,1]','[0,1]']])+'<p>這是指定權重的教學例，略去位置編碼且沒有訓練。一般模型的投影不是單位矩陣。</p>'),
-   sec(8,'完整算例二：內積與縮放','<p>q₁·k₁＝1×1＋0×0＝1；q₁·k₂＝1×0＋0×1＝0。另一列同樣計算，QKT 得到單位矩陣；除以 √2 後：</p>'+matrix(r.scores)+'<p>內積是學到的表示空間中的匹配分數，不直接等同人類對語意的判斷。</p>'),
+   sec(5,'投影矩陣：同源為何還有三組向量？',eq('Q=XW^{Q},\\quad K=XW^{K},\\quad V=XW^{V}','同一輸入分別乘上三組可學習的權重矩陣，得到用途不同的表示')+table(['符號','尺寸','意義'],[['X','n×d','n 個詞元；每列用 d 個數值表示一個詞元'],['W^Q','d×dₖ','Query 權重：學習用什麼條件尋找資訊'],['W^K','d×dₖ','Key 權重：學習供 Query 比較的匹配線索'],['W^V','d×dᵥ','Value 權重：學習最後被加權組合的內容'],['Q、K','各為 n×dₖ','各有 n 列；每列分別是一個 Query 或 Key'],['V','n×dᵥ','n 個位置各自提供 dᵥ 維內容'],['n、d','正整數','序列長度、輸入特徵維度'],['dₖ、dᵥ','正整數','每頭匹配維度、每頭內容維度']])+'<p><b>先分清上標：</b>W 的 Q、K、V 上標是矩陣名稱標記，不是次方；矩陣右上角 T 表示轉置。e 的上標則是指數，三者不可混為一談。</p><p><b>投影是什麼？</b>此處指可學習的線性轉換，不一定降維，也不要求是正交投影。三組矩陣的參數分別接受訓練損失與反向傳播更新；用途不同，不要求數值相同，也不保證結果必然不同。</p>'+eq('\\underbrace{X}_{n\\times d}\\underbrace{W^Q}_{d\\times d_k}=\\underbrace{Q}_{n\\times d_k}','矩陣乘法的內側 d 必須相同，輸出保留外側的 n 與 dₖ')+'<p><b>為何 Q、K 同維？</b>下一步需要逐列做內積，因此二者每列都必須有 dₖ 個分量。V 不參與這個內積，dᵥ 可以不同。這裡採單一注意力頭、忽略偏置與批次；部分實作另有偏置。</p><p><b>用不同尺寸核對：</b>取 n＝2、d＝3、dₖ＝2、dᵥ＝1，X＝[[1,0,2],[0,1,1]]；Query 權重為 [[1,0],[0,1],[1,1]]，Key 權重為 [[0,1],[1,0],[1,0]]，Value 權重為 [[1],[2],[0]]。矩陣相乘得到 Q＝[[3,2],[1,2]]、K＝[[2,1],[2,0]]、V＝[[1],[2]]。例如 Q 第一列為 [1×1＋0×0＋2×1, 1×0＋0×1＋2×1]＝[3,2]。這是另設的尺寸示例；下方互動仍用原本的二維資料。</p>'),
+   sec(6,'核心公式與四個計算步驟',eq('S=\\frac{QK^T}{\\sqrt{d_k}}+M,\\quad A=\\operatorname{softmax}_{\\rm row}(S),\\quad O=AV','內積比較 → 縮放及遮罩 → 逐列 Softmax → 聚合 Value')+table(['項目','解釋'],[['T','轉置，讓 Q 的每列與 K 的每列比較'],['S、M','分數與加法遮罩；不可見項使用 −∞'],['Aᵢⱼ','Query 位置 i 對 Key 位置 j 的權重'],['O','n×dᵥ 的輸出表示']])+'<p>每列至少有一個可見位置時，Softmax 的每列權重加總為 1，不是整張表加總為 1；此處尚未套用 Attention Dropout。Q 與 K 決定權重，V 才是被聚合的資訊。S、M、A 都為 n×n；(n×n) 的 A 乘 (n×dᵥ) 的 V，得到 n×dᵥ 的 O。</p>'),
+   sec(7,'完整算例一：先列清楚輸入與參數','<p>取兩個位置，d＝dₖ＝dᵥ＝2。X、W<sup>Q</sup>、W<sup>K</sup> 都是 [[1,0],[0,1]]，W<sup>V</sup>＝[[2,0],[0,1]]，因此：</p>'+table(['位置','Q','K','V'],[['1','[1,0]','[1,0]','[2,0]'],['2','[0,1]','[0,1]','[0,1]']])+'<p>這是指定權重的教學例，略去位置編碼且沒有訓練。一般模型的投影不是單位矩陣。</p>'),
+   sec(8,'完整算例二：內積與縮放','<p>q₁·k₁＝1×1＋0×0＝1；q₁·k₂＝1×0＋0×1＝0。另一列同樣計算，QK<sup>T</sup> 得到單位矩陣；除以 √2 後：</p>'+matrix(r.scores)+'<p>內積是學到的表示空間中的匹配分數，不直接等同人類對語意的判斷。</p>'),
    sec(9,'完整算例三：Softmax 如何產生權重？',eq('A_{ij}=\\frac{e^{S_{ij}}}{\\sum_{\\ell=1}^{n}e^{S_{i\\ell}}}','同一 Query 的分數取指數，再除以該列總和')+'<p>i 為 Query 位置，j、ℓ 為 Key 位置；e 約為 2.71828，上標表示指數。第一列 e<sup>0.70711</sup>≈2.02811，e<sup>0</sup>＝1；總和約 3.02811，權重約為 '+f(a)+' 與 '+f(b)+'。</p>'+matrix(r.A)+'<p>分數為 0 不表示權重為 0，因為 e<sup>0</sup>＝1。實作可先減去該列最大分數，降低溢位風險，且不改變 Softmax 結果。</p>'),
    sec(10,'完整算例四：用權重聚合 Value','<p>第一個位置 o₁＝'+f(a)+'×[2,0]＋'+f(b)+'×[0,1]＝['+f(r.O[0][0])+','+f(r.O[0][1])+']。另一列用自己的權重，完整輸出為：</p>'+matrix(r.O)+'<p>每個位置得到結合可見上下文的新向量。它還不是中文詞語或最終答案，後續可接殘差、LayerNorm、FFN 及任務輸出頭。</p>'),
    sec(11,'為什麼除以 √dₖ？','<p>內積加總多個分量乘積，維度增加可能使分數尺度變大。在分量近似獨立、均值 0、變異 1 的假設下，內積變異隨 dₖ 成長；除以 √dₖ 有助控制尺度。</p><p>例如 Softmax([10,0])≈[0.99995,0.00005]，已非常尖銳，部分梯度也可能很小。縮放不是讓權重和變成 1；後者是 Softmax 的結果。上述分布假設是設計動機，不表示所有資料都嚴格符合。</p>'),
@@ -45,3 +51,4 @@
  keywordExample=function(t,p){return ids.has(t.id)?lesson(t):prior(t,p);};
  window.SelfAttentionLesson={ids,lesson};
 })();
+

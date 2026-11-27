@@ -1,0 +1,31 @@
+{
+  "scope": {
+    "glossaryEntries": 683,
+    "lessons": 82,
+    "ipasSlides": 223,
+    "experiments": 108,
+    "formulaCards": 44
+  },
+  "checks": [
+    "Rendered formula syntax, variable-legend presence, glossary sections and reference integrity",
+    "Attention and Transformer explanations, superscript labels and rectangular projection arithmetic",
+    "iPAS QKV diagram labels and matching explanation",
+    "L1 distance symbol disambiguation"
+  ],
+  "limitations": "Site-wide automated structural and rendering checks are supplemented by targeted editorial review of the changed formulas; this is not a proof of every mathematical statement on the site.",
+  "preserved": [
+    "term identifiers",
+    "lesson and quiz identifiers",
+    "saved learning progress",
+    "Python computations"
+  ],
+  "tests": [
+    "tests/self-attention-keyword.cjs",
+    "tests/transformer-keyword.cjs",
+    "scripts/test-formula-guides.cjs",
+    "tests/glossary-depth.cjs",
+    "tests/ipas-glossary.cjs",
+    "tests/ipas-resources.cjs",
+    "tests/math-notation.cjs"
+  ]
+}

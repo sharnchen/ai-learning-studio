@@ -5,7 +5,7 @@ window.GlossaryFormulaLessons = {
 'ipas-term-median':['\\operatorname{median}=\\begin{cases}x_{((n+1)/2)},&n\\text{ odd}\\\\(x_{(n/2)}+x_{(n/2+1)})/2,&n\\text{ even}\\end{cases}','奇數筆取排序中央值；偶數筆取中央兩值平均','x₍ⱼ₎|由小到大排序後第 j 筆;n|至少一筆有效觀測','先排序再找位置，括號下標代表排序位置，不是原始資料的編號。'],
 'ipas-term-iqr':['\\operatorname{IQR}=Q_3-Q_1','四分位距＝Q3−Q1','Q₁|第 25 百分位;Q₃|第 75 百分位;IQR|中段資料的展布','不同工具的分位數插值約定可能不同，應先統一計算方法。'],
 'ipas-term-test-errors':['\\operatorname{Power}=1-\\beta','檢定力＝1−型二錯誤率','α|H₀ 為真時拒絕它的機率;β|指定替代情況下未拒絕 H₀ 的機率;Power|指定替代情況下正確拒絕的機率','β 取決於樣本數、變異與真實效果；不能只用 α 推出 β。'],
-'ipas-term-manhattan':['d(\\mathbf x,\\mathbf y)=\\sum_{i=1}^{d}|x_i-y_i|','L1 距離＝逐維差值的絕對值加總','xᵢ,yᵢ|兩樣本第 i 個特徵;d|特徵維度，此處與左式距離函數同名但用途不同','逐維對齊後才相減。單位不同的特徵須先決定是否縮放。'],
+'ipas-term-manhattan':['D_1(\\mathbf x,\\mathbf y)=\\sum_{i=1}^{d}|x_i-y_i|','L1 距離＝逐維差值的絕對值加總','xᵢ,yᵢ|兩樣本第 i 個特徵;d|特徵維度;D₁|兩向量的 L1 距離','逐維對齊後才相減。單位不同的特徵須先決定是否縮放。'],
 'ipas-term-gini':['G=1-\\sum_{k=1}^{K}p_k^2','Gini 不純度＝1−各類別比例平方和','K|類別數;pₖ|節點內第 k 類比例;G|不純度，純節點為零','切分比較須按子節點筆數加權，不能直接把兩個子節點 Gini 相加。'],
 'ipas-term-qlearning':['Q(s,a)\\leftarrow Q(s,a)+\\alpha[r+\\gamma\\max_{a^{\\prime}}Q(s^{\\prime},a^{\\prime})-Q(s,a)]','新 Q＝舊 Q＋學習率×目標與舊值的差','s,a|目前狀態與動作;s′,a′|下一狀態及候選動作;r|即時獎勵;α|學習率;γ|折扣因子','終止狀態的下一狀態價值項設為零；獎勵與下一狀態價值須使用一致約定。'],
 'ipas-term-nmf':['X\\approx WH,\\quad X,W,H\\geq0','非負矩陣 X 近似為非負 W 乘 H','X|n×m 原始矩陣;W|n×r 的樣本係數;H|r×m 的部件表示;r|選定的低秩維度','維度先核對，再以重建誤差及應用效用評估。非負是逐元素限制。'],
@@ -46,3 +46,4 @@ window.GlossaryFormulaLessons = {
 'fluxgloss-61':['g=u+s(c-u)','典型 CFG 約定下，沿有條件與無條件預測差外推','u|無條件預測;c|有條件預測;s|引導倍率;g|合併後預測','模型與管線可能使用不同引導機制，先核對官方實作。'],
 'fluxgloss-62':['P=WH,\\quad M=WHCb','像素數為寬×高；影像有效負載再乘通道與每通道位元組','W,H|寬、高;C|通道數;b|每通道 bytes;P|像素數;M|未壓縮資料 bytes','僅影像資料本身，不代表模型執行峰值記憶體。']
 };
+

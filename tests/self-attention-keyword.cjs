@@ -14,9 +14,18 @@ for(const id of ['d9t1','d9t2']){
  assert.ok((html.match(/<math/g)||[]).length>=4,'formulas rendered as MathML');
  assert.ok(!context.keywordDefinitions(t).includes('FLUX'));
 }
+// A rectangular projection example must agree with actual matrix multiplication.
+const multiply=(a,b)=>a.map(row=>b[0].map((_,j)=>row.reduce((sum,x,k)=>sum+x*b[k][j],0)));
+const X=[[1,0,2],[0,1,1]], Wq=[[1,0],[0,1],[1,1]], Wk=[[0,1],[1,0],[1,0]], Wv=[[1],[2],[0]];
+const reviewed=context.keywordExample(context.keywordCatalog.find(t=>t.id==='d9t2'),{});
+for(const [name,w] of [['Q',Wq],['K',Wk],['V',Wv]])assert.ok(reviewed.includes(name+'＝'+JSON.stringify(multiply(X,w))),'authored projection arithmetic '+name);
+assert.doesNotMatch(reviewed,/WQ|WK|WV|QKT/,'displayed labels must preserve superscripts');
+for(const text of ['不是次方','不一定降維','內側 d','n_q×n_k','Attention Dropout','不保證結果必然不同'])assert.ok(reviewed.includes(text),text);
+assert.ok((reviewed.match(/<msup>/g)||[]).length>=6,'matrix labels and equations render superscripts');
 assert.equal(context.keywordExample({id:'other'}),'previous other');
 assert.ok(context.keywordExample(context.keywordCatalog[0]).includes('data-transformer-lesson'),'Transformer dedicated content preserved');
 const r=context.TransformerLesson.compute({causal:true});assert.equal(r.A[0][1],0);assert.equal(r.O[0][0],2);
 const index=fs.readFileSync('index.html','utf8');assert.ok(index.indexOf('transformer-keyword.js')<index.indexOf('self-attention-keyword.js'));assert.ok(index.indexOf('self-attention-keyword.js')<index.indexOf('glossary-depth.js'));
 assert.equal(context.keywordCatalog.length,4,'existing entries extended, no duplicates created');
 console.log('PASS attention and self-attention existing IDs, 18-section explanations, MathML, shared live experiment, Python example and unrelated term preservation');
+
