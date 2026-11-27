@@ -1,0 +1,4378 @@
+{
+  "date": "2026-11-27",
+  "added": 73,
+  "reused": 2,
+  "originalTerms": 610,
+  "totalTerms": 683,
+  "slides": [
+    {
+      "week": 1,
+      "page": 1,
+      "title": "人工智慧導論",
+      "terms": [
+        "d0t0"
+      ]
+    },
+    {
+      "week": 1,
+      "page": 2,
+      "title": "本週學習目標與流程",
+      "terms": [
+        "d0t0",
+        "d0t2",
+        "d0t3"
+      ]
+    },
+    {
+      "week": 1,
+      "page": 3,
+      "title": "AI 不等於所有自動化",
+      "terms": [
+        "d0t0",
+        "d3t0",
+        "d1t1",
+        "d0t2",
+        "d7t8",
+        "d0t3",
+        "d0t4",
+        "d13t0",
+        "d7t10",
+        "d13t10",
+        "d10t0",
+        "d3t17",
+        "d16t0"
+      ]
+    },
+    {
+      "week": 1,
+      "page": 4,
+      "title": "AI、ML、DL 的包含關係",
+      "terms": [
+        "d0t0",
+        "d0t2",
+        "d0t3",
+        "d7t1",
+        "d7t10",
+        "d3t8",
+        "d16t0",
+        "d3t10",
+        "d9t0",
+        "d0t4",
+        "d10t0",
+        "d13t10"
+      ]
+    },
+    {
+      "week": 1,
+      "page": 5,
+      "title": "ANI、AGI、ASI",
+      "terms": [
+        "ipas-term-ani",
+        "d0t1",
+        "ipas-term-asi",
+        "d8t24",
+        "d0t0",
+        "d7t8",
+        "d4t10",
+        "d13t0",
+        "d3t0",
+        "d14t2"
+      ]
+    },
+    {
+      "week": 1,
+      "page": 6,
+      "title": "AI 的基本生命週期",
+      "terms": [
+        "d0t0",
+        "d1t1",
+        "d1t30",
+        "d7t10",
+        "d6t7",
+        "d1t32"
+      ]
+    },
+    {
+      "week": 1,
+      "page": 7,
+      "title": "依任務選擇 AI",
+      "terms": [
+        "d0t0",
+        "d3t0",
+        "d10t24",
+        "d0t4",
+        "d7t10",
+        "d3t10",
+        "d3t4",
+        "d3t5",
+        "d3t17",
+        "d3t18",
+        "d3t20",
+        "d10t12",
+        "d10t0",
+        "d14t2",
+        "d0t11",
+        "d3t24",
+        "d3t26",
+        "d1t3",
+        "d14t3"
+      ]
+    },
+    {
+      "week": 1,
+      "page": 8,
+      "title": "課間休息",
+      "terms": [
+        "d15t4",
+        "d15t33"
+      ]
+    },
+    {
+      "week": 1,
+      "page": 9,
+      "title": "課堂實作｜AI 任務辨識工作坊",
+      "terms": [
+        "d0t0",
+        "d10t24",
+        "d3t17",
+        "d16t16"
+      ]
+    },
+    {
+      "week": 1,
+      "page": 10,
+      "title": "實作檢核與討論",
+      "terms": [
+        "d3t0",
+        "d0t0"
+      ]
+    },
+    {
+      "week": 1,
+      "page": 11,
+      "title": "iPAS 自編練習｜20 題",
+      "terms": []
+    },
+    {
+      "week": 1,
+      "page": 12,
+      "title": "本週重點與課後任務",
+      "terms": [
+        "d0t0",
+        "d0t2",
+        "d0t3"
+      ]
+    },
+    {
+      "week": 2,
+      "page": 1,
+      "title": "AI 治理與倫理",
+      "terms": [
+        "ipas-term-governance"
+      ]
+    },
+    {
+      "week": 2,
+      "page": 2,
+      "title": "本週學習目標與流程",
+      "terms": [
+        "d17t0"
+      ]
+    },
+    {
+      "week": 2,
+      "page": 3,
+      "title": "AI 治理的目的",
+      "terms": [
+        "ipas-term-governance",
+        "d0t0",
+        "d4t10"
+      ]
+    },
+    {
+      "week": 2,
+      "page": 4,
+      "title": "公平性與偏見",
+      "terms": [
+        "d17t4",
+        "d10t23",
+        "d1t3",
+        "d1t2",
+        "d14t0",
+        "d3t17",
+        "d6t5",
+        "d4t9",
+        "d1t10",
+        "d16t3",
+        "d1t1",
+        "d5t0"
+      ]
+    },
+    {
+      "week": 2,
+      "page": 5,
+      "title": "過度擬合與欠擬合",
+      "terms": [
+        "d5t32",
+        "d5t33",
+        "d6t5",
+        "d1t16",
+        "d1t2",
+        "d5t24",
+        "d5t28",
+        "d1t17",
+        "d4t9",
+        "d2t19",
+        "d17t7"
+      ]
+    },
+    {
+      "week": 2,
+      "page": 6,
+      "title": "資料隱私與個資保護",
+      "terms": [
+        "ipas-term-deidentify",
+        "fluxgloss-62"
+      ]
+    },
+    {
+      "week": 2,
+      "page": 7,
+      "title": "透明度、可解釋性與責任",
+      "terms": [
+        "d17t7",
+        "d17t5",
+        "ipas-term-shap",
+        "d1t2",
+        "ipas-term-lime",
+        "d3t17",
+        "d6t5",
+        "d0t0"
+      ]
+    },
+    {
+      "week": 2,
+      "page": 8,
+      "title": "風險分級與法規概念",
+      "terms": [
+        "d0t0",
+        "d4t10"
+      ]
+    },
+    {
+      "week": 2,
+      "page": 9,
+      "title": "風險管理與人類監督",
+      "terms": [
+        "d17t32",
+        "d0t0",
+        "d14t2",
+        "d15t18",
+        "ipas-term-human-loop",
+        "d18t20"
+      ]
+    },
+    {
+      "week": 2,
+      "page": 10,
+      "title": "課間休息",
+      "terms": [
+        "d15t4",
+        "d15t33"
+      ]
+    },
+    {
+      "week": 2,
+      "page": 11,
+      "title": "課堂實作｜AI 招募系統風險評估",
+      "terms": [
+        "d0t0",
+        "d16t16"
+      ]
+    },
+    {
+      "week": 2,
+      "page": 12,
+      "title": "實作檢核與討論",
+      "terms": [
+        "d17t4"
+      ]
+    },
+    {
+      "week": 2,
+      "page": 13,
+      "title": "iPAS 自編練習｜20 題",
+      "terms": []
+    },
+    {
+      "week": 2,
+      "page": 14,
+      "title": "本週重點與課後任務",
+      "terms": [
+        "d17t0"
+      ]
+    },
+    {
+      "week": 3,
+      "page": 1,
+      "title": "AI 資料處理基礎",
+      "terms": [
+        "d0t0"
+      ]
+    },
+    {
+      "week": 3,
+      "page": 2,
+      "title": "本週學習目標與流程",
+      "terms": [
+        "ipas-term-etl",
+        "d1t13"
+      ]
+    },
+    {
+      "week": 3,
+      "page": 3,
+      "title": "資料型態與來源",
+      "terms": [
+        "d10t24",
+        "ipas-term-mean",
+        "ipas-term-unstructured",
+        "d4t10",
+        "d3t0"
+      ]
+    },
+    {
+      "week": 3,
+      "page": 4,
+      "title": "結構化、半結構化與非結構化",
+      "terms": [
+        "ipas-term-json",
+        "ipas-term-csv",
+        "d1t2",
+        "d9t8",
+        "d4t8"
+      ]
+    },
+    {
+      "week": 3,
+      "page": 5,
+      "title": "資料清理與品質",
+      "terms": [
+        "d1t11",
+        "d1t3",
+        "d6t5",
+        "d9t17",
+        "d14t2",
+        "d10t24"
+      ]
+    },
+    {
+      "week": 3,
+      "page": 6,
+      "title": "資料標註與品質控管",
+      "terms": [
+        "d1t10",
+        "d1t3",
+        "d1t8"
+      ]
+    },
+    {
+      "week": 3,
+      "page": 7,
+      "title": "資料切分與資料洩漏",
+      "terms": [
+        "d1t9",
+        "d1t28",
+        "d1t8",
+        "d4t8",
+        "d1t1",
+        "d4t10"
+      ]
+    },
+    {
+      "week": 3,
+      "page": 8,
+      "title": "資料前處理與特徵工程",
+      "terms": [
+        "d1t12",
+        "d1t19",
+        "d8t4",
+        "d2t1",
+        "d4t10",
+        "d1t6",
+        "d8t5"
+      ]
+    },
+    {
+      "week": 3,
+      "page": 9,
+      "title": "ETL 與資料轉換",
+      "terms": [
+        "ipas-term-etl",
+        "ipas-term-deidentify",
+        "d11t8",
+        "d5t0",
+        "d8t3",
+        "d1t8",
+        "d3t17"
+      ]
+    },
+    {
+      "week": 3,
+      "page": 10,
+      "title": "資料增強與不平衡",
+      "terms": [
+        "d1t17",
+        "d1t26",
+        "d1t1",
+        "d1t27",
+        "d4t8",
+        "d1t6",
+        "d5t32",
+        "d6t7",
+        "d15t11",
+        "d6t5",
+        "d3t17",
+        "d3t0"
+      ]
+    },
+    {
+      "week": 3,
+      "page": 11,
+      "title": "資料品質持續監控",
+      "terms": [
+        "d4t10"
+      ]
+    },
+    {
+      "week": 3,
+      "page": 12,
+      "title": "資料品質與模型效果",
+      "terms": [
+        "d1t32",
+        "d1t3",
+        "d1t30"
+      ]
+    },
+    {
+      "week": 3,
+      "page": 13,
+      "title": "課間休息",
+      "terms": [
+        "d15t4",
+        "d15t33"
+      ]
+    },
+    {
+      "week": 3,
+      "page": 14,
+      "title": "課堂實作｜客服文字資料清理",
+      "terms": [
+        "d1t11"
+      ]
+    },
+    {
+      "week": 3,
+      "page": 15,
+      "title": "實作檢核與討論",
+      "terms": []
+    },
+    {
+      "week": 3,
+      "page": 16,
+      "title": "iPAS 自編練習｜20 題",
+      "terms": []
+    },
+    {
+      "week": 3,
+      "page": 17,
+      "title": "本週重點與課後任務",
+      "terms": [
+        "ipas-term-etl",
+        "d1t13"
+      ]
+    },
+    {
+      "week": 4,
+      "page": 1,
+      "title": "資料分析、數學與安全",
+      "terms": []
+    },
+    {
+      "week": 4,
+      "page": 2,
+      "title": "本週學習目標與流程",
+      "terms": [
+        "d2t1",
+        "d2t2"
+      ]
+    },
+    {
+      "week": 4,
+      "page": 3,
+      "title": "描述統計與圖表",
+      "terms": [
+        "ipas-term-mean",
+        "ipas-term-median",
+        "d2t19",
+        "d2t20",
+        "ipas-term-iqr",
+        "d14t3",
+        "d1t1",
+        "d1t6",
+        "d1t15",
+        "d10t24",
+        "ipas-term-hypothesis",
+        "ipas-term-test-errors",
+        "ipas-term-pvalue",
+        "d18t17"
+      ]
+    },
+    {
+      "week": 4,
+      "page": 4,
+      "title": "正規化與標準化",
+      "terms": [
+        "d1t22",
+        "d1t23",
+        "d1t2",
+        "d9t8",
+        "d1t6",
+        "d2t20",
+        "d1t8",
+        "d1t1",
+        "d2t19",
+        "d1t15",
+        "d10t24",
+        "d3t11",
+        "d3t18",
+        "d3t10",
+        "d3t23",
+        "d3t8",
+        "d3t9",
+        "d4t10",
+        "d6t5",
+        "d15t4"
+      ]
+    },
+    {
+      "week": 4,
+      "page": 5,
+      "title": "向量與矩陣",
+      "terms": [
+        "d2t1",
+        "d2t2",
+        "d1t1",
+        "d1t2",
+        "d10t24",
+        "d2t4",
+        "d2t0",
+        "d1t0",
+        "d4t8",
+        "d2t3",
+        "d5t2",
+        "d2t7",
+        "d11t16",
+        "d2t6",
+        "d2t9",
+        "d5t26",
+        "d3t0",
+        "fluxgloss-08",
+        "d2t11"
+      ]
+    },
+    {
+      "week": 4,
+      "page": 6,
+      "title": "資料隱私與最小化",
+      "terms": [
+        "d5t0",
+        "ipas-term-pseudonym",
+        "d3t0",
+        "fluxgloss-28",
+        "ipas-term-anonymize",
+        "d17t22",
+        "d1t17",
+        "ipas-term-deidentify"
+      ]
+    },
+    {
+      "week": 4,
+      "page": 7,
+      "title": "資訊安全 CIA",
+      "terms": [
+        "ipas-term-cia",
+        "d0t0",
+        "d15t33",
+        "d9t7",
+        "d4t8",
+        "d16t0"
+      ]
+    },
+    {
+      "week": 4,
+      "page": 8,
+      "title": "課間休息",
+      "terms": [
+        "d15t4",
+        "d15t33"
+      ]
+    },
+    {
+      "week": 4,
+      "page": 9,
+      "title": "課堂實作｜資料標準化與去識別化",
+      "terms": [
+        "d1t23",
+        "ipas-term-deidentify",
+        "d2t20",
+        "d1t6",
+        "d1t8",
+        "d10t24",
+        "d4t10",
+        "d1t2",
+        "d2t2",
+        "d1t3",
+        "d1t1",
+        "d2t19",
+        "d16t16"
+      ]
+    },
+    {
+      "week": 4,
+      "page": 10,
+      "title": "實作檢核與討論",
+      "terms": [
+        "d2t20",
+        "d10t24",
+        "d1t22",
+        "d1t23",
+        "d1t2",
+        "d2t2",
+        "d1t1",
+        "d4t8",
+        "d1t8",
+        "d4t10",
+        "ipas-term-anonymize",
+        "d1t28"
+      ]
+    },
+    {
+      "week": 4,
+      "page": 11,
+      "title": "iPAS 自編練習｜第 1–10 題",
+      "terms": [
+        "d2t19",
+        "d3t17",
+        "ipas-term-pseudonym",
+        "ipas-term-mean",
+        "ipas-term-median",
+        "d2t20",
+        "d14t3",
+        "d10t24",
+        "d3t11",
+        "d1t1",
+        "d1t15",
+        "d1t2",
+        "d6t5",
+        "d2t2",
+        "d4t8"
+      ]
+    },
+    {
+      "week": 4,
+      "page": 12,
+      "title": "iPAS 自編練習｜第 11–20 題",
+      "terms": [
+        "d3t0",
+        "ipas-term-anonymize",
+        "d17t22",
+        "ipas-term-pseudonym",
+        "d1t17",
+        "d0t0",
+        "d4t8",
+        "ipas-term-cia",
+        "d16t0",
+        "d1t8",
+        "d4t10",
+        "d1t6",
+        "d10t24",
+        "d1t2",
+        "d1t3",
+        "ipas-term-iqr",
+        "ipas-term-mean",
+        "ipas-term-median",
+        "d1t1",
+        "d2t1",
+        "d11t16"
+      ]
+    },
+    {
+      "week": 4,
+      "page": 13,
+      "title": "練習解答與解析",
+      "terms": [
+        "d14t3",
+        "d1t1",
+        "d2t19",
+        "d2t20",
+        "ipas-term-median",
+        "d1t2",
+        "d9t8",
+        "d1t22",
+        "d1t6",
+        "d1t23",
+        "d1t8",
+        "d2t1",
+        "d2t6",
+        "d2t9",
+        "d5t26",
+        "d11t16",
+        "d2t2",
+        "d4t8",
+        "ipas-term-pseudonym",
+        "ipas-term-mean",
+        "d3t11",
+        "d1t15",
+        "d6t5",
+        "d2t4",
+        "d3t0",
+        "ipas-term-anonymize",
+        "d4t10",
+        "d1t28",
+        "d1t3",
+        "d0t7",
+        "ipas-term-iqr"
+      ]
+    },
+    {
+      "week": 4,
+      "page": 14,
+      "title": "本週重點與課後任務",
+      "terms": [
+        "d2t1",
+        "d2t2",
+        "d14t3",
+        "d1t1",
+        "d2t19",
+        "d2t20",
+        "ipas-term-median",
+        "d1t2",
+        "d9t8",
+        "d1t22",
+        "d1t6",
+        "d1t23",
+        "d1t8",
+        "d2t6",
+        "d2t9",
+        "d5t26",
+        "d11t16",
+        "d4t8",
+        "ipas-term-cia",
+        "d4t10"
+      ]
+    },
+    {
+      "week": 5,
+      "page": 1,
+      "title": "機器學習原理",
+      "terms": [
+        "d0t2"
+      ]
+    },
+    {
+      "week": 5,
+      "page": 2,
+      "title": "本週學習目標與流程",
+      "terms": [
+        "d3t0",
+        "d3t17"
+      ]
+    },
+    {
+      "week": 5,
+      "page": 3,
+      "title": "監督式學習",
+      "terms": [
+        "d0t7",
+        "d1t3",
+        "d3t0",
+        "d1t2",
+        "d4t10",
+        "d4t8",
+        "d4t9",
+        "d1t1",
+        "d5t18",
+        "d5t10",
+        "d3t4",
+        "d3t6",
+        "d3t11",
+        "d3t10",
+        "d3t5",
+        "ipas-term-svr",
+        "d6t5",
+        "d6t6",
+        "d6t7",
+        "d6t9",
+        "d5t19",
+        "d6t13",
+        "d6t14",
+        "d14t3",
+        "d3t17",
+        "d0t11",
+        "d5t0"
+      ]
+    },
+    {
+      "week": 5,
+      "page": 4,
+      "title": "非監督式與半監督式",
+      "terms": [
+        "d1t3",
+        "d3t18",
+        "d3t17",
+        "d3t0",
+        "d3t22",
+        "d3t24",
+        "d5t6",
+        "d2t1",
+        "d1t1",
+        "d1t2",
+        "d11t17",
+        "d2t14",
+        "d4t10",
+        "d1t15",
+        "d0t9",
+        "d1t10",
+        "d3t5",
+        "d0t11",
+        "d0t7",
+        "d1t7",
+        "d5t0",
+        "d14t6"
+      ]
+    },
+    {
+      "week": 5,
+      "page": 5,
+      "title": "強化學習 RL",
+      "terms": [
+        "d0t11",
+        "d14t0",
+        "d14t2",
+        "d14t4",
+        "d14t5",
+        "d14t6",
+        "d14t7",
+        "d14t11",
+        "d14t1",
+        "d14t8",
+        "d14t10",
+        "d9t8",
+        "d5t7",
+        "ipas-term-qlearning",
+        "d15t11",
+        "d1t3"
+      ]
+    },
+    {
+      "week": 5,
+      "page": 6,
+      "title": "常見模型：KNN、樹與 K-means",
+      "terms": [
+        "d3t11",
+        "d3t18",
+        "d3t8",
+        "d1t2",
+        "d10t24",
+        "d14t2",
+        "d1t3",
+        "d3t0",
+        "d2t11",
+        "d1t1",
+        "ipas-term-manhattan",
+        "ipas-term-gini",
+        "ipas-term-sse",
+        "d5t26",
+        "d2t9",
+        "d2t23",
+        "d2t1",
+        "d2t6",
+        "d12t17",
+        "d5t32",
+        "d3t17",
+        "d1t6",
+        "d2t19",
+        "d2t20",
+        "d3t1",
+        "d3t6",
+        "d3t5",
+        "d3t10",
+        "d3t14",
+        "d3t15",
+        "d5t24",
+        "d4t10"
+      ]
+    },
+    {
+      "week": 5,
+      "page": 7,
+      "title": "泛化與模型選擇",
+      "terms": [
+        "d17t5",
+        "d6t5",
+        "d5t33",
+        "d5t32",
+        "d14t2",
+        "d1t2",
+        "d1t8",
+        "d5t24",
+        "d12t17",
+        "d5t35",
+        "d2t18",
+        "d4t9",
+        "d2t19",
+        "d1t16",
+        "d7t0",
+        "d6t15",
+        "d3t4",
+        "d1t6",
+        "d5t16",
+        "d5t0",
+        "d1t7",
+        "d1t28",
+        "d16t0",
+        "d16t3",
+        "d15t11",
+        "d4t11",
+        "d13t0",
+        "d0t3"
+      ]
+    },
+    {
+      "week": 5,
+      "page": 8,
+      "title": "課間休息",
+      "terms": [
+        "d15t4",
+        "d15t33"
+      ]
+    },
+    {
+      "week": 5,
+      "page": 9,
+      "title": "課堂實作｜手算 KNN 與迴歸",
+      "terms": [
+        "d3t11",
+        "d3t0",
+        "d1t2",
+        "d1t3",
+        "d11t17",
+        "d2t1",
+        "d2t6",
+        "d4t10",
+        "d16t16"
+      ]
+    },
+    {
+      "week": 5,
+      "page": 10,
+      "title": "實作檢核與討論",
+      "terms": [
+        "d1t2",
+        "d4t8",
+        "d2t1",
+        "d2t6",
+        "d3t5",
+        "d4t10",
+        "d5t34",
+        "d3t0"
+      ]
+    },
+    {
+      "week": 5,
+      "page": 11,
+      "title": "iPAS 自編練習｜第 1–10 題",
+      "terms": [
+        "d3t23",
+        "d1t2",
+        "d2t4",
+        "d1t3",
+        "d14t5",
+        "d3t11",
+        "d1t8",
+        "d4t8",
+        "d14t0",
+        "d0t11",
+        "d5t32",
+        "d5t33",
+        "d3t0",
+        "d3t17",
+        "d5t18",
+        "d3t5",
+        "d3t18",
+        "d0t9",
+        "d0t7",
+        "d14t7",
+        "d15t11",
+        "ipas-term-qlearning"
+      ]
+    },
+    {
+      "week": 5,
+      "page": 12,
+      "title": "iPAS 自編練習｜第 11–20 題",
+      "terms": [
+        "d3t11",
+        "d3t18",
+        "d1t2",
+        "d3t1",
+        "d3t8",
+        "ipas-term-gini",
+        "d1t8",
+        "d5t24",
+        "d1t7",
+        "d4t11",
+        "d6t15",
+        "d1t6",
+        "d3t0",
+        "d3t5",
+        "ipas-term-qlearning",
+        "d14t2",
+        "d6t5",
+        "d16t3"
+      ]
+    },
+    {
+      "week": 5,
+      "page": 13,
+      "title": "練習解答與解析",
+      "terms": [
+        "d1t2",
+        "d2t4",
+        "d3t23",
+        "d3t22",
+        "d4t10",
+        "d0t11",
+        "d14t5",
+        "d14t6",
+        "d5t32",
+        "d3t0",
+        "d1t3",
+        "d4t8",
+        "d4t9",
+        "d1t1",
+        "d5t18",
+        "d2t1",
+        "d11t17",
+        "d2t14",
+        "d14t7",
+        "d14t10",
+        "d14t4",
+        "d9t8",
+        "d14t2",
+        "d5t7",
+        "d2t11",
+        "ipas-term-manhattan",
+        "ipas-term-gini",
+        "ipas-term-sse",
+        "d5t26",
+        "d2t9",
+        "d2t23",
+        "d2t18",
+        "d2t19",
+        "d1t16",
+        "d7t0",
+        "d6t15",
+        "d5t19",
+        "d3t18",
+        "d3t17",
+        "d0t9",
+        "d1t7",
+        "d3t11",
+        "d5t24",
+        "d1t8",
+        "d1t6",
+        "d2t20",
+        "d16t3",
+        "d6t5"
+      ]
+    },
+    {
+      "week": 5,
+      "page": 14,
+      "title": "本週重點與課後任務",
+      "terms": [
+        "d3t0",
+        "d3t17",
+        "d3t5",
+        "d1t2",
+        "d4t10",
+        "d4t8",
+        "d4t9",
+        "d1t1",
+        "d5t18",
+        "d2t1",
+        "d11t17",
+        "d2t14",
+        "d14t7",
+        "d14t5",
+        "d14t10",
+        "d14t4",
+        "d9t8",
+        "d14t2",
+        "d5t7",
+        "d2t11",
+        "ipas-term-manhattan",
+        "ipas-term-gini",
+        "ipas-term-sse",
+        "d5t26",
+        "d2t9",
+        "d2t23",
+        "d2t18",
+        "d2t19",
+        "d1t16",
+        "d7t0",
+        "d6t15",
+        "d5t19",
+        "d2t6",
+        "ipas-term-qlearning"
+      ]
+    },
+    {
+      "week": 6,
+      "page": 1,
+      "title": "模型訓練與評估",
+      "terms": [
+        "d5t0"
+      ]
+    },
+    {
+      "week": 6,
+      "page": 2,
+      "title": "本週學習目標與流程",
+      "terms": [
+        "d5t10",
+        "d6t0"
+      ]
+    },
+    {
+      "week": 6,
+      "page": 3,
+      "title": "Loss 與梯度下降",
+      "terms": [
+        "d5t16",
+        "d5t10",
+        "d12t14",
+        "d2t28",
+        "d4t10",
+        "d5t7",
+        "d4t19",
+        "d4t20",
+        "d5t15",
+        "d5t6",
+        "d1t1",
+        "d5t20",
+        "d5t18",
+        "d5t19",
+        "d1t3",
+        "d3t1",
+        "d5t5",
+        "d0t3",
+        "d2t26",
+        "d5t11",
+        "d5t4",
+        "d5t13",
+        "d6t5",
+        "d1t8",
+        "d2t29",
+        "d5t2",
+        "d4t8",
+        "d4t9"
+      ]
+    },
+    {
+      "week": 6,
+      "page": 4,
+      "title": "訓練、驗證與測試",
+      "terms": [
+        "d4t10",
+        "d4t11",
+        "d1t8",
+        "d4t8",
+        "d5t1",
+        "d5t3",
+        "d5t6",
+        "d5t2",
+        "d5t30",
+        "d1t0",
+        "d1t1",
+        "d5t15",
+        "d2t28",
+        "d5t28",
+        "d3t0",
+        "d6t15",
+        "d1t17",
+        "d1t6",
+        "d1t28",
+        "ipas-term-mean",
+        "d2t20",
+        "ipas-term-etl",
+        "d5t4",
+        "d15t11",
+        "d1t9",
+        "d14t6",
+        "d1t3",
+        "d7t0",
+        "d1t2",
+        "d4t27",
+        "d5t34",
+        "d1t23"
+      ]
+    },
+    {
+      "week": 6,
+      "page": 5,
+      "title": "過度與不足擬合",
+      "terms": [
+        "d5t33",
+        "d5t32",
+        "d5t24",
+        "d5t28",
+        "d14t2",
+        "d5t16",
+        "d1t2",
+        "d5t1",
+        "d5t31",
+        "d1t8",
+        "d4t8",
+        "d4t10",
+        "d5t25",
+        "d5t26",
+        "d4t27",
+        "d16t0",
+        "d1t17",
+        "d1t6",
+        "d1t31",
+        "d1t7",
+        "d6t5",
+        "d5t15",
+        "d5t12",
+        "d13t21",
+        "d5t7",
+        "d12t21",
+        "d13t22",
+        "d18t9",
+        "ipas-term-etl",
+        "d16t15",
+        "d1t3",
+        "d1t28"
+      ]
+    },
+    {
+      "week": 6,
+      "page": 6,
+      "title": "混淆矩陣 Confusion Matrix",
+      "terms": [
+        "d6t0",
+        "d6t1",
+        "d6t2",
+        "d6t3",
+        "d6t4",
+        "d2t2",
+        "d15t4",
+        "d1t1",
+        "d6t6",
+        "d6t7",
+        "d6t9",
+        "d3t0",
+        "d2t4"
+      ]
+    },
+    {
+      "week": 6,
+      "page": 7,
+      "title": "Accuracy、Precision、Recall、F1",
+      "terms": [
+        "d6t5",
+        "d6t6",
+        "d6t7",
+        "d6t9",
+        "d6t1",
+        "d6t3",
+        "d6t4",
+        "d6t2",
+        "d1t1",
+        "d6t8",
+        "ipas-term-fpr",
+        "d14t6",
+        "d6t0",
+        "d6t10",
+        "d6t11",
+        "d1t25",
+        "d14t3",
+        "d5t16",
+        "d3t0",
+        "d5t19",
+        "d5t18"
+      ]
+    },
+    {
+      "week": 6,
+      "page": 8,
+      "title": "課間休息",
+      "terms": [
+        "d15t4",
+        "d15t33"
+      ]
+    },
+    {
+      "week": 6,
+      "page": 9,
+      "title": "課堂實作｜混淆矩陣與閾值",
+      "terms": [
+        "d6t0",
+        "d6t1",
+        "d6t3",
+        "d6t4",
+        "d6t2",
+        "d6t5",
+        "d6t6",
+        "d6t7",
+        "d6t9",
+        "d14t3",
+        "d1t6",
+        "d1t23",
+        "d3t6",
+        "d1t7",
+        "d1t2",
+        "d1t3",
+        "d2t20",
+        "d4t8",
+        "d2t1",
+        "d4t9",
+        "d5t20",
+        "d1t1",
+        "d2t19",
+        "d2t11",
+        "d2t8",
+        "d1t8",
+        "d16t16",
+        "d5t16",
+        "d1t9"
+      ]
+    },
+    {
+      "week": 6,
+      "page": 10,
+      "title": "實作檢核與討論",
+      "terms": [
+        "d6t5",
+        "d6t6",
+        "d6t7",
+        "d6t9",
+        "d6t1",
+        "d6t2",
+        "d6t3",
+        "d6t4",
+        "d3t0",
+        "d1t7",
+        "d5t0",
+        "d1t8",
+        "d1t6"
+      ]
+    },
+    {
+      "week": 6,
+      "page": 11,
+      "title": "iPAS 自編練習｜第 1–10 題",
+      "terms": [
+        "d4t11",
+        "d1t7",
+        "d1t8",
+        "d6t2",
+        "d6t4",
+        "d6t3",
+        "d6t1",
+        "d6t7",
+        "d5t10",
+        "d5t7",
+        "d5t16",
+        "d4t20",
+        "d5t15",
+        "d6t5",
+        "d1t3",
+        "d2t28",
+        "d4t10",
+        "d5t3",
+        "d5t2",
+        "d5t1",
+        "d5t34",
+        "d1t23",
+        "d5t28",
+        "d5t26",
+        "d4t8"
+      ]
+    },
+    {
+      "week": 6,
+      "page": 12,
+      "title": "iPAS 自編練習｜第 11–20 題",
+      "terms": [
+        "d5t24",
+        "d1t8",
+        "d1t2",
+        "d5t28",
+        "d14t2",
+        "d6t1",
+        "d6t2",
+        "d6t3",
+        "d6t4",
+        "d6t0",
+        "d2t2",
+        "d6t9",
+        "d6t10",
+        "d6t6",
+        "d6t7",
+        "d6t5",
+        "d5t16",
+        "ipas-term-fpr",
+        "d3t0",
+        "d4t8",
+        "d2t28",
+        "d4t27",
+        "d5t2",
+        "d5t30",
+        "d5t1",
+        "d6t11"
+      ]
+    },
+    {
+      "week": 6,
+      "page": 13,
+      "title": "練習解答與解析",
+      "terms": [
+        "d1t7",
+        "d6t4",
+        "d1t1",
+        "d5t20",
+        "d4t10",
+        "d5t5",
+        "d5t7",
+        "d2t28",
+        "d0t3",
+        "d2t26",
+        "d4t20",
+        "d5t15",
+        "d2t29",
+        "d5t3",
+        "d5t2",
+        "d5t30",
+        "d5t1",
+        "d5t16",
+        "d5t31",
+        "d1t8",
+        "d4t8",
+        "d5t24",
+        "d5t33",
+        "d14t2",
+        "d6t3",
+        "d6t1",
+        "d6t9",
+        "d6t2",
+        "d6t6",
+        "d6t7",
+        "d6t0",
+        "ipas-term-fpr",
+        "d6t10",
+        "d14t3",
+        "d4t27",
+        "d6t11"
+      ]
+    },
+    {
+      "week": 6,
+      "page": 14,
+      "title": "本週重點與課後任務",
+      "terms": [
+        "d5t10",
+        "d6t0",
+        "d5t18",
+        "d1t1",
+        "d5t20",
+        "d5t19",
+        "d4t10",
+        "d5t5",
+        "d5t7",
+        "d2t28",
+        "d0t3",
+        "d2t26",
+        "d5t6",
+        "d5t3",
+        "d5t2",
+        "d5t30",
+        "d5t25",
+        "d5t24",
+        "d4t8",
+        "d5t26",
+        "d6t5",
+        "d6t1",
+        "d6t2",
+        "d6t3",
+        "d6t4",
+        "d6t6",
+        "d6t7",
+        "d6t9",
+        "d6t8",
+        "ipas-term-fpr",
+        "d1t28"
+      ]
+    },
+    {
+      "week": 7,
+      "page": 1,
+      "title": "深度學習與生成模型",
+      "terms": [
+        "d0t3"
+      ]
+    },
+    {
+      "week": 7,
+      "page": 2,
+      "title": "本週學習目標與流程",
+      "terms": [
+        "d4t12",
+        "d7t10",
+        "d8t13",
+        "d9t0",
+        "d0t6"
+      ]
+    },
+    {
+      "week": 7,
+      "page": 3,
+      "title": "神經網路與激活函數",
+      "terms": [
+        "d4t12",
+        "d4t1",
+        "d4t13",
+        "d1t2",
+        "d4t8",
+        "d2t1",
+        "d2t6",
+        "d4t4",
+        "d4t5",
+        "d4t6",
+        "d2t28",
+        "d3t1",
+        "d4t17",
+        "d4t15",
+        "d9t0",
+        "d2t20",
+        "d7t10",
+        "d4t20",
+        "d4t10",
+        "d5t15",
+        "d2t2"
+      ]
+    },
+    {
+      "week": 7,
+      "page": 4,
+      "title": "CNN、RNN 與 Transformer",
+      "terms": [
+        "d7t10",
+        "d8t13",
+        "d9t0",
+        "d7t11",
+        "d1t2",
+        "d14t2",
+        "d9t1",
+        "d3t0",
+        "d4t13",
+        "d7t23",
+        "d7t12",
+        "d7t16",
+        "d7t17",
+        "d7t15",
+        "d7t14",
+        "d7t19",
+        "d7t18",
+        "d4t8",
+        "d2t2",
+        "d4t9",
+        "d4t10",
+        "d4t17",
+        "d2t1",
+        "d4t5",
+        "d2t0",
+        "ipas-term-bptt",
+        "d4t20",
+        "d4t30",
+        "d8t14",
+        "d8t15",
+        "d9t2",
+        "d8t3",
+        "d11t6",
+        "d1t22",
+        "d9t16",
+        "d9t6",
+        "d9t7",
+        "d9t8",
+        "d9t19",
+        "d2t4",
+        "d2t8",
+        "d8t18",
+        "d9t12",
+        "d13t0",
+        "d2t3",
+        "d2t6",
+        "d9t17"
+      ]
+    },
+    {
+      "week": 7,
+      "page": 5,
+      "title": "鑑別式與生成式 AI",
+      "terms": [
+        "d0t4",
+        "d1t3",
+        "d0t6",
+        "d1t30",
+        "d1t1",
+        "d7t1",
+        "d3t0",
+        "d2t14",
+        "d3t6",
+        "d3t10",
+        "d3t12",
+        "d13t10",
+        "d13t12",
+        "d4t10",
+        "d2t18",
+        "d6t1",
+        "d6t3",
+        "d6t6",
+        "d10t23",
+        "d6t7",
+        "ipas-term-fpr",
+        "d1t16",
+        "d14t3"
+      ]
+    },
+    {
+      "week": 7,
+      "page": 6,
+      "title": "GAN、VAE 與 Diffusion",
+      "terms": [
+        "d13t10",
+        "d13t12",
+        "d13t17",
+        "d13t20",
+        "d10t23",
+        "d0t0",
+        "d1t16",
+        "d1t1",
+        "d1t30",
+        "d8t17",
+        "d8t18",
+        "d2t1",
+        "d2t20",
+        "d2t21",
+        "d2t2",
+        "d2t25",
+        "ipas-term-elbo",
+        "d4t10",
+        "d13t13",
+        "ipas-term-ddpm",
+        "d2t19",
+        "d5t26",
+        "d2t9",
+        "fluxgloss-27",
+        "d13t16",
+        "d3t0",
+        "d1t3",
+        "d5t16"
+      ]
+    },
+    {
+      "week": 7,
+      "page": 7,
+      "title": "整合應用與部署驗證",
+      "terms": [
+        "d15t16",
+        "d16t3",
+        "d8t24",
+        "d10t0",
+        "d7t10",
+        "d1t2",
+        "d3t0",
+        "d16t4",
+        "ipas-term-wer",
+        "ipas-term-p95",
+        "fluxgloss-28",
+        "d1t32",
+        "d1t33",
+        "d18t20",
+        "d10t24",
+        "d13t0"
+      ]
+    },
+    {
+      "week": 7,
+      "page": 8,
+      "title": "課間休息",
+      "terms": [
+        "d15t4",
+        "d15t33"
+      ]
+    },
+    {
+      "week": 7,
+      "page": 9,
+      "title": "課堂實作｜辨識＋生成整合案例",
+      "terms": [
+        "d1t2",
+        "d3t0",
+        "d4t13",
+        "d13t10",
+        "d13t12",
+        "d1t22",
+        "d7t10",
+        "d16t0",
+        "d10t0",
+        "d16t16"
+      ]
+    },
+    {
+      "week": 7,
+      "page": 10,
+      "title": "實作檢核與討論",
+      "terms": [
+        "d4t13",
+        "d3t0",
+        "d16t3",
+        "d13t10",
+        "d13t12",
+        "d1t1",
+        "d1t3",
+        "d1t28",
+        "d1t8",
+        "d1t22",
+        "d4t10",
+        "d10t24"
+      ]
+    },
+    {
+      "week": 7,
+      "page": 11,
+      "title": "iPAS 自編練習｜第 1–10 題",
+      "terms": [
+        "d8t13",
+        "d14t2",
+        "fluxgloss-62",
+        "d4t10",
+        "d7t20",
+        "d3t0",
+        "d13t20",
+        "d1t3",
+        "d13t10",
+        "d3t11",
+        "d3t18",
+        "d8t17",
+        "d16t3",
+        "d1t6",
+        "d4t13",
+        "d4t1",
+        "d7t10",
+        "d7t12",
+        "d7t16",
+        "d7t17",
+        "d9t0",
+        "d9t2",
+        "d9t6",
+        "d9t7",
+        "d9t8",
+        "d8t3",
+        "d1t16"
+      ]
+    },
+    {
+      "week": 7,
+      "page": 12,
+      "title": "iPAS 自編練習｜第 11–20 題",
+      "terms": [
+        "d13t12",
+        "d2t25",
+        "d3t0",
+        "d1t3",
+        "ipas-term-ddpm",
+        "d1t16",
+        "d8t24",
+        "d10t0",
+        "d16t3",
+        "d10t24",
+        "d1t22",
+        "d4t10",
+        "d1t33",
+        "d1t32",
+        "d5t30",
+        "d7t14",
+        "d7t23",
+        "ipas-term-wer",
+        "ipas-term-p95"
+      ]
+    },
+    {
+      "week": 7,
+      "page": 13,
+      "title": "練習解答與解析",
+      "terms": [
+        "d8t13",
+        "d14t2",
+        "d13t20",
+        "d1t16",
+        "d1t1",
+        "d16t3",
+        "d4t13",
+        "d9t6",
+        "d9t7",
+        "d9t8",
+        "d2t6",
+        "d4t8",
+        "d2t14",
+        "d6t1",
+        "d2t25",
+        "d1t22",
+        "d1t32",
+        "d1t33",
+        "ipas-term-wer"
+      ]
+    },
+    {
+      "week": 7,
+      "page": 14,
+      "title": "本週重點與課後任務",
+      "terms": [
+        "d4t12",
+        "d7t10",
+        "d8t13",
+        "d9t0",
+        "d0t6",
+        "d4t8",
+        "d2t1",
+        "d4t13",
+        "d2t8",
+        "d4t16",
+        "d7t17",
+        "d7t12",
+        "d7t16",
+        "d4t17",
+        "d14t2",
+        "d2t2",
+        "d9t1",
+        "d9t6",
+        "d9t7",
+        "d9t8",
+        "d2t4",
+        "d1t22",
+        "d6t1",
+        "d6t3",
+        "d2t20",
+        "d1t16",
+        "d16t3",
+        "d16t4",
+        "ipas-term-wer"
+      ]
+    },
+    {
+      "week": 8,
+      "page": 1,
+      "title": "科目一總複習與模擬測驗",
+      "terms": []
+    },
+    {
+      "week": 8,
+      "page": 2,
+      "title": "本週學習目標與流程",
+      "terms": [
+        "d0t0",
+        "d0t2",
+        "d0t3"
+      ]
+    },
+    {
+      "week": 8,
+      "page": 3,
+      "title": "模擬測驗｜第 1–4 題",
+      "terms": [
+        "d3t17",
+        "ipas-term-ani",
+        "d0t0"
+      ]
+    },
+    {
+      "week": 8,
+      "page": 4,
+      "title": "模擬測驗｜第 5–8 題",
+      "terms": [
+        "ipas-term-csv",
+        "d4t10",
+        "d1t13",
+        "d14t6",
+        "d1t23",
+        "d1t28",
+        "ipas-term-median"
+      ]
+    },
+    {
+      "week": 8,
+      "page": 5,
+      "title": "模擬測驗｜第 9–12 題",
+      "terms": [
+        "ipas-term-cia",
+        "d0t7",
+        "d3t18",
+        "d3t5",
+        "d8t25",
+        "d0t11"
+      ]
+    },
+    {
+      "week": 8,
+      "page": 6,
+      "title": "模擬測驗｜第 13–16 題",
+      "terms": [
+        "d5t7",
+        "d5t32",
+        "d6t1",
+        "d6t3",
+        "d6t6",
+        "d6t4"
+      ]
+    },
+    {
+      "week": 8,
+      "page": 7,
+      "title": "模擬測驗｜第 17–20 題",
+      "terms": [
+        "d7t10",
+        "d1t2",
+        "d4t8",
+        "d0t6",
+        "d13t4",
+        "d8t24",
+        "d3t18",
+        "d10t0",
+        "d8t25",
+        "d1t30"
+      ]
+    },
+    {
+      "week": 8,
+      "page": 8,
+      "title": "解答解析｜第 1–4 題",
+      "terms": [
+        "ipas-term-ani",
+        "d3t17"
+      ]
+    },
+    {
+      "week": 8,
+      "page": 9,
+      "title": "解答解析｜第 5–8 題",
+      "terms": [
+        "ipas-term-csv",
+        "d14t6",
+        "d1t13",
+        "d1t28"
+      ]
+    },
+    {
+      "week": 8,
+      "page": 10,
+      "title": "解答解析｜第 9–12 題",
+      "terms": [
+        "d0t7",
+        "d1t1",
+        "d1t3",
+        "d3t18",
+        "d3t17",
+        "d0t9"
+      ]
+    },
+    {
+      "week": 8,
+      "page": 11,
+      "title": "解答解析｜第 13–16 題",
+      "terms": [
+        "d4t10",
+        "d5t32",
+        "d6t3"
+      ]
+    },
+    {
+      "week": 8,
+      "page": 12,
+      "title": "解答解析｜第 17–20 題",
+      "terms": [
+        "d1t2",
+        "d4t8",
+        "d7t11",
+        "d13t4",
+        "d0t6",
+        "d1t1",
+        "d8t24",
+        "d10t0"
+      ]
+    },
+    {
+      "week": 8,
+      "page": 13,
+      "title": "測驗檢討與個人複習計畫",
+      "terms": [
+        "d0t0",
+        "d0t2",
+        "d3t0",
+        "d15t31"
+      ]
+    },
+    {
+      "week": 9,
+      "page": 1,
+      "title": "No Code／Low Code",
+      "terms": [
+        "ipas-term-nocode",
+        "ipas-term-lowcode"
+      ]
+    },
+    {
+      "week": 9,
+      "page": 2,
+      "title": "本週學習目標與流程",
+      "terms": [
+        "d15t4",
+        "d14t4",
+        "d15t33"
+      ]
+    },
+    {
+      "week": 9,
+      "page": 3,
+      "title": "No Code 與 Low Code",
+      "terms": [
+        "ipas-term-nocode",
+        "ipas-term-lowcode",
+        "d4t10",
+        "d15t16",
+        "d15t32",
+        "d0t0",
+        "fluxgloss-01",
+        "d15t19",
+        "d8t5",
+        "d15t4",
+        "d16t16"
+      ]
+    },
+    {
+      "week": 9,
+      "page": 4,
+      "title": "工作流程的基本元素",
+      "terms": [
+        "d15t16",
+        "ipas-term-trigger",
+        "d14t4",
+        "d3t0",
+        "d15t22",
+        "d15t19",
+        "d15t33",
+        "ipas-term-webhook",
+        "d15t23",
+        "d14t2"
+      ]
+    },
+    {
+      "week": 9,
+      "page": 5,
+      "title": "API、Webhook 與 JSON",
+      "terms": [
+        "d15t33",
+        "ipas-term-webhook",
+        "ipas-term-json",
+        "d3t0",
+        "d14t2",
+        "ipas-term-http",
+        "d15t31",
+        "d4t10",
+        "d15t19",
+        "d9t7",
+        "d15t22",
+        "fluxgloss-28"
+      ]
+    },
+    {
+      "week": 9,
+      "page": 6,
+      "title": "優勢、限制與選型",
+      "terms": [
+        "ipas-term-nocode",
+        "ipas-term-lowcode",
+        "ipas-term-poc",
+        "ipas-term-tco",
+        "d3t8",
+        "d16t3",
+        "d15t22",
+        "d15t4",
+        "d14t3"
+      ]
+    },
+    {
+      "week": 9,
+      "page": 7,
+      "title": "流程測試與治理",
+      "terms": [
+        "d0t0",
+        "d15t33",
+        "d15t16",
+        "ipas-term-trigger",
+        "d14t2",
+        "ipas-term-deidentify",
+        "d15t22",
+        "d15t19",
+        "d15t23",
+        "d15t18",
+        "d18t20",
+        "d14t4",
+        "d3t0",
+        "d16t3",
+        "ipas-term-backoff",
+        "d14t7",
+        "d6t7"
+      ]
+    },
+    {
+      "week": 9,
+      "page": 8,
+      "title": "課間休息",
+      "terms": [
+        "d15t4",
+        "d15t33"
+      ]
+    },
+    {
+      "week": 9,
+      "page": 9,
+      "title": "課堂實作｜客服工單自動化",
+      "terms": [
+        "d15t4",
+        "d0t0",
+        "d3t0",
+        "d15t19",
+        "d16t16"
+      ]
+    },
+    {
+      "week": 9,
+      "page": 10,
+      "title": "實作檢核與討論",
+      "terms": []
+    },
+    {
+      "week": 9,
+      "page": 11,
+      "title": "iPAS 自編練習｜第 1–2 題",
+      "terms": [
+        "ipas-term-nocode",
+        "d14t4",
+        "ipas-term-trigger",
+        "d5t16"
+      ]
+    },
+    {
+      "week": 9,
+      "page": 12,
+      "title": "iPAS 自編練習｜第 3–4 題",
+      "terms": [
+        "d15t33"
+      ]
+    },
+    {
+      "week": 9,
+      "page": 13,
+      "title": "練習解答與解析",
+      "terms": [
+        "ipas-term-trigger"
+      ]
+    },
+    {
+      "week": 9,
+      "page": 14,
+      "title": "本週重點與課後任務",
+      "terms": [
+        "d15t4",
+        "d14t4",
+        "d15t33"
+      ]
+    },
+    {
+      "week": 10,
+      "page": 1,
+      "title": "大型語言模型 LLM",
+      "terms": [
+        "d10t0"
+      ]
+    },
+    {
+      "week": 10,
+      "page": 2,
+      "title": "本週學習目標與流程",
+      "terms": [
+        "d8t3",
+        "d11t6",
+        "d9t1",
+        "d16t0",
+        "d4t10",
+        "d15t4"
+      ]
+    },
+    {
+      "week": 10,
+      "page": 3,
+      "title": "Token 與 Tokenizer",
+      "terms": [
+        "d8t3",
+        "d8t5",
+        "d1t22",
+        "d8t4",
+        "d8t8",
+        "ipas-term-http",
+        "d11t6",
+        "d2t1",
+        "d10t0",
+        "d16t0",
+        "d8t18",
+        "d8t12",
+        "d0t0",
+        "d8t7",
+        "d4t8",
+        "d2t2",
+        "d9t0",
+        "d8t6",
+        "ipas-term-decode",
+        "ipas-term-gpt",
+        "d5t2",
+        "d9t19",
+        "ipas-term-bert",
+        "d15t4",
+        "ipas-term-specialtoken",
+        "d7t17",
+        "d9t11",
+        "d16t16",
+        "d15t33",
+        "d9t1",
+        "d14t6",
+        "d9t17"
+      ]
+    },
+    {
+      "week": 10,
+      "page": 4,
+      "title": "Embedding 與 Attention",
+      "terms": [
+        "d11t6",
+        "d9t1",
+        "d8t3",
+        "d2t1",
+        "d9t17",
+        "d4t8",
+        "d2t2",
+        "d5t0",
+        "d2t4",
+        "d8t8",
+        "d9t13",
+        "d9t15",
+        "d9t6",
+        "d9t7",
+        "d9t8",
+        "d2t6",
+        "d9t12",
+        "d1t22",
+        "d8t18",
+        "d9t2",
+        "d9t0",
+        "d4t28",
+        "d9t16",
+        "d1t2",
+        "d4t9",
+        "d9t9",
+        "fluxgloss-28",
+        "d2t8",
+        "d2t19",
+        "d9t4",
+        "d9t21",
+        "d9t22",
+        "d9t5",
+        "d16t16",
+        "d2t9"
+      ]
+    },
+    {
+      "week": 10,
+      "page": 5,
+      "title": "自回歸生成與上下文視窗",
+      "terms": [
+        "d10t9",
+        "d9t18",
+        "d10t0",
+        "d8t3",
+        "d9t17",
+        "d15t11",
+        "d8t5",
+        "d2t1",
+        "d10t12",
+        "d9t0",
+        "d8t18",
+        "d8t8",
+        "d14t6",
+        "ipas-term-specialtoken",
+        "ipas-term-decode",
+        "d10t29",
+        "d2t4",
+        "d1t22",
+        "d2t13",
+        "d10t23",
+        "d2t14",
+        "d9t19",
+        "d2t29",
+        "d10t21",
+        "ipas-term-prefill",
+        "d9t20",
+        "d9t1",
+        "d9t7",
+        "d9t8",
+        "d3t4",
+        "d10t14",
+        "d15t13",
+        "d16t16",
+        "ipas-term-http",
+        "d16t0",
+        "d10t3"
+      ]
+    },
+    {
+      "week": 10,
+      "page": 6,
+      "title": "Temperature、Top-k、Top-p",
+      "terms": [
+        "d10t24",
+        "d10t25",
+        "d10t26",
+        "d4t10",
+        "d10t0",
+        "d8t3",
+        "d1t22",
+        "d10t23",
+        "d9t17",
+        "d16t0",
+        "d10t21",
+        "d15t33",
+        "d4t8",
+        "d2t13",
+        "d10t19",
+        "d16t16",
+        "d14t6"
+      ]
+    },
+    {
+      "week": 10,
+      "page": 7,
+      "title": "工具及模型選擇",
+      "terms": [
+        "d15t4",
+        "d15t33",
+        "d4t8",
+        "d0t0",
+        "d15t34",
+        "d10t0",
+        "d13t2",
+        "d11t6",
+        "d16t16",
+        "d2t1",
+        "d1t8",
+        "ipas-term-poc",
+        "d15t31",
+        "d8t3",
+        "d16t3",
+        "d16t5",
+        "d16t4",
+        "ipas-term-p95",
+        "d5t2",
+        "d1t0",
+        "d15t5",
+        "d14t3",
+        "d9t7"
+      ]
+    },
+    {
+      "week": 10,
+      "page": 8,
+      "title": "課間休息",
+      "terms": [
+        "d15t4",
+        "d15t33"
+      ]
+    },
+    {
+      "week": 10,
+      "page": 9,
+      "title": "課堂實作｜Token 與生成參數比較",
+      "terms": [
+        "d8t3",
+        "d4t10",
+        "d1t11",
+        "d8t5",
+        "d15t4",
+        "d14t3",
+        "d16t16"
+      ]
+    },
+    {
+      "week": 10,
+      "page": 10,
+      "title": "實作檢核與討論",
+      "terms": [
+        "d4t10",
+        "d8t3"
+      ]
+    },
+    {
+      "week": 10,
+      "page": 11,
+      "title": "iPAS 自編練習｜第 1–2 題",
+      "terms": [
+        "d8t3",
+        "d10t24",
+        "d4t8"
+      ]
+    },
+    {
+      "week": 10,
+      "page": 12,
+      "title": "iPAS 自編練習｜第 3–4 題",
+      "terms": [
+        "d9t18",
+        "d15t11",
+        "d8t3",
+        "d9t17",
+        "d15t33"
+      ]
+    },
+    {
+      "week": 10,
+      "page": 13,
+      "title": "練習解答與解析",
+      "terms": [
+        "d8t5",
+        "d8t8",
+        "d10t24",
+        "d10t23",
+        "d15t11",
+        "d9t17"
+      ]
+    },
+    {
+      "week": 10,
+      "page": 14,
+      "title": "本週重點與課後任務",
+      "terms": [
+        "d8t3",
+        "d11t6",
+        "d9t1",
+        "d16t0",
+        "d4t10",
+        "d15t4"
+      ]
+    },
+    {
+      "week": 11,
+      "page": 1,
+      "title": "提示工程與多模態 AI",
+      "terms": [
+        "d10t13",
+        "d13t0",
+        "d0t0"
+      ]
+    },
+    {
+      "week": 11,
+      "page": 2,
+      "title": "本週學習目標與流程",
+      "terms": [
+        "d10t12",
+        "d10t15",
+        "d13t0",
+        "d15t4"
+      ]
+    },
+    {
+      "week": 11,
+      "page": 3,
+      "title": "提示工程的基本框架",
+      "terms": [
+        "d10t13",
+        "d9t17",
+        "d4t8",
+        "d10t12",
+        "d10t0",
+        "d8t5",
+        "d8t3",
+        "d16t0",
+        "d14t7",
+        "d12t0"
+      ]
+    },
+    {
+      "week": 11,
+      "page": 4,
+      "title": "System、User 與範例",
+      "terms": [
+        "d8t5",
+        "d8t3",
+        "d10t0",
+        "d9t17",
+        "d15t4",
+        "d3t0",
+        "d10t15",
+        "d10t14",
+        "d10t16",
+        "d16t0",
+        "d4t8",
+        "d12t0",
+        "d2t14",
+        "d4t10",
+        "ipas-term-decode",
+        "d2t3",
+        "d10t23",
+        "d4t20"
+      ]
+    },
+    {
+      "week": 11,
+      "page": 5,
+      "title": "迭代、結構化與評估",
+      "terms": [
+        "d5t6",
+        "d10t19",
+        "d12t14",
+        "d10t12",
+        "ipas-term-json",
+        "d1t8",
+        "ipas-term-jsonschema",
+        "d14t4",
+        "d1t1",
+        "d1t0",
+        "d10t24",
+        "d16t0"
+      ]
+    },
+    {
+      "week": 11,
+      "page": 6,
+      "title": "多模態 AI 與常見工具",
+      "terms": [
+        "d13t0",
+        "d0t0",
+        "d15t4",
+        "d13t1",
+        "d8t5",
+        "d16t0",
+        "d13t2",
+        "d8t17",
+        "d1t2",
+        "d8t3",
+        "d10t0",
+        "d3t0",
+        "d13t4",
+        "d13t5",
+        "d8t24",
+        "d8t26",
+        "d8t25",
+        "d13t6",
+        "d13t7",
+        "ipas-term-http",
+        "d16t16",
+        "d9t17"
+      ]
+    },
+    {
+      "week": 11,
+      "page": 7,
+      "title": "幻覺、引用與人工查核",
+      "terms": [
+        "d10t30",
+        "d9t17",
+        "d0t0",
+        "d3t0",
+        "d15t19",
+        "d14t3",
+        "d11t0",
+        "d16t0"
+      ]
+    },
+    {
+      "week": 11,
+      "page": 8,
+      "title": "課間休息",
+      "terms": [
+        "d15t4",
+        "d15t33"
+      ]
+    },
+    {
+      "week": 11,
+      "page": 9,
+      "title": "課堂實作｜提示詞 A/B 測試",
+      "terms": [
+        "d10t12",
+        "d18t17",
+        "d0t0",
+        "d8t25",
+        "d16t16"
+      ]
+    },
+    {
+      "week": 11,
+      "page": 10,
+      "title": "實作檢核與討論",
+      "terms": []
+    },
+    {
+      "week": 11,
+      "page": 11,
+      "title": "iPAS 自編練習｜第 1–2 題",
+      "terms": [
+        "d10t15",
+        "d4t8",
+        "d8t25",
+        "d8t26",
+        "d3t0"
+      ]
+    },
+    {
+      "week": 11,
+      "page": 12,
+      "title": "iPAS 自編練習｜第 3–4 題",
+      "terms": [
+        "d10t12",
+        "d1t8"
+      ]
+    },
+    {
+      "week": 11,
+      "page": 13,
+      "title": "練習解答與解析",
+      "terms": [
+        "d10t15",
+        "d9t17",
+        "d8t25",
+        "d1t8"
+      ]
+    },
+    {
+      "week": 11,
+      "page": 14,
+      "title": "本週重點與課後任務",
+      "terms": [
+        "d10t12",
+        "d10t15",
+        "d13t0",
+        "d15t4"
+      ]
+    },
+    {
+      "week": 12,
+      "page": 1,
+      "title": "RAG 與知識庫",
+      "terms": [
+        "d11t0"
+      ]
+    },
+    {
+      "week": 12,
+      "page": 2,
+      "title": "本週學習目標與流程",
+      "terms": [
+        "d11t0",
+        "d2t1"
+      ]
+    },
+    {
+      "week": 12,
+      "page": 3,
+      "title": "RAG 的目的",
+      "terms": [
+        "d11t0",
+        "d9t17",
+        "d4t10",
+        "d15t11",
+        "d10t0",
+        "d8t0",
+        "d16t0",
+        "d11t6",
+        "d11t8",
+        "d9t6",
+        "d2t1",
+        "d4t8",
+        "d10t12",
+        "d12t0",
+        "d10t30"
+      ]
+    },
+    {
+      "week": 12,
+      "page": 4,
+      "title": "知識庫建置與 Chunking",
+      "terms": [
+        "d11t3",
+        "d7t7",
+        "d9t17",
+        "d11t6",
+        "d2t1",
+        "ipas-term-http",
+        "ipas-term-acl",
+        "d8t3",
+        "d7t16",
+        "d14t6",
+        "d11t5",
+        "d14t7",
+        "d2t4",
+        "d3t4",
+        "d11t8"
+      ]
+    },
+    {
+      "week": 12,
+      "page": 5,
+      "title": "向量搜尋與 Cosine Similarity",
+      "terms": [
+        "d11t9",
+        "d11t16",
+        "d11t6",
+        "d2t1",
+        "d11t8",
+        "d4t0",
+        "d9t6",
+        "d10t25",
+        "d10t0",
+        "d8t3",
+        "d2t4",
+        "d2t8",
+        "d2t9",
+        "d9t7",
+        "d1t22"
+      ]
+    },
+    {
+      "week": 12,
+      "page": 6,
+      "title": "RAG 推論流程",
+      "terms": [
+        "d11t0",
+        "d16t0",
+        "d9t6",
+        "d7t13",
+        "d9t17",
+        "d8t3",
+        "d10t0",
+        "d10t12",
+        "d2t1",
+        "ipas-term-bm25",
+        "d11t19",
+        "d2t22",
+        "d17t12",
+        "d15t4"
+      ]
+    },
+    {
+      "week": 12,
+      "page": 7,
+      "title": "RAG 評估及維護",
+      "terms": [
+        "d11t0",
+        "d1t0",
+        "d6t7",
+        "d6t6",
+        "ipas-term-mrr",
+        "d3t4",
+        "d16t3",
+        "d10t25",
+        "d14t0",
+        "d14t6",
+        "d11t3",
+        "d11t6",
+        "d11t20",
+        "d10t12",
+        "d9t17",
+        "ipas-term-acl",
+        "ipas-term-p95"
+      ]
+    },
+    {
+      "week": 12,
+      "page": 8,
+      "title": "課間休息",
+      "terms": [
+        "d15t4",
+        "d15t33"
+      ]
+    },
+    {
+      "week": 12,
+      "page": 9,
+      "title": "課堂實作｜紙筆／Colab 知識庫檢索",
+      "terms": [
+        "d11t0",
+        "d15t33",
+        "d10t0",
+        "d9t17",
+        "d14t7",
+        "d9t7",
+        "d11t6",
+        "d2t1",
+        "d16t16"
+      ]
+    },
+    {
+      "week": 12,
+      "page": 10,
+      "title": "實作檢核與討論",
+      "terms": [
+        "d9t17",
+        "d11t0"
+      ]
+    },
+    {
+      "week": 12,
+      "page": 11,
+      "title": "iPAS 自編練習｜第 1–2 題",
+      "terms": [
+        "d11t0",
+        "d4t8",
+        "d9t17"
+      ]
+    },
+    {
+      "week": 12,
+      "page": 12,
+      "title": "iPAS 自編練習｜第 3–4 題",
+      "terms": [
+        "d11t16",
+        "d11t0"
+      ]
+    },
+    {
+      "week": 12,
+      "page": 13,
+      "title": "練習解答與解析",
+      "terms": [
+        "d9t17",
+        "d2t1"
+      ]
+    },
+    {
+      "week": 12,
+      "page": 14,
+      "title": "本週重點與課後任務",
+      "terms": [
+        "d11t0",
+        "d2t1"
+      ]
+    },
+    {
+      "week": 13,
+      "page": 1,
+      "title": "AI Agent 與工具整合",
+      "terms": [
+        "d15t0",
+        "d15t4"
+      ]
+    },
+    {
+      "week": 13,
+      "page": 2,
+      "title": "本週學習目標與流程",
+      "terms": [
+        "d15t16",
+        "d14t0",
+        "d15t5",
+        "d15t11",
+        "d15t4"
+      ]
+    },
+    {
+      "week": 13,
+      "page": 3,
+      "title": "Agent 與固定 Workflow",
+      "terms": [
+        "d14t0",
+        "d15t16",
+        "d15t0",
+        "d0t0",
+        "d15t4",
+        "d14t2",
+        "d14t4",
+        "d14t3",
+        "d14t6",
+        "d15t21",
+        "d16t3",
+        "d10t0",
+        "d14t7",
+        "d4t10",
+        "ipas-term-http",
+        "d15t10",
+        "d16t0",
+        "ipas-term-csv"
+      ]
+    },
+    {
+      "week": 13,
+      "page": 4,
+      "title": "Tool Calling 與結構化參數",
+      "terms": [
+        "d15t5",
+        "d4t10",
+        "d15t6",
+        "d15t4",
+        "ipas-term-json",
+        "d10t0",
+        "d14t2",
+        "d15t33",
+        "d14t7",
+        "d15t31",
+        "d15t22"
+      ]
+    },
+    {
+      "week": 13,
+      "page": 5,
+      "title": "Context、Memory 與狀態",
+      "terms": [
+        "d9t17",
+        "d15t11",
+        "d14t2",
+        "d14t0",
+        "d10t0",
+        "d5t31",
+        "ipas-term-acl",
+        "d16t0",
+        "d8t3",
+        "d14t4",
+        "d14t7",
+        "d15t23",
+        "d9t7",
+        "d2t22",
+        "d15t4"
+      ]
+    },
+    {
+      "week": 13,
+      "page": 6,
+      "title": "權限、停止條件與人工批准",
+      "terms": [
+        "d15t18",
+        "d15t4",
+        "d4t10",
+        "d10t12",
+        "d14t4",
+        "d14t6",
+        "d15t31",
+        "d15t22",
+        "d14t7",
+        "d17t12"
+      ]
+    },
+    {
+      "week": 13,
+      "page": 7,
+      "title": "Agent 評估與選型",
+      "terms": [
+        "d14t0",
+        "d1t8",
+        "d15t31",
+        "d15t16",
+        "d15t4",
+        "d14t4",
+        "d16t3",
+        "d3t4",
+        "d1t0",
+        "d18t16",
+        "d4t10",
+        "d15t5",
+        "ipas-term-p95",
+        "d15t22",
+        "d14t7",
+        "d14t3",
+        "d14t6"
+      ]
+    },
+    {
+      "week": 13,
+      "page": 8,
+      "title": "課間休息",
+      "terms": [
+        "d15t4",
+        "d15t33"
+      ]
+    },
+    {
+      "week": 13,
+      "page": 9,
+      "title": "課堂實作｜工具呼叫桌上演練",
+      "terms": [
+        "d15t5",
+        "d15t4",
+        "d14t2",
+        "d4t10",
+        "d14t4",
+        "d15t33",
+        "d9t7",
+        "d16t16",
+        "d15t16",
+        "d10t0",
+        "d14t0",
+        "d14t7",
+        "ipas-term-http",
+        "d15t22"
+      ]
+    },
+    {
+      "week": 13,
+      "page": 10,
+      "title": "實作檢核與討論",
+      "terms": [
+        "d15t5",
+        "d4t10"
+      ]
+    },
+    {
+      "week": 13,
+      "page": 11,
+      "title": "iPAS 自編練習｜第 1–2 題",
+      "terms": [
+        "d15t5",
+        "d15t4"
+      ]
+    },
+    {
+      "week": 13,
+      "page": 12,
+      "title": "iPAS 自編練習｜第 3–4 題",
+      "terms": [
+        "d15t16",
+        "d14t0"
+      ]
+    },
+    {
+      "week": 13,
+      "page": 13,
+      "title": "練習解答與解析",
+      "terms": [
+        "d15t4",
+        "d14t4",
+        "d15t16"
+      ]
+    },
+    {
+      "week": 13,
+      "page": 14,
+      "title": "本週重點與課後任務",
+      "terms": [
+        "d15t16",
+        "d14t0",
+        "d15t5",
+        "d15t11",
+        "d15t4"
+      ]
+    },
+    {
+      "week": 14,
+      "page": 1,
+      "title": "生成式 AI 導入評估與規劃",
+      "terms": [
+        "d0t4"
+      ]
+    },
+    {
+      "week": 14,
+      "page": 2,
+      "title": "本週學習目標與流程",
+      "terms": [
+        "ipas-term-kpi",
+        "ipas-term-poc",
+        "d18t20"
+      ]
+    },
+    {
+      "week": 14,
+      "page": 3,
+      "title": "需求與 KPI",
+      "terms": [
+        "ipas-term-kpi",
+        "d0t4",
+        "ipas-term-aht",
+        "ipas-term-fcr",
+        "d14t3",
+        "d14t7",
+        "d0t0"
+      ]
+    },
+    {
+      "week": 14,
+      "page": 4,
+      "title": "技術選型與部署方式",
+      "terms": [
+        "d0t2",
+        "d10t0",
+        "d11t0",
+        "d14t0",
+        "d15t16",
+        "d3t0",
+        "ipas-term-structured",
+        "d10t30",
+        "d15t4",
+        "d16t3",
+        "ipas-term-poc",
+        "d6t18",
+        "d4t8",
+        "d0t0",
+        "d14t6",
+        "d15t17",
+        "d15t33",
+        "d16t2",
+        "d16t16",
+        "d2t2"
+      ]
+    },
+    {
+      "week": 14,
+      "page": 5,
+      "title": "ROI、TCO 與回收期",
+      "terms": [
+        "ipas-term-roi-business",
+        "ipas-term-tco",
+        "ipas-term-payback",
+        "ipas-term-sensitivity-analysis",
+        "d14t7"
+      ]
+    },
+    {
+      "week": 14,
+      "page": 6,
+      "title": "PoC、Pilot 與分階段上線",
+      "terms": [
+        "ipas-term-poc",
+        "ipas-term-pilot",
+        "d18t13",
+        "d18t20",
+        "ipas-term-mvp",
+        "ipas-term-kpi",
+        "d3t4",
+        "ipas-term-slo",
+        "d14t7",
+        "d15t31"
+      ]
+    },
+    {
+      "week": 14,
+      "page": 7,
+      "title": "測試、驗收與營運監控",
+      "terms": [
+        "d1t0",
+        "d16t3",
+        "ipas-term-sli",
+        "ipas-term-slo",
+        "ipas-term-sla",
+        "d18t20",
+        "d3t4",
+        "d10t12",
+        "d15t4",
+        "d17t12",
+        "d16t4",
+        "ipas-term-p95",
+        "d1t1",
+        "d14t7",
+        "d1t8",
+        "ipas-term-kpi"
+      ]
+    },
+    {
+      "week": 14,
+      "page": 8,
+      "title": "課間休息",
+      "terms": [
+        "d15t4",
+        "d15t33"
+      ]
+    },
+    {
+      "week": 14,
+      "page": 9,
+      "title": "課堂實作｜企業客服 AI 導入規劃",
+      "terms": [
+        "d0t0",
+        "ipas-term-payback",
+        "ipas-term-poc",
+        "ipas-term-pilot",
+        "ipas-term-tco",
+        "ipas-term-roi-business",
+        "d16t16"
+      ]
+    },
+    {
+      "week": 14,
+      "page": 10,
+      "title": "實作檢核與討論",
+      "terms": [
+        "ipas-term-payback",
+        "ipas-term-tco",
+        "ipas-term-roi-business"
+      ]
+    },
+    {
+      "week": 14,
+      "page": 11,
+      "title": "iPAS 自編練習｜第 1–2 題",
+      "terms": [
+        "d0t0",
+        "ipas-term-tco",
+        "d4t10"
+      ]
+    },
+    {
+      "week": 14,
+      "page": 12,
+      "title": "iPAS 自編練習｜第 3–4 題",
+      "terms": [
+        "ipas-term-poc",
+        "ipas-term-payback"
+      ]
+    },
+    {
+      "week": 14,
+      "page": 13,
+      "title": "練習解答與解析",
+      "terms": [
+        "ipas-term-tco",
+        "ipas-term-poc"
+      ]
+    },
+    {
+      "week": 14,
+      "page": 14,
+      "title": "本週重點與課後任務",
+      "terms": [
+        "ipas-term-kpi",
+        "ipas-term-poc",
+        "d18t20"
+      ]
+    },
+    {
+      "week": 15,
+      "page": 1,
+      "title": "生成式 AI 風險管理與專題",
+      "terms": [
+        "d0t4"
+      ]
+    },
+    {
+      "week": 15,
+      "page": 2,
+      "title": "本週學習目標與流程",
+      "terms": [
+        "d0t4",
+        "d0t0"
+      ]
+    },
+    {
+      "week": 15,
+      "page": 3,
+      "title": "生成式 AI 風險地圖",
+      "terms": [
+        "d0t4",
+        "d2t17",
+        "ipas-term-riskframework",
+        "d10t30",
+        "d4t9",
+        "d3t17",
+        "fluxgloss-28",
+        "d2t2"
+      ]
+    },
+    {
+      "week": 15,
+      "page": 4,
+      "title": "Prompt Injection 與不可信資料",
+      "terms": [
+        "d17t12",
+        "d17t13",
+        "d15t4",
+        "d9t17",
+        "d10t0",
+        "d14t6",
+        "d4t10",
+        "d14t4",
+        "d15t31",
+        "d14t7",
+        "d14t0",
+        "d3t0",
+        "ipas-term-owasp",
+        "d10t14"
+      ]
+    },
+    {
+      "week": 15,
+      "page": 5,
+      "title": "個資、著作權與合規",
+      "terms": [
+        "d3t0",
+        "fluxgloss-28",
+        "ipas-term-pseudonym",
+        "ipas-term-anonymize",
+        "d0t0",
+        "d14t2",
+        "d0t4"
+      ]
+    },
+    {
+      "week": 15,
+      "page": 6,
+      "title": "Human-in-the-loop 與事件處理",
+      "terms": [
+        "d15t18",
+        "d17t32",
+        "d15t19",
+        "d3t4",
+        "ipas-term-http",
+        "d14t4",
+        "d15t4",
+        "d14t2",
+        "ipas-term-mttr",
+        "d15t21",
+        "d14t7",
+        "d15t23",
+        "d15t22",
+        "d15t5"
+      ]
+    },
+    {
+      "week": 15,
+      "page": 7,
+      "title": "期末專題審查方法",
+      "terms": [
+        "ipas-term-kpi",
+        "d11t0",
+        "d15t4",
+        "d1t8",
+        "ipas-term-tco",
+        "d6t7",
+        "d2t2",
+        "d4t8",
+        "d3t4"
+      ]
+    },
+    {
+      "week": 15,
+      "page": 8,
+      "title": "課間休息",
+      "terms": [
+        "d15t4",
+        "d15t33"
+      ]
+    },
+    {
+      "week": 15,
+      "page": 9,
+      "title": "課堂實作｜期末專題展示與風險檢核",
+      "terms": [
+        "ipas-term-kpi",
+        "d11t0",
+        "d15t4",
+        "ipas-term-tco",
+        "d7t-roi",
+        "d3t4",
+        "d16t16"
+      ]
+    },
+    {
+      "week": 15,
+      "page": 10,
+      "title": "實作檢核與討論",
+      "terms": [
+        "d2t2",
+        "d10t12",
+        "d4t8"
+      ]
+    },
+    {
+      "week": 15,
+      "page": 11,
+      "title": "iPAS 自編練習｜第 1–2 題",
+      "terms": [
+        "d17t12",
+        "d5t10",
+        "d1t23",
+        "d0t0"
+      ]
+    },
+    {
+      "week": 15,
+      "page": 12,
+      "title": "iPAS 自編練習｜第 3–4 題",
+      "terms": [
+        "d0t0",
+        "ipas-term-kpi"
+      ]
+    },
+    {
+      "week": 15,
+      "page": 13,
+      "title": "練習解答與解析",
+      "terms": [
+        "d17t12"
+      ]
+    },
+    {
+      "week": 15,
+      "page": 14,
+      "title": "本週重點與課後任務",
+      "terms": [
+        "d0t4",
+        "d0t0"
+      ]
+    },
+    {
+      "week": 16,
+      "page": 1,
+      "title": "科目二總複習與模擬測驗",
+      "terms": []
+    },
+    {
+      "week": 16,
+      "page": 2,
+      "title": "本週學習目標與流程",
+      "terms": [
+        "d15t4",
+        "d11t0",
+        "d14t0",
+        "d0t0",
+        "ipas-term-nocode",
+        "d10t0",
+        "d8t12",
+        "d10t12",
+        "d13t0",
+        "d15t8",
+        "ipas-term-kpi",
+        "d15t16",
+        "d10t13",
+        "d7t16",
+        "d8t3",
+        "d11t16",
+        "d2t1",
+        "d6t6",
+        "ipas-term-roi-business",
+        "ipas-term-payback"
+      ]
+    },
+    {
+      "week": 16,
+      "page": 3,
+      "title": "模擬測驗｜第 1–4 題",
+      "terms": [
+        "ipas-term-nocode",
+        "d15t4",
+        "d1t23",
+        "ipas-term-lowcode",
+        "d15t33",
+        "d15t22"
+      ]
+    },
+    {
+      "week": 16,
+      "page": 4,
+      "title": "模擬測驗｜第 5–8 題",
+      "terms": [
+        "d10t15",
+        "d8t24",
+        "d8t25",
+        "d3t17",
+        "d11t0"
+      ]
+    },
+    {
+      "week": 16,
+      "page": 5,
+      "title": "模擬測驗｜第 9–12 題",
+      "terms": [
+        "d11t0",
+        "d15t0",
+        "d15t4",
+        "d10t24",
+        "d14t2",
+        "d14t0"
+      ]
+    },
+    {
+      "week": 16,
+      "page": 6,
+      "title": "模擬測驗｜第 13–16 題",
+      "terms": [
+        "d0t0",
+        "d16t16",
+        "ipas-term-payback",
+        "ipas-term-poc",
+        "d14t6",
+        "ipas-term-pilot"
+      ]
+    },
+    {
+      "week": 16,
+      "page": 7,
+      "title": "模擬測驗｜第 17–20 題",
+      "terms": [
+        "ipas-term-kpi",
+        "d0t0",
+        "d11t0",
+        "d8t4",
+        "d1t22",
+        "d17t13",
+        "d18t20"
+      ]
+    },
+    {
+      "week": 16,
+      "page": 8,
+      "title": "解答解析｜第 1–4 題",
+      "terms": [
+        "ipas-term-nocode",
+        "d15t4",
+        "d1t23",
+        "ipas-term-lowcode",
+        "d15t33",
+        "d15t22"
+      ]
+    },
+    {
+      "week": 16,
+      "page": 9,
+      "title": "解答解析｜第 5–8 題",
+      "terms": [
+        "d10t15",
+        "d9t17",
+        "d8t24",
+        "d8t25",
+        "d3t17",
+        "d11t0"
+      ]
+    },
+    {
+      "week": 16,
+      "page": 10,
+      "title": "解答解析｜第 9–12 題",
+      "terms": [
+        "d11t0",
+        "d9t17",
+        "d15t0",
+        "d15t4",
+        "d14t2",
+        "d10t24",
+        "d14t0",
+        "d17t32"
+      ]
+    },
+    {
+      "week": 16,
+      "page": 11,
+      "title": "解答解析｜第 13–16 題",
+      "terms": [
+        "d0t0",
+        "ipas-term-kpi",
+        "d16t16",
+        "ipas-term-payback",
+        "ipas-term-poc",
+        "d14t6",
+        "ipas-term-pilot"
+      ]
+    },
+    {
+      "week": 16,
+      "page": 12,
+      "title": "解答解析｜第 17–20 題",
+      "terms": [
+        "ipas-term-kpi",
+        "d0t0",
+        "d11t0",
+        "d17t13",
+        "d8t4",
+        "d1t22",
+        "d18t20"
+      ]
+    },
+    {
+      "week": 16,
+      "page": 13,
+      "title": "測驗檢討與個人複習計畫",
+      "terms": [
+        "ipas-term-nocode",
+        "ipas-term-lowcode",
+        "d15t16",
+        "d10t13",
+        "d10t15",
+        "d11t0",
+        "d14t0",
+        "d15t5",
+        "d14t2",
+        "d0t0",
+        "ipas-term-kpi",
+        "ipas-term-roi-business",
+        "ipas-term-poc",
+        "ipas-term-governance",
+        "d17t32"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "m2-3-1",
+      "title": "自然語言處理技術與應用",
+      "terms": [
+        "d8t0",
+        "ipas-term-tfidf",
+        "d11t6",
+        "d2t1",
+        "d9t0",
+        "d9t1",
+        "d9t17",
+        "d3t0",
+        "d16t3",
+        "d15t4",
+        "d1t22",
+        "d1t8"
+      ]
+    },
+    {
+      "id": "m2-3-2",
+      "title": "電腦視覺技術與應用",
+      "terms": [
+        "d7t0",
+        "d3t0",
+        "d7t2",
+        "d7t3",
+        "d7t10",
+        "d7t12",
+        "d1t2",
+        "d1t3",
+        "d5t2",
+        "d7t28"
+      ]
+    },
+    {
+      "id": "m2-3-3",
+      "title": "生成式 AI 技術與應用",
+      "terms": [
+        "d0t4",
+        "d10t0",
+        "d8t3",
+        "d13t10",
+        "d13t12",
+        "d13t20",
+        "d12t0",
+        "d1t18"
+      ]
+    },
+    {
+      "id": "m2-3-4",
+      "title": "多模態人工智慧應用",
+      "terms": [
+        "d13t0",
+        "d0t0",
+        "d8t17",
+        "d16t0"
+      ]
+    },
+    {
+      "id": "m2-4-1",
+      "title": "AI 導入評估",
+      "terms": [
+        "d0t0",
+        "d7t-roi",
+        "d12t14",
+        "ipas-term-tco",
+        "ipas-term-poc"
+      ]
+    },
+    {
+      "id": "m2-4-2",
+      "title": "AI 導入規劃",
+      "terms": [
+        "d0t0",
+        "ipas-term-poc",
+        "ipas-term-pilot"
+      ]
+    },
+    {
+      "id": "m2-4-3",
+      "title": "AI 風險管理",
+      "terms": [
+        "d0t0",
+        "d10t30"
+      ]
+    },
+    {
+      "id": "m2-5-1",
+      "title": "數據準備與模型選擇",
+      "terms": [
+        "d16t3",
+        "d17t5",
+        "d15t31",
+        "d1t6",
+        "d1t7",
+        "d1t8",
+        "d3t0",
+        "d6t5",
+        "d6t7"
+      ]
+    },
+    {
+      "id": "m2-5-2",
+      "title": "AI 技術系統集成與部署",
+      "terms": [
+        "d0t0",
+        "d16t3",
+        "d15t33",
+        "d18t19",
+        "d18t20",
+        "d16t0",
+        "d16t15",
+        "d16t16"
+      ]
+    },
+    {
+      "id": "m3-3-1",
+      "title": "敘述性統計與資料摘要技術",
+      "terms": [
+        "ipas-term-mean",
+        "d2t19",
+        "d2t20",
+        "ipas-term-median",
+        "d14t3",
+        "d1t1"
+      ]
+    },
+    {
+      "id": "m3-3-2",
+      "title": "機率分佈與資料分佈模型",
+      "terms": [
+        "d2t20",
+        "d4t10"
+      ]
+    },
+    {
+      "id": "m3-3-3",
+      "title": "假設檢定與統計推論",
+      "terms": [
+        "ipas-term-hypothesis",
+        "d16t0",
+        "d1t1",
+        "d14t3",
+        "ipas-term-pvalue",
+        "ipas-term-test-errors",
+        "d18t17"
+      ]
+    },
+    {
+      "id": "m3-4-1",
+      "title": "數據收集與清理",
+      "terms": [
+        "d10t24"
+      ]
+    },
+    {
+      "id": "m3-4-2",
+      "title": "數據儲存與管理",
+      "terms": [
+        "ipas-term-warehouse",
+        "ipas-term-datalake"
+      ]
+    },
+    {
+      "id": "m3-4-3",
+      "title": "數據處理技術與工具",
+      "terms": [
+        "d15t4",
+        "d16t30",
+        "ipas-term-hdfs",
+        "ipas-term-mapreduce",
+        "ipas-term-spark",
+        "d5t2",
+        "d15t22"
+      ]
+    },
+    {
+      "id": "m3-5-1",
+      "title": "統計學在大數據中的應用",
+      "terms": [
+        "d1t1"
+      ]
+    },
+    {
+      "id": "m3-5-2",
+      "title": "常見的大數據分析方法",
+      "terms": [
+        "d3t17"
+      ]
+    },
+    {
+      "id": "m3-5-3",
+      "title": "數據可視化工具",
+      "terms": [
+        "d15t4",
+        "ipas-term-bi"
+      ]
+    },
+    {
+      "id": "m3-6-1",
+      "title": "大數據與機器學習",
+      "terms": [
+        "d0t2",
+        "d16t26",
+        "d1t2",
+        "d2t28"
+      ]
+    },
+    {
+      "id": "m3-6-2",
+      "title": "大數據在鑑別式 AI 中的應用",
+      "terms": [
+        "d0t0",
+        "d1t3",
+        "d1t25",
+        "d1t2",
+        "d3t17",
+        "d6t5",
+        "d6t7"
+      ]
+    },
+    {
+      "id": "m3-6-3",
+      "title": "大數據在生成式 AI 中的應用",
+      "terms": [
+        "d0t4",
+        "d10t3",
+        "d12t0",
+        "d11t0",
+        "d1t11",
+        "d1t18",
+        "d15t11",
+        "d10t30",
+        "d4t8"
+      ]
+    },
+    {
+      "id": "m3-6-4",
+      "title": "大數據隱私保護、安全與合規",
+      "terms": [
+        "d17t22",
+        "d1t16",
+        "ipas-term-pseudonym",
+        "ipas-term-anonymize"
+      ]
+    },
+    {
+      "id": "m4-3-1",
+      "title": "機率／統計之機器學習基礎應用",
+      "terms": [
+        "d0t2",
+        "d2t14",
+        "d14t3",
+        "d6t7",
+        "d6t1",
+        "d6t3",
+        "d6t6",
+        "d6t4"
+      ]
+    },
+    {
+      "id": "m4-3-2",
+      "title": "線性代數之機器學習基礎應用",
+      "terms": [
+        "d0t2",
+        "d2t1",
+        "d1t2",
+        "d2t2",
+        "d3t23",
+        "d2t12",
+        "ipas-term-nmf",
+        "d2t4",
+        "d4t8",
+        "d3t22",
+        "d1t3"
+      ]
+    },
+    {
+      "id": "m4-3-3",
+      "title": "數值優化技術與方法",
+      "terms": [
+        "d4t10",
+        "d2t28",
+        "d5t10",
+        "d5t12",
+        "d5t13",
+        "d5t7",
+        "d1t7",
+        "d14t3"
+      ]
+    },
+    {
+      "id": "m4-4-1",
+      "title": "機器學習原理與技術",
+      "terms": [
+        "d0t2",
+        "d1t3",
+        "d0t11",
+        "d14t5",
+        "d14t6",
+        "d5t34",
+        "d6t5",
+        "d5t32",
+        "d1t30",
+        "d3t0",
+        "d3t17"
+      ]
+    },
+    {
+      "id": "m4-4-2",
+      "title": "常見機器學習演算法",
+      "terms": [
+        "d0t2",
+        "d3t5",
+        "d3t6",
+        "d3t0",
+        "d3t11",
+        "d3t8",
+        "d3t10",
+        "d3t18",
+        "d3t14",
+        "d3t15",
+        "d1t2",
+        "d5t24"
+      ]
+    },
+    {
+      "id": "m4-4-3",
+      "title": "深度學習原理與框架",
+      "terms": [
+        "d0t3",
+        "d4t1",
+        "d4t12",
+        "d4t20",
+        "d2t29",
+        "d2t28",
+        "d2t3",
+        "d4t22",
+        "d2t5",
+        "d4t10",
+        "d4t8",
+        "d4t9",
+        "d4t13",
+        "d7t10",
+        "d8t13",
+        "d9t0",
+        "d4t27"
+      ]
+    },
+    {
+      "id": "m4-5-1",
+      "title": "數據準備與特徵工程",
+      "terms": [
+        "d1t19",
+        "d1t2",
+        "d1t20",
+        "d1t6",
+        "d1t3",
+        "d1t26",
+        "d3t23",
+        "d6t15"
+      ]
+    },
+    {
+      "id": "m4-5-2",
+      "title": "模型選擇與架構設計",
+      "terms": [
+        "d4t10",
+        "d4t11",
+        "d5t7",
+        "d5t32",
+        "d15t31",
+        "d16t3",
+        "d15t11",
+        "d17t5",
+        "d6t9",
+        "d0t12"
+      ]
+    },
+    {
+      "id": "m4-5-3",
+      "title": "模型訓練、評估與驗證",
+      "terms": [
+        "d5t0",
+        "d6t15",
+        "d3t0",
+        "d6t0",
+        "d5t19",
+        "d5t18",
+        "d1t8",
+        "d14t6",
+        "d6t7",
+        "d6t1",
+        "d6t4",
+        "d6t6",
+        "d6t3"
+      ]
+    },
+    {
+      "id": "m4-5-4",
+      "title": "模型調整與優化",
+      "terms": [
+        "d5t24",
+        "d5t28",
+        "d5t32",
+        "d12t17",
+        "fluxgloss-24",
+        "d12t14",
+        "d16t0",
+        "d5t7",
+        "d15t31"
+      ]
+    },
+    {
+      "id": "m4-6-1",
+      "title": "數據隱私、安全與合規（模型治理）",
+      "terms": [
+        "d15t11",
+        "d16t0",
+        "d1t2",
+        "d1t1",
+        "d1t6",
+        "d0t14",
+        "d2t28"
+      ]
+    },
+    {
+      "id": "m4-6-2",
+      "title": "演算法偏見與公平性",
+      "terms": [
+        "d17t4",
+        "d14t0",
+        "d1t2",
+        "d3t17",
+        "d6t1",
+        "d6t7",
+        "d15t31"
+      ]
+    }
+  ],
+  "newTerms": [
+    {
+      "id": "ipas-term-ani",
+      "zh": "窄域人工智慧"
+    },
+    {
+      "id": "ipas-term-asi",
+      "zh": "超人工智慧"
+    },
+    {
+      "id": "ipas-term-governance",
+      "zh": "AI 治理"
+    },
+    {
+      "id": "ipas-term-bias",
+      "zh": "資料與演算法偏見"
+    },
+    {
+      "id": "ipas-term-structured",
+      "zh": "結構化資料"
+    },
+    {
+      "id": "ipas-term-semistructured",
+      "zh": "半結構化資料"
+    },
+    {
+      "id": "ipas-term-unstructured",
+      "zh": "非結構化資料"
+    },
+    {
+      "id": "ipas-term-etl",
+      "zh": "資料擷取轉換載入"
+    },
+    {
+      "id": "ipas-term-deidentify",
+      "zh": "去識別化"
+    },
+    {
+      "id": "ipas-term-pseudonym",
+      "zh": "假名化"
+    },
+    {
+      "id": "ipas-term-anonymize",
+      "zh": "匿名化"
+    },
+    {
+      "id": "ipas-term-cia",
+      "zh": "資訊安全三要素"
+    },
+    {
+      "id": "ipas-term-mean",
+      "zh": "算術平均數"
+    },
+    {
+      "id": "ipas-term-median",
+      "zh": "中位數"
+    },
+    {
+      "id": "ipas-term-iqr",
+      "zh": "四分位距"
+    },
+    {
+      "id": "ipas-term-hypothesis",
+      "zh": "假設檢定"
+    },
+    {
+      "id": "ipas-term-pvalue",
+      "zh": "p 值"
+    },
+    {
+      "id": "ipas-term-test-errors",
+      "zh": "型一與型二錯誤"
+    },
+    {
+      "id": "ipas-term-manhattan",
+      "zh": "曼哈頓距離"
+    },
+    {
+      "id": "ipas-term-gini",
+      "zh": "Gini 不純度"
+    },
+    {
+      "id": "ipas-term-qlearning",
+      "zh": "Q-learning"
+    },
+    {
+      "id": "ipas-term-nmf",
+      "zh": "非負矩陣分解"
+    },
+    {
+      "id": "ipas-term-nocode",
+      "zh": "無程式碼開發"
+    },
+    {
+      "id": "ipas-term-lowcode",
+      "zh": "低程式碼開發"
+    },
+    {
+      "id": "ipas-term-webhook",
+      "zh": "事件回呼"
+    },
+    {
+      "id": "ipas-term-json",
+      "zh": "JSON 資料格式"
+    },
+    {
+      "id": "ipas-term-jsonschema",
+      "zh": "JSON 結構規格"
+    },
+    {
+      "id": "ipas-term-trigger",
+      "zh": "流程觸發器"
+    },
+    {
+      "id": "ipas-term-backoff",
+      "zh": "指數退避"
+    },
+    {
+      "id": "ipas-term-prefill",
+      "zh": "提示預填處理"
+    },
+    {
+      "id": "ipas-term-decode",
+      "zh": "逐詞元解碼"
+    },
+    {
+      "id": "ipas-term-specialtoken",
+      "zh": "特殊詞元"
+    },
+    {
+      "id": "ipas-term-tfidf",
+      "zh": "詞頻與逆文件頻率"
+    },
+    {
+      "id": "ipas-term-bm25",
+      "zh": "BM25 檢索排序"
+    },
+    {
+      "id": "ipas-term-mrr",
+      "zh": "平均倒數排名"
+    },
+    {
+      "id": "ipas-term-roi-business",
+      "zh": "投資報酬率"
+    },
+    {
+      "id": "ipas-term-tco",
+      "zh": "總持有成本"
+    },
+    {
+      "id": "ipas-term-payback",
+      "zh": "回收期"
+    },
+    {
+      "id": "ipas-term-kpi",
+      "zh": "關鍵績效指標"
+    },
+    {
+      "id": "ipas-term-poc",
+      "zh": "概念驗證"
+    },
+    {
+      "id": "ipas-term-pilot",
+      "zh": "小規模試點"
+    },
+    {
+      "id": "ipas-term-p95",
+      "zh": "第 95 百分位延遲"
+    },
+    {
+      "id": "ipas-term-sli",
+      "zh": "服務水準指標"
+    },
+    {
+      "id": "ipas-term-slo",
+      "zh": "服務水準目標"
+    },
+    {
+      "id": "ipas-term-sla",
+      "zh": "服務水準協議"
+    },
+    {
+      "id": "ipas-term-shap",
+      "zh": "SHAP 特徵貢獻解釋"
+    },
+    {
+      "id": "ipas-term-lime",
+      "zh": "LIME 局部模型解釋"
+    },
+    {
+      "id": "ipas-term-hdfs",
+      "zh": "Hadoop 分散式檔案系統"
+    },
+    {
+      "id": "ipas-term-spark",
+      "zh": "Spark 分散式運算"
+    },
+    {
+      "id": "ipas-term-mapreduce",
+      "zh": "MapReduce 分散式處理"
+    },
+    {
+      "id": "ipas-term-warehouse",
+      "zh": "資料倉儲"
+    },
+    {
+      "id": "ipas-term-datalake",
+      "zh": "資料湖"
+    },
+    {
+      "id": "ipas-term-aht",
+      "zh": "平均處理時間"
+    },
+    {
+      "id": "ipas-term-fcr",
+      "zh": "首次聯繫解決率"
+    },
+    {
+      "id": "ipas-term-mttr",
+      "zh": "平均恢復時間"
+    },
+    {
+      "id": "ipas-term-mvp",
+      "zh": "最小可行產品"
+    },
+    {
+      "id": "ipas-term-sse",
+      "zh": "群內平方誤差和"
+    },
+    {
+      "id": "ipas-term-fpr",
+      "zh": "偽陽性率"
+    },
+    {
+      "id": "ipas-term-acl",
+      "zh": "存取控制清單"
+    },
+    {
+      "id": "ipas-term-wer",
+      "zh": "詞錯誤率"
+    },
+    {
+      "id": "ipas-term-http",
+      "zh": "HTTP 請求與回應"
+    },
+    {
+      "id": "ipas-term-csv",
+      "zh": "逗號分隔資料"
+    },
+    {
+      "id": "ipas-term-bptt",
+      "zh": "跨時間反向傳播"
+    },
+    {
+      "id": "ipas-term-elbo",
+      "zh": "證據下界"
+    },
+    {
+      "id": "ipas-term-ddpm",
+      "zh": "去噪擴散機率模型"
+    },
+    {
+      "id": "ipas-term-bert",
+      "zh": "BERT 語言模型"
+    },
+    {
+      "id": "ipas-term-gpt",
+      "zh": "GPT 類自回歸模型"
+    },
+    {
+      "id": "ipas-term-svr",
+      "zh": "支持向量回歸"
+    },
+    {
+      "id": "ipas-term-human-loop",
+      "zh": "人類監督的迴圈位置"
+    },
+    {
+      "id": "ipas-term-riskframework",
+      "zh": "AI 風險管理框架"
+    },
+    {
+      "id": "ipas-term-owasp",
+      "zh": "OWASP 與 LLM 風險分類"
+    },
+    {
+      "id": "ipas-term-sensitivity-analysis",
+      "zh": "敏感度分析"
+    },
+    {
+      "id": "ipas-term-bi",
+      "zh": "商業智慧"
+    }
+  ]
+}
