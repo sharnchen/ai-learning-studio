@@ -292,7 +292,7 @@ const keywordStudy = (() => {
     return Boolean(engine && methodLessons[engine.id]);
   }
 
-  return {summary, guide, hasMethod};
+  return {summary, guide, hasMethod, walkthrough:term=>walkthroughs[term.id]};
 })();
 
 {
@@ -598,16 +598,20 @@ plt.show()
   if(p){
    add('問題背景與核心觀念（Motivation & Principle）',paragraph(p.why)+paragraph(p.principle)+(d?.example?'<h3>具體應用情境</h3>'+paragraph(d.example):'')+'<p class="muted">本詞的正式定義見頁首。下方共用機制算例只示範與本詞有關的部分。</p>');
    add('運作流程（Data Flow）',flow(p.steps));
-   const inputs=labCaseDefaults(t,e);
+   const inputs=labDefaults(e);
    add('輸入、符號與變數（Inputs & Symbols）',labTable(['輸入名稱','符號','意義與用途','預設值'],methodInputRows(e,inputs))+'<p class="muted">預設值為示範起點，非通用最佳參數。</p>');
    const guide=keywordFormulaGuide(t);
    if(guide)add('公式用途與推導線索（Formula Guide）',guide.replace(/<details class="keyword-formulas">/,'<details class="keyword-formulas" open>'));
+   const trace=keywordStudy.walkthrough(t);
+   if(trace)add('本詞專屬逐步算例（Term-Specific Example）',flow(trace[0])+paragraph(trace[1]));
    add('完整實例與計算過程（Worked Example）',methodWorkedExample(t,e));
    add('互動學習（Interactive Learning）','<p>使用同一實驗引擎調整輸入，對照圖形、中間步驟與結果。一次只改變一項條件。</p>'+ (typeof methodPracticeComparison==='function'?methodPracticeComparison(t,e):'')+'<button type="button" class="primary" data-open-lab="'+esc(t.id)+'">開啟完整互動實驗 →</button>');
    add('應用、假設與限制（Applications & Limits）','<h3>適用情境</h3>'+paragraph(p.use)+'<h3>限制與假設</h3>'+paragraph(p.limit)+(d?.expected?'<h3>驗收依據</h3>'+paragraph(d.expected):''));
   }else{
    add('核心觀念（Concept）',paragraph(plainKeywordDefinitions[t.id]||t.definition));
    if(d?.example)add('實際應用情境（Example）',paragraph(d.example));
+   const trace=keywordStudy.walkthrough(t);
+   if(trace)add('逐步算例（Worked Example）',flow(trace[0])+paragraph(trace[1]));
    if(d?.action)add('操作與實作指引（Practice）',paragraph(d.action));
    if(d?.expected)add('結果判讀與驗收（Verification）',paragraph(d.expected));
   }
@@ -620,7 +624,7 @@ plt.show()
   priorRender.apply(this,arguments);
   // No mutation observer: only normalize existing glossary DOM after navigation.
   const body=document.getElementById('keyword-body');if(!body)return;
-  body.querySelectorAll('.glossary-chapter details').forEach(d=>{d.open=true});
+  body.querySelectorAll('.glossary-chapter .keyword-formulas').forEach(d=>{d.open=true});
   // Scale only overwide mathematical expressions, not their surrounding text.
   body.querySelectorAll('.katex-display').forEach(d=>{
    const math=d.firstElementChild;if(!math)return;
