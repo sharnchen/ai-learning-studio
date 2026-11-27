@@ -315,7 +315,7 @@ const keywordStudy = (() => {
   }
   const eq=s=>'<p style="text-align:center;font-size:1.1em;overflow-wrap:anywhere">'+(window.katex?katex.renderToString(s,{throwOnError:false,displayMode:true}):escapeHtml(s))+'</p>';
   const table=(headers,rows)=>'<table style="width:100%;table-layout:fixed;overflow-wrap:anywhere"><thead><tr>'+headers.map(x=>'<th>'+x+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(x=>'<td>'+x+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
-  const sec=(n,title,body)=>'<section class="keyword-section"><h2>'+n+'. '+title+'</h2>'+body+'</section>';
+  const sec=(n,title,body)=>(n>1?'<hr class="svm-section-divider" style="border:0;border-top:1px solid var(--line, #b7bdc9);margin:2rem 0" aria-hidden="true">':'')+'<section class="keyword-section" style="padding-block:0.5rem"><h2>'+n+'. '+title+'</h2>'+body+'</section>';
   const svg=(body)=>'<svg viewBox="0 0 360 220" role="img" aria-label="SVM 分類幾何示意" style="width:100%;height:auto;max-width:620px;display:block;margin:auto">'+body+'</svg>';
   const points=(arr,c)=>arr.map(([x,y])=>'<circle cx="'+x+'" cy="'+y+'" r="5" fill="'+c+'"/>').join('');
   const line=(x,c,d='')=>'<path d="M'+x+' 15V190" stroke="'+c+'" stroke-width="2" '+(d?'stroke-dasharray="5 4"':'')+'/>';
