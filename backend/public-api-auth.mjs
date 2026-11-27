@@ -1,3 +1,4 @@
+import {databaseAdmin,isDatabaseAdmin} from './database-admin.mjs';
 import {recordLogin,recordLogout,AUTH_STORAGE_ERROR} from './auth-records.mjs';
 import {learningProgress,learningAccountId} from './learning-progress.mjs';
 import {verifyGoogleToken,makeSession,googleSession} from './google-auth.mjs';
@@ -26,7 +27,8 @@ export async function publicApi(request,env,ctx,worker){
  const bearer=request.headers.get('Authorization')||'';if(!bearer.startsWith('Bearer ')||bearer.length>4096)return reply({error:'Sign in required'},401);
  const token=bearer.slice(7);const internalHeaders=new Headers({'Cookie':'__Host-ai_session='+token});let identity;try{identity=await googleSession(new Request(own.origin+'/session',{headers:internalHeaders}),env);}catch{return reply({error:'Session storage temporarily unavailable',code:AUTH_STORAGE_ERROR},503);}if(!identity)return reply({error:'Session expired'},401);
  if(path==='/public/logout'&&request.method==='POST'){try{await recordLogout(env,identity,token);return reply({loggedOut:true});}catch{return reply({error:'Logout storage temporarily unavailable',code:AUTH_STORAGE_ERROR},503);}}
- if(path==='/public/session'&&request.method==='GET')return reply({authenticated:true,email:identity.email,accountId:await learningAccountId(identity.sub)});
+ if(path==='/public/session'&&request.method==='GET')return reply({authenticated:true,email:identity.email,accountId:await learningAccountId(identity.sub),canManageDatabase:isDatabaseAdmin(identity)});
+ if(path==='/public/admin'||path.startsWith('/public/admin/'))return databaseAdmin(request,env,identity,reply);
  if(path==='/public/progress')return learningProgress(request,env,identity,reply);
  if(path!=='/public/tutor')return reply({error:'Not found'},404);
  if(request.method!=='POST')return reply({error:'POST required'},405);

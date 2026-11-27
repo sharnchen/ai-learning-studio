@@ -40,6 +40,8 @@ jobs:
           node scripts/test-login-account-choice.cjs
           node tests/auth-session-switch.cjs
           node scripts/test-auth-records.mjs
+          node tests/database-admin.mjs
+          node tests/database-admin-ui.cjs
           node scripts/test-public-auth.mjs
           node scripts/test-google-auth.mjs
       - name: Validate Python code runner
