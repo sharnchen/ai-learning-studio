@@ -1,3 +1,4 @@
+import {recordLogin,recordedSessionActive,recordExpiredSession,recordLogout,AUTH_STORAGE_ERROR} from './auth-records.mjs';
 import {loginPage} from './login-page.mjs';
 // Google sign-in: public client ID, Google-signed ID token, server-only session key.
 const enc=new TextEncoder();
@@ -10,14 +11,14 @@ const sessionName='__Host-ai_session',nonceName='__Host-ai_nonce';
 const pageHeaders={'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','Referrer-Policy':'no-referrer','X-Content-Type-Options':'nosniff','Cross-Origin-Opener-Policy':'same-origin-allow-popups','Content-Security-Policy':"default-src 'self'; script-src 'self' https://accounts.google.com/gsi/client; frame-src https://accounts.google.com; connect-src 'self' https://accounts.google.com/gsi/; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: https://*.googleusercontent.com; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"};
 async function sessionKey(env){return crypto.subtle.importKey('raw',enc.encode(env.SESSION_SIGNING_KEY),{name:'HMAC',hash:'SHA-256'},false,['sign','verify'])}
 export async function makeSession(identity,env,now=Math.floor(Date.now()/1000),ttl=28800){
- const payload=encode(enc.encode(JSON.stringify({sub:identity.sub,email:identity.email,iat:now,exp:now+ttl,aud:env.GOOGLE_CLIENT_ID})));
+ const payload=encode(enc.encode(JSON.stringify({sub:identity.sub,email:identity.email,iat:now,exp:now+ttl,aud:env.GOOGLE_CLIENT_ID,sid:crypto.randomUUID()})));
  return payload+'.'+encode(await crypto.subtle.sign('HMAC',await sessionKey(env),enc.encode(payload)));
 }
 export async function googleSession(request,env){
  try{if(!env.SESSION_SIGNING_KEY)return null;const [payload,signature,extra]=cookie(request,sessionName).split('.');if(!payload||!signature||extra)return null;
  if(!await crypto.subtle.verify('HMAC',await sessionKey(env),decode(signature),enc.encode(payload)))return null;
- const data=json(payload),now=Math.floor(Date.now()/1000);if(data.aud!==env.GOOGLE_CLIENT_ID||!data.sub||!data.email||!Number.isFinite(data.exp)||data.exp<=now||data.iat>now+60)return null;return data;
- }catch{return null}
+ const data=json(payload),now=Math.floor(Date.now()/1000);if(data.aud!==env.GOOGLE_CLIENT_ID||!data.sub||!data.email||!Number.isFinite(data.exp)||!Number.isSafeInteger(data.iat)||data.iat>now+60)return null;if(data.exp<=now){await recordExpiredSession(env,payload+'.'+signature,now);return null;}if(!await recordedSessionActive(env,data,payload+'.'+signature,now))return null;return data;
+ }catch(error){if(error.code===AUTH_STORAGE_ERROR)throw error;return null}
 }
 export async function verifyGoogleToken(token,clientId,nonce,transport=fetch){
  if(typeof token!=='string'||token.length>12000||!nonce)throw Error('Invalid credential');
@@ -62,11 +63,12 @@ export async function googleAuthRoute(request,env){
  if(env.AUTH_RATE_LIMITER&&!(await env.AUTH_RATE_LIMITER.limit({key:request.headers.get('CF-Connecting-IP')||'unknown'})).success)return reply({error:'Rate limited'},429);
  try{const reader=request.body?.getReader();let text='',size=0;if(!reader)throw Error();for(;;){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>16000){await reader.cancel();throw Error()}text+=new TextDecoder().decode(value)}
  const {credential}=JSON.parse(text),identity=await verifyGoogleToken(credential,env.GOOGLE_CLIENT_ID,cookie(request,nonceName));
- const headers=new Headers({'Cache-Control':'no-store','Content-Type':'application/json'});headers.append('Set-Cookie',setCookie(sessionName,await makeSession(identity,env),28800));headers.append('Set-Cookie',setCookie(nonceName,'',0));return new Response('{"authenticated":true}',{headers});
- }catch(error){const code=error.message==='Invalid credential'?'LOGIN_REFRESH_REQUIRED':error.message==='Google keys unavailable'?'GOOGLE_KEYS_UNAVAILABLE':'GOOGLE_VERIFICATION_FAILED';console.error(JSON.stringify({event:'google_login_failed',code}));return reply({error:'Google login failed; refresh and try again',code},401)}
+ const headers=new Headers({'Cache-Control':'no-store','Content-Type':'application/json'});const token=await makeSession(identity,env);await recordLogin(env,identity,token);headers.append('Set-Cookie',setCookie(sessionName,token,28800));headers.append('Set-Cookie',setCookie(nonceName,'',0));return new Response('{"authenticated":true}',{headers});
+ }catch(error){if(error.code===AUTH_STORAGE_ERROR)return reply({error:'Login storage temporarily unavailable',code:AUTH_STORAGE_ERROR},503);const code=error.message==='Invalid credential'?'LOGIN_REFRESH_REQUIRED':error.message==='Google keys unavailable'?'GOOGLE_KEYS_UNAVAILABLE':'GOOGLE_VERIFICATION_FAILED';console.error(JSON.stringify({event:'google_login_failed',code}));return reply({error:'Google login failed; refresh and try again',code},401)}
  }
  if(path==='/auth/logout'&&request.method==='POST'){
  if(request.headers.get('Origin')!==origin)return reply({error:'Origin denied'},403);
+ try{const identity=await googleSession(request,env);if(identity)await recordLogout(env,identity,cookie(request,sessionName));}catch{return reply({error:'Logout storage temporarily unavailable'},503);}
  return new Response(null,{status:303,headers:{Location:'/auth/login','Cache-Control':'no-store','Set-Cookie':setCookie(sessionName,'',0)}});
  }
  return reply({error:'Not found'},404);

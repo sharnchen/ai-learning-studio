@@ -28,6 +28,7 @@ async function verify(source){
  const unauthorized=observe(a.request("/tutor"));pending[4].resolve({status:401});ok((await unauthorized).status===401&&!a.ready&&a.accountId==="","current 401 still logs out");
  save("B");events.message({origin:loc.origin,source:nodes.get("auth-frame").contentWindow,data:{type:"ai-studio-login"}});await drain();
  const same=observe(a.request("/tutor"));a.logout();save("B");events.message({origin:loc.origin,source:nodes.get("auth-frame").contentWindow,data:{type:"ai-studio-login"}});await drain();pending[5].resolve({status:401});ok((await same).error==="AbortError"&&a.ready&&a.accountId==="B","same account new generation protected");
+ const signingOut=a.signOut();await drain();ok(pending[6]?.token==="Bearer B","manual logout must notify backend with current credential");pending[6].resolve({ok:true,status:200});await signingOut;ok(!a.ready&&a.accountId==="","manual logout clears local identity after server response");
  return "PASS: A/B switch, stale 401/200/network failures, old bound requests, valid session, current 401 and same-account relogin";
 }
 verify(fs.readFileSync(path.join(__dirname,'..','public-auth.js'),'utf8')).then(console.log).catch(e=>{console.error(e);process.exitCode=1});

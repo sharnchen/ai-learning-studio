@@ -17,7 +17,7 @@ const worker={async fetch(request,env,ctx={}){
  const reply=(data,status=200)=>new Response(JSON.stringify(data),{status,headers});
  const pathname=new URL(request.url).pathname;
  if(googleMode&&pathname.startsWith('/auth/'))return googleAuthRoute(request,env);
- const identity=googleMode?await googleSession(request,env):accessMode?await accessIdentity(ctx,env):null;
+ let identity;try{identity=googleMode?await googleSession(request,env):accessMode?await accessIdentity(ctx,env):null;}catch{return reply({error:'Session storage temporarily unavailable',code:'AUTH_STORAGE_UNAVAILABLE'},503);}
  if(googleMode&&!identity){if(request.method==='GET'&&(pathname==='/'||pathname==='/studio'||pathname.startsWith('/studio/')))return Response.redirect(ownOrigin+'/auth/login',302);return reply({error:'Sign in required',code:'LOGIN_REQUIRED'},401);}
  if(accessMode&&!identity)return reply({error:'Sign in required',code:'LOGIN_REQUIRED'},401);
  if(sessionMode&&pathname==='/')return Response.redirect(ownOrigin+'/studio/#home',302);

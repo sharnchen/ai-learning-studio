@@ -1,3 +1,4 @@
+import {recordLogin,recordLogout,AUTH_STORAGE_ERROR} from './auth-records.mjs';
 import {learningProgress,learningAccountId} from './learning-progress.mjs';
 import {verifyGoogleToken,makeSession,googleSession} from './google-auth.mjs';
 const PUBLIC_ORIGIN='https://sharnchen.github.io';
@@ -20,10 +21,11 @@ export async function publicApi(request,env,ctx,worker){
  if(path==='/public/login'&&request.method==='POST'){
  if(!request.headers.get('Content-Type')?.includes('application/json'))return reply({error:'JSON required'},415);
  if(env.AUTH_RATE_LIMITER&&!(await env.AUTH_RATE_LIMITER.limit({key:request.headers.get('CF-Connecting-IP')||'unknown'})).success)return reply({error:'Rate limited'},429);
- try{const body=JSON.parse(await textBody(request,16000)),nonce=await nonceFor(body.challenge,env);const identity=await verifyGoogleToken(body.credential,env.GOOGLE_CLIENT_ID,nonce);const token=await makeSession(identity,env,Math.floor(Date.now()/1000),3600);return reply({authenticated:true,token,expiresIn:3600,email:identity.email});}catch{return reply({error:'Google verification failed',code:'GOOGLE_VERIFICATION_FAILED'},401)}
+ try{const body=JSON.parse(await textBody(request,16000)),nonce=await nonceFor(body.challenge,env);const identity=await verifyGoogleToken(body.credential,env.GOOGLE_CLIENT_ID,nonce);const token=await makeSession(identity,env,Math.floor(Date.now()/1000),3600);await recordLogin(env,identity,token);return reply({authenticated:true,token,expiresIn:3600,email:identity.email});}catch(error){if(error.code===AUTH_STORAGE_ERROR)return reply({error:'Login storage temporarily unavailable',code:AUTH_STORAGE_ERROR},503);return reply({error:'Google verification failed',code:'GOOGLE_VERIFICATION_FAILED'},401)}
  }
  const bearer=request.headers.get('Authorization')||'';if(!bearer.startsWith('Bearer ')||bearer.length>4096)return reply({error:'Sign in required'},401);
- const token=bearer.slice(7);const internalHeaders=new Headers({'Cookie':'__Host-ai_session='+token});const identity=await googleSession(new Request(own.origin+'/session',{headers:internalHeaders}),env);if(!identity)return reply({error:'Session expired'},401);
+ const token=bearer.slice(7);const internalHeaders=new Headers({'Cookie':'__Host-ai_session='+token});let identity;try{identity=await googleSession(new Request(own.origin+'/session',{headers:internalHeaders}),env);}catch{return reply({error:'Session storage temporarily unavailable',code:AUTH_STORAGE_ERROR},503);}if(!identity)return reply({error:'Session expired'},401);
+ if(path==='/public/logout'&&request.method==='POST'){try{await recordLogout(env,identity,token);return reply({loggedOut:true});}catch{return reply({error:'Logout storage temporarily unavailable',code:AUTH_STORAGE_ERROR},503);}}
  if(path==='/public/session'&&request.method==='GET')return reply({authenticated:true,email:identity.email,accountId:await learningAccountId(identity.sub)});
  if(path==='/public/progress')return learningProgress(request,env,identity,reply);
  if(path!=='/public/tutor')return reply({error:'Not found'},404);

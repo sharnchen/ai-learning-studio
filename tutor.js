@@ -44,7 +44,7 @@ document.addEventListener('submit',event=>{
 });
 document.addEventListener('click',async event=>{const b=event.target.closest('button');if(!b)return;
  if(b.dataset.tutorContext!==undefined){if(tutorBusy){toast('請先停止目前的回答。');return}const id=b.dataset.tutorContext;if(keywordCatalog.some(t=>t.id===id))tutorTopic=id;tutorChallenge=null;for(const id of ['reader','keyword-reader','lab-reader'])document.getElementById(id)?.close();if(location.hash==='#tutor')tutorRefresh();else location.hash='tutor'}
- if(b.dataset.siteLogout!==undefined||b.dataset.siteRelogin!==undefined){window.AIStudioAuth?.logout();return}
+ if(b.dataset.siteLogout!==undefined||b.dataset.siteRelogin!==undefined){window.AIStudioAuth?.signOut();return}
  if(b.dataset.tutorStart!==undefined)tutorStart();
  if(b.dataset.tutorExample!==undefined)tutorSend('請用實例解釋'+tutorTerm().zh);
  if(b.dataset.tutorPractice!==undefined)tutorSend('請給我'+tutorTerm().zh+'的實作任務與驗收方式');
