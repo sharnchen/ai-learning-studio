@@ -575,3 +575,56 @@ plt.show()
  let n=0;qs.forEach(([title,a,c,ex],i)=>{const selected=q.querySelector('input[name="rnn-q-'+i+'"]:checked'),correct=selected&&Number(selected.value)===c;if(correct)n++;q.querySelector('[data-rnn-feedback="'+i+'"]').textContent=(correct?'正確：':'正解：'+a[c]+'。')+ex;});q.querySelector('[data-rnn-score]').textContent='得分：'+n+' / '+qs.length+'（'+n*10+' 分）';
  });
 }
+
+/* Shared glossary presentation: preserve dedicated lessons and existing term-specific data. */
+{
+ const priorExample=keywordExample,priorRender=renderKeyword;
+ const dedicated=new Set(['d3t10','d8t13']);
+ const esc=escapeHtml;
+ const heading=(n,title,html)=>'<section class="keyword-section glossary-chapter"><h2>'+n+'. '+title+'</h2>'+html+'</section>';
+ const paragraph=x=>'<p>'+esc(x)+'</p>';
+ function flow(steps){
+  return '<ol class="glossary-flow" aria-label="方法步驟圖">'+steps.map((s,i)=>'<li><b>STEP '+(i+1)+'</b><span>'+esc(s)+'</span></li>').join('')+'</ol>';
+ }
+ const style=document.createElement('style');
+ style.id='glossary-study-standard';
+ style.textContent='#keyword-content .glossary-chapter{padding:1rem 0;margin:0;min-width:0}#keyword-content .glossary-chapter+.glossary-chapter{border-top:1px solid #aeb7c4;margin-top:1.1rem;padding-top:1.6rem}#keyword-content .glossary-flow{display:grid;gap:18px;list-style:none;padding:0;max-width:680px;margin:1rem auto}#keyword-content .glossary-flow li{position:relative;display:flex;align-items:center;gap:12px;border:1px solid #91aaa9;border-radius:8px;padding:12px;line-height:1.7}#keyword-content .glossary-flow li+li:before{content:"↓";position:absolute;top:-21px;left:50%;line-height:20px;color:#64748b}#keyword-content .glossary-flow b{flex-shrink:0;font-size:.75rem;color:#527777}#keyword-content table{border-collapse:collapse;border:1.5px solid #8f96a3;width:100%}#keyword-content th,#keyword-content td{border:1.5px solid #8f96a3;padding:.6rem;white-space:normal;overflow-wrap:anywhere;vertical-align:middle}#keyword-content th{background:#e9eef7;color:#172640;font-weight:700;text-align:center}#keyword-content .lab-table-wrap,#keyword-content .cnn-layer-table{overflow:visible;max-width:100%;min-width:0}#keyword-content .glossary-chapter .method-handbook{padding:0;margin:0;border:0;background:transparent}#keyword-content .glossary-chapter .method-handbook>section,#keyword-content .glossary-chapter .method-handbook>details{border-top:1px solid #b7bdc9;padding:1rem 0;margin:0}#keyword-content .keyword-math,#keyword-content .katex-display,#keyword-content .formula-explanation{overflow:visible!important;max-width:100%;min-width:0}#keyword-content .katex-display{white-space:normal}#keyword-content .katex-display>.katex{white-space:normal}#keyword-content .katex-display>.katex>.katex-html{white-space:normal}#keyword-content svg{max-width:100%;height:auto}#keyword-content .glossary-chapter h3{margin-top:1rem}#keyword-content .glossary-chapter .muted{line-height:1.8}';
+ if(!document.getElementById(style.id))document.head.append(style);
+ keywordExample=function(t,d){
+  if(dedicated.has(t.id))return priorExample(t,d);
+  const e=methodEngine(t),p=e&&methodLessons[e.id];
+  let n=0,sections=[];
+  const add=(title,html)=>sections.push(heading(++n,title,html));
+  if(p){
+   add('問題背景與核心觀念（Motivation & Principle）',paragraph(p.why)+paragraph(p.principle)+(d?.example?'<h3>具體應用情境</h3>'+paragraph(d.example):'')+'<p class="muted">本詞的正式定義見頁首。下方共用機制算例只示範與本詞有關的部分。</p>');
+   add('運作流程（Data Flow）',flow(p.steps));
+   const inputs=labCaseDefaults(t,e);
+   add('輸入、符號與變數（Inputs & Symbols）',labTable(['輸入名稱','符號','意義與用途','預設值'],methodInputRows(e,inputs))+'<p class="muted">預設值為示範起點，非通用最佳參數。</p>');
+   const guide=keywordFormulaGuide(t);
+   if(guide)add('公式用途與推導線索（Formula Guide）',guide.replace(/<details class="keyword-formulas">/,'<details class="keyword-formulas" open>'));
+   add('完整實例與計算過程（Worked Example）',methodWorkedExample(t,e));
+   add('互動學習（Interactive Learning）','<p>使用同一實驗引擎調整輸入，對照圖形、中間步驟與結果。一次只改變一項條件。</p>'+ (typeof methodPracticeComparison==='function'?methodPracticeComparison(t,e):'')+'<button type="button" class="primary" data-open-lab="'+esc(t.id)+'">開啟完整互動實驗 →</button>');
+   add('應用、假設與限制（Applications & Limits）','<h3>適用情境</h3>'+paragraph(p.use)+'<h3>限制與假設</h3>'+paragraph(p.limit)+(d?.expected?'<h3>驗收依據</h3>'+paragraph(d.expected):''));
+  }else{
+   add('核心觀念（Concept）',paragraph(plainKeywordDefinitions[t.id]||t.definition));
+   if(d?.example)add('實際應用情境（Example）',paragraph(d.example));
+   if(d?.action)add('操作與實作指引（Practice）',paragraph(d.action));
+   if(d?.expected)add('結果判讀與驗收（Verification）',paragraph(d.expected));
+  }
+  add('自我測驗與實作（Self-Assessment）','<p>先完成情境判讀，確認能解釋本詞與相關概念的差異，再依實作指引核對輸入與輸出。</p><button type="button" data-keyword-tab="interact">進入自我測驗 →</button> <button type="button" data-keyword-tab="practice">實作指引 →</button>');
+  const sources=curriculum[t.domainId]?.sourceIds||[];
+  if(sources.length)add('參考資料（References）','<ul>'+sources.map(i=>learningSources[i]).filter(Boolean).map(s=>'<li><a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.title)+'</a></li>').join('')+'</ul>');
+  return '<div class="glossary-standard">'+sections.join('')+'</div>';
+ };
+ renderKeyword=function(){
+  priorRender.apply(this,arguments);
+  // No mutation observer: only normalize existing glossary DOM after navigation.
+  const body=document.getElementById('keyword-body');if(!body)return;
+  body.querySelectorAll('.glossary-chapter details').forEach(d=>{d.open=true});
+  // Scale only overwide mathematical expressions, not their surrounding text.
+  body.querySelectorAll('.katex-display').forEach(d=>{
+   const math=d.firstElementChild;if(!math)return;
+   const w=d.clientWidth;if(w>0&&math.scrollWidth>w){math.style.fontSize=Math.max(.6,w/math.scrollWidth)*100+'%'}
+  });
+ };
+}
