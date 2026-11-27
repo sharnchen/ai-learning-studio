@@ -18,11 +18,11 @@ for(const row of entries){
   const fresh={id:row.id,zh:row.zh,en:row.en,definition:row.definition,lessonId:63,domainId:13,domain:domain.title};
   keywordCatalog.push(fresh);
   domain.terms.push({id:fresh.id,zh:fresh.zh,en:fresh.en,definition:fresh.definition,lessonId:63});
-  plainKeywordDefinitions[fresh.id]='以 FLUX.2 Klein + Qwen3-VL 進行圖生圖與換鞋時：'+row.definition;
+  plainKeywordDefinitions[fresh.id]=''+row.definition;
   if(typeof termPractice!=='undefined'&&!termPractice[fresh.zh]){
     termPractice[fresh.zh]={
-      example:'在人物換鞋專案中，'+row.definition,
-      action:'比較人物原圖、鞋款參考圖及換鞋結果；指出此概念的作用，並檢查生成是否符合鞋色、鞋帶、鞋跟與原圖保留要求。',
+      example:'在影像編輯中，'+row.definition,
+      action:'比較原圖、參考圖及編輯結果；指出此概念的作用，並檢查目標特徵與保留區域是否符合要求。',
       expected:'能以自己的話解釋 '+fresh.en+'，並指出它在視覺辨識、Prompt 組合、生成或合成哪一階段發生作用。'
     };
   }
@@ -30,7 +30,7 @@ for(const row of entries){
 keywordDefinitions=function(term){
  const base=oldDefinition(term);
  const detail=additions[term.id];
- return detail?base+'<div class="keyword-extra" style="margin-top:10px;line-height:1.8"><strong>FLUX / Qwen3-VL 換鞋應用</strong><p>'+escapeHtml(detail)+'</p></div>':base;
+ return detail?base+'<div class="keyword-extra" style="margin-top:10px;line-height:1.8"><strong>影像生成與編輯應用</strong><p>'+escapeHtml(detail)+'</p></div>':base;
 };
 window.fluxGlossaryImport={source:'FLUX.2 Klein + Qwen3-VL',total:entries.length,added:entries.filter(e=>keywordCatalog.some(t=>t.id===e.id)).length,extended:entries.filter(e=>!keywordCatalog.some(t=>t.id===e.id)).length};
 })();
