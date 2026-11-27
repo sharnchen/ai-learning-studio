@@ -46,14 +46,21 @@ function sandboxBridge(workerSource){
   if(event.data.type==='stop'){worker?.terminate();worker=null;return}
   if(event.data.type!=='run'||worker)return;
   try{
-   const url=URL.createObjectURL(new Blob(['('+workerSource+')()'],{type:'text/javascript'}));
-   worker=new Worker(url,{type:'module'});URL.revokeObjectURL(url);
+   // Blob module workers fail to start in opaque-origin sandboxed frames.
+   // A data URL preserves the opaque origin without granting page/storage access.
+   const url='data:text/javascript;charset=utf-8,'+encodeURIComponent('('+workerSource+')()');
+   worker=new Worker(url,{type:'module'});
    worker.onmessage=e=>{const d=e.data;if(d&&typeof d.text==='string'&&['stdout','stderr','phase','running','done','error'].includes(d.type))send(d.type,d.text)};
-   worker.onerror=()=>send('error','Python 執行環境無法載入。請確認網路、瀏覽器與 WebAssembly 支援。');
+   worker.onerror=event=>send('error','Python 執行環境啟動失敗。請重新執行；若仍失敗，請確認網路及瀏覽器的 WebAssembly 支援。'+(event.message?'（'+event.message+'）':''));
    worker.postMessage({code:event.data.code,input:event.data.input});
   }catch(error){send('error',error.message)}
  });
  send('ready','');
+}
+function pythonSandboxDocument(){
+ const csp="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' data: https://cdn.jsdelivr.net; worker-src data:; connect-src https://cdn.jsdelivr.net; object-src 'none'; base-uri 'none'; form-action 'none'";
+ const js='('+sandboxBridge.toString()+')('+JSON.stringify(pythonWorker.toString())+')';
+ return '<!doctype html><meta http-equiv="Content-Security-Policy" content="'+csp+'"><script>'+js+'<\/script>';
 }
 function initPythonCards(){
  const selector='#app pre, #lesson-content pre, #keyword-content pre, #lab-content pre';
@@ -78,9 +85,7 @@ function initPythonCards(){
   if(active)stop('已停止，因為開始了另一個實驗。');
   output.textContent='';status.textContent='首次載入 Python 執行環境，請保持網路連線…';run.disabled=true;halt.disabled=false;
   const frame=document.createElement('iframe');frame.setAttribute('sandbox','allow-scripts');frame.setAttribute('title','獨立 Python 執行沙箱');frame.hidden=true;
-  const csp="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' blob: https://cdn.jsdelivr.net; worker-src blob:; connect-src https://cdn.jsdelivr.net; object-src 'none'; base-uri 'none'; form-action 'none'";
-  const js='('+sandboxBridge.toString()+')('+JSON.stringify(pythonWorker.toString())+')';
-  frame.srcdoc='<!doctype html><meta http-equiv="Content-Security-Policy" content="'+csp+'"><script>'+js+'<\/script>';
+  frame.srcdoc=pythonSandboxDocument();
   active={frame,run,halt,output,status,code,input:input.value.slice(0,10000),timer:null,started:false};limit(active,120000);document.body.append(frame);
  }
  function enhance(){
@@ -115,4 +120,4 @@ function initPythonCards(){
  addEventListener('pagehide',()=>stop('已停止'));document.addEventListener('close',e=>{if(active&&e.target.contains?.(active.run))stop('教材已關閉，執行停止。')},true);
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 }
-if(typeof module!=='undefined'&&module.exports)module.exports={classifyPython};else initPythonCards();
+if(typeof module!=='undefined'&&module.exports)module.exports={classifyPython,pythonSandboxDocument};else initPythonCards();
